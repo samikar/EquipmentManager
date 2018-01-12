@@ -6,30 +6,29 @@ import java.util.Date;
 
 
 /**
- * The persistent class for the equipmentreservation database table.
+ * The persistent class for the reservation database table.
  * 
  */
 @Entity
-//@NamedQuery(name="Equipmentreservation.findAll", query="SELECT e FROM Equipmentreservation e")
 
 @NamedNativeQueries({
 	@NamedNativeQuery(
-			name	=	"Equipmentreservation.findAll", 
-			query	=	"SELECT * FROM Equipmentreservation",
+			name	=	"Reservation.findAll", 
+			query	=	"SELECT * FROM reservation",
             			resultClass=Equipmentreservation.class
 	),
     @NamedNativeQuery(
-            name    =   "Equipmentreservation.getReservationsByType",
+            name    =   "Reservation.getReservationsByType",
             query   =   "SELECT * " +
-                        "FROM equipmentreservation " +
-                        "WHERE Equipmentreservation.reservationType = ?",
+                        "FROM reservation " +
+                        "WHERE reservation.reservationType = ?",
                         resultClass=Equipmentreservation.class
     ),
     @NamedNativeQuery(
-            name    =   "Equipmentreservation.getReservationsByEquipmentId",
+            name    =   "Reservation.getReservationsByEquipmentId",
             query   =   "SELECT * " +
-                        "FROM equipmentreservation " +
-                        "WHERE Equipmentreservation.equipmentId = ?",
+                        "FROM reservation " +
+                        "WHERE reservation.equipmentId = ?",
                         resultClass=Equipmentreservation.class
     )
     
@@ -40,7 +39,7 @@ public class Equipmentreservation implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private int idEquipmentReservation;
+	private int reservationId;
 
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name="date_return")
@@ -61,12 +60,12 @@ public class Equipmentreservation implements Serializable {
 	public Equipmentreservation() {
 	}
 
-	public int getIdEquipmentReservation() {
-		return this.idEquipmentReservation;
+	public int getreservationId() {
+		return this.reservationId;
 	}
 
-	public void setIdEquipmentReservation(int idEquipmentReservation) {
-		this.idEquipmentReservation = idEquipmentReservation;
+	public void setreservationId(int reservationId) {
+		this.reservationId = reservationId;
 	}
 
 	public Date getDateReturn() {

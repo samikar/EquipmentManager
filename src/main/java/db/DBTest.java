@@ -21,11 +21,11 @@ public class DBTest extends LocalDBHandler {
             try{
 	            Statement stmt = connection.createStatement();
     	        //ResultSet rs = stmt.executeQuery("SELECT * FROM sensordata");
-                ResultSet rs = stmt.executeQuery("SELECT * FROM emanager_testdb.equipmentreservation;");
+                ResultSet rs = stmt.executeQuery("SELECT * FROM emanager_testdb.reservation;");
                    
 				while(rs.next()){
 					Equipmentreservation er = new Equipmentreservation();
-                    er.setIdEquipmentReservation(rs.getInt("idEquipmentReservation"));
+                    er.setreservationId(rs.getInt("reservationId"));
                     er.setEquipmentId(rs.getString("equipmentId"));
                     er.setEmployeeId_take(rs.getString("employeeId_take"));
                     er.setEmployeeId_return(rs.getString("employeeId_return"));
@@ -55,7 +55,7 @@ public class DBTest extends LocalDBHandler {
     	
     	
     	for (Equipmentreservation reservation : resArr) {
-    		sb.append("id:" + reservation.getIdEquipmentReservation() +
+    		sb.append("id:" + reservation.getreservationId() +
     				  " equipmentId: " + reservation.getEquipmentId() +
     				  " employeeId_take: " + reservation.getEmployeeId_take() +
     				  " employeeId_return: " + reservation.getEmployeeId_return() +

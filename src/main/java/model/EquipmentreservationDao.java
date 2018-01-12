@@ -30,7 +30,7 @@ EntityManager em = entityManagerFactory.createEntityManager();
 	
 	public List<Equipmentreservation> getDaos(){
 		entityManager.getTransaction().begin();
-		Query query = entityManager.createNamedQuery("Equipmentreservation.findAll");
+		Query query = entityManager.createNamedQuery("Reservation.findAll");
 		//Query query = entityManager.createQuery("from Product c", Product.class);
 		List<Equipmentreservation> result = query.getResultList(); 
 		entityManager.getTransaction().commit();
@@ -38,11 +38,10 @@ EntityManager em = entityManagerFactory.createEntityManager();
 	}
 	
 	public int persist(Equipmentreservation dao){
-		System.out.println("\n***** Reservaatio: " + dao.getIdEquipmentReservation() + "/" + dao.getDateReturn() + "/" + dao.getDateTake()  + "/" + dao.getEmployeeId_return()  + "/" + dao.getEmployeeId_take()  + "/" + dao.getEquipmentId()  + "/" + dao.getReservationType() + " *****\n");
 		entityManager.getTransaction().begin();
 		entityManager.persist(dao);
 		entityManager.getTransaction().commit();
-		return dao.getIdEquipmentReservation();
+		return dao.getreservationId();
 	}
 	
 	public void initialize(int daoNumber){
@@ -53,9 +52,9 @@ EntityManager em = entityManagerFactory.createEntityManager();
 	
 	public void update(Equipmentreservation dao){
 		//just checking that the dao really has is
-		if(dao.getIdEquipmentReservation()>0){
+		if(dao.getreservationId()>0){
 			//get the actual entity from database to a dao-named attribute
-			initialize(dao.getIdEquipmentReservation());
+			initialize(dao.getreservationId());
 			//start database transaction
 			entityManager.getTransaction().begin();
 			dao.setDateReturn(dao.getDateReturn());
@@ -80,14 +79,14 @@ EntityManager em = entityManagerFactory.createEntityManager();
 	}
 	
 	public List<Equipmentreservation> reservationsByEquipmentId(String equipmentId) {
-		List<Equipmentreservation> reservations = em.createNamedQuery("Equipmentreservation.getReservationsByEquipmentId", Equipmentreservation.class)
+		List<Equipmentreservation> reservations = em.createNamedQuery("Reservation.getReservationsByEquipmentId", Equipmentreservation.class)
 				.setParameter(1, equipmentId)
 				.getResultList();
 		return reservations;
 	}
 	
 	public List<Equipmentreservation> queryTest(String reservationType) {
-		List<Equipmentreservation> reservations = em.createNamedQuery("Equipmentreservation.getReservationsByType", Equipmentreservation.class)
+		List<Equipmentreservation> reservations = em.createNamedQuery("Reservation.getReservationsByType", Equipmentreservation.class)
 				.setParameter(1, reservationType)
 				.getResultList();
 		return reservations;

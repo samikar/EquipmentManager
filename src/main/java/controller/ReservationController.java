@@ -28,10 +28,10 @@ public class ReservationController {
     
     // NOTE: testdbuser has no DELETE priviliges 
     @RequestMapping("/deletereservation")
-    public void deleteReservation(@RequestParam(value="idEquipmentReservation", defaultValue="0") String idEquipmentReservation) {
+    public void deleteReservation(@RequestParam(value="reservationId", defaultValue="0") String reservationId) {
     	EquipmentreservationDao dao = new EquipmentreservationDao();
 		dao.init();
-		dao.initialize(Integer.parseInt(idEquipmentReservation));
+		dao.initialize(Integer.parseInt(reservationId));
 		dao.delete();
     }
     
@@ -68,7 +68,7 @@ public class ReservationController {
     
     @RequestMapping("/updatereservation")
     public Equipmentreservation updateReservation(
-    		@RequestParam(value="idEquipmentReservation", defaultValue="0") String idEquipmentReservation,
+    		@RequestParam(value="reservationId", defaultValue="0") String reservationId,
     		@RequestParam(value="dateReturn", defaultValue="0") String dateReturn,
     		@RequestParam(value="dateTake", defaultValue="0") String dateTake,
     		@RequestParam(value="employeeId_return", defaultValue="0") String employeeId_return,
@@ -84,7 +84,7 @@ public class ReservationController {
     	Date dr = new Date(Long.parseLong(dateReturn) * 1000);
     	Date dt = new Date(Long.parseLong(dateTake) * 1000);
     	
-    	reservation.setIdEquipmentReservation(Integer.parseInt(idEquipmentReservation));
+    	reservation.setreservationId(Integer.parseInt(reservationId));
     	reservation.setDateReturn(dr);
     	reservation.setDateTake(dt);
     	reservation.setEmployeeId_return(employeeId_return);
@@ -104,7 +104,7 @@ public class ReservationController {
     }
     
 //    //TODO:
-//    @RequestMapping("/getreservationsbydate")
+//    @RequestMapping("/getbyDate")
 //    public List<Equipmentreservation> getReservationsByDate() {
 //    	
 //    }
@@ -118,7 +118,7 @@ public class ReservationController {
     }
     
 //    //TODO:
-//    @RequestMapping("/getreservationsbyequipmenttype")
+//    @RequestMapping("/getbyEquipmentType")
 //    public List<Equipmentreservation> getReservationsByEquipmentId() {
 //    	
 //    }
