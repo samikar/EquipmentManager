@@ -22,7 +22,14 @@ import java.util.Date;
             name    =   "Equipmentreservation.getReservationsByType",
             query   =   "SELECT * " +
                         "FROM equipmentreservation " +
-                        "WHERE reservationType = ?",
+                        "WHERE Equipmentreservation.reservationType = ?",
+                        resultClass=Equipmentreservation.class
+    ),
+    @NamedNativeQuery(
+            name    =   "Equipmentreservation.getReservationsByEquipmentId",
+            query   =   "SELECT * " +
+                        "FROM equipmentreservation " +
+                        "WHERE Equipmentreservation.equipmentId = ?",
                         resultClass=Equipmentreservation.class
     )
     

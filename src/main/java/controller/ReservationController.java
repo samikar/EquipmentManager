@@ -49,11 +49,7 @@ public class ReservationController {
     	// Parse dates from epoch to Date
     	Date dr = new Date(Long.parseLong(dateReturn) * 1000);
     	Date dt = new Date(Long.parseLong(dateTake) * 1000);
-    	
-    	System.out.println("Date return: " + dateReturn + "\nDate Take: " + dateTake);
-    	System.out.println("Date return: " + dr.toString() + "\nDate Take: " + dt.toString());
-    	System.out.println("Date return: " + sdf.format(dr).toString() + "\nDate Take: " + sdf.format(dt).toString());
-    	
+    	    	
 		EquipmentreservationDao dao = new EquipmentreservationDao();
 		dao.init();
 		Equipmentreservation reservation = new Equipmentreservation();
@@ -100,29 +96,31 @@ public class ReservationController {
     	return reservation;
     }
     
-    @RequestMapping("/querytest")
+    @RequestMapping("/getbyType")
     public List<Equipmentreservation> QueryTest2(@RequestParam(value="reservationType", defaultValue="0") String reservationType) {
     	EquipmentreservationDao dao = new EquipmentreservationDao();
 		dao.init();
 		return dao.queryTest(reservationType);
     }
-    /*
-    //TODO:
-    @RequestMapping("/getreservationsbydate")
-    public List<Equipmentreservation> getReservationsByDate() {
-    	
-    }
+    
+//    //TODO:
+//    @RequestMapping("/getreservationsbydate")
+//    public List<Equipmentreservation> getReservationsByDate() {
+//    	
+//    }
     
     //TODO:
-    @RequestMapping("/getreservationsbyequipmentid")
-    public List<Equipmentreservation> getReservationsByEquipmentId() {
-    	
+    @RequestMapping("/getbyEquipmentId")
+    public List<Equipmentreservation> getReservationsByEquipmentId(@RequestParam(value="equipmentId", defaultValue="0") String equipmentId) {
+    	EquipmentreservationDao dao = new EquipmentreservationDao();
+		dao.init();
+		return dao.reservationsByEquipmentId(equipmentId);
     }
     
-    //TODO:
-    @RequestMapping("/getreservationsbyequipmenttype")
-    public List<Equipmentreservation> getReservationsByEquipmentId() {
-    	
-    }
-    */
+//    //TODO:
+//    @RequestMapping("/getreservationsbyequipmenttype")
+//    public List<Equipmentreservation> getReservationsByEquipmentId() {
+//    	
+//    }
+//    
 }

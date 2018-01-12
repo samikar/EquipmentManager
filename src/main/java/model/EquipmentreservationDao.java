@@ -79,6 +79,13 @@ EntityManager em = entityManagerFactory.createEntityManager();
 		entityManager.close();
 	}
 	
+	public List<Equipmentreservation> reservationsByEquipmentId(String equipmentId) {
+		List<Equipmentreservation> reservations = em.createNamedQuery("Equipmentreservation.getReservationsByEquipmentId", Equipmentreservation.class)
+				.setParameter(1, equipmentId)
+				.getResultList();
+		return reservations;
+	}
+	
 	public List<Equipmentreservation> queryTest(String reservationType) {
 		List<Equipmentreservation> reservations = em.createNamedQuery("Equipmentreservation.getReservationsByType", Equipmentreservation.class)
 				.setParameter(1, reservationType)
