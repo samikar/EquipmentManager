@@ -1,7 +1,5 @@
 package model;
 
-
-
 import java.io.Serializable;
 import javax.persistence.*;
 import java.util.Date;
@@ -17,26 +15,26 @@ import java.util.Date;
 	@NamedNativeQuery(
 			name	=	"Reservation.findAll", 
 			query	=	"SELECT * FROM reservation",
-            			resultClass=Equipmentreservation.class
+            			resultClass=Reservation.class
 	),
     @NamedNativeQuery(
             name    =   "Reservation.getReservationsByType",
             query   =   "SELECT * " +
                         "FROM reservation " +
                         "WHERE reservation.reservationType = ?",
-                        resultClass=Equipmentreservation.class
+                        resultClass=Reservation.class
     ),
     @NamedNativeQuery(
             name    =   "Reservation.getReservationsByEquipmentId",
             query   =   "SELECT * " +
                         "FROM reservation " +
                         "WHERE reservation.equipmentId = ?",
-                        resultClass=Equipmentreservation.class
+                        resultClass=Reservation.class
     )
     
     })
 
-public class Equipmentreservation implements Serializable {
+public class Reservation implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -55,18 +53,21 @@ public class Equipmentreservation implements Serializable {
 
 	private String employeeId_take;
 
-	private String equipmentId;
-
 	private int reservationType;
 
-	public Equipmentreservation() {
+	//bi-directional many-to-one association to Equipment
+	@ManyToOne
+	@JoinColumn(name="equipmentId")
+	private Equipment equipment;
+
+	public Reservation() {
 	}
 
-	public int getreservationId() {
+	public int getReservationId() {
 		return this.reservationId;
 	}
 
-	public void setreservationId(int reservationId) {
+	public void setReservationId(int reservationId) {
 		this.reservationId = reservationId;
 	}
 
@@ -102,20 +103,20 @@ public class Equipmentreservation implements Serializable {
 		this.employeeId_take = employeeId_take;
 	}
 
-	public String getEquipmentId() {
-		return this.equipmentId;
-	}
-
-	public void setEquipmentId(String equipmentId) {
-		this.equipmentId = equipmentId;
-	}
-
 	public int getReservationType() {
 		return this.reservationType;
 	}
 
 	public void setReservationType(int reservationType) {
 		this.reservationType = reservationType;
+	}
+
+	public Equipment getEquipment() {
+		return this.equipment;
+	}
+
+	public void setEquipment(Equipment equipment) {
+		this.equipment = equipment;
 	}
 
 }

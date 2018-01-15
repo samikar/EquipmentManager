@@ -8,12 +8,12 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.text.SimpleDateFormat;
 
-import model.Equipmentreservation;
+import model.Reservation;
 
 public class DBTest extends LocalDBHandler {
 
-    public ArrayList<Equipmentreservation> fetchData() {
-    	ArrayList<Equipmentreservation> reservations = new ArrayList<Equipmentreservation>();
+    public ArrayList<Reservation> fetchData() {
+    	ArrayList<Reservation> reservations = new ArrayList<Reservation>();
         Connection connection = initDB();
         
 		if(connection!=null){
@@ -24,9 +24,9 @@ public class DBTest extends LocalDBHandler {
                 ResultSet rs = stmt.executeQuery("SELECT * FROM emanager_testdb.reservation;");
                    
 				while(rs.next()){
-					Equipmentreservation er = new Equipmentreservation();
-                    er.setreservationId(rs.getInt("reservationId"));
-                    er.setEquipmentId(rs.getString("equipmentId"));
+					Reservation er = new Reservation();
+                    er.setReservationId(rs.getInt("reservationId"));
+                    //er.setEquipment(rs.getString("equipmentId"));
                     er.setEmployeeId_take(rs.getString("employeeId_take"));
                     er.setEmployeeId_return(rs.getString("employeeId_return"));
                     er.setDateTake(rs.getTimestamp("date_take"));
@@ -50,13 +50,13 @@ public class DBTest extends LocalDBHandler {
     public static void main(String[] args) {
 
     	DBTest dbt = new DBTest();
-    	ArrayList<Equipmentreservation> resArr = dbt.fetchData();
+    	ArrayList<Reservation> resArr = dbt.fetchData();
     	StringBuffer sb = new StringBuffer();
     	
     	
-    	for (Equipmentreservation reservation : resArr) {
-    		sb.append("id:" + reservation.getreservationId() +
-    				  " equipmentId: " + reservation.getEquipmentId() +
+    	for (Reservation reservation : resArr) {
+    		sb.append("id:" + reservation.getReservationId() +
+    				  " equipmentId: " + reservation.getEquipment().getEquipmentId() +
     				  " employeeId_take: " + reservation.getEmployeeId_take() +
     				  " employeeId_return: " + reservation.getEmployeeId_return() +
     				  " date_take: " + reservation.getDateTake().toString() +
