@@ -24,8 +24,8 @@ public class Equipment implements Serializable {
 	private String type;
 
 	//bi-directional many-to-one association to Reservation
-	@OneToMany(mappedBy="equipment")
-	private List<Reservation> reservations;
+	//@OneToMany(mappedBy="equipment")
+	//private List<Reservation> reservations;
 
 	public Equipment() {
 	}
@@ -61,7 +61,7 @@ public class Equipment implements Serializable {
 	public void setType(String type) {
 		this.type = type;
 	}
-
+	/*
 	public List<Reservation> getReservations() {
 		return this.reservations;
 	}
@@ -69,7 +69,7 @@ public class Equipment implements Serializable {
 	public void setReservations(List<Reservation> reservations) {
 		this.reservations = reservations;
 	}
-
+	 
 	public Reservation addReservation(Reservation reservation) {
 		getReservations().add(reservation);
 		reservation.setEquipment(this);
@@ -83,5 +83,6 @@ public class Equipment implements Serializable {
 
 		return reservation;
 	}
+	*/
 
 }
