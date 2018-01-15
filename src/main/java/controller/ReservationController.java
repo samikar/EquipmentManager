@@ -27,26 +27,17 @@ public class ReservationController {
     	ReservationDao dao = new ReservationDao();
 		dao.init();
 		return dao.getAll();
-    }
+    }  
     
-    // NOTE: testdbuser has no DELETE priviliges 
-    @RequestMapping("/deletereservation")
-    public void deleteReservation(@RequestParam(value="reservationId", defaultValue="0") String reservationId) {
-    	ReservationDao dao = new ReservationDao();
-		dao.init();
-		dao.initialize(Integer.parseInt(reservationId));
-		dao.delete();
-    }
-    
-    @RequestMapping("/insertreservation")
-    public Reservation insertReservation(
+    @RequestMapping("/take")
+    public Reservation takeEquipment(
 			@RequestParam(value="dateTake", defaultValue="0") String dateTake,
 			@RequestParam(value="employeeId_take", defaultValue="0") String employeeId_take,
 			@RequestParam(value="equipmentId", defaultValue="0") String equipmentId,
 			@RequestParam(value="reservationType", defaultValue="0") String reservationType)	{
     	
     	// Parse dates from epoch to Date
-    	//Date dr = new Date(Long.parseLong(dateReturn) * 1000);
+
     	Date dt = new Date(Long.parseLong(dateTake) * 1000);
     	    	
 		ReservationDao rdao = new ReservationDao();
@@ -68,7 +59,64 @@ public class ReservationController {
 		return reservation;
 	}
     
-    @RequestMapping("/updatereservation")
+    @RequestMapping("/return")
+    public Reservation returnEquipment(
+    		@RequestParam(value="reservationId", defaultValue="0") String reservationId,
+    		@RequestParam(value="dateReturn", defaultValue="0") String dateReturn,
+    		@RequestParam(value="employeeId_return", defaultValue="0") String employeeId_return)	{
+    	
+    	ReservationDao rdao = new ReservationDao();
+		
+    	rdao.init();
+		rdao.initialize(Integer.parseInt(reservationId));
+    	Reservation reservation = rdao.getDao();
+		    	
+    	// Parse dates from epoch to Date
+    	Date dr = new Date(Long.parseLong(dateReturn) * 1000);
+    	
+    	reservation.setDateReturn(dr);
+    	reservation.setEmployeeId_return(employeeId_return);
+    	    	    	
+    	rdao.update(reservation);
+    	return reservation;
+    }    
+    
+
+    
+    @RequestMapping("/insert")
+    public Reservation insertReservation(
+    		@RequestParam(value="dateReturn", defaultValue="0") String dateReturn,
+    		@RequestParam(value="dateTake", defaultValue="0") String dateTake,
+    		@RequestParam(value="employeeId_return", defaultValue="0") String employeeId_return,
+    		@RequestParam(value="employeeId_take", defaultValue="0") String employeeId_take,
+    		@RequestParam(value="equipmentId", defaultValue="0") String equipmentId,
+    		@RequestParam(value="reservationType", defaultValue="0") String reservationType)	{
+    	
+    	ReservationDao rdao = new ReservationDao();
+		EquipmentDao edao = new EquipmentDao();
+		rdao.init();
+		edao.init();
+    	Reservation reservation = new Reservation();
+    	
+    	edao.initialize(Integer.parseInt(equipmentId));			
+		Equipment e = edao.getDao(); 
+    	
+    	// Parse dates from epoch to Date
+    	Date dr = new Date(Long.parseLong(dateReturn) * 1000);
+    	Date dt = new Date(Long.parseLong(dateTake) * 1000);
+    	
+    	reservation.setDateReturn(dr);
+    	reservation.setDateTake(dt);
+    	reservation.setEmployeeId_return(employeeId_return);
+    	reservation.setEmployeeId_take(employeeId_take);
+    	reservation.setEquipment(e);
+    	reservation.setReservationType(Integer.parseInt(reservationType));
+    	
+    	rdao.persist(reservation);
+    	return reservation;
+    }
+    
+    @RequestMapping("/update")
     public Reservation updateReservation(
     		@RequestParam(value="reservationId", defaultValue="0") String reservationId,
     		@RequestParam(value="dateReturn", defaultValue="0") String dateReturn,
@@ -101,6 +149,15 @@ public class ReservationController {
     	
     	rdao.update(reservation);
     	return reservation;
+    }
+    
+    // NOTE: testdbuser has no DELETE priviliges 
+    @RequestMapping("/deletereservation")
+    public void deleteReservation(@RequestParam(value="reservationId", defaultValue="0") String reservationId) {
+    	ReservationDao dao = new ReservationDao();
+		dao.init();
+		dao.initialize(Integer.parseInt(reservationId));
+		dao.delete();
     }
     
     @RequestMapping("/getbyType")

@@ -10,6 +10,7 @@ import java.text.SimpleDateFormat;
 
 import model.Reservation;
 
+// TODO: make this a real testing class...
 public class DBTest extends LocalDBHandler {
 
     public ArrayList<Reservation> fetchData() {
