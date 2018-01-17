@@ -2,7 +2,7 @@
   <html>
 
   <head>
-    <title>Equipment manager</title>
+    <title>Take Equipment</title>
     <meta name = "viewport" content = "width = device-width, initial-scale = 1.0">
 
     <!-- Bootstrap -->
@@ -15,6 +15,8 @@
         <script src = "https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src = "https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
       <![endif]-->
+
+
 
     </head>
 
@@ -44,43 +46,60 @@
     </nav>
 
     <div class="container">
-      <form>
+
         <div class="row">
           <div class="col-lg-3 col-md-3 cold-sm-6 col-xs-12">
             <br>
             <div class="input-group mb-3">
              <div class="input-group input-group-md">
               <span class="input-group-addon">Employee ID</span>
-              <input type="text" class="form-control" placeholder="Your ID">
+
+              <input type="text" class="form-control" placeholder="Your ID" id="txt_employeeId">
             </div><br>
           </div>
 
-          <form class="form-inline">
-            <div class="input-group input-group-md">
-              <span class="input-group-addon">Equipment ID</span>
-              <input type="text" class="form-control">
+          <!--form class="form-inline"-->
+          <div class="input-group input-group-md">
+            <span class="input-group-addon">Equipment ID</span>
 
-            </div>
-            <br>
-            <button type="submit" class="btn btn-primary mb-2">Add equipment</button>
-          </form>
+            <input type="text" class="form-control" id="txt_equipmentId">
+          </div>
 
-        </div>
-        <div class="col-lg-3 col-md-3 cold-sm-6 col-xs-12">
+          <br>
+
+
+          </div>
+        <!--div class="col-lg-3 col-md-3 cold-sm-6 col-xs-12">
           <div class="form-group">
             <label for="exampleFormControlSelect2">Added equipment</label>
             <textarea class="form-control" id="equipment_added" rows="15" readonly="readonly">
-            </textarea >
+            </textarea>
           </div>
-        </div>
+        </div-->
 
       </div> 
-       <div class="row">
-          <div class="col-lg-3 col-md-3 cold-sm-6 col-xs-12">
-            <button type="submit" class="btn btn-primary mb-2">Submit</button>
-          </div>
+      <div class="row">
+        <div class="col-lg-3 col-md-3 cold-sm-6 col-xs-12">
+          <!--button type="submit" class="btn btn-primary mb-2">Submit</button-->
+          
+          <button class="btn btn-primary mb-2">Submit</button>
+          <!--input class="btn btn-primary mb-2" type="submit" value="Submit"-->
+
         </div>
-    </form>
+      </div>
+    <!--/form-->
+    <br><br>
+    <div class="row">
+      <div class="col-lg-10 col-md-10 cold-sm-12 col-xs-12">
+        <!--div class="alert alert-success"-->
+        <div id="status" class="alert alert-success hidden">
+          <strong>Success!</strong> Indicates a successful or positive action.
+        </div>
+      </div>
+    </div>
+
+
+
   </div> <!-- /container -->
 
 
@@ -116,11 +135,30 @@
 
         </div-->
 
-        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-        <script src = "https://code.jquery.com/jquery.js"></script>
-        
-        <!-- Include all compiled plugins (below), or include individual files as needed -->
-        <script src = "js/bootstrap.min.js"></script>
-        
+          <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+          <script src = "https://code.jquery.com/jquery.js"></script>
+          
+          <!-- Include all compiled plugins (below), or include individual files as needed -->
+          <script src = "js/bootstrap.min.js"></script>
+          
+         <script>
+$(document).ready(function(){
+    $("button").click(function(){
+      var employeeId = $('#txt_employeeId').val();
+      var equipmentId = $('#txt_equipmentId').val();
+        $.post("rest/take",
+        {
+          employeeId_take: employeeId,
+          equipmentId: equipmentId
+        },
+        function(data,status){
+            alert("Data: " + data + "\nStatus: " + status);
+        });
+        $('#txt_equipmentId').val("");
+        $("#status").removeClass('hidden');
+
+    });
+});
+</script>
       </body>
       </html>

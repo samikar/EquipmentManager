@@ -1,5 +1,6 @@
 package controller;
 
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -31,13 +32,14 @@ public class ReservationController {
     
     @RequestMapping("/rest/take")
     public Reservation takeEquipment(
-			@RequestParam(value="dateTake", defaultValue="0") String dateTake,
+			//@RequestParam(value="dateTake", defaultValue="0") String dateTake,
 			@RequestParam(value="employeeId_take", defaultValue="0") String employeeId_take,
 			@RequestParam(value="equipmentId", defaultValue="0") String equipmentId,
 			@RequestParam(value="reservationType", defaultValue="0") String reservationType)	{
     	
     	// Parse dates from epoch to Date
-    	Date dt = new Date(Long.parseLong(dateTake) * 1000);
+    	//Date dt = new Date(Long.parseLong(dateTake) * 1000);
+    	Date currentDate = new Date();
     	    	
 		ReservationDao rdao = new ReservationDao();
 		EquipmentDao edao = new EquipmentDao();
@@ -48,7 +50,7 @@ public class ReservationController {
 		edao.initialize(Integer.parseInt(equipmentId));			
 		Equipment e = edao.getDao(); 
 		
-		reservation.setDateTake(dt);
+		reservation.setDateTake(currentDate);
 		reservation.setEmployeeId_take(employeeId_take);
 		reservation.setEquipment(e);
 		reservation.setReservationType(Integer.parseInt(reservationType));
