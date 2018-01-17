@@ -17,19 +17,19 @@ import model.ReservationDao;
 @RestController
 public class ReservationController {
 	
-    @RequestMapping("/test")
+    @RequestMapping("/rest/test")
     public String hello(@RequestParam(value="name", defaultValue="World") String name) {
         return "{\"id\":\"hello\"}";
     }
 
-    @RequestMapping("/getallreservations")
+    @RequestMapping("/rest/getallreservations")
     public List<Reservation> getallreservations() {	
     	ReservationDao dao = new ReservationDao();
 		dao.init();
 		return dao.getAll();
     }  
     
-    @RequestMapping("/take")
+    @RequestMapping("/rest/take")
     public Reservation takeEquipment(
 			@RequestParam(value="dateTake", defaultValue="0") String dateTake,
 			@RequestParam(value="employeeId_take", defaultValue="0") String employeeId_take,
@@ -37,7 +37,6 @@ public class ReservationController {
 			@RequestParam(value="reservationType", defaultValue="0") String reservationType)	{
     	
     	// Parse dates from epoch to Date
-
     	Date dt = new Date(Long.parseLong(dateTake) * 1000);
     	    	
 		ReservationDao rdao = new ReservationDao();
@@ -59,7 +58,7 @@ public class ReservationController {
 		return reservation;
 	}
     
-    @RequestMapping("/return")
+    @RequestMapping("/rest/return")
     public Reservation returnEquipment(
     		@RequestParam(value="reservationId", defaultValue="0") String reservationId,
     		@RequestParam(value="dateReturn", defaultValue="0") String dateReturn,
@@ -81,9 +80,7 @@ public class ReservationController {
     	return reservation;
     }    
     
-
-    
-    @RequestMapping("/insert")
+    @RequestMapping("/rest/insert")
     public Reservation insertReservation(
     		@RequestParam(value="dateReturn", defaultValue="0") String dateReturn,
     		@RequestParam(value="dateTake", defaultValue="0") String dateTake,
@@ -116,7 +113,7 @@ public class ReservationController {
     	return reservation;
     }
     
-    @RequestMapping("/update")
+    @RequestMapping("/rest/update")
     public Reservation updateReservation(
     		@RequestParam(value="reservationId", defaultValue="0") String reservationId,
     		@RequestParam(value="dateReturn", defaultValue="0") String dateReturn,
@@ -152,7 +149,7 @@ public class ReservationController {
     }
     
     // NOTE: testdbuser has no DELETE priviliges 
-    @RequestMapping("/deletereservation")
+    @RequestMapping("/rest/deletereservation")
     public void deleteReservation(@RequestParam(value="reservationId", defaultValue="0") String reservationId) {
     	ReservationDao dao = new ReservationDao();
 		dao.init();
@@ -160,7 +157,7 @@ public class ReservationController {
 		dao.delete();
     }
     
-    @RequestMapping("/getbyType")
+    @RequestMapping("/rest/getbyType")
     public List<Reservation> QueryTest2(@RequestParam(value="reservationType", defaultValue="0") String reservationType) {
     	ReservationDao dao = new ReservationDao();
 		dao.init();
@@ -174,7 +171,7 @@ public class ReservationController {
 //    }
     
     //TODO:
-    @RequestMapping("/getbyEquipmentId")
+    @RequestMapping("/rest/getbyEquipmentId")
     public List<Reservation> getReservationsByEquipmentId(@RequestParam(value="equipmentId", defaultValue="0") String equipmentId) {
     	ReservationDao dao = new ReservationDao();
 		dao.init();
