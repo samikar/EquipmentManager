@@ -44,26 +44,43 @@
   </nav>
 
   <div class="container">
-    <br><br>
+    <br><br><br>
     <div class="row">
-      <div class="col-lg-3 col-md-3 cold-sm-6 col-xs-12">
-        <br>
-        <div class="input-group mb-3">
+      <div class="col-lg-3 col-md-3 cold-sm-6 col-xs-12">           
           <div class="input-group input-group-md">
             <span class="input-group-addon">Employee ID</span>
-            <input type="text" class="form-control" placeholder="Your ID" id="txt_employeeId">
+            <input type="text" class="form-control" placeholder="Your ID" id="txt_employeeId" value="123456789">
           </div>
-        </div>
-        <br>
-        <button class="btn btn-primary mb-2">Find reservations</button>
       </div>
-      <br><br>
       <div class="col-lg-3 col-md-3 cold-sm-6 col-xs-12">
-        afafa
+        <button class="btn btn-primary mb-2" id="btn_findreservations">Find reservations</button>
+      </div>
+    </div>
+    <br>
+    <div class="row">
+      <div class="col-lg-12 col-md-12 cold-sm-12 col-xs-12">
+        <table class="table table-striped table-hover hidden" id="tbl_reservations">
+          <thead>
+            <tr>
+            <th scope="col"><input type="checkbox" class="form-check-input" id="chk_checkAll">&nbsp;Check all</th>
+            <th scope="col">EquipmentId</th>
+            <th scope="col">Name</th>
+            <th scope="col">Date taken</th>
+            <th scope="col">Type</th>
+          </tr>
+        </thead>
+        <tbody>
+        </tbody>
+      </table>
       </div>
     </div>
     <div class="row">
-      <div class="col-lg-6 col-md-6 cold-sm-9 col-xs-12">
+      <div class="col-lg-3 col-md-3 cold-sm-3 col-xs-6">
+        <button class="btn btn-primary mb-2 hidden" id="btn_return">Return selected</button>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-12 col-md-12 cold-sm-12 col-xs-12">
         <div id="status" class="alert hidden"></div>    
       </div>
     </div>
@@ -74,6 +91,65 @@
 
 <!-- Include all compiled plugins (below), or include individual files as needed -->
 <script src = "js/bootstrap.min.js"></script>
+
+<script>
+  $(document).ready(function(){
+    $("#btn_findreservations").click(function(){
+      var employeeId = $('#txt_employeeId').val();
+      
+      $.post("rest/getbyEmployeeId",
+      {
+        employeeId_take: employeeId,
+      },
+      function(data){
+        $('#tbl_reservations tbody').empty();
+        $.each(data, function(i, item) {
+          // Converts epoch date to browser timezone date
+          var date_taken = new Date(item["dateTake"] / 1000);
+          var date_taken_timezoned = new Date(0); // The 0 there is the key, which sets the date to the epoch
+          date_taken_timezoned.setUTCSeconds(date_taken);
+           
+          $('#tbl_reservations tbody').append('<tr class="child"><td><input type="checkbox" class="form-check-input check" id="chk_' + item.reservationId  + '"></td><td>' +
+                                              item["equipment"]["equipmentId"] + '</td><td>' + 
+                                              item["equipment"]["name"] + '</td><td>' + 
+                                              date_taken_timezoned + '</td><td>' +                                              
+                                              item["equipment"]["type"] + '</td></tr>');
+        });
+        $("#tbl_reservations").removeClass('hidden');
+        $("#btn_return").removeClass('hidden');
+        $("#status").removeClass('hidden');
+        $("#status").removeClass('alert-danger');
+        $("#status").addClass('alert-success');
+        $('#status').text("Reservations for employeeId " + employeeId + " retrieved");
+      })
+      .done(function() {
+        //alert( "second success" );
+      })
+      .fail(function(data) {
+          $('#txt_equipmentId').val("");
+        //$("#status").removeClass('alert-success');
+        $("#status").addClass('alert-danger');
+        $("#status").removeClass('hidden');
+        $('#status').text("Error reserving:" + data[0]);  
+      })
+      .always(function() {
+        //alert( "finished" );
+      });
+    });
+    
+    // Check all checkboxes
+    $("#chk_checkAll").click(function () {
+      $(".check").prop('checked', $(this).prop('checked'));
+    });
+    // Make rows clicable
+    $('#tbl_reservations tr').click(function(event) {
+      console.log("test");
+      if (event.target.type !== 'checkbox') {
+        $(':checkbox', this).trigger('click');
+      }
+    });
+  });
+</script>
 
 </body>
 </html>

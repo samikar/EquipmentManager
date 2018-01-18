@@ -167,8 +167,8 @@ public class ReservationController {
     }
     
 
-    @RequestMapping("/getbyEmployeeId")
-    public List<Reservation> getReservationsByDate(@RequestParam(value="equipmentId", defaultValue="0") String employeeId) {
+    @RequestMapping("/rest/getbyEmployeeId")
+    public List<Reservation> getbyEmployeeId(@RequestParam(value="employeeId_take", defaultValue="0") String employeeId) {
     	ReservationDao dao = new ReservationDao();
 		dao.init();
 		return dao.getByEmployeeId(employeeId);
@@ -176,7 +176,7 @@ public class ReservationController {
     
     //TODO:
     @RequestMapping("/rest/getbyEquipmentId")
-    public List<Reservation> getReservationsByEquipmentId(@RequestParam(value="equipmentId", defaultValue="0") String equipmentId) {
+    public List<Reservation> getbyEquipmentId(@RequestParam(value="equipmentId", defaultValue="0") String equipmentId) {
     	ReservationDao dao = new ReservationDao();
 		dao.init();
 		return dao.getByEquipmentId(equipmentId);

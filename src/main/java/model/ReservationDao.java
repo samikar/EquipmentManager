@@ -85,8 +85,10 @@ EntityManager em = entityManagerFactory.createEntityManager();
 	}
 	
 	public List<Reservation> getByEmployeeId(String employeeId) {
-		List<Reservation> reservations = em.createNamedQuery("Reservation.findAll", Reservation.class)
+		List<Reservation> reservations = em.createNamedQuery("Reservation.getReservationsByEmployeeId", Reservation.class)
+				.setParameter(1, employeeId)
 				.getResultList();
+		System.out.println("******** Equipment name:" + reservations.get(0).getEquipment().getName() + " **********");
 		return reservations;
 	}
 	

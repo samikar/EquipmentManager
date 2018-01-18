@@ -60,11 +60,11 @@
           <input type="text" class="form-control" placeholder="..." id="txt_equipmentId">
         </div>
         <br>
-        <button class="btn btn-primary mb-2">Submit</button>
+        <button class="btn btn-primary mb-2" id="btn_submit">Submit</button>
       </div>
     </div>
     <div class="row">
-      <div class="col-lg-6 col-md-6 cold-sm-9 col-xs-12">
+      <div class="col-lg-12 col-md-12 cold-sm-12 col-xs-12">
         <div id="status" class="alert hidden"></div>    
       </div>
     </div>
@@ -79,7 +79,7 @@
 
   <script>
     $(document).ready(function(){
-      $("button").click(function(){
+      $("#btn_submit").click(function(){
         var employeeId = $('#txt_employeeId').val();
         var equipmentId = $('#txt_equipmentId').val();
         $.post("rest/take",
@@ -96,17 +96,17 @@
         })
         .done(function() {
         //alert( "second success" );
-      })
+        })
         .fail(function(data) {
           $('#txt_equipmentId').val("");
-        //$("#status").removeClass('alert-success');
-        $("#status").addClass('alert-danger');
-        $("#status").removeClass('hidden');
-        $('#status').text("Error reserving:" + data[0]);  
-      })
+          //$("#status").removeClass('alert-success');
+          $("#status").addClass('alert-danger');
+          $("#status").removeClass('hidden');
+          $('#status').text("Error reserving equipmentID: " + equipmentId);  
+        })
         .always(function() {
-        //alert( "finished" );
-      });
+          //alert( "finished" );
+        });
       });
     });
   </script>
