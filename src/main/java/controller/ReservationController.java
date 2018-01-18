@@ -166,18 +166,20 @@ public class ReservationController {
 		return dao.queryTest(reservationType);
     }
     
-//    //TODO:
-//    @RequestMapping("/getbyDate")
-//    public List<Reservation> getReservationsByDate() {
-//    	
-//    }
+
+    @RequestMapping("/getbyEmployeeId")
+    public List<Reservation> getReservationsByDate(@RequestParam(value="equipmentId", defaultValue="0") String employeeId) {
+    	ReservationDao dao = new ReservationDao();
+		dao.init();
+		return dao.getByEmployeeId(employeeId);
+    }
     
     //TODO:
     @RequestMapping("/rest/getbyEquipmentId")
     public List<Reservation> getReservationsByEquipmentId(@RequestParam(value="equipmentId", defaultValue="0") String equipmentId) {
     	ReservationDao dao = new ReservationDao();
 		dao.init();
-		return dao.reservationsByEquipmentId(equipmentId);
+		return dao.getByEquipmentId(equipmentId);
     }
     
 //    //TODO:

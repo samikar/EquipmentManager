@@ -30,6 +30,13 @@ import java.util.Date;
                         "FROM reservation " +
                         "WHERE reservation.equipmentId = ?",
                         resultClass=Reservation.class
+    ),
+    @NamedNativeQuery(
+            name    =   "Reservation.getReservationsByEmployeeId",
+            query   =   "SELECT * " +
+                        "FROM reservation " +
+                        "WHERE reservation.employeeId_take = ?",
+                        resultClass=Reservation.class
     )
     
     })
