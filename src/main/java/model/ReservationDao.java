@@ -59,8 +59,7 @@ EntityManager em = entityManagerFactory.createEntityManager();
 			entityManager.getTransaction().begin();
 			dao.setDateReturn(dao.getDateReturn());
 			dao.setDateTake(dao.getDateTake());
-			dao.setEmployeeId_return(dao.getEmployeeId_return());
-			dao.setEmployeeId_take(dao.getEmployeeId_take());
+			dao.setEmployeeId(dao.getEmployeeId());
 			dao.setEquipment(dao.getEquipment());
 			dao.setReservationType(dao.getReservationType());			
 			entityManager.merge(dao);
@@ -88,7 +87,6 @@ EntityManager em = entityManagerFactory.createEntityManager();
 		List<Reservation> reservations = em.createNamedQuery("Reservation.getReservationsByEmployeeId", Reservation.class)
 				.setParameter(1, employeeId)
 				.getResultList();
-		System.out.println("******** Equipment name:" + reservations.get(0).getEquipment().getName() + " **********");
 		return reservations;
 	}
 	

@@ -57,28 +57,30 @@
       </div>
     </div>
     <br>
-    <div class="row">
-      <div class="col-lg-12 col-md-12 cold-sm-12 col-xs-12">
-        <table class="table table-striped table-hover hidden" id="tbl_reservations">
-          <thead>
-            <tr>
-            <th scope="col"><input type="checkbox" class="form-check-input" id="chk_checkAll">&nbsp;Check all</th>
-            <th scope="col">EquipmentId</th>
-            <th scope="col">Name</th>
-            <th scope="col">Date taken</th>
-            <th scope="col">Type</th>
-          </tr>
-        </thead>
-        <tbody>
-        </tbody>
-      </table>
+    <!--form method="POST" action="" id="frm_return"-->
+      <div class="row">
+        <div class="col-lg-12 col-md-12 cold-sm-12 col-xs-12">
+          <table class="table table-striped table-hover hidden" id="tbl_reservations">
+            <thead>
+              <tr>
+                <th scope="col"><input type="checkbox" class="form-check-input" id="chk_checkAll">&nbsp;Check all</th>
+                <th scope="col">EquipmentId</th>
+                <th scope="col">Name</th>
+                <th scope="col">Date taken</th>
+                <th scope="col">Type</th>
+              </tr>
+            </thead>
+          <tbody>
+          </tbody>
+          </table>
+        </div>
       </div>
-    </div>
-    <div class="row">
-      <div class="col-lg-3 col-md-3 cold-sm-3 col-xs-6">
-        <button class="btn btn-primary mb-2 hidden" id="btn_return">Return selected</button>
+      <div class="row">
+        <div class="col-lg-3 col-md-3 cold-sm-3 col-xs-6">
+          <button class="btn btn-primary mb-2 hidden" id="btn_submit">Return selected</button>
+        </div>
       </div>
-    </div>
+    <!--/form-->
     <div class="row">
       <div class="col-lg-12 col-md-12 cold-sm-12 col-xs-12">
         <div id="status" class="alert hidden"></div>    
@@ -99,7 +101,7 @@
       
       $.post("rest/getbyEmployeeId",
       {
-        employeeId_take: employeeId,
+        employeeId: employeeId,
       },
       function(data){
         $('#tbl_reservations tbody').empty();
@@ -109,14 +111,15 @@
           var date_taken_timezoned = new Date(0); // The 0 there is the key, which sets the date to the epoch
           date_taken_timezoned.setUTCSeconds(date_taken);
            
-          $('#tbl_reservations tbody').append('<tr class="child"><td><input type="checkbox" class="form-check-input check" id="chk_' + item.reservationId  + '"></td><td>' +
-                                              item["equipment"]["equipmentId"] + '</td><td>' + 
-                                              item["equipment"]["name"] + '</td><td>' + 
-                                              date_taken_timezoned + '</td><td>' +                                              
-                                              item["equipment"]["type"] + '</td></tr>');
+          $('#tbl_reservations tbody').append('<tr class="child"><td><input type="checkbox" class="form-check-input check" name="resIds" value="' + 
+            item.reservationId  + '"></td><td>' +
+            item["equipment"]["equipmentId"] + '</td><td>' + 
+            item["equipment"]["name"] + '</td><td>' + 
+            date_taken_timezoned + '</td><td>' +                                              
+            item["equipment"]["type"] + '</td></tr>');
         });
         $("#tbl_reservations").removeClass('hidden');
-        $("#btn_return").removeClass('hidden');
+        $("#btn_submit").removeClass('hidden');
         $("#status").removeClass('hidden');
         $("#status").removeClass('alert-danger');
         $("#status").addClass('alert-success');
@@ -126,7 +129,7 @@
         //alert( "second success" );
       })
       .fail(function(data) {
-          $('#txt_equipmentId').val("");
+        $('#txt_equipmentId').val("");
         //$("#status").removeClass('alert-success');
         $("#status").addClass('alert-danger');
         $("#status").removeClass('hidden');
@@ -141,15 +144,65 @@
     $("#chk_checkAll").click(function () {
       $(".check").prop('checked', $(this).prop('checked'));
     });
-    // Make rows clicable
+    /*
+    // Make rows clickable
     $('#tbl_reservations tr').click(function(event) {
       console.log("test");
       if (event.target.type !== 'checkbox') {
         $(':checkbox', this).trigger('click');
       }
     });
-  });
-</script>
+    */
+
+    $("#btn_submit").click(function () {
+      
+      var ids = [];
+
+      
+      // Initializing array with Checkbox checked values
+        $("input[name='resIds']:checked").each(function(){
+            ids.push(this.value);
+        });
+      //console.log("ID:" + ids[1]);
+
+      //ids = ["11", "22", "33"];
+
+
+      $.post("rest/returnMultiple",
+        {
+          resIds: JSON.stringify(ids),
+        },
+        function(data){
+          $('#status').text("Jeejee");
+        })
+        .done(function() {
+          //alert( "second success" );
+        })
+        .fail(function(data) {
+          $("#status").removeClass('alert-success');
+          $("#status").addClass('alert-danger');
+          $("#status").removeClass('hidden');
+          $('#status').text("Erroria");  
+        })
+        .always(function() {
+          //alert( "finished" );
+      });
+
+    /*  
+      $.ajax({
+        url: 'rest/returnMultiple',
+        type: 'post',
+        dataType: 'json',
+        //data: $('form#frm_return').serialize(),
+        data: $('.resIds:checked').serialize()
+        success: function(data) {
+                   $('#status').text("Equipment returned");
+                 }
+        });
+        */
+      });
+    });
+  </script>
 
 </body>
 </html>

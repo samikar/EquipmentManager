@@ -35,7 +35,7 @@ import java.util.Date;
             name    =   "Reservation.getReservationsByEmployeeId",
             query   =   "SELECT * " +
                         "FROM reservation " +
-                        "WHERE reservation.employeeId_take = ?",
+                        "WHERE reservation.employeeId = ? AND reservation.date_return IS NULL",
                         resultClass=Reservation.class
     )
     
@@ -56,9 +56,7 @@ public class Reservation implements Serializable {
 	@Column(name="date_take")
 	private Date dateTake;
 
-	private String employeeId_return;
-
-	private String employeeId_take;
+	private String employeeId;
 
 	private int reservationType;
 
@@ -94,20 +92,12 @@ public class Reservation implements Serializable {
 		this.dateTake = dateTake;
 	}
 
-	public String getEmployeeId_return() {
-		return this.employeeId_return;
+	public String getEmployeeId() {
+		return this.employeeId;
 	}
 
-	public void setEmployeeId_return(String employeeId_return) {
-		this.employeeId_return = employeeId_return;
-	}
-
-	public String getEmployeeId_take() {
-		return this.employeeId_take;
-	}
-
-	public void setEmployeeId_take(String employeeId_take) {
-		this.employeeId_take = employeeId_take;
+	public void setEmployeeId(String employeeId) {
+		this.employeeId = employeeId;
 	}
 
 	public int getReservationType() {

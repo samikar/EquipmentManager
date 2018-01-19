@@ -1,7 +1,5 @@
 package controller;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -33,7 +31,7 @@ public class ReservationController {
     @RequestMapping("/rest/take")
     public Reservation takeEquipment(
 			//@RequestParam(value="dateTake", defaultValue="0") String dateTake,
-			@RequestParam(value="employeeId_take", defaultValue="0") String employeeId_take,
+			@RequestParam(value="employeeId", defaultValue="0") String employeeId,
 			@RequestParam(value="equipmentId", defaultValue="0") String equipmentId,
 			@RequestParam(value="reservationType", defaultValue="0") String reservationType)	{
     	
@@ -51,7 +49,7 @@ public class ReservationController {
 		Equipment e = edao.getDao(); 
 		
 		reservation.setDateTake(currentDate);
-		reservation.setEmployeeId_take(employeeId_take);
+		reservation.setEmployeeId(employeeId);
 		reservation.setEquipment(e);
 		reservation.setReservationType(Integer.parseInt(reservationType));
 
@@ -60,11 +58,44 @@ public class ReservationController {
 		return reservation;
 	}
     
+    
+    @RequestMapping("/rest/returnMultiple")
+    public String returnMultiple(@RequestParam(value="resIds") String resIds) {
+    	
+    	
+    	System.out.println(resIds);
+    	String[] idsStr = resIds.replaceAll("\\[", "").replaceAll("\\]", "").replaceAll("\"", "").split(",");
+
+    	int[] idsInt = new int[idsStr.length];
+
+    	for (int i = 0; i < idsStr.length; i++) {
+    	    try {
+    	    	idsInt[i] = Integer.parseInt(idsStr[i]);
+    	    } catch (NumberFormatException nfe) {
+    	    	return "Error formatting parameter string";
+    	    };
+    	}
+    	
+    	for (int i=0;i<idsInt.length;i++) {
+    		Date currentDate = new Date();
+    		ReservationDao rdao = new ReservationDao();
+    		Reservation reservation = new Reservation();
+    		rdao.init();
+    		rdao.initialize(idsInt[i]);
+    		
+    		reservation = rdao.getDao();
+    		reservation.setDateReturn(currentDate);
+    		rdao.persist(reservation);
+    	}
+    	return "Complete";
+    }	
+    
+    
     @RequestMapping("/rest/return")
     public Reservation returnEquipment(
     		@RequestParam(value="reservationId", defaultValue="0") String reservationId,
     		@RequestParam(value="dateReturn", defaultValue="0") String dateReturn,
-    		@RequestParam(value="employeeId_return", defaultValue="0") String employeeId_return)	{
+    		@RequestParam(value="employeeId", defaultValue="0") String employeeId)	{
     	
     	ReservationDao rdao = new ReservationDao();
 		
@@ -76,7 +107,7 @@ public class ReservationController {
     	Date dr = new Date(Long.parseLong(dateReturn) * 1000);
     	
     	reservation.setDateReturn(dr);
-    	reservation.setEmployeeId_return(employeeId_return);
+    	reservation.setEmployeeId(employeeId);
     	    	    	
     	rdao.update(reservation);
     	return reservation;
@@ -86,8 +117,7 @@ public class ReservationController {
     public Reservation insertReservation(
     		@RequestParam(value="dateReturn", defaultValue="0") String dateReturn,
     		@RequestParam(value="dateTake", defaultValue="0") String dateTake,
-    		@RequestParam(value="employeeId_return", defaultValue="0") String employeeId_return,
-    		@RequestParam(value="employeeId_take", defaultValue="0") String employeeId_take,
+    		@RequestParam(value="employeeId", defaultValue="0") String employeeId,
     		@RequestParam(value="equipmentId", defaultValue="0") String equipmentId,
     		@RequestParam(value="reservationType", defaultValue="0") String reservationType)	{
     	
@@ -106,8 +136,7 @@ public class ReservationController {
     	
     	reservation.setDateReturn(dr);
     	reservation.setDateTake(dt);
-    	reservation.setEmployeeId_return(employeeId_return);
-    	reservation.setEmployeeId_take(employeeId_take);
+    	reservation.setEmployeeId(employeeId);
     	reservation.setEquipment(e);
     	reservation.setReservationType(Integer.parseInt(reservationType));
     	
@@ -120,8 +149,7 @@ public class ReservationController {
     		@RequestParam(value="reservationId", defaultValue="0") String reservationId,
     		@RequestParam(value="dateReturn", defaultValue="0") String dateReturn,
     		@RequestParam(value="dateTake", defaultValue="0") String dateTake,
-    		@RequestParam(value="employeeId_return", defaultValue="0") String employeeId_return,
-    		@RequestParam(value="employeeId_take", defaultValue="0") String employeeId_take,
+    		@RequestParam(value="employeeId", defaultValue="0") String employeeId,
     		@RequestParam(value="equipmentId", defaultValue="0") String equipmentId,
     		@RequestParam(value="reservationType", defaultValue="0") String reservationType)	{
     	
@@ -141,8 +169,7 @@ public class ReservationController {
     	reservation.setReservationId(Integer.parseInt(reservationId));
     	reservation.setDateReturn(dr);
     	reservation.setDateTake(dt);
-    	reservation.setEmployeeId_return(employeeId_return);
-    	reservation.setEmployeeId_take(employeeId_take);
+    	reservation.setEmployeeId(employeeId);
     	reservation.setEquipment(e);
     	reservation.setReservationType(Integer.parseInt(reservationType));
     	
@@ -168,13 +195,12 @@ public class ReservationController {
     
 
     @RequestMapping("/rest/getbyEmployeeId")
-    public List<Reservation> getbyEmployeeId(@RequestParam(value="employeeId_take", defaultValue="0") String employeeId) {
+    public List<Reservation> getbyEmployeeId(@RequestParam(value="employeeId", defaultValue="0") String employeeId) {
     	ReservationDao dao = new ReservationDao();
 		dao.init();
 		return dao.getByEmployeeId(employeeId);
     }
     
-    //TODO:
     @RequestMapping("/rest/getbyEquipmentId")
     public List<Reservation> getbyEquipmentId(@RequestParam(value="equipmentId", defaultValue="0") String equipmentId) {
     	ReservationDao dao = new ReservationDao();
