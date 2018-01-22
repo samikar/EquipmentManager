@@ -139,4 +139,10 @@ public class EquipmentDataReader {
 		}
 		return "Equipment type for code " + typeCode + " not found!";
 	}
+	
+	private static String getEquipmentTypes() {
+		
+		
+		return "";
+	}
 }

@@ -187,13 +187,12 @@ public class ReservationController {
 		dao.delete();
     }
     
-    @RequestMapping("/rest/getbyType")
+    @RequestMapping("/rest/getbyReservationType")
     public List<Reservation> QueryTest2(@RequestParam(value="reservationType", defaultValue="0") String reservationType) {
     	ReservationDao dao = new ReservationDao();
 		dao.init();
 		return dao.queryTest(reservationType);
     }
-    
 
     @RequestMapping("/rest/getbyEmployeeId")
     public List<Reservation> getbyEmployeeId(@RequestParam(value="employeeId", defaultValue="0") String employeeId) {
@@ -209,7 +208,19 @@ public class ReservationController {
 		return dao.getByEquipmentId(equipmentId);
     }
     
+    /*
+    @RequestMapping("/rest/getbyEquipmentType")
+    public List<Reservation> getbyEquipmentType(@RequestParam(value="equipmentType", defaultValue="0") String equipmentId) {
+    	
+    }
+    */
     
+    
+    
+    
+    
+    
+    /*
     @RequestMapping("/serialtest")
     public String serialTest(@RequestParam(value="serial", defaultValue="0") String serial) {
     	EquipmentDao edao = new EquipmentDao();
@@ -220,6 +231,7 @@ public class ReservationController {
 		else
 			return "Fälse";
     }
+    */
     
 //    //TODO:
 //    @RequestMapping("/getbyEquipmentType")

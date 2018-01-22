@@ -82,6 +82,7 @@
         </div>
       </div>
     <!--/form-->
+    <br>
     <div class="row">
       <div class="col-lg-12 col-md-12 cold-sm-12 col-xs-12">
         <div id="status" class="alert hidden"></div>    
@@ -98,6 +99,31 @@
 <script>
   $(document).ready(function(){
     $("#btn_findreservations").click(function(){
+      findReservations();
+    });
+
+    $("#btn_submit").click(function () {
+      returnEquipment();
+    });
+    
+    // Check all checkboxes
+    $("#chk_checkAll").click(function () {
+      $(".check").prop('checked', $(this).prop('checked'));
+    });
+
+
+    /*
+    // Make rows clickable
+    $('#tbl_reservations tr').click(function(event) {
+      console.log("test");
+      if (event.target.type !== 'checkbox') {
+        $(':checkbox', this).trigger('click');
+      }
+    });
+    */
+
+
+    function findReservations() {
       var employeeId = $('#txt_employeeId').val();
       
       $.post("rest/getbyEmployeeId",
@@ -134,31 +160,16 @@
         //$("#status").removeClass('alert-success');
         $("#status").addClass('alert-danger');
         $("#status").removeClass('hidden');
-        $('#status').text("Error reserving:" + data[0]);  
+        $('#status').text("Error returning:" + data[0]);  
       })
       .always(function() {
         //alert( "finished" );
       });
-    });
-    
-    // Check all checkboxes
-    $("#chk_checkAll").click(function () {
-      $(".check").prop('checked', $(this).prop('checked'));
-    });
-    /*
-    // Make rows clickable
-    $('#tbl_reservations tr').click(function(event) {
-      console.log("test");
-      if (event.target.type !== 'checkbox') {
-        $(':checkbox', this).trigger('click');
-      }
-    });
-    */
+    }
 
-    $("#btn_submit").click(function () {
-      
-      var ids = [];
-      
+    function returnEquipment() {
+       var ids = [];
+
       // Initializing array with Checkbox checked values
         $("input[name='resIds']:checked").each(function(){
             ids.push(this.value);
@@ -169,7 +180,7 @@
           resIds: JSON.stringify(ids),
         },
         function(data){
-          $('#status').text("Jeejee");
+          findReservations();
         })
         .done(function() {
           //alert( "second success" );
@@ -183,20 +194,7 @@
         .always(function() {
           //alert( "finished" );
       });
-
-    /*  
-      $.ajax({
-        url: 'rest/returnMultiple',
-        type: 'post',
-        dataType: 'json',
-        //data: $('form#frm_return').serialize(),
-        data: $('.resIds:checked').serialize()
-        success: function(data) {
-                   $('#status').text("Equipment returned");
-                 }
-        });
-        */
-      });
+    }
     });
   </script>
 
