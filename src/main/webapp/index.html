@@ -37,7 +37,8 @@
           <li><a href="return.html">Return</a></li>
           <li><a href="calibration.html">Calibration</a></li>
           <li><a href="maintenance.html">Maintenance</a></li>
-          <li><a href="statistics.html">Statistics</a></li>
+          <li><a href="list.html">Equipment list</a></li>
+          <li><a href="charts.html">Charts</a></li>
         </ul>
       </div><!--/.nav-collapse -->
     </div>
@@ -56,8 +57,8 @@
         </div>
         <br>
         <div class="input-group input-group-md">
-          <span class="input-group-addon">Equipment ID</span>
-          <input type="text" class="form-control" placeholder="..." id="txt_equipmentId">
+          <span class="input-group-addon">Serial number</span>
+          <input type="text" class="form-control" placeholder="..." id="txt_serial">
         </div>
         <br>
         <button class="btn btn-primary mb-2" id="btn_submit">Submit</button>
@@ -81,18 +82,18 @@
     $(document).ready(function(){
       $("#btn_submit").click(function(){
         var employeeId = $('#txt_employeeId').val();
-        var equipmentId = $('#txt_equipmentId').val();
+        var serial = $('#txt_serial').val();
         $.post("rest/take",
         {
           employeeId: employeeId,
-          equipmentId: equipmentId
+          serial: serial
         },
         function(data){
           $('#txt_equipmentId').val("");
           $("#status").removeClass('hidden');
           $("#status").removeClass('alert-danger');
           $("#status").addClass('alert-success');
-          $('#status').text(data["equipment"]["equipmentId"] + "/" +  data["equipment"]["name"] + " succesfully reserved.");  
+          $('#status').text(data["equipment"]["serial"] + "/" +  data["equipment"]["name"] + " succesfully reserved.");  
         })
         .done(function() {
         //alert( "second success" );
@@ -102,7 +103,7 @@
           //$("#status").removeClass('alert-success');
           $("#status").addClass('alert-danger');
           $("#status").removeClass('hidden');
-          $('#status').text("Error reserving equipmentID: " + equipmentId);  
+          $('#status').text("Error reserving equipment with serial: " + serial);  
         })
         .always(function() {
           //alert( "finished" );

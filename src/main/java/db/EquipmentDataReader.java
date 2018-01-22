@@ -13,53 +13,25 @@ import java.io.IOException;
 import java.util.Iterator;
 
 public class EquipmentDataReader {
-	/*
-	 * private static final String FILE_NAME =
-	 * "C:\\EquipmentManager\\Eclipse_workspace\\EquipmentManager\\test_files\\Omaisuusluettelo.xlsx";
-	 * 
-	 * public static void main(String[] args) {
-	 * 
-	 * try {
-	 * 
-	 * FileInputStream excelFile = new FileInputStream(new File(FILE_NAME));
-	 * Workbook workbook = new XSSFWorkbook(excelFile); Sheet datatypeSheet =
-	 * workbook.getSheetAt(0); Iterator<Row> iterator = datatypeSheet.iterator();
-	 * 
-	 * while (iterator.hasNext()) {
-	 * 
-	 * Row currentRow = iterator.next(); Iterator<Cell> cellIterator =
-	 * currentRow.iterator();
-	 * 
-	 * while (cellIterator.hasNext()) {
-	 * 
-	 * Cell currentCell = cellIterator.next(); // getCellTypeEnum shown as
-	 * deprecated for version 3.15 // getCellTypeEnum ill be renamed to getCellType
-	 * starting from version 4.0 if (currentCell.getCellTypeEnum() ==
-	 * CellType.STRING) { System.out.print(currentCell.getStringCellValue() + "--");
-	 * } else if (currentCell.getCellTypeEnum() == CellType.NUMERIC) {
-	 * System.out.print(currentCell.getNumericCellValue() + "--"); }
-	 * 
-	 * } System.out.println();
-	 * 
-	 * } } catch (FileNotFoundException e) { e.printStackTrace(); } catch
-	 * (IOException e) { e.printStackTrace(); }
-	 * 
-	 * }
-	 */
 	public static void main(String[] args) throws IOException {
-		String excelFilePath = "C:\\EquipmentManager\\Eclipse_workspace\\EquipmentManager\\test_files\\Omaisuusluettelo.xlsx";
-		FileInputStream inputStream = new FileInputStream(new File(excelFilePath));
-
-		Workbook workbook = new XSSFWorkbook(inputStream);
+		String equipmentFilePath = "C:\\EquipmentManager\\Eclipse_workspace\\EquipmentManager\\test_files\\laitteet.xlsx";
+		FileInputStream inputStreamEquipment = new FileInputStream(new File(equipmentFilePath));
+			
+		Workbook workbook = new XSSFWorkbook(inputStreamEquipment);
 		Sheet firstSheet = workbook.getSheetAt(0);
-
+		int rows = firstSheet.getPhysicalNumberOfRows();
+		String typeName = "";
 		EquipmentDao dao = new EquipmentDao();
 		dao.init();
 		
 		Iterator<Row> iterator = firstSheet.iterator();
+		
 		iterator.next();
-				
-		while (iterator.hasNext()) {
+		iterator.next();
+		iterator.next();
+		
+		for (int i=3; i<rows-5;i++) {
+		//while (iterator.hasNext()) {
 			Row nextRow = iterator.next();
 			Iterator<Cell> cellIterator = nextRow.cellIterator();
 			Equipment e = new Equipment();
@@ -69,24 +41,102 @@ public class EquipmentDataReader {
 				int column = cell.getColumnIndex();
 
 				switch (column) {
-				case 0:
-					e.setEquipmentId(Integer.parseInt(cell.getStringCellValue()));
-					
-					break;
 				case 1:
 					e.setName(cell.getStringCellValue());
-					// TODO: Placeholder values
-					e.setType(cell.getStringCellValue().substring(0, 4));
+					break;
+				case 4:
+					e.setSerial(cell.getStringCellValue());	
+					break;
+				case 9:
+					String typeId = cell.getStringCellValue();
+					
+					if (typeId.length() < 4)
+						typeName = "N/A";
+					else {
+						int typeCode = Integer.parseInt(cell.getStringCellValue());
+						typeName = getEquipmentType(typeCode);
+					}
+					e.setType(typeName);
 					e.setStatus(1);
 					break;
-				}
-				
+				}	
 			}
-			System.out.println("Id:" + e.getEquipmentId() + " Name:" + e.getName() + " Type:" + e.getType() + " Status:" + e.getStatus());
-			dao.persist(e);
+			
+			// Check if equipment with serial is already in database, update if found, insert if not
+			int eId = dao.getEquipmentIdBySerial(e.getSerial()); 
+			if (eId > 0) {
+				e.setEquipmentId(eId);
+				dao.update(e);
+			}
+			else
+				dao.persist(e);
+		}
+		// workbook.close();
+		inputStreamEquipment.close();
+	}
+	
+	private static String getEquipmentType(int typeCode) {
+		String typeFilePath = "C:\\EquipmentManager\\Eclipse_workspace\\EquipmentManager\\test_files\\luokat.xlsx";
+		
+		FileInputStream inputStreamType = null;
+		Workbook workbook = null;
+		
+		
+		try {
+			inputStreamType= new FileInputStream(new File(typeFilePath));
+		} catch (FileNotFoundException e1) {
+			e1.printStackTrace();
+			System.out.println("Equipment type file could not be read: " + e1.getMessage());
+			return "Equipment type file could not be read: " + e1.getMessage();
 		}
 
+		try {
+			workbook = new XSSFWorkbook(inputStreamType);
+		} catch (IOException e1) {
+			e1.printStackTrace();
+			System.out.println("Workbook could not be read: " + e1.getMessage());
+			return "Workbook could not be read: " + e1.getMessage();
+		}
+		Sheet firstSheet = workbook.getSheetAt(0);
+		
+		
+		int rows = firstSheet.getPhysicalNumberOfRows();
+		
+		
+		Iterator<Row> iterator = firstSheet.iterator();
+		iterator.next();
+		iterator.next();
+		iterator.next();
+				
+		for (int i=3; i<rows-5;i++) {
+			Row nextRow = iterator.next();
+			Iterator<Cell> cellIterator = nextRow.cellIterator();
+			String typeName = "";
+						
+			while (cellIterator.hasNext()) {
+				Cell cell = cellIterator.next();
+				int column = cell.getColumnIndex();
+
+				switch (column) {
+				case 0:
+					typeName = cell.getStringCellValue();
+					break;
+				case 4:
+					//e.setEquipmentId(Integer.parseInt(cell.getStringCellValue()));
+					if (typeCode == Integer.parseInt(cell.getStringCellValue()))
+						return typeName;
+					break;
+				}
+			}
+		}
 		// workbook.close();
-		inputStream.close();
+		try {
+			inputStreamType.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+			System.out.println("Inputstream for Equipment type file could not be closed.");
+			return e.getMessage();
+		}
+		return "Equipment type for code " + typeCode + " not found!";
 	}
 }

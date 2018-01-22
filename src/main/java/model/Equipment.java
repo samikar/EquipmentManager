@@ -2,7 +2,6 @@ package model;
 
 import java.io.Serializable;
 import javax.persistence.*;
-import java.util.List;
 
 
 /**
@@ -10,14 +9,32 @@ import java.util.List;
  * 
  */
 @Entity
-@NamedQuery(name="Equipment.findAll", query="SELECT e FROM Equipment e")
+
+@NamedNativeQueries({
+	@NamedNativeQuery(
+			name	=	"Equipment.findAll", 
+			query	=	"SELECT * FROM Equipment",
+						resultClass=Equipment.class
+	),
+	@NamedNativeQuery(
+			name	=	"Equipment.getEquipmentBySerial", 
+			query	=	"SELECT * "+
+						"FROM equipment " +
+						"WHERE equipment.serial = ?",
+						resultClass=Equipment.class
+	)
+	})
+
 public class Equipment implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int equipmentId;
 
 	private String name;
+	
+	private String serial;
 
 	private int status;
 
@@ -44,6 +61,14 @@ public class Equipment implements Serializable {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+	
+	public String getSerial() {
+		return this.serial;
+	}
+
+	public void setSerial(String serial) {
+		this.serial = serial;
 	}
 
 	public int getStatus() {

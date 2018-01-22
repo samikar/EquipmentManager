@@ -37,6 +37,7 @@ EntityManager em = entityManagerFactory.createEntityManager();
 		return result;
 	}
 	
+
 	public int persist(Equipment dao){
 		entityManager.getTransaction().begin();
 		entityManager.persist(dao);
@@ -73,6 +74,18 @@ EntityManager em = entityManagerFactory.createEntityManager();
 	
 	public void destroy(){
 		entityManager.close();
+	}
+	
+	public int getEquipmentIdBySerial(String serial) {
+		List<Equipment> equipmentList = em.createNamedQuery("Equipment.getEquipmentBySerial", Equipment.class)
+				.setParameter(1, serial).getResultList();
+		if (equipmentList.size() > 0) {
+			Equipment e = equipmentList.get(0);
+			return e.getEquipmentId();
+		}
+			
+		else
+			return 0;
 	}
 	
 }

@@ -37,7 +37,8 @@
           <li class="active"><a href="return.html">Return</a></li>
           <li><a href="calibration.html">Calibration</a></li>
           <li><a href="maintenance.html">Maintenance</a></li>
-          <li><a href="statistics.html">Statistics</a></li>
+          <li><a href="list.html">Equipment list</a></li>
+          <li><a href="charts.html">Charts</a></li>
         </ul>
       </div><!--/.nav-collapse -->
     </div>
@@ -64,7 +65,7 @@
             <thead>
               <tr>
                 <th scope="col"><input type="checkbox" class="form-check-input" id="chk_checkAll">&nbsp;Check all</th>
-                <th scope="col">EquipmentId</th>
+                <th scope="col">Serial</th>
                 <th scope="col">Name</th>
                 <th scope="col">Date taken</th>
                 <th scope="col">Type</th>
@@ -113,7 +114,7 @@
            
           $('#tbl_reservations tbody').append('<tr class="child"><td><input type="checkbox" class="form-check-input check" name="resIds" value="' + 
             item.reservationId  + '"></td><td>' +
-            item["equipment"]["equipmentId"] + '</td><td>' + 
+            item["equipment"]["serial"] + '</td><td>' + 
             item["equipment"]["name"] + '</td><td>' + 
             date_taken_timezoned + '</td><td>' +                                              
             item["equipment"]["type"] + '</td></tr>');
@@ -157,16 +158,11 @@
     $("#btn_submit").click(function () {
       
       var ids = [];
-
       
       // Initializing array with Checkbox checked values
         $("input[name='resIds']:checked").each(function(){
             ids.push(this.value);
         });
-      //console.log("ID:" + ids[1]);
-
-      //ids = ["11", "22", "33"];
-
 
       $.post("rest/returnMultiple",
         {
@@ -182,7 +178,7 @@
           $("#status").removeClass('alert-success');
           $("#status").addClass('alert-danger');
           $("#status").removeClass('hidden');
-          $('#status').text("Erroria");  
+          $('#status').text("Error");  
         })
         .always(function() {
           //alert( "finished" );

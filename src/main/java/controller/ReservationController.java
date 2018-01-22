@@ -32,7 +32,7 @@ public class ReservationController {
     public Reservation takeEquipment(
 			//@RequestParam(value="dateTake", defaultValue="0") String dateTake,
 			@RequestParam(value="employeeId", defaultValue="0") String employeeId,
-			@RequestParam(value="equipmentId", defaultValue="0") String equipmentId,
+			@RequestParam(value="serial", defaultValue="0") String serial,
 			@RequestParam(value="reservationType", defaultValue="0") String reservationType)	{
     	
     	// Parse dates from epoch to Date
@@ -45,7 +45,8 @@ public class ReservationController {
 		edao.init();
 		
 		Reservation reservation = new Reservation();
-		edao.initialize(Integer.parseInt(equipmentId));			
+		
+		edao.initialize(edao.getEquipmentIdBySerial(serial));			
 		Equipment e = edao.getDao(); 
 		
 		reservation.setDateTake(currentDate);
@@ -206,6 +207,18 @@ public class ReservationController {
     	ReservationDao dao = new ReservationDao();
 		dao.init();
 		return dao.getByEquipmentId(equipmentId);
+    }
+    
+    
+    @RequestMapping("/serialtest")
+    public String serialTest(@RequestParam(value="serial", defaultValue="0") String serial) {
+    	EquipmentDao edao = new EquipmentDao();
+		edao.init();
+		int foo = edao.getEquipmentIdBySerial(serial);
+		if (foo > 0)
+			return "Truu dat";
+		else
+			return "Fälse";
     }
     
 //    //TODO:
