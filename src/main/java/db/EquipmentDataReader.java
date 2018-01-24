@@ -17,33 +17,35 @@ import java.util.Iterator;
 public class EquipmentDataReader {
 	public static void main(String[] args) throws IOException {
 		readEquipmentTypesFromFile("C:\\EquipmentManager\\Eclipse_workspace\\EquipmentManager\\test_files\\luokat.xlsx");
-		//readEquipmentFromFile("C:\\EquipmentManager\\Eclipse_workspace\\EquipmentManager\\test_files\\laitteet.xlsx");
+		readEquipmentFromFile("C:\\EquipmentManager\\Eclipse_workspace\\EquipmentManager\\test_files\\laitteet.xlsx");
 	}
 	
-	private static void readEquipmentFromFile(String filePath) {
-		//String equipmentFilePath = "C:\\EquipmentManager\\Eclipse_workspace\\EquipmentManager\\test_files\\laitteet.xlsx";
+	private static String readEquipmentFromFile(String filePath) {
+				
 		FileInputStream inputStreamEquipment = null;
 		try {
 			inputStreamEquipment = new FileInputStream(new File(filePath));
 		} catch (FileNotFoundException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
+			return "Equipment file not found: " + e1.getMessage();
 		}
 			
 		Workbook workbook = null;
 		try {
 			workbook = new XSSFWorkbook(inputStreamEquipment);
 		} catch (IOException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
+			return "Equipment file could not be read: " + e1.getMessage();
 		}
 		
 		
 		Sheet firstSheet = workbook.getSheetAt(0);
 		int rows = firstSheet.getPhysicalNumberOfRows();
 		String typeName = "";
-		EquipmentDao dao = new EquipmentDao();
-		dao.init();
+		EquipmentDao edao = new EquipmentDao();
+		EquipmenttypeDao eqTypeDao = new EquipmenttypeDao();
+		edao.init();
+		eqTypeDao.init();
 		
 		Iterator<Row> iterator = firstSheet.iterator();
 		
@@ -52,7 +54,6 @@ public class EquipmentDataReader {
 		iterator.next();
 		
 		for (int i=3; i<rows-5;i++) {
-		//while (iterator.hasNext()) {
 			Row nextRow = iterator.next();
 			Iterator<Cell> cellIterator = nextRow.cellIterator();
 			Equipment e = new Equipment();
@@ -69,39 +70,42 @@ public class EquipmentDataReader {
 					e.setSerial(cell.getStringCellValue());	
 					break;
 				case 9:
-					String typeId = cell.getStringCellValue();
+					String typeCode = cell.getStringCellValue();
 					
-					if (typeId.length() < 4)
+					if (typeCode.length() < 4)
 						typeName = "N/A";
 					else {
-						int typeCode = Integer.parseInt(cell.getStringCellValue());
-						typeName = getEquipmentType(typeCode);
+						Equipmenttype eqType = new Equipmenttype();
+						//int typeCode = Integer.parseInt(cell.getStringCellValue());
+						eqTypeDao.initialize(eqTypeDao.getEquipmentTypeIdByTypeCode(Integer.parseInt(typeCode)));
+						eqType = eqTypeDao.getDao();
+						e.setEquipmenttype(eqType);
 					}
-					//e.setType(typeName);
 					e.setStatus(1);
 					break;
 				}	
 			}
 			
 			// Check if equipment with serial is already in database, update if found, insert if not
-			int eId = dao.getEquipmentIdBySerial(e.getSerial()); 
+			int eId = edao.getEquipmentIdBySerial(e.getSerial()); 
 			if (eId > 0) {
 				e.setEquipmentId(eId);
-				dao.update(e);
+				edao.update(e);
 			}
 			else
-				dao.persist(e);
+				edao.persist(e);
 		}
 		// workbook.close();
 		try {
 			inputStreamEquipment.close();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
+			return "Error closing inputstream: " + e.getMessage();
 		}
+		return "Equipment file read complete.";
 	}
 	
-	
+	/*
 	private static String getEquipmentType(int typeCode) {
 		String typeFilePath = "C:\\EquipmentManager\\Eclipse_workspace\\EquipmentManager\\test_files\\luokat.xlsx";
 		
@@ -166,6 +170,7 @@ public class EquipmentDataReader {
 		}
 		return "Equipment type for code " + typeCode + " not found!";
 	}
+	*/
 	
 	private static String readEquipmentTypesFromFile(String filePath) {
 	//String typeFilePath = "C:\\EquipmentManager\\Eclipse_workspace\\EquipmentManager\\test_files\\luokat.xlsx";
@@ -213,13 +218,13 @@ public class EquipmentDataReader {
 					eqType.setTypeName(cell.getStringCellValue());
 					break;
 				case 4:
-					eqType.setEquipmentTypeId(Integer.parseInt(cell.getStringCellValue()));
+					eqType.setEquipmentTypeCode(Integer.parseInt(cell.getStringCellValue()));
 					break;
 				}
 			}
 			// Check if equipment with serial is already in database, update if found,
 			// insert if not
-			int eTypeId = eqTypeDao.getEquipmentTypeByTypeCode(eqType.getEquipmentTypeCode());
+			int eTypeId = eqTypeDao.getEquipmentTypeIdByTypeCode(eqType.getEquipmentTypeCode());
 			if (eTypeId > 0) {
 				eqType.setEquipmentTypeId(eTypeId);
 				eqTypeDao.update(eqType);
@@ -235,6 +240,6 @@ public class EquipmentDataReader {
 			System.out.println("Inputstream for Equipment type file could not be closed.");
 			return e.getMessage();
 		}
-		return "Equipment types read succesfully.";
+		return "Equipment type file read complete.";
 	}
 }

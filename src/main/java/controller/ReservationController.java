@@ -54,6 +54,7 @@ public class ReservationController {
 		reservation.setEquipment(e);
 		reservation.setReservationType(Integer.parseInt(reservationType));
 
+		//System.out.println("******* Equipment id: " + reservation.getEquipment().getEquipmentId() + " Equipment TypeName: " + reservation.getEquipment().getEquipmenttype().getTypeName() + " Equipment type name: " + reservation.getEquipment().getName());
 		rdao.persist(reservation);	
 		
 		return reservation;

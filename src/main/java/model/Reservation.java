@@ -2,6 +2,9 @@ package model;
 
 import java.io.Serializable;
 import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.util.Date;
 
 
@@ -10,7 +13,6 @@ import java.util.Date;
  * 
  */
 @Entity
-
 @NamedNativeQueries({
 	@NamedNativeQuery(
 			name	=	"Reservation.findAll", 
@@ -60,7 +62,7 @@ public class Reservation implements Serializable {
 
 	private int reservationType;
 
-	//bi-directional many-to-one association to Equipment
+	//bi-directional one-to-one association to Equipment
 	@ManyToOne
 	@JoinColumn(name="equipmentId")
 	private Equipment equipment;
@@ -108,6 +110,7 @@ public class Reservation implements Serializable {
 		this.reservationType = reservationType;
 	}
 
+	@JsonIgnore
 	public Equipment getEquipment() {
 		return this.equipment;
 	}

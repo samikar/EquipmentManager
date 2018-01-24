@@ -52,13 +52,13 @@
         <div class="input-group mb-3">
           <div class="input-group input-group-md">
             <span class="input-group-addon">Employee ID</span>
-            <input type="text" class="form-control" placeholder="Your ID" id="txt_employeeId">
+            <input type="text" class="form-control" placeholder="Your ID" id="txt_employeeId" value="123456789">
           </div>
         </div>
         <br>
         <div class="input-group input-group-md">
           <span class="input-group-addon">Serial number</span>
-          <input type="text" class="form-control" placeholder="..." id="txt_serial">
+          <input type="text" class="form-control" placeholder="..." id="txt_serial" value="MI_VD1354">
         </div>
         <br>
         <button class="btn btn-primary mb-2" id="btn_submit">Submit</button>
@@ -93,7 +93,7 @@
           $("#status").removeClass('hidden');
           $("#status").removeClass('alert-danger');
           $("#status").addClass('alert-success');
-          $('#status').text(data["equipment"]["serial"] + "/" +  data["equipment"]["name"] + " succesfully reserved.");  
+          $('#status').text(data["equipment"]["serial"] + "/" +  data["equipment"]["name"] + " succesfully reserved.");
         })
         .done(function() {
         //alert( "second success" );

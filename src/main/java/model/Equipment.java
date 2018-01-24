@@ -1,6 +1,8 @@
 package model;
 
 import java.io.Serializable;
+import java.util.List;
+
 import javax.persistence.*;
 
 
@@ -9,7 +11,6 @@ import javax.persistence.*;
  * 
  */
 @Entity
-
 @NamedNativeQueries({
 	@NamedNativeQuery(
 			name	=	"Equipment.findAll", 
@@ -29,8 +30,7 @@ public class Equipment implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@SequenceGenerator(name="EQUIPMENT_EQUIPMENTID_GENERATOR" )
-	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="EQUIPMENT_EQUIPMENTID_GENERATOR")
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int equipmentId;
 
 	private String name;
@@ -41,8 +41,12 @@ public class Equipment implements Serializable {
 
 	//bi-directional many-to-one association to Equipmenttype
 	@ManyToOne
-	@JoinColumn(name="equipmentTypeCode")
+	@JoinColumn(name="equipmentTypeId")
 	private Equipmenttype equipmenttype;
+
+	//bi-directional one-to-one association to Reservation
+	@OneToMany(mappedBy="equipment")
+	private List<Reservation> reservations;
 
 	public Equipment() {
 	}
@@ -87,4 +91,12 @@ public class Equipment implements Serializable {
 		this.equipmenttype = equipmenttype;
 	}
 
+	
+	public List<Reservation> getReservations() {
+		return this.reservations;
+	}
+
+	public void setReservations(List<Reservation> reservations) {
+		this.reservations = reservations;
+	}
 }
