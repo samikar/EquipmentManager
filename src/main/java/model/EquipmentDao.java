@@ -59,7 +59,8 @@ EntityManager em = entityManagerFactory.createEntityManager();
 			//start database transaction
 			entityManager.getTransaction().begin();
 			dao.setName(dao.getName());
-			dao.setType(dao.getType());
+			
+			dao.setEquipmenttype(dao.getEquipmenttype());
 			dao.setStatus(dao.getStatus());			
 			entityManager.merge(dao);
 			entityManager.getTransaction().commit();

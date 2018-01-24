@@ -29,20 +29,20 @@ public class Equipment implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@SequenceGenerator(name="EQUIPMENT_EQUIPMENTID_GENERATOR" )
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="EQUIPMENT_EQUIPMENTID_GENERATOR")
 	private int equipmentId;
 
 	private String name;
-	
+
 	private String serial;
 
 	private int status;
 
-	private String type;
-
-	//bi-directional many-to-one association to Reservation
-	//@OneToMany(mappedBy="equipment")
-	//private List<Reservation> reservations;
+	//bi-directional many-to-one association to Equipmenttype
+	@ManyToOne
+	@JoinColumn(name="equipmentTypeCode")
+	private Equipmenttype equipmenttype;
 
 	public Equipment() {
 	}
@@ -62,7 +62,7 @@ public class Equipment implements Serializable {
 	public void setName(String name) {
 		this.name = name;
 	}
-	
+
 	public String getSerial() {
 		return this.serial;
 	}
@@ -79,35 +79,12 @@ public class Equipment implements Serializable {
 		this.status = status;
 	}
 
-	public String getType() {
-		return this.type;
+	public Equipmenttype getEquipmenttype() {
+		return this.equipmenttype;
 	}
 
-	public void setType(String type) {
-		this.type = type;
+	public void setEquipmenttype(Equipmenttype equipmenttype) {
+		this.equipmenttype = equipmenttype;
 	}
-	/*
-	public List<Reservation> getReservations() {
-		return this.reservations;
-	}
-
-	public void setReservations(List<Reservation> reservations) {
-		this.reservations = reservations;
-	}
-	 
-	public Reservation addReservation(Reservation reservation) {
-		getReservations().add(reservation);
-		reservation.setEquipment(this);
-
-		return reservation;
-	}
-
-	public Reservation removeReservation(Reservation reservation) {
-		getReservations().remove(reservation);
-		reservation.setEquipment(null);
-
-		return reservation;
-	}
-	*/
 
 }

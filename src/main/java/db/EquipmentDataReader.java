@@ -5,6 +5,8 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import model.Equipment;
 import model.EquipmentDao;
+import model.Equipmenttype;
+import model.EquipmenttypeDao;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -14,10 +16,29 @@ import java.util.Iterator;
 
 public class EquipmentDataReader {
 	public static void main(String[] args) throws IOException {
-		String equipmentFilePath = "C:\\EquipmentManager\\Eclipse_workspace\\EquipmentManager\\test_files\\laitteet.xlsx";
-		FileInputStream inputStreamEquipment = new FileInputStream(new File(equipmentFilePath));
+		readEquipmentTypesFromFile("C:\\EquipmentManager\\Eclipse_workspace\\EquipmentManager\\test_files\\luokat.xlsx");
+		//readEquipmentFromFile("C:\\EquipmentManager\\Eclipse_workspace\\EquipmentManager\\test_files\\laitteet.xlsx");
+	}
+	
+	private static void readEquipmentFromFile(String filePath) {
+		//String equipmentFilePath = "C:\\EquipmentManager\\Eclipse_workspace\\EquipmentManager\\test_files\\laitteet.xlsx";
+		FileInputStream inputStreamEquipment = null;
+		try {
+			inputStreamEquipment = new FileInputStream(new File(filePath));
+		} catch (FileNotFoundException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 			
-		Workbook workbook = new XSSFWorkbook(inputStreamEquipment);
+		Workbook workbook = null;
+		try {
+			workbook = new XSSFWorkbook(inputStreamEquipment);
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
+		
 		Sheet firstSheet = workbook.getSheetAt(0);
 		int rows = firstSheet.getPhysicalNumberOfRows();
 		String typeName = "";
@@ -56,7 +77,7 @@ public class EquipmentDataReader {
 						int typeCode = Integer.parseInt(cell.getStringCellValue());
 						typeName = getEquipmentType(typeCode);
 					}
-					e.setType(typeName);
+					//e.setType(typeName);
 					e.setStatus(1);
 					break;
 				}	
@@ -72,8 +93,14 @@ public class EquipmentDataReader {
 				dao.persist(e);
 		}
 		// workbook.close();
-		inputStreamEquipment.close();
+		try {
+			inputStreamEquipment.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
+	
 	
 	private static String getEquipmentType(int typeCode) {
 		String typeFilePath = "C:\\EquipmentManager\\Eclipse_workspace\\EquipmentManager\\test_files\\luokat.xlsx";
@@ -140,9 +167,74 @@ public class EquipmentDataReader {
 		return "Equipment type for code " + typeCode + " not found!";
 	}
 	
-	private static String getEquipmentTypes() {
+	private static String readEquipmentTypesFromFile(String filePath) {
+	//String typeFilePath = "C:\\EquipmentManager\\Eclipse_workspace\\EquipmentManager\\test_files\\luokat.xlsx";
 		
+		FileInputStream inputStreamType = null;
+		Workbook workbook = null;
 		
-		return "";
+		try {
+			inputStreamType= new FileInputStream(new File(filePath));
+		} catch (FileNotFoundException e1) {
+			e1.printStackTrace();
+			System.out.println("Equipment type file could not be read: " + e1.getMessage());
+			return "Equipment type file could not be read: " + e1.getMessage();
+		}
+
+		try {
+			workbook = new XSSFWorkbook(inputStreamType);
+		} catch (IOException e1) {
+			e1.printStackTrace();
+			System.out.println("Workbook could not be read: " + e1.getMessage());
+			return "Workbook could not be read: " + e1.getMessage();
+		}
+		
+		Sheet firstSheet = workbook.getSheetAt(0);
+		int rows = firstSheet.getPhysicalNumberOfRows();
+		Iterator<Row> iterator = firstSheet.iterator();
+		EquipmenttypeDao eqTypeDao = new EquipmenttypeDao();
+		eqTypeDao.init();
+		
+		iterator.next();
+		iterator.next();
+		iterator.next();
+				
+		for (int i=3; i<rows-5;i++) {
+			Equipmenttype eqType = new Equipmenttype();
+			Row nextRow = iterator.next();
+			Iterator<Cell> cellIterator = nextRow.cellIterator();
+			
+						
+			while (cellIterator.hasNext()) {
+				Cell cell = cellIterator.next();
+				int column = cell.getColumnIndex();
+				switch (column) {
+				case 0:
+					eqType.setTypeName(cell.getStringCellValue());
+					break;
+				case 4:
+					eqType.setEquipmentTypeId(Integer.parseInt(cell.getStringCellValue()));
+					break;
+				}
+			}
+			// Check if equipment with serial is already in database, update if found,
+			// insert if not
+			int eTypeId = eqTypeDao.getEquipmentTypeByTypeCode(eqType.getEquipmentTypeCode());
+			if (eTypeId > 0) {
+				eqType.setEquipmentTypeId(eTypeId);
+				eqTypeDao.update(eqType);
+			} else
+				eqTypeDao.persist(eqType);
+		}
+	// workbook.close();
+		try
+		{
+			inputStreamType.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+			System.out.println("Inputstream for Equipment type file could not be closed.");
+			return e.getMessage();
+		}
+		return "Equipment types read succesfully.";
 	}
 }
