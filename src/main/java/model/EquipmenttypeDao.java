@@ -57,7 +57,7 @@ EntityManager em = entityManagerFactory.createEntityManager();
 			initialize(dao.getEquipmentTypeId());
 			//start database transaction
 			entityManager.getTransaction().begin();
-			dao.setEquipmentTypeCode(dao.getEquipmentTypeCode());
+			dao.setTypeCode(dao.getTypeCode());
 			dao.setTypeName(dao.getTypeName());			
 			entityManager.merge(dao);
 			entityManager.getTransaction().commit();
@@ -80,30 +80,9 @@ EntityManager em = entityManagerFactory.createEntityManager();
 		return reservations;
 	}
 	
-	public List<Equipmenttype> getByEmployeeId(String employeeId) {
-		List<Equipmenttype> reservations = em.createNamedQuery("Equipmenttype.getEquipmenttypesByEmployeeId", Equipmenttype.class)
-				.setParameter(1, employeeId)
-				.getResultList();
-		return reservations;
-	}
-	
-	public List<Equipmenttype> getByEquipmentId(String equipmentId) {
-		List<Equipmenttype> reservations = em.createNamedQuery("Equipmenttype.getEquipmenttypesByEquipmentId", Equipmenttype.class)
-				.setParameter(1, equipmentId)
-				.getResultList();
-		return reservations;
-	}
-	
-	public List<Equipmenttype> queryTest(String reservationType) {
-		List<Equipmenttype> reservations = em.createNamedQuery("Equipmenttype.getEquipmenttypesByType", Equipmenttype.class)
-				.setParameter(1, reservationType)
-				.getResultList();
-		return reservations;
-	}
-	
 	public int getEquipmentTypeIdByTypeCode(int typeCode) {
 		List<Equipmenttype> equipmentTypeList = em
-				.createNamedQuery("Equipmenttype.getEquipmenttypeByTypeCode", Equipmenttype.class)
+				.createNamedQuery("Equipmenttype.getByTypeCode", Equipmenttype.class)
 				.setParameter(1, typeCode).getResultList();
 		if (equipmentTypeList.size() > 0) {
 			Equipmenttype e = equipmentTypeList.get(0);

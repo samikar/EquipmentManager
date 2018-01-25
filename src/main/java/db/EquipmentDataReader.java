@@ -218,13 +218,13 @@ public class EquipmentDataReader {
 					eqType.setTypeName(cell.getStringCellValue());
 					break;
 				case 4:
-					eqType.setEquipmentTypeCode(Integer.parseInt(cell.getStringCellValue()));
+					eqType.setTypeCode(Integer.parseInt(cell.getStringCellValue()));
 					break;
 				}
 			}
 			// Check if equipment with serial is already in database, update if found,
 			// insert if not
-			int eTypeId = eqTypeDao.getEquipmentTypeIdByTypeCode(eqType.getEquipmentTypeCode());
+			int eTypeId = eqTypeDao.getEquipmentTypeIdByTypeCode(eqType.getTypeCode());
 			if (eTypeId > 0) {
 				eqType.setEquipmentTypeId(eTypeId);
 				eqTypeDao.update(eqType);

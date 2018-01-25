@@ -2,11 +2,14 @@
 <html>
 
 <head>
-  <title>Statistics</title>
+  <title>Equipment list</title>
   <meta name = "viewport" content = "width = device-width, initial-scale = 1.0">
 
   <!-- Bootstrap -->
   <link href = "css/bootstrap.min.css" rel = "stylesheet">
+  <link href = "css/bootstrap-table.css" rel = "stylesheet">
+  <link href = "css/datatables.min.css" rel = "stylesheet">
+
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -15,15 +18,6 @@
       <script src = "https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
       <script src = "https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
     <![endif]-->
-<script src = "js/jquery-3.2.1.min.js"></script>
-<script>
-$(document).ready(function(){
-    $("button").click(function(){
-        $("#div1").load("rest/getallreservations");
-    });
-});
-</script>
-
   </head>
 
   <body>
@@ -53,56 +47,148 @@ $(document).ready(function(){
     </nav>
 
 
-      <!-- Main component for a primary marketing message or call to action -->
-     <div>
-        <br>
-        <br>
-        <br>
-        Testi:
- <div id="div1"><h2>Let jQuery AJAX Change This Text</h2></div>
-
-<button>Get External Content</button>
- 
-
-
-
-     <!-- /container -->
-
-
-
-
-
-
-    <!--div class="container">
-      <div class="jumbotron">
-        <h1>Otsikko</h1>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+    <div class="container">
+    <br><br><br>
+    <div class="row">
+      <div class="col-lg-12 col-md-12 cold-sm-12 col-xs-12">
+        <table class="table table-striped table-hover display" id="tbl_equipment">
+        <!--table class="display" id="tbl_equipment"-->
+        <!-- Bootstrap Table versioon: -->
+            <!--thead>
+              <tr>
+                <th data-field="serial">Serial number</th>
+                <th data-field="name">Name</th>
+                <th data-field="employeeId">User</th>
+                <th data-field="equipment.equipmenttype.typeName" scope="col">Type</th>
+                <th data-field="availability">Availability</th>
+              </tr>
+            </thead-->
+            <thead>
+              <tr>
+                <th>Serial number</th>
+                <th>Name</th>
+                <!--th>User</th-->
+                <th>Type</th>
+                <th>Availability</th>
+              </tr>
+            </thead>
+            <tfoot>
+              <tr>
+                <th>Serial number</th>
+                <th>Name</th>
+                <!--th>User</th-->
+                <th>Type</th>
+                <th>Availability</th>
+              </tr>
+            </tfoot>
+          <tbody>
+          </tbody>
+        </table>
       </div>
-      <div class="row">
-        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</div>
-        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</div>
-
-        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</div>
-        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</div>
-
-
+    <div class="row">
+      <div class="col-lg-12 col-md-12 cold-sm-12 col-xs-12">
+        <div id="status" class="alert hidden"></div>    
       </div>
-      <p>
-        <span class="glyphicon glyphicon-trash"></span>
-        <a href="#" class="btn btn-primary btn-lg">Trash<span class="glyphicon glyphicon-trash"></span></a>
+    </div>
+  </div> <!-- /container -->
 
-        <button type="button" class="btn btn-primary btn-lg">
-          <span class="glyphicon glyphicon-phone-alt" aria-hidden="false"></span>Soita
-        </button>
+  <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+  <!--script src = "https://code.jquery.com/jquery.js"></script-->
+  <script src = "js/jquery-3.2.1.js"></script>
 
-      </div-->
+  <!-- Include all compiled plugins (below), or include individual files as needed -->
+  <script src = "js/bootstrap.min.js"></script>
 
-      <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+  <!-- Data Tables library -->
+  <script src = "js/datatables.min.js"></script>
+
+  <!-- Bootstrap Table library -->
+  <script src = "js/bootstrap-table.js"></script>
+  
+<script>
+    $(document).ready(function(){
+      //getEquipmentData();
+
+      /*
+      // Bootstrap Table, toimiva versio
+    var data;
+    $.getJSON("rest/getEquipmentStatus", function(json){
+    data = json;
+    $('#tbl_equipment').bootstrapTable({
+        data: data
+    });
+    });
+    */
+
+ // Katto: https://datatables.net/forums/discussion/38751
+$('#tbl_equipment').DataTable( {
+        "processing": true,
+        "serverSide": true,
+        "ajax": {
+            "url": "rest/getEquipmentStatus",
+            "type": "GET",
+            "dataSrc": ""
+        },
+        "columns": [
+            { data: "serial" },
+            { data: "name" },
+            { data: "employeeId" },
+            { data.equipment.equipmenttype: "typeName" },
+            { data: "availability" }
+        ]
+    });
+
+
+
+
+      function getEquipmentData() {
+        $.get("rest/getEquipmentStatus", function(data){
+
+          
+          $.each(data, function(i, item) {
+            //var employeeId = item["employeeId"] || '';
+            var equipmentType = item["equipmenttype"]["typeName"] || 'Unknown';
+            var employeeId = "foo";
+            var equipmentType = "bar";
+
+            $('#tbl_equipment tbody').append('<tr><td>' +
+              item["serial"] + '</td><td>' +
+              item["name"] + '</td><td>' + 
+              item["employeeId"] + '</td><td>' + 
+              //employeeId + '</td><td>' + 
+              item["equipmenttype"]["typeName"] + '</td><td>' + 
+              //equipmentType + '</td><td>' + 
+              item["availability"] + '</td></tr>');
+          });
+        /*
+        $("#tbl_reservations").removeClass('hidden');
+        $("#btn_submit").removeClass('hidden');
+        $("#status").removeClass('hidden');
+        $("#status").removeClass('alert-danger');
+        $("#status").addClass('alert-success');
+        $('#status').text("Reservations for employeeId " + employeeId + " retrieved");
+        */
+      })
+      .done(function() {
+        //alert( "second success" );
+      })
+      .fail(function(data) {
+        /*
+        $('#txt_equipmentId').val("");
+        //$("#status").removeClass('alert-success');
+        $("#status").addClass('alert-danger');
+        $("#status").removeClass('hidden');
+        $('#status').text("Error returning:" + data[0]);  
+        */
+      })
+      .always(function() {
+        //alert( "finished" );
+      });
+    }
       
+    });
+  </script>
 
-      
-      <!-- Include all compiled plugins (below), or include individual files as needed -->
-      <script src = "js/bootstrap.min.js"></script>
       
   </body>
 </html>

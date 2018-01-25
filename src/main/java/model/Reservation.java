@@ -20,24 +20,31 @@ import java.util.Date;
             			resultClass=Reservation.class
 	),
     @NamedNativeQuery(
-            name    =   "Reservation.getReservationsByType",
+            name    =   "Reservation.getByType",
             query   =   "SELECT * " +
                         "FROM reservation " +
                         "WHERE reservation.reservationType = ?",
                         resultClass=Reservation.class
     ),
     @NamedNativeQuery(
-            name    =   "Reservation.getReservationsByEquipmentId",
+            name    =   "Reservation.getByEquipmentId",
             query   =   "SELECT * " +
                         "FROM reservation " +
                         "WHERE reservation.equipmentId = ?",
                         resultClass=Reservation.class
     ),
     @NamedNativeQuery(
-            name    =   "Reservation.getReservationsByEmployeeId",
+            name    =   "Reservation.getByEmployeeId",
             query   =   "SELECT * " +
                         "FROM reservation " +
                         "WHERE reservation.employeeId = ? AND reservation.date_return IS NULL",
+                        resultClass=Reservation.class
+    ),
+    @NamedNativeQuery(
+            name    =   "Reservation.getOpen",
+            query   =   "SELECT * " +
+                        "FROM reservation " +
+                        "WHERE date_return IS NULL",
                         resultClass=Reservation.class
     )
     
@@ -110,7 +117,6 @@ public class Reservation implements Serializable {
 		this.reservationType = reservationType;
 	}
 
-	@JsonIgnore
 	public Equipment getEquipment() {
 		return this.equipment;
 	}

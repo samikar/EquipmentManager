@@ -17,10 +17,10 @@ import java.util.List;
 						resultClass=Equipmenttype.class
 	),
 	@NamedNativeQuery(
-			name	=	"Equipmenttype.getEquipmenttypeByTypeCode", 
+			name	=	"Equipmenttype.getByTypeCode", 
 			query	=	"SELECT * "+
 						"FROM equipmenttype " +
-						"WHERE equipmenttype.equipmentTypeCode = ?",
+						"WHERE equipmenttype.TypeCode = ?",
 						resultClass=Equipmenttype.class
 	)
 	})
@@ -32,14 +32,14 @@ public class Equipmenttype implements Serializable {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int equipmentTypeId;
 
-	private int equipmentTypeCode;
+	private int typeCode;
 
 	private String typeName;
-
+	/*
 	//bi-directional many-to-one association to Equipment
 	@OneToMany(mappedBy="equipmenttype")
 	private List<Equipment> equipments;
-
+	 */
 	public Equipmenttype() {
 	}
 
@@ -51,12 +51,12 @@ public class Equipmenttype implements Serializable {
 		this.equipmentTypeId = equipmentTypeId;
 	}
 
-	public int getEquipmentTypeCode() {
-		return this.equipmentTypeCode;
+	public int getTypeCode() {
+		return this.typeCode;
 	}
 
-	public void setEquipmentTypeCode(int equipmentTypeCode) {
-		this.equipmentTypeCode = equipmentTypeCode;
+	public void setTypeCode(int typeCode) {
+		this.typeCode = typeCode;
 	}
 
 	public String getTypeName() {
@@ -67,6 +67,7 @@ public class Equipmenttype implements Serializable {
 		this.typeName = typeName;
 	}
 
+	/*
 	public List<Equipment> getEquipments() {
 		return this.equipments;
 	}
@@ -74,7 +75,7 @@ public class Equipmenttype implements Serializable {
 	public void setEquipments(List<Equipment> equipments) {
 		this.equipments = equipments;
 	}
-
+	
 	public Equipment addEquipment(Equipment equipment) {
 		getEquipments().add(equipment);
 		equipment.setEquipmenttype(this);
@@ -88,5 +89,5 @@ public class Equipmenttype implements Serializable {
 
 		return equipment;
 	}
-
+*/
 }

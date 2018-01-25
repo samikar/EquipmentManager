@@ -1,5 +1,6 @@
 package controller;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -9,6 +10,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import model.Equipment;
 import model.EquipmentDao;
+import model.EquipmentStatus;
+import model.Equipmenttype;
 import model.Reservation;
 import model.ReservationDao;
 
@@ -209,17 +212,65 @@ public class ReservationController {
 		return dao.getByEquipmentId(equipmentId);
     }
     
+    @RequestMapping("rest/getEquipmentStatus") 
+    	public List<EquipmentStatus> getEquipmentStatus() {
+    	ReservationDao rdao = new ReservationDao();
+    	EquipmentDao edao = new EquipmentDao();
+    	rdao.init();
+    	edao.init();
+    	
+		List<Reservation> reservationList = rdao.getOpen();
+		List<Equipment> equipmentList = edao.getEquipmentOrderedByType();
+		List<EquipmentStatus> equipmentStatusList = new ArrayList<EquipmentStatus>();
+
+		for (Equipment e : equipmentList) {
+			
+			EquipmentStatus eStatus = new EquipmentStatus();
+			eStatus.setEquipmentId(e.getEquipmentId());
+			eStatus.setName(e.getName());
+			eStatus.setSerial(e.getSerial());
+			
+			if (e.getEquipmenttype()==null) {
+				Equipmenttype eType = new Equipmenttype();
+				eType.setEquipmentTypeId(0);
+				eType.setTypeCode(0);
+				eType.setTypeName("Unknown");
+				eStatus.setEquipmenttype(eType);				
+			}
+			else
+				eStatus.setEquipmenttype(e.getEquipmenttype());
+			
+			String availability = "Available";
+			eStatus.setEmployeeId("");
+			for (Reservation r : reservationList) {
+				if (r.getEquipment().getEquipmentId() == eStatus.getEquipmentId()) {
+					eStatus.setEmployeeId(r.getEmployeeId());
+					
+					switch (r.getReservationType()) {
+					case 0:
+						availability = "In use";
+						break;
+					case 1:
+						availability = "Calibration";
+						break;
+					case 2:
+						availability = "Maintenance";
+						break;
+					}
+				}
+			}
+			eStatus.setAvailability(availability);
+			equipmentStatusList.add(eStatus);
+		}
+		return equipmentStatusList;
+    }
+    
     /*
     @RequestMapping("/rest/getbyEquipmentType")
     public List<Reservation> getbyEquipmentType(@RequestParam(value="equipmentType", defaultValue="0") String equipmentId) {
     	
     }
-    */
-    
-    
-    
-    
-    
+    */  
     
     /*
     @RequestMapping("/serialtest")

@@ -18,10 +18,17 @@ import javax.persistence.*;
 						resultClass=Equipment.class
 	),
 	@NamedNativeQuery(
-			name	=	"Equipment.getEquipmentBySerial", 
+			name	=	"Equipment.getBySerial", 
 			query	=	"SELECT * "+
 						"FROM equipment " +
 						"WHERE equipment.serial = ?",
+						resultClass=Equipment.class
+	),
+	@NamedNativeQuery(
+			name	=	"Equipment.getOrderedByType", 
+			query	=	"SELECT * "+
+						"FROM equipment " +
+						"ORDER BY equipmentTypeId",
 						resultClass=Equipment.class
 	)
 	})
@@ -44,10 +51,11 @@ public class Equipment implements Serializable {
 	@JoinColumn(name="equipmentTypeId")
 	private Equipmenttype equipmenttype;
 
+	/*
 	//bi-directional one-to-one association to Reservation
 	@OneToMany(mappedBy="equipment")
 	private List<Reservation> reservations;
-
+	 */
 	public Equipment() {
 	}
 
@@ -91,7 +99,7 @@ public class Equipment implements Serializable {
 		this.equipmenttype = equipmenttype;
 	}
 
-	
+	/*
 	public List<Reservation> getReservations() {
 		return this.reservations;
 	}
@@ -99,4 +107,5 @@ public class Equipment implements Serializable {
 	public void setReservations(List<Reservation> reservations) {
 		this.reservations = reservations;
 	}
+	*/
 }

@@ -78,15 +78,19 @@ EntityManager em = entityManagerFactory.createEntityManager();
 	}
 	
 	public int getEquipmentIdBySerial(String serial) {
-		List<Equipment> equipmentList = em.createNamedQuery("Equipment.getEquipmentBySerial", Equipment.class)
+		List<Equipment> equipmentList = em.createNamedQuery("Equipment.getBySerial", Equipment.class)
 				.setParameter(1, serial).getResultList();
 		if (equipmentList.size() > 0) {
 			Equipment e = equipmentList.get(0);
 			return e.getEquipmentId();
-		}
-			
+		}		
 		else
 			return 0;
 	}
 	
+	public List<Equipment> getEquipmentOrderedByType() {
+		List<Equipment> equipment = entityManager.createNamedQuery("Equipment.getOrderedByType", Equipment.class)
+				.getResultList();
+		return equipment;
+	}
 }

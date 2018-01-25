@@ -84,21 +84,27 @@ EntityManager em = entityManagerFactory.createEntityManager();
 	}
 	
 	public List<Reservation> getByEmployeeId(String employeeId) {
-		List<Reservation> reservations = em.createNamedQuery("Reservation.getReservationsByEmployeeId", Reservation.class)
+		List<Reservation> reservations = em.createNamedQuery("Reservation.getByEmployeeId", Reservation.class)
 				.setParameter(1, employeeId)
 				.getResultList();
 		return reservations;
 	}
 	
 	public List<Reservation> getByEquipmentId(String equipmentId) {
-		List<Reservation> reservations = em.createNamedQuery("Reservation.getReservationsByEquipmentId", Reservation.class)
+		List<Reservation> reservations = em.createNamedQuery("Reservation.getByEquipmentId", Reservation.class)
 				.setParameter(1, equipmentId)
 				.getResultList();
 		return reservations;
 	}
 	
+	public List<Reservation> getOpen() {
+		List<Reservation> reservations = em.createNamedQuery("Reservation.getOpen", Reservation.class)
+				.getResultList();
+		return reservations;
+	}
+	
 	public List<Reservation> queryTest(String reservationType) {
-		List<Reservation> reservations = em.createNamedQuery("Reservation.getReservationsByType", Reservation.class)
+		List<Reservation> reservations = em.createNamedQuery("Reservation.getByType", Reservation.class)
 				.setParameter(1, reservationType)
 				.getResultList();
 		return reservations;
