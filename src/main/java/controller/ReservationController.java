@@ -38,10 +38,9 @@ public class ReservationController {
     
     @RequestMapping("/rest/take")
     public Reservation takeEquipment(
-			//@RequestParam(value="dateTake", defaultValue="0") String dateTake,
 			@RequestParam(value="employeeId") String employeeId,
 			@RequestParam(value="serial") String serial,
-			@RequestParam(value="reservationType", defaultValue="0") String reservationType)	{
+			@RequestParam(value="reservationType") String reservationType)	{
     	
     	if (employeeId == null || employeeId.isEmpty()) {
     		throw new IllegalArgumentException("Employee ID must not be empty");
@@ -49,10 +48,9 @@ public class ReservationController {
     	else if (serial == null || serial.isEmpty()) {
     		throw new IllegalArgumentException("Serial number must not be empty");
     	} 
-    	
-    	// Parse dates from epoch to Date
-    	//Date dt = new Date(Long.parseLong(dateTake) * 1000);
-    	
+    	else if (reservationType == null || reservationType.isEmpty()) {
+    		throw new IllegalArgumentException("Reservation type must be selected");
+    	}
     	    	
 		ReservationDao rdao = new ReservationDao();
 		rdao.init();

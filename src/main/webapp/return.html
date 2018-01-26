@@ -35,8 +35,6 @@
         <ul class="nav navbar-nav">
           <li><a href="index.html">Take</a></li>
           <li class="active"><a href="return.html">Return</a></li>
-          <li><a href="calibration.html">Calibration</a></li>
-          <li><a href="maintenance.html">Maintenance</a></li>
           <li><a href="list.html">Equipment list</a></li>
           <li><a href="charts.html">Charts</a></li>
         </ul>
@@ -105,6 +103,12 @@
       returnEquipment();
     });
     
+    $(document).keypress(function(e) {
+      if(e.which == 13) {
+        findReservations();
+      }
+    });
+
     // Check all checkboxes
     $("#chk_checkAll").click(function () {
       $(".check").prop('checked', $(this).prop('checked'));

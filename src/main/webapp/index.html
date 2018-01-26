@@ -35,8 +35,6 @@
         <ul class="nav navbar-nav">
           <li class="active"><a href="index.html">Take</a></li>
           <li><a href="return.html">Return</a></li>
-          <li><a href="calibration.html">Calibration</a></li>
-          <li><a href="maintenance.html">Maintenance</a></li>
           <li><a href="list.html">Equipment list</a></li>
           <li><a href="charts.html">Charts</a></li>
         </ul>
@@ -45,25 +43,45 @@
   </nav>
 
   <div class="container">
-    <br><br>
+    <br><br><br>
     <div class="row">
-      <div class="col-lg-3 col-md-3 cold-sm-6 col-xs-12">
-        <br>
+      <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+        <div class="btn-group" data-toggle="buttons">
+          <label class="btn btn-primary active">
+            <input type="radio" name="rad_type" id="option1" value="0" autocomplete="off" checked>Take
+          </label>
+          <label class="btn btn-primary">
+            <input type="radio" name="rad_type" id="option2" value="1" autocomplete="off">Calibration
+          </label>
+          <label class="btn btn-primary">
+            <input type="radio" name="rad_type" id="option3" value="2" autocomplete="off">Maintenance
+          </label>
+        </div>
+      </div>
+    </div>
+    <br>
+    <div class="row">
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
         <div class="input-group mb-3">
           <div class="input-group input-group-md">
-            <span class="input-group-addon">Employee ID</span>
+            <span class="input-group-addon">Employee ID&nbsp;&nbsp;</span>
             <input type="text" class="form-control" placeholder="Your ID" id="txt_employeeId">
           </div>
-        </div>
-        <br>
-        <div class="input-group input-group-md">
+          <br>
+          <div class="input-group mb-3">
           <span class="input-group-addon">Serial number</span>
-          <input type="text" class="form-control" placeholder="..." id="txt_serial" value="MI_VD1354">
+          <input type="text" class="form-control" placeholder="..." id="txt_serial">
         </div>
-        <br>
+        </div>
+      </div>
+    </div>
+    <br>
+    <div class="row">
+      <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">    
         <button class="btn btn-primary mb-2" id="btn_submit">Submit</button>
       </div>
     </div>
+    <br>
     <div class="row">
       <div class="col-lg-12 col-md-12 cold-sm-12 col-xs-12">
         <div id="status" class="alert hidden"></div>    
@@ -81,15 +99,28 @@
   <script>
     $(document).ready(function(){
       $("#btn_submit").click(function(){
+        takeEquipment();
+      });
+
+      $(document).keypress(function(e) {
+        if(e.which == 13) {
+          takeEquipment();
+        }
+      });
+
+      function takeEquipment() {
         var employeeId = $('#txt_employeeId').val();
         var serial = $('#txt_serial').val();
+        var reservationType = $('input[name=rad_type]:checked').val();
         $.post("rest/take",
         {
           employeeId: employeeId,
           serial: serial,
+          reservationType: reservationType
         },
         function(data){
-          $('#txt_equipmentId').val("");
+          $('#txt_serial').val("");
+          $('#txt_serial').focus();
           $("#status").removeClass('hidden');
           $("#status").removeClass('alert-danger');
           $("#status").addClass('alert-success');
@@ -99,7 +130,7 @@
         //alert( "second success" );
         })
         .fail(function(jqXHR, textStatus) {
-          $('#txt_equipmentId').val("");
+          $('#txt_serial').val("");
           $("#status").addClass('alert-danger');
           $("#status").removeClass('hidden');
           $('#status').text("Error: " + jqXHR["responseJSON"]["message"]);       
@@ -107,7 +138,7 @@
         .always(function() {
           //alert( "finished" );
         });
-      });
+      }
     });
   </script>
 
