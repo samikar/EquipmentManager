@@ -82,13 +82,12 @@ EntityManager em = entityManagerFactory.createEntityManager();
 	
 	public int getEquipmentTypeIdByTypeCode(int typeCode) {
 		List<Equipmenttype> equipmentTypeList = em
-				.createNamedQuery("Equipmenttype.getByTypeCode", Equipmenttype.class)
+				.createNamedQuery("Equipmenttype.findByTypeCode", Equipmenttype.class)
 				.setParameter(1, typeCode).getResultList();
 		if (equipmentTypeList.size() > 0) {
 			Equipmenttype e = equipmentTypeList.get(0);
 			return e.getEquipmentTypeId();
 		}
-
 		else
 			return 0;
 	}

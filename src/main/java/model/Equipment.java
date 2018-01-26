@@ -18,14 +18,14 @@ import javax.persistence.*;
 						resultClass=Equipment.class
 	),
 	@NamedNativeQuery(
-			name	=	"Equipment.getBySerial", 
+			name	=	"Equipment.findBySerial", 
 			query	=	"SELECT * "+
 						"FROM equipment " +
 						"WHERE equipment.serial = ?",
 						resultClass=Equipment.class
 	),
 	@NamedNativeQuery(
-			name	=	"Equipment.getOrderedByType", 
+			name	=	"Equipment.findAllOrderedByType", 
 			query	=	"SELECT * "+
 						"FROM equipment " +
 						"ORDER BY equipmentTypeId",

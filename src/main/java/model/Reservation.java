@@ -20,32 +20,41 @@ import java.util.Date;
             			resultClass=Reservation.class
 	),
     @NamedNativeQuery(
-            name    =   "Reservation.getByType",
+            name    =   "Reservation.findByType",
             query   =   "SELECT * " +
                         "FROM reservation " +
                         "WHERE reservation.reservationType = ?",
                         resultClass=Reservation.class
     ),
     @NamedNativeQuery(
-            name    =   "Reservation.getByEquipmentId",
+            name    =   "Reservation.findByEquipmentId",
             query   =   "SELECT * " +
                         "FROM reservation " +
                         "WHERE reservation.equipmentId = ?",
                         resultClass=Reservation.class
     ),
     @NamedNativeQuery(
-            name    =   "Reservation.getByEmployeeId",
+            name    =   "Reservation.findByEmployeeId",
             query   =   "SELECT * " +
                         "FROM reservation " +
                         "WHERE reservation.employeeId = ? AND reservation.date_return IS NULL",
                         resultClass=Reservation.class
     ),
     @NamedNativeQuery(
-            name    =   "Reservation.getOpen",
+            name    =   "Reservation.findOpen",
             query   =   "SELECT * " +
                         "FROM reservation " +
                         "WHERE date_return IS NULL",
                         resultClass=Reservation.class
+    ),
+    @NamedNativeQuery(
+            name    =   "Reservation.findOpenBySerial",
+            query   =   "SELECT * " +
+                        "FROM reservation " +
+                        "INNER JOIN equipment on reservation.equipmentId = equipment.equipmentId " + 
+                        "WHERE reservation.date_return IS null AND " +
+                        "equipment.serial = ?",
+                        resultClass=Reservation.class                        
     )
     
     })

@@ -84,30 +84,40 @@ EntityManager em = entityManagerFactory.createEntityManager();
 	}
 	
 	public List<Reservation> getByEmployeeId(String employeeId) {
-		List<Reservation> reservations = em.createNamedQuery("Reservation.getByEmployeeId", Reservation.class)
+		List<Reservation> reservations = em.createNamedQuery("Reservation.findByEmployeeId", Reservation.class)
 				.setParameter(1, employeeId)
 				.getResultList();
 		return reservations;
 	}
 	
 	public List<Reservation> getByEquipmentId(String equipmentId) {
-		List<Reservation> reservations = em.createNamedQuery("Reservation.getByEquipmentId", Reservation.class)
+		List<Reservation> reservations = em.createNamedQuery("Reservation.findByEquipmentId", Reservation.class)
 				.setParameter(1, equipmentId)
 				.getResultList();
 		return reservations;
 	}
 	
-	public List<Reservation> getOpen() {
-		List<Reservation> reservations = em.createNamedQuery("Reservation.getOpen", Reservation.class)
+	public List<Reservation> getByType(String type) {
+		List<Reservation> reservations = em.createNamedQuery("Reservation.findByType", Reservation.class)
+				.setParameter(1, type)
 				.getResultList();
 		return reservations;
 	}
 	
-	public List<Reservation> queryTest(String reservationType) {
-		List<Reservation> reservations = em.createNamedQuery("Reservation.getByType", Reservation.class)
-				.setParameter(1, reservationType)
+	public List<Reservation> getOpen() {
+		List<Reservation> reservations = em.createNamedQuery("Reservation.findOpen", Reservation.class)
 				.getResultList();
 		return reservations;
+	}
+	
+	public boolean reservationOpenBySerial(String serial) {
+		List<Reservation> reservations = em.createNamedQuery("Reservation.findOpenBySerial", Reservation.class)
+				.setParameter(1, serial)
+				.getResultList();
+		if (reservations.size() > 0)
+			return true;
+		else
+			return false;
 	}
 	
 }

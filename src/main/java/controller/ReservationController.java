@@ -1,9 +1,14 @@
 package controller;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.servlet.http.HttpServletResponse;
+
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -34,33 +39,45 @@ public class ReservationController {
     @RequestMapping("/rest/take")
     public Reservation takeEquipment(
 			//@RequestParam(value="dateTake", defaultValue="0") String dateTake,
-			@RequestParam(value="employeeId", defaultValue="0") String employeeId,
-			@RequestParam(value="serial", defaultValue="0") String serial,
+			@RequestParam(value="employeeId") String employeeId,
+			@RequestParam(value="serial") String serial,
 			@RequestParam(value="reservationType", defaultValue="0") String reservationType)	{
+    	
+    	if (employeeId == null || employeeId.isEmpty()) {
+    		throw new IllegalArgumentException("Employee ID must not be empty");
+    	}
+    	else if (serial == null || serial.isEmpty()) {
+    		throw new IllegalArgumentException("Serial number must not be empty");
+    	} 
     	
     	// Parse dates from epoch to Date
     	//Date dt = new Date(Long.parseLong(dateTake) * 1000);
-    	Date currentDate = new Date();
+    	
     	    	
 		ReservationDao rdao = new ReservationDao();
-		EquipmentDao edao = new EquipmentDao();
 		rdao.init();
-		edao.init();
-		
-		Reservation reservation = new Reservation();
-		
-		edao.initialize(edao.getEquipmentIdBySerial(serial));			
-		Equipment e = edao.getDao(); 
-		
-		reservation.setDateTake(currentDate);
-		reservation.setEmployeeId(employeeId);
-		reservation.setEquipment(e);
-		reservation.setReservationType(Integer.parseInt(reservationType));
-
-		//System.out.println("******* Equipment id: " + reservation.getEquipment().getEquipmentId() + " Equipment TypeName: " + reservation.getEquipment().getEquipmenttype().getTypeName() + " Equipment type name: " + reservation.getEquipment().getName());
-		rdao.persist(reservation);	
-		
-		return reservation;
+		if (rdao.reservationOpenBySerial(serial)) {
+			throw new IllegalArgumentException("Open reservation for serial number " + serial + " already found");
+		}
+		else {
+			EquipmentDao edao = new EquipmentDao();
+			edao.init();
+			
+			Reservation reservation = new Reservation();
+			
+			edao.initialize(edao.getEquipmentIdBySerial(serial));			
+			Equipment e = edao.getDao(); 
+			Date currentDate = new Date();
+			
+			reservation.setDateTake(currentDate);
+			reservation.setEmployeeId(employeeId);
+			reservation.setEquipment(e);
+			reservation.setReservationType(Integer.parseInt(reservationType));
+	
+			rdao.persist(reservation);	
+			
+			return reservation;
+		}
 	}
     
     
@@ -195,7 +212,7 @@ public class ReservationController {
     public List<Reservation> QueryTest2(@RequestParam(value="reservationType", defaultValue="0") String reservationType) {
     	ReservationDao dao = new ReservationDao();
 		dao.init();
-		return dao.queryTest(reservationType);
+		return dao.getByType(reservationType);
     }
 
     @RequestMapping("/rest/getbyEmployeeId")
@@ -264,6 +281,11 @@ public class ReservationController {
 		}
 		return equipmentStatusList;
     }
+    
+	@ExceptionHandler
+	void handleIllegalArgumentException(IllegalArgumentException e, HttpServletResponse response) throws IOException {
+		response.sendError(HttpStatus.BAD_REQUEST.value());
+	}
     
     /*
     @RequestMapping("/rest/getbyEquipmentType")

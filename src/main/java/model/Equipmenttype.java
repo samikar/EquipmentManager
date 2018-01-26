@@ -17,7 +17,7 @@ import java.util.List;
 						resultClass=Equipmenttype.class
 	),
 	@NamedNativeQuery(
-			name	=	"Equipmenttype.getByTypeCode", 
+			name	=	"Equipmenttype.findByTypeCode", 
 			query	=	"SELECT * "+
 						"FROM equipmenttype " +
 						"WHERE equipmenttype.TypeCode = ?",

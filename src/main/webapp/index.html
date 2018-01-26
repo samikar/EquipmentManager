@@ -52,7 +52,7 @@
         <div class="input-group mb-3">
           <div class="input-group input-group-md">
             <span class="input-group-addon">Employee ID</span>
-            <input type="text" class="form-control" placeholder="Your ID" id="txt_employeeId" value="123456789">
+            <input type="text" class="form-control" placeholder="Your ID" id="txt_employeeId">
           </div>
         </div>
         <br>
@@ -86,7 +86,7 @@
         $.post("rest/take",
         {
           employeeId: employeeId,
-          serial: serial
+          serial: serial,
         },
         function(data){
           $('#txt_equipmentId').val("");
@@ -98,12 +98,11 @@
         .done(function() {
         //alert( "second success" );
         })
-        .fail(function(data) {
+        .fail(function(jqXHR, textStatus) {
           $('#txt_equipmentId').val("");
-          //$("#status").removeClass('alert-success');
           $("#status").addClass('alert-danger');
           $("#status").removeClass('hidden');
-          $('#status').text("Error reserving equipment with serial: " + serial);  
+          $('#status').text("Error: " + jqXHR["responseJSON"]["message"]);       
         })
         .always(function() {
           //alert( "finished" );
