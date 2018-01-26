@@ -19,7 +19,7 @@
 </head>
 
 <body>
-  <!-- Fixed navbar -->
+   <!-- Fixed navbar -->
   <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container">
       <div class="navbar-header">
@@ -29,14 +29,33 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="#">Equipment manager</a>
+        <a class="navbar-brand" href="index.html"><img src="images/danfoss.png" class="img-fluid" alt="Danfoss"></a>
       </div>
       <div id="navbar" class="navbar-collapse collapse">
         <ul class="nav navbar-nav">
-          <li><a href="index.html">Take</a></li>
-          <li class="active"><a href="return.html">Return</a></li>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Take<b class="caret"></b></a>
+            <ul class="dropdown-menu">
+              <li><a href="index.html">Take multiple</a></li>
+              <li><a href="takeSingle.html">Take single</a></li>
+            </ul>
+          </li>
+          <li class="dropdown active">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Return<b class="caret"></b></a>
+            <ul class="dropdown-menu">
+              <li><a href="returnMultiple.html">Return multiple</a></li>
+              <li><a href="returnSingle.html">Return single</a></li>
+            </ul>
+          </li>
           <li><a href="list.html">Equipment list</a></li>
-          <li><a href="charts.html">Charts</a></li>
+          <li><a href="charts.html">Charts</a></li>  
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+          <li>
+            <button type="button" class="btn btn-default navbar-btn">
+              <a href="conf.html"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span></a>
+            </button>
+          </li>
         </ul>
       </div><!--/.nav-collapse -->
     </div>

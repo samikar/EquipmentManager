@@ -1,10 +1,9 @@
 package model;
 import javax.persistence.EntityManagerFactory;
-import javax.persistence.Entity;
 import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
-import javax.persistence.Table;
+
 
 import java.util.List;
 
