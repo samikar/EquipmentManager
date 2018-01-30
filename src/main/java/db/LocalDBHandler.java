@@ -28,10 +28,10 @@ public class LocalDBHandler {
             String rootPath = "C:\\EquipmentManager\\Eclipse_workspace\\EquipmentManager\\src\\main\\resources\\";
             //locating the config file
 			String appConfigPath = rootPath + "app.properties";
-            Properties appProps = new Properties();
-			appProps.load(new FileInputStream(appConfigPath));
+            Properties appProperties = new Properties();
+            appProperties.load(new FileInputStream(appConfigPath));
             //now read db address, db name, username and password from app.properties -file
-			String connPath = "jdbc:mysql://" + appProps.getProperty("dbaddress") + "/" + appProps.getProperty("dbname") + "?user=" + appProps.getProperty("user") + "&password="+ appProps.getProperty("password");
+			String connPath = "jdbc:mysql://" + appProperties.getProperty("dbaddress") + "/" + appProperties.getProperty("dbname") + "?user=" + appProperties.getProperty("user") + "&password="+ appProperties.getProperty("password");
 			System.out.println(connPath);
 			Connection conn = DriverManager.getConnection(connPath);
 			

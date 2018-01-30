@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import db.ADHandler;
 import model.Equipment;
 import model.EquipmentDao;
 import model.EquipmentStatus;
@@ -27,6 +28,12 @@ public class ReservationController {
     @RequestMapping("/rest/test")
     public String hello(@RequestParam(value="name", defaultValue="World") String name) {
         return "{\"id\":\"hello\"}";
+    }
+    
+    @RequestMapping("/rest/ADtest")
+    public String adTest(@RequestParam(value="employeeId", defaultValue="World") String employeeId) {
+    	String name = ADHandler.findEmployeeName(employeeId);
+        return name;
     }
 
     @RequestMapping("/rest/getallreservations")
