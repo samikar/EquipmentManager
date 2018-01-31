@@ -71,7 +71,6 @@ public class Equipmenttype implements Serializable {
 	public List<Equipment> getEquipments() {
 		return this.equipments;
 	}
-
 	public void setEquipments(List<Equipment> equipments) {
 		this.equipments = equipments;
 	}
@@ -79,14 +78,11 @@ public class Equipmenttype implements Serializable {
 	public Equipment addEquipment(Equipment equipment) {
 		getEquipments().add(equipment);
 		equipment.setEquipmenttype(this);
-
 		return equipment;
 	}
-
 	public Equipment removeEquipment(Equipment equipment) {
 		getEquipments().remove(equipment);
 		equipment.setEquipmenttype(null);
-
 		return equipment;
 	}
 */

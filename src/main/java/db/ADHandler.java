@@ -2,6 +2,7 @@ package db;
 
 import java.io.FileInputStream;
 import java.util.Enumeration;
+import java.util.HashMap;
 import java.util.Properties;
 import javax.naming.Context;
 import javax.naming.NamingEnumeration;
@@ -23,7 +24,7 @@ public class ADHandler {
 		StringBuilder nameBuilder = new StringBuilder();
 		try {
 			// finding the current dir
-			String rootPath = "C:\\EquipmentManager\\Eclipse_workspace\\EquipmentManager\\src\\main\\resources\\";
+			String rootPath = "C:\\EquipmentManager\\ConfigFile\\";
 			// locating the config file
 			String appConfigPath = rootPath + "app.properties";
 			Properties appProperties = new Properties();
@@ -47,11 +48,11 @@ public class ADHandler {
 			searchCtrls.setReturningAttributes(returnedAtts);
 			searchCtrls.setSearchScope(SearchControls.SUBTREE_SCOPE);
 			String filter = "(EmployeeId=" + employeeId + ")";
-			String nameArr[] = {};
+			
+			HashMap<String, String> employees; 
 
 			System.out.println("Searching...");
-			NamingEnumeration values = context.search("ou=Internal Accounts, ou=P35 Accounts, ou=Users, ou=Accounts",
-					filter, searchCtrls);
+			NamingEnumeration values = context.search("ou=Internal Accounts, ou=P35 Accounts, ou=Users, ou=Accounts", filter, searchCtrls);
 
 			while (values.hasMoreElements()) {
 				SearchResult result = (SearchResult) values.next();
@@ -64,6 +65,7 @@ public class ADHandler {
 						for (Enumeration vals = atr.getAll();
 								vals.hasMoreElements();
 								nameBuilder.append(vals.nextElement() + " "));
+						
 					}
 				}
 				System.out.println("");

@@ -28,7 +28,7 @@ public class DBTest extends LocalDBHandler {
 					Reservation er = new Reservation();
                     er.setReservationId(rs.getInt("reservationId"));
                     //er.setEquipment(rs.getString("equipmentId"));
-                    er.setEmployeeId(rs.getString("employeeId"));
+                    //er.setEmployeeId(rs.getString("employeeId"));
                     er.setDateTake(rs.getTimestamp("date_take"));
                     er.setDateReturn(rs.getTimestamp("date_return"));
                     er.setReservationType(rs.getInt("reservationType"));
@@ -57,7 +57,7 @@ public class DBTest extends LocalDBHandler {
     	for (Reservation reservation : resArr) {
     		sb.append("id:" + reservation.getReservationId() +
     				  " equipmentId: " + reservation.getEquipment().getEquipmentId() +
-    				  " employeeId: " + reservation.getEmployeeId() +
+    				  //" employeeId: " + reservation.getEmployeeId() +
     				  " date_take: " + reservation.getDateTake().toString() +
     				  " date_return: " + reservation.getDateReturn().toString() +
     				  " reservationType: " + reservation.getReservationType() + "\n");

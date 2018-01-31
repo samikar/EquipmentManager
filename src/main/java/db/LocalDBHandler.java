@@ -25,7 +25,7 @@ public class LocalDBHandler {
 		}
         try{
             //finding the current dir
-            String rootPath = "C:\\EquipmentManager\\Eclipse_workspace\\EquipmentManager\\src\\main\\resources\\";
+            String rootPath = "C:\\EquipmentManager\\ConfigFile\\";
             //locating the config file
 			String appConfigPath = rootPath + "app.properties";
             Properties appProperties = new Properties();

@@ -103,7 +103,6 @@ public class Equipment implements Serializable {
 	public List<Reservation> getReservations() {
 		return this.reservations;
 	}
-
 	public void setReservations(List<Reservation> reservations) {
 		this.reservations = reservations;
 	}

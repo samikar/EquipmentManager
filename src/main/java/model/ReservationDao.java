@@ -58,7 +58,7 @@ EntityManager em = entityManagerFactory.createEntityManager();
 			entityManager.getTransaction().begin();
 			dao.setDateReturn(dao.getDateReturn());
 			dao.setDateTake(dao.getDateTake());
-			dao.setEmployeeId(dao.getEmployeeId());
+			dao.setEmployee(dao.getEmployee());
 			dao.setEquipment(dao.getEquipment());
 			dao.setReservationType(dao.getReservationType());			
 			entityManager.merge(dao);

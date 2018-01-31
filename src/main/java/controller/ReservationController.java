@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import db.ADHandler;
+import model.Employee;
+import model.EmployeeDao;
 import model.Equipment;
 import model.EquipmentDao;
 import model.EquipmentStatus;
@@ -28,6 +30,19 @@ public class ReservationController {
     @RequestMapping("/rest/test")
     public String hello(@RequestParam(value="name", defaultValue="World") String name) {
         return "{\"id\":\"hello\"}";
+    }
+    
+    
+    @RequestMapping("/rest/emptest")
+    public Employee emptest(@RequestParam(value="employeeId", defaultValue="World") String name) {
+        EmployeeDao empDao = new EmployeeDao();
+        empDao.init();
+        
+        Employee e = new Employee();
+        e.setEmployeeId("123456789");
+        e.setName("Tero Testi");
+        empDao.persist(e);
+        return e;
     }
     
     @RequestMapping("/rest/ADtest")
@@ -66,6 +81,8 @@ public class ReservationController {
 		}
 		else {
 			EquipmentDao edao = new EquipmentDao();
+			EmployeeDao empDao = new EmployeeDao();
+			empDao.init();
 			edao.init();
 			
 			Reservation reservation = new Reservation();
@@ -75,7 +92,12 @@ public class ReservationController {
 			Date currentDate = new Date();
 			
 			reservation.setDateTake(currentDate);
-			reservation.setEmployeeId(employeeId);
+
+			if (empDao.employeeInDB(employeeId))
+				reservation.setEmployee(empDao.getEmployeeByEmployeeId(employeeId));
+			else 
+				reservation.setEmployee(empDao.addEmployeeFromAD(employeeId));
+			
 			reservation.setEquipment(e);
 			reservation.setReservationType(Integer.parseInt(reservationType));
 	
@@ -134,7 +156,8 @@ public class ReservationController {
     	Date dr = new Date(Long.parseLong(dateReturn) * 1000);
     	
     	reservation.setDateReturn(dr);
-    	reservation.setEmployeeId(employeeId);
+		// TODO: korjaus
+    	//reservation.setEmployeeId(employeeId);
     	    	    	
     	rdao.update(reservation);
     	return reservation;
@@ -163,7 +186,9 @@ public class ReservationController {
     	
     	reservation.setDateReturn(dr);
     	reservation.setDateTake(dt);
-    	reservation.setEmployeeId(employeeId);
+		// TODO: korjaus
+    	//reservation.setEmployeeId(employeeId);
+    	
     	reservation.setEquipment(e);
     	reservation.setReservationType(Integer.parseInt(reservationType));
     	
@@ -196,7 +221,8 @@ public class ReservationController {
     	reservation.setReservationId(Integer.parseInt(reservationId));
     	reservation.setDateReturn(dr);
     	reservation.setDateTake(dt);
-    	reservation.setEmployeeId(employeeId);
+		// TODO: korjaus
+    	//reservation.setEmployeeId(employeeId);
     	reservation.setEquipment(e);
     	reservation.setReservationType(Integer.parseInt(reservationType));
     	
@@ -266,7 +292,8 @@ public class ReservationController {
 			eStatus.setEmployeeId("");
 			for (Reservation r : reservationList) {
 				if (r.getEquipment().getEquipmentId() == eStatus.getEquipmentId()) {
-					eStatus.setEmployeeId(r.getEmployeeId());
+					// TODO: korjaus
+					//eStatus.setEmployeeId(r.getEmployeeId());
 					
 					switch (r.getReservationType()) {
 					case 0:

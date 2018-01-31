@@ -72,7 +72,7 @@ public class Reservation implements Serializable {
 	@Column(name="date_take")
 	private Date dateTake;
 
-	private String employeeId;
+	//private String employeeKey;
 
 	private int reservationType;
 
@@ -80,6 +80,11 @@ public class Reservation implements Serializable {
 	@ManyToOne
 	@JoinColumn(name="equipmentId")
 	private Equipment equipment;
+	
+	//bi-directional many-to-one association to Employee
+	@ManyToOne
+	@JoinColumn(name="employeeKey")
+	private Employee employee;
 
 	public Reservation() {
 	}
@@ -108,12 +113,12 @@ public class Reservation implements Serializable {
 		this.dateTake = dateTake;
 	}
 
-	public String getEmployeeId() {
-		return this.employeeId;
+	public Employee getEmployee() {
+		return this.employee;
 	}
 
-	public void setEmployeeId(String employeeId) {
-		this.employeeId = employeeId;
+	public void setEmployee(Employee employee) {
+		this.employee = employee;
 	}
 
 	public int getReservationType() {
