@@ -32,19 +32,6 @@ public class ReservationController {
         return "{\"id\":\"hello\"}";
     }
     
-    
-    @RequestMapping("/rest/emptest")
-    public Employee emptest(@RequestParam(value="employeeId", defaultValue="World") String name) {
-        EmployeeDao empDao = new EmployeeDao();
-        empDao.init();
-        
-        Employee e = new Employee();
-        e.setEmployeeId("123456789");
-        e.setName("Tero Testi");
-        empDao.persist(e);
-        return e;
-    }
-    
     @RequestMapping("/rest/ADtest")
     public String adTest(@RequestParam(value="employeeId", defaultValue="World") String employeeId) {
     	String name = ADHandler.findEmployeeName(employeeId);
@@ -64,6 +51,14 @@ public class ReservationController {
 			@RequestParam(value="serial") String serial,
 			@RequestParam(value="reservationType") String reservationType)	{
     	
+    	
+    	ReservationDao rdao = new ReservationDao();
+    	EmployeeDao empdao = new EmployeeDao();
+    	EquipmentDao edao = new EquipmentDao();
+		rdao.init();
+		empdao.init();
+		edao.init();
+    	
     	if (employeeId == null || employeeId.isEmpty()) {
     		throw new IllegalArgumentException("Employee ID must not be empty");
     	}
@@ -73,46 +68,41 @@ public class ReservationController {
     	else if (reservationType == null || reservationType.isEmpty()) {
     		throw new IllegalArgumentException("Reservation type must be selected");
     	}
-    	    	
-		ReservationDao rdao = new ReservationDao();
-		rdao.init();
-		if (rdao.reservationOpenBySerial(serial)) {
+    		
+    	else if (edao.getEquipmentIdBySerial(serial) == 0) {
+    		throw new IllegalArgumentException("No equipment found for serial number: " + serial);
+    	}
+    	else if (rdao.reservationOpenBySerial(serial)) {
 			throw new IllegalArgumentException("Open reservation for serial number " + serial + " already found");
 		}
+    	else if (!empdao.employeeInDB(employeeId) && !empdao.employeeInAD(employeeId)) {
+    		throw new IllegalArgumentException("No employee found for employeeId: " + employeeId);
+    	}
 		else {
-			EquipmentDao edao = new EquipmentDao();
-			EmployeeDao empDao = new EmployeeDao();
-			empDao.init();
-			edao.init();
-			
 			Reservation reservation = new Reservation();
-			
-			edao.initialize(edao.getEquipmentIdBySerial(serial));			
+			edao.initialize(edao.getEquipmentIdBySerial(serial));
 			Equipment e = edao.getDao(); 
 			Date currentDate = new Date();
 			
-			reservation.setDateTake(currentDate);
-
-			if (empDao.employeeInDB(employeeId))
-				reservation.setEmployee(empDao.getEmployeeByEmployeeId(employeeId));
+	
+/*
+			if (empdao.employeeInDB(employeeId))
+				reservation.setEmployee(empdao.getEmployeeByEmployeeId(employeeId));
 			else 
-				reservation.setEmployee(empDao.addEmployeeFromAD(employeeId));
-			
+				reservation.setEmployee(empdao.addEmployeeToDB(employeeId));
+*/
+			reservation.setDateTake(currentDate);
+			reservation.setEmployee(empdao.getEmployeeByEmployeeId(employeeId));
 			reservation.setEquipment(e);
 			reservation.setReservationType(Integer.parseInt(reservationType));
-	
+
 			rdao.persist(reservation);	
-			
 			return reservation;
 		}
 	}
     
-    
     @RequestMapping("/rest/returnMultiple")
     public String returnMultiple(@RequestParam(value="resIds") String resIds) {
-    	
-    	
-    	System.out.println(resIds);
     	String[] idsStr = resIds.replaceAll("\\[", "").replaceAll("\\]", "").replaceAll("\"", "").split(",");
 
     	int[] idsInt = new int[idsStr.length];
@@ -139,27 +129,22 @@ public class ReservationController {
     	return "Complete";
     }	
     
-    
     @RequestMapping("/rest/return")
     public Reservation returnEquipment(
     		@RequestParam(value="reservationId", defaultValue="0") String reservationId,
-    		@RequestParam(value="dateReturn", defaultValue="0") String dateReturn,
-    		@RequestParam(value="employeeId", defaultValue="0") String employeeId)	{
+    		@RequestParam(value="dateReturn", defaultValue="0") String dateReturn)	{
     	
     	ReservationDao rdao = new ReservationDao();
-		
+    	    			
     	rdao.init();
-		rdao.initialize(Integer.parseInt(reservationId));
+    	rdao.initialize(Integer.parseInt(reservationId));
     	Reservation reservation = rdao.getDao();
 		    	
     	// Parse dates from epoch to Date
     	Date dr = new Date(Long.parseLong(dateReturn) * 1000);
-    	
     	reservation.setDateReturn(dr);
-		// TODO: korjaus
-    	//reservation.setEmployeeId(employeeId);
-    	    	    	
     	rdao.update(reservation);
+    	
     	return reservation;
     }    
     
@@ -167,18 +152,23 @@ public class ReservationController {
     public Reservation insertReservation(
     		@RequestParam(value="dateReturn", defaultValue="0") String dateReturn,
     		@RequestParam(value="dateTake", defaultValue="0") String dateTake,
-    		@RequestParam(value="employeeId", defaultValue="0") String employeeId,
+    		@RequestParam(value="employeeKey", defaultValue="0") String employeeKey,
     		@RequestParam(value="equipmentId", defaultValue="0") String equipmentId,
     		@RequestParam(value="reservationType", defaultValue="0") String reservationType)	{
     	
     	ReservationDao rdao = new ReservationDao();
+    	EmployeeDao empdao = new EmployeeDao();
 		EquipmentDao edao = new EquipmentDao();
 		rdao.init();
+		empdao.init();
 		edao.init();
     	Reservation reservation = new Reservation();
     	
+    	empdao.initialize(Integer.parseInt(employeeKey));
     	edao.initialize(Integer.parseInt(equipmentId));			
-		Equipment e = edao.getDao(); 
+		
+    	Employee emp = empdao.getDao();
+    	Equipment e = edao.getDao(); 
     	
     	// Parse dates from epoch to Date
     	Date dr = new Date(Long.parseLong(dateReturn) * 1000);
@@ -186,8 +176,8 @@ public class ReservationController {
     	
     	reservation.setDateReturn(dr);
     	reservation.setDateTake(dt);
-		// TODO: korjaus
-    	//reservation.setEmployeeId(employeeId);
+		
+    	reservation.setEmployee(emp);
     	
     	reservation.setEquipment(e);
     	reservation.setReservationType(Integer.parseInt(reservationType));
@@ -201,18 +191,22 @@ public class ReservationController {
     		@RequestParam(value="reservationId", defaultValue="0") String reservationId,
     		@RequestParam(value="dateReturn", defaultValue="0") String dateReturn,
     		@RequestParam(value="dateTake", defaultValue="0") String dateTake,
-    		@RequestParam(value="employeeId", defaultValue="0") String employeeId,
+    		@RequestParam(value="employeeKey", defaultValue="0") String employeeKey,
     		@RequestParam(value="equipmentId", defaultValue="0") String equipmentId,
     		@RequestParam(value="reservationType", defaultValue="0") String reservationType)	{
     	
     	ReservationDao rdao = new ReservationDao();
+    	EmployeeDao empdao = new EmployeeDao();
 		EquipmentDao edao = new EquipmentDao();
 		rdao.init();
 		edao.init();
+		empdao.init();
     	Reservation reservation = new Reservation();
     	
+    	empdao.initialize(Integer.parseInt(employeeKey));
     	edao.initialize(Integer.parseInt(equipmentId));			
-		Equipment e = edao.getDao(); 
+		Employee emp = empdao.getDao();
+    	Equipment e = edao.getDao(); 
     	
     	// Parse dates from epoch to Date
     	Date dr = new Date(Long.parseLong(dateReturn) * 1000);
@@ -221,8 +215,7 @@ public class ReservationController {
     	reservation.setReservationId(Integer.parseInt(reservationId));
     	reservation.setDateReturn(dr);
     	reservation.setDateTake(dt);
-		// TODO: korjaus
-    	//reservation.setEmployeeId(employeeId);
+    	reservation.setEmployee(emp);
     	reservation.setEquipment(e);
     	reservation.setReservationType(Integer.parseInt(reservationType));
     	
@@ -240,7 +233,7 @@ public class ReservationController {
     }
     
     @RequestMapping("/rest/getbyReservationType")
-    public List<Reservation> QueryTest2(@RequestParam(value="reservationType", defaultValue="0") String reservationType) {
+    public List<Reservation> getbyReservationType(@RequestParam(value="reservationType", defaultValue="0") String reservationType) {
     	ReservationDao dao = new ReservationDao();
 		dao.init();
 		return dao.getByType(reservationType);
@@ -259,42 +252,40 @@ public class ReservationController {
 		dao.init();
 		return dao.getByEquipmentId(equipmentId);
     }
-    
-    @RequestMapping("rest/getEquipmentStatus") 
-    	public List<EquipmentStatus> getEquipmentStatus() {
-    	ReservationDao rdao = new ReservationDao();
-    	EquipmentDao edao = new EquipmentDao();
-    	rdao.init();
-    	edao.init();
-    	
+
+	@RequestMapping("rest/getEquipmentStatus")
+	public List<EquipmentStatus> getEquipmentStatus() {
+		ReservationDao rdao = new ReservationDao();
+		EquipmentDao edao = new EquipmentDao();
+		rdao.init();
+		edao.init();
+
 		List<Reservation> reservationList = rdao.getOpen();
 		List<Equipment> equipmentList = edao.getEquipmentOrderedByType();
 		List<EquipmentStatus> equipmentStatusList = new ArrayList<EquipmentStatus>();
 
 		for (Equipment e : equipmentList) {
-			
+
 			EquipmentStatus eStatus = new EquipmentStatus();
 			eStatus.setEquipmentId(e.getEquipmentId());
 			eStatus.setName(e.getName());
 			eStatus.setSerial(e.getSerial());
-			
-			if (e.getEquipmenttype()==null) {
+
+			if (e.getEquipmenttype() == null) {
 				Equipmenttype eType = new Equipmenttype();
 				eType.setEquipmentTypeId(0);
 				eType.setTypeCode(0);
 				eType.setTypeName("Unknown");
-				eStatus.setEquipmenttype(eType);				
-			}
-			else
+				eStatus.setEquipmenttype(eType);
+			} else
 				eStatus.setEquipmenttype(e.getEquipmenttype());
-			
+
 			String availability = "Available";
-			eStatus.setEmployeeId("");
+			eStatus.setEmployeeName("");
 			for (Reservation r : reservationList) {
 				if (r.getEquipment().getEquipmentId() == eStatus.getEquipmentId()) {
-					// TODO: korjaus
-					//eStatus.setEmployeeId(r.getEmployeeId());
-					
+					eStatus.setEmployeeName(r.getEmployee().getName());
+
 					switch (r.getReservationType()) {
 					case 0:
 						availability = "In use";
@@ -312,8 +303,16 @@ public class ReservationController {
 			equipmentStatusList.add(eStatus);
 		}
 		return equipmentStatusList;
-    }
-    
+	}
+
+	@RequestMapping("rest/getEmployee")
+	public Employee getEmployeeName(@RequestParam(value="employeeId") String employeeId) {
+		EmployeeDao empdao = new EmployeeDao();
+		empdao.init();
+		Employee emp = empdao.getEmployeeByEmployeeId(employeeId);
+		return emp;
+	}
+	
 	@ExceptionHandler
 	void handleIllegalArgumentException(IllegalArgumentException e, HttpServletResponse response) throws IOException {
 		response.sendError(HttpStatus.BAD_REQUEST.value());

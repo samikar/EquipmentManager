@@ -115,6 +115,8 @@
   <!-- Include all compiled plugins (below), or include individual files as needed -->
   <script src = "js/bootstrap.min.js"></script>
 
+  <script src = "js/emanager.js"></script>
+
   <script>
     $(document).ready(function(){
       $("#btn_submit").click(function(){
@@ -138,12 +140,19 @@
           reservationType: reservationType
         },
         function(data){
+          var employeeName = "";
           $('#txt_serial').val("");
           $('#txt_serial').focus();
           $("#status").removeClass('hidden');
           $("#status").removeClass('alert-danger');
           $("#status").addClass('alert-success');
-          $('#status').text(data["equipment"]["serial"] + "/" +  data["equipment"]["name"] + " succesfully reserved.");
+
+          // Callback function needed to get result from ajax
+          getEmployeeName(employeeId, function(employeeName) {
+            $('#status').text(data["equipment"]["serial"] + "/" +  data["equipment"]["name"] + " succesfully reserved for user " + employeeName + ".");
+          });
+
+          //$('#status').text(data["equipment"]["serial"] + "/" +  data["equipment"]["name"] + " succesfully reserved for user " + employeeName + ".");
         })
         .done(function() {
         //alert( "second success" );
@@ -158,6 +167,14 @@
           //alert( "finished" );
         });
       }
+
+
+
+
+
+
+
+
     });
   </script>
 

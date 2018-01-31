@@ -1,4 +1,5 @@
 package model;
+
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
@@ -9,114 +10,116 @@ import db.ADHandler;
 import java.util.List;
 
 public class EmployeeDao {
-private Employee dao;
+	private Employee dao;
 
-EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("EquipmentManager");
-EntityManager em = entityManagerFactory.createEntityManager();
-	
+	EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("EquipmentManager");
+	EntityManager em = entityManagerFactory.createEntityManager();
+
 	public Employee getDao() {
 		return dao;
 	}
-	
+
 	public void setDao(Employee dao) {
 		this.dao = dao;
 	}
-	
+
 	private EntityManager entityManager;
-	
-	public void init(){
+
+	public void init() {
 		entityManager = Persistence.createEntityManagerFactory("EquipmentManager").createEntityManager();
 	}
-	
-	public List<Employee> getDaos(){
+
+	public List<Employee> getDaos() {
 		entityManager.getTransaction().begin();
 		Query query = entityManager.createNamedQuery("Employee.findAll");
-		//Query query = entityManager.createQuery("from Product c", Product.class);
-		List<Employee> result = query.getResultList(); 
+		// Query query = entityManager.createQuery("from Product c", Product.class);
+		List<Employee> result = query.getResultList();
 		entityManager.getTransaction().commit();
 		return result;
 	}
-	
-	public int persist(Employee dao){
+
+	public int persist(Employee dao) {
 		entityManager.getTransaction().begin();
 		entityManager.persist(dao);
 		entityManager.getTransaction().commit();
 		return dao.getEmployeeKey();
 	}
-	
-	public void initialize(int daoNumber){
+
+	public void initialize(int daoNumber) {
 		dao = entityManager.find(Employee.class, daoNumber);
-		  if(dao == null)throw new IllegalStateException
-		   ("Dao number ("+daoNumber+") not found");		
+		if (dao == null)
+			throw new IllegalStateException("Dao number (" + daoNumber + ") not found");
 	}
-	
-	public void update(Employee dao){
-		//just checking that the dao really has is
-		if(dao.getEmployeeKey()>0){
-			//get the actual entity from database to a dao-named attribute
+
+	public void update(Employee dao) {
+		// just checking that the dao really has is
+		if (dao.getEmployeeKey() > 0) {
+			// get the actual entity from database to a dao-named attribute
 			initialize(dao.getEmployeeKey());
-			//start database transaction
+			// start database transaction
 			entityManager.getTransaction().begin();
 			dao.setEmployeeId(dao.getEmployeeId());
-			dao.setName(dao.getName());			
+			dao.setName(dao.getName());
 			entityManager.merge(dao);
 			entityManager.getTransaction().commit();
 		}
 	}
-	
-	public void delete(){
+
+	public void delete() {
 		entityManager.getTransaction().begin();
 		entityManager.remove(dao);
 		entityManager.getTransaction().commit();
 	}
-	
-	public void destroy(){
+
+	public void destroy() {
 		entityManager.close();
 	}
-	
+
 	public List<Employee> getAll() {
-		List<Employee> reservations = em.createNamedQuery("Employee.findAll", Employee.class)
-				.getResultList();
+		List<Employee> reservations = em.createNamedQuery("Employee.findAll", Employee.class).getResultList();
 		return reservations;
 	}
-	
+
 	public Employee getEmployeeByEmployeeId(String employeeId) {
 		List<Employee> employeeList = em.createNamedQuery("Employee.findByEmployeeId", Employee.class)
 				.setParameter(1, employeeId).getResultList();
 		
-		if (employeeList.size() > 0) {
-			return employeeList.get(0);	
+		if (employeeList.size() > 0) { 
+			return employeeList.get(0);
 		}
-		else if (addEmployeeFromAD(employeeId) != null) {
+		else if (employeeInAD(employeeId)) {
+			addEmployeeToDB(employeeId);
 			return getEmployeeByEmployeeId(employeeId);
 		}
 		else
 			return null;
-		
 	}
-	
+
 	public boolean employeeInDB(String employeeId) {
 		List<Employee> employeeList = em.createNamedQuery("Employee.findByEmployeeId", Employee.class)
 				.setParameter(1, employeeId).getResultList();
-		
-		if (employeeList.size() > 0) 
+		if (employeeList.size() > 0)
 			return true;
 		else
 			return false;
 	}
 	
-	public Employee addEmployeeFromAD(String employeeId) {
-		Employee newEmployee = new Employee();
-		newEmployee.setEmployeeId(employeeId);
-		String employeeName = ADHandler.findEmployeeName(employeeId); 
-		if (employeeName.length() > 0) {
-			newEmployee.setName(employeeName);
-			entityManager.getTransaction().begin();
-			entityManager.persist(newEmployee);
-			entityManager.getTransaction().commit();
-			return newEmployee;
-		}
+	public boolean employeeInAD(String employeeId) {
+		String employeeName = ADHandler.findEmployeeName(employeeId);
+		if (employeeName != null) 			
+			return true;
 		else
-			return null;
+			return false;
+	}
+
+	public Employee addEmployeeToDB(String employeeId) {
+		Employee newEmployee = new Employee();
+		String employeeName = ADHandler.findEmployeeName(employeeId);
+		newEmployee.setEmployeeId(employeeId);
+		newEmployee.setName(employeeName);
+		entityManager.getTransaction().begin();
+		entityManager.persist(newEmployee);
+		entityManager.getTransaction().commit();
+		return newEmployee;
 	}
 }

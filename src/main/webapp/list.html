@@ -7,7 +7,6 @@
 
   <!-- Bootstrap -->
   <link href = "css/bootstrap.min.css" rel = "stylesheet">
-  <link href = "css/bootstrap-table.css" rel = "stylesheet">
   <link href = "css/datatables.min.css" rel = "stylesheet">
 
 
@@ -89,9 +88,6 @@
 
   <!-- Data Tables library -->
   <script src = "js/datatables.min.js"></script>
-
-  <!-- Bootstrap Table library -->
-  <script src = "js/bootstrap-table.js"></script>
   
 <script>
     $(document).ready(function(){
@@ -105,7 +101,7 @@ $.post("rest/getEquipmentStatus",
           for (var i=0; i< arrayLength; i++) {
             var equipment = [data[i]["serial"], 
                              data[i]["name"], 
-                             data[i]["employeeId"], 
+                             data[i]["employeeName"], 
                              data[i]["equipmenttype"]["typeName"], 
                              data[i]["availability"]];
             dataSet.push(equipment);
@@ -116,7 +112,7 @@ $.post("rest/getEquipmentStatus",
           columns: [
             { title: "Serial number" },
             { title: "Name" },
-            { title: "EmployeeId" },
+            { title: "User" },
             { title: "Type" },
             { title: "Availability" }
           ]

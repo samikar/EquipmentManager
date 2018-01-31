@@ -68,9 +68,7 @@ public class ADHandler {
 						
 					}
 				}
-				System.out.println("");
 			}
-
 			context.close();
 
 		} catch (NamingException e) {

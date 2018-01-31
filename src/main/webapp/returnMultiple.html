@@ -67,7 +67,7 @@
       <div class="col-lg-3 col-md-3 cold-sm-6 col-xs-12">           
           <div class="input-group input-group-md">
             <span class="input-group-addon">Employee ID</span>
-            <input type="text" class="form-control" placeholder="Your ID" id="txt_employeeId" value="123456789">
+            <input type="text" class="form-control" placeholder="Your ID" id="txt_employeeId" value="00186832">
           </div>
       </div>
       <br><br>
@@ -101,7 +101,7 @@
     <br>
     <div class="row">
       <div class="col-lg-12 col-md-12 cold-sm-12 col-xs-12">
-        <div id="status" class="alert hidden"></div>    
+        <div id="status" data-html="true" class="alert hidden"></div>    
       </div>
     </div>
   </div> <!-- /container -->
@@ -112,8 +112,10 @@
 <!-- Include all compiled plugins (below), or include individual files as needed -->
 <script src = "js/bootstrap.min.js"></script>
 
+<script src = "js/emanager.js"></script>
+
 <script>
-  $(document).ready(function(){
+  $(document).ready(function() {
     $("#btn_findreservations").click(function(){
       findReservations();
     });
@@ -134,7 +136,7 @@
     });
 
 
-    /*
+    
     // Make rows clickable
     $('#tbl_reservations tr').click(function(event) {
       console.log("test");
@@ -142,7 +144,7 @@
         $(':checkbox', this).trigger('click');
       }
     });
-    */
+    
 
 
     function findReservations() {
@@ -167,12 +169,18 @@
             date_taken_timezoned + '</td><td>' +                                     
             item["equipment"]["equipmenttype"]["typeName"] + '</td></tr>');
         });
+
+        var employeeName = "";
         $("#tbl_reservations").removeClass('hidden');
         $("#btn_submit").removeClass('hidden');
         $("#status").removeClass('hidden');
         $("#status").removeClass('alert-danger');
         $("#status").addClass('alert-success');
-        $('#status').text("Reservations for employeeId " + employeeId + " retrieved");
+        // Callback function needed to get result from ajax
+        getEmployeeName(employeeId, function(employeeName) {
+          $('#status').append("Reservations for " + employeeName + " retrieved");
+        });
+        
       })
       .done(function() {
         //alert( "second success" );
@@ -188,7 +196,7 @@
         //alert( "finished" );
       });
     }
-
+    
     function returnEquipment() {
        var ids = [];
 
@@ -205,7 +213,7 @@
           findReservations();
         })
         .done(function() {
-          //alert( "second success" );
+          //$('#status').text("Equipment returned.");
         })
         .fail(function(data) {
           $("#status").removeClass('alert-success');

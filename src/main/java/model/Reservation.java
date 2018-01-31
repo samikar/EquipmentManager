@@ -35,7 +35,8 @@ import java.util.Date;
             name    =   "Reservation.findByEmployeeId",
             query   =   "SELECT * " +
                         "FROM reservation " +
-                        "WHERE reservation.employeeId = ? AND reservation.date_return IS NULL",
+                        "INNER JOIN employee on reservation.employeeKey = employee.employeeKey " + 
+                        "WHERE employee.employeeId = ? AND reservation.date_return IS NULL",
                         resultClass=Reservation.class
     ),
     @NamedNativeQuery(

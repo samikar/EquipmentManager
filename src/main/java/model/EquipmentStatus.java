@@ -3,7 +3,7 @@ package model;
 public class EquipmentStatus extends Equipment {
 	private String availability;
 	
-	private String employeeId;
+	private String employeeName;
 
 	public String getAvailability() {
 		return availability;
@@ -13,11 +13,11 @@ public class EquipmentStatus extends Equipment {
 		this.availability = availability;
 	}
 
-	public String getEmployeeId() {
-		return employeeId;
+	public String getEmployeeName() {
+		return employeeName;
 	}
 
-	public void setEmployeeId(String employeeId) {
-		this.employeeId = employeeId;
+	public void setEmployeeName(String employeeName) {
+		this.employeeName = employeeName;
 	}
 }
