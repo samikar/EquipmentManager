@@ -87,12 +87,27 @@ public class EmployeeDao {
 		if (employeeList.size() > 0) { 
 			return employeeList.get(0);
 		}
-		else if (employeeInAD(employeeId)) {
-			addEmployeeToDB(employeeId);
-			return getEmployeeByEmployeeId(employeeId);
-		}
+		else return null;
+	}
+	
+	public int getEmployeeKeyByEmployeeId(String employeeId) {
+		List<Employee> employeeList = em.createNamedQuery("Employee.findByEmployeeId", Employee.class)
+				.setParameter(1, employeeId).getResultList();
+		if (employeeList.size() > 0) {
+			Employee e = employeeList.get(0);
+			return e.getEmployeeKey();
+		}		
 		else
-			return null;
+			return 0;
+	}
+	
+	public boolean employeeExists(String employeeId) {
+		if (employeeInDB(employeeId))
+			return true;
+		else if (employeeInAD(employeeId))
+			return true;
+		else
+			return false;
 	}
 
 	public boolean employeeInDB(String employeeId) {
@@ -106,15 +121,17 @@ public class EmployeeDao {
 	
 	public boolean employeeInAD(String employeeId) {
 		String employeeName = ADHandler.findEmployeeName(employeeId);
-		if (employeeName != null) 			
+		if (employeeName != null) {
+			addEmployeeToDB(employeeId, employeeName);
+			System.out.println("Employee added to DB");
 			return true;
+		}
 		else
 			return false;
 	}
 
-	public Employee addEmployeeToDB(String employeeId) {
+	public Employee addEmployeeToDB(String employeeId, String employeeName) {
 		Employee newEmployee = new Employee();
-		String employeeName = ADHandler.findEmployeeName(employeeId);
 		newEmployee.setEmployeeId(employeeId);
 		newEmployee.setName(employeeName);
 		entityManager.getTransaction().begin();

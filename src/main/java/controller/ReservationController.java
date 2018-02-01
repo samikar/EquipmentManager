@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import javax.servlet.http.HttpServletResponse;
 
@@ -75,24 +76,22 @@ public class ReservationController {
     	else if (rdao.reservationOpenBySerial(serial)) {
 			throw new IllegalArgumentException("Open reservation for serial number " + serial + " already found");
 		}
-    	else if (!empdao.employeeInDB(employeeId) && !empdao.employeeInAD(employeeId)) {
+    	else if (!empdao.employeeExists(employeeId)) {
     		throw new IllegalArgumentException("No employee found for employeeId: " + employeeId);
     	}
 		else {
 			Reservation reservation = new Reservation();
+			// New EmployeeDao needed in case a new employee added in DB
+			EmployeeDao empdao2 = new EmployeeDao();
+			empdao2.init();
+			empdao2.initialize(empdao2.getEmployeeKeyByEmployeeId(employeeId));
 			edao.initialize(edao.getEquipmentIdBySerial(serial));
+			Employee emp = empdao2.getDao();
 			Equipment e = edao.getDao(); 
 			Date currentDate = new Date();
 			
-	
-/*
-			if (empdao.employeeInDB(employeeId))
-				reservation.setEmployee(empdao.getEmployeeByEmployeeId(employeeId));
-			else 
-				reservation.setEmployee(empdao.addEmployeeToDB(employeeId));
-*/
 			reservation.setDateTake(currentDate);
-			reservation.setEmployee(empdao.getEmployeeByEmployeeId(employeeId));
+			reservation.setEmployee(emp);
 			reservation.setEquipment(e);
 			reservation.setReservationType(Integer.parseInt(reservationType));
 
