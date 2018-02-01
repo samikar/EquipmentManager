@@ -49,9 +49,8 @@ public class ADHandler {
 			searchCtrls.setSearchScope(SearchControls.SUBTREE_SCOPE);
 			String filter = "(EmployeeId=" + employeeId + ")";
 			
-			HashMap<String, String> employees; 
-
 			System.out.println("Searching...");
+			// This search takes a long time...
 			NamingEnumeration values = context.search("ou=Internal Accounts, ou=P35 Accounts, ou=Users, ou=Accounts", filter, searchCtrls);
 
 			while (values.hasMoreElements()) {

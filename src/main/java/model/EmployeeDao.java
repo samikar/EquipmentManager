@@ -121,7 +121,7 @@ public class EmployeeDao {
 	
 	public boolean employeeInAD(String employeeId) {
 		String employeeName = ADHandler.findEmployeeName(employeeId);
-		if (employeeName != null) {
+		if (employeeName.length() > 0) {
 			addEmployeeToDB(employeeId, employeeName);
 			System.out.println("Employee added to DB");
 			return true;

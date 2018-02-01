@@ -94,16 +94,16 @@
         </div>
       </div>
     </div>
-    <br>
     <div class="row">
       <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">    
-        <button class="btn btn-primary mb-2" id="btn_submit">Submit</button>
+        <br>
+        <button class="btn btn-primary mb-2" data-style="expand-right" id="btn_submit">Submit</button>
       </div>
     </div>
-    <br>
     <div class="row">
       <div class="col-lg-12 col-md-12 cold-sm-12 col-xs-12">
-        <div id="status" class="alert hidden"></div>    
+        <br>
+        <div id="status" class="alert hidden"><strong id="msg_type"></strong><span id="msg_text"></span></div>
       </div>
     </div>
   </div> <!-- /container -->
@@ -119,13 +119,19 @@
 
   <script>
     $(document).ready(function(){
+      //$('#btn_submit').button();
+
       $("#btn_submit").click(function(){
+        statusWorking();
         takeEquipment();
+        statusDone();
       });
 
       $(document).keypress(function(e) {
         if(e.which == 13) {
+          statusWorking();
           takeEquipment();
+          statusDone();
         }
       });
 
@@ -133,6 +139,8 @@
         var employeeId = $('#txt_employeeId').val();
         var serial = $('#txt_serial').val();
         var reservationType = $('input[name=rad_type]:checked').val();
+
+
         $.post("rest/take",
         {
           employeeId: employeeId,
@@ -143,14 +151,20 @@
           var employeeName = "";
           $('#txt_serial').val("");
           $('#txt_serial').focus();
-          $("#status").removeClass('hidden');
-          $("#status").removeClass('alert-danger');
-          $("#status").addClass('alert-success');
+          if($("#status").hasClass("hidden")) {$("#status").removeClass("hidden");}
+          if($("#status").hasClass("alert-info")) {$("#status").removeClass("alert-info");}
+          if($("#status").hasClass("alert-danger")) {$("#status").removeClass("alert-danger");}
+          $("#status").addClass("alert-success");
 
           // Callback function needed to get result from ajax
           getEmployeeName(employeeId, function(employeeName) {
-            $('#status').text(data["equipment"]["serial"] + "/" +  data["equipment"]["name"] + " succesfully reserved for user " + employeeName + ".");
+            $("#msg_type").text("Success: ");
+            $("#msg_text").text(data["equipment"]["serial"] + " / " +  data["equipment"]["name"] + " succesfully reserved for user " + employeeName + ".");
+            //$('#status').text(data["equipment"]["serial"] + " / <strong>" +  data["equipment"]["name"] + "</strong> succesfully reserved for user <strong>" + employeeName + "</strong>.");
           });
+
+
+
 
           //$('#status').text(data["equipment"]["serial"] + "/" +  data["equipment"]["name"] + " succesfully reserved for user " + employeeName + ".");
         })
@@ -159,21 +173,33 @@
         })
         .fail(function(jqXHR, textStatus) {
           $('#txt_serial').val("");
-          $("#status").addClass('alert-danger');
-          $("#status").removeClass('hidden');
-          $('#status').text("Error: " + jqXHR["responseJSON"]["message"]);       
+          if($("#status").hasClass("hidden")) {$("#status").removeClass("hidden");}
+          if($("#status").hasClass("alert-info")) {$("#status").removeClass("alert-info");}
+          if($("#status").hasClass("alert-success")) {$("#status").removeClass("alert-success");}
+          $("#status").addClass("alert-danger");
+          //$("#status").text("ffff");
+
+          $("#msg_type").text("Error: ");
+          $("#msg_text").text(jqXHR["responseJSON"]["message"]);
         })
         .always(function() {
           //alert( "finished" );
         });
       }
 
+      function statusWorking() {
+        if($("#status").hasClass("hidden")) {$("#status").removeClass("hidden");}
+        if($("#status").hasClass("alert-danger")) {$("#status").removeClass("alert-danger");}
+        if($("#status").hasClass("alert-success")) {$("#status").removeClass("alert-success");}
+        $("#status").addClass("alert-info");
+        $("#msg_type").text("Working, please wait... ");
+        $("#msg_text").text("If this is your first time taking an item, this may take up to two minutes...");
+        //$("#status").text("<strong>Working...</strong> If this is your first time taking an item, this may take up to a minute...");
+      }
 
-
-
-
-
-
+      function statusDone() {
+        //$("#status").removeclass('alert-info');
+      }
 
     });
   </script>
