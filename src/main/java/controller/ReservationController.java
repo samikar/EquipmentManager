@@ -24,7 +24,6 @@ import model.Equipmenttype;
 import model.Reservation;
 import model.ReservationDao;
 
-
 @RestController
 public class ReservationController {
 	

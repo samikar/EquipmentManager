@@ -93,4 +93,10 @@ EntityManager em = entityManagerFactory.createEntityManager();
 				.getResultList();
 		return equipment;
 	}
+	
+	public Equipment getRandomAvailable() {
+		List<Equipment> equipment = entityManager.createNamedQuery("Equipment.findRandomAvailable", Equipment.class)
+				.getResultList();
+		return equipment.get(0);
+	}
 }
