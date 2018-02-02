@@ -109,7 +109,7 @@ EntityManager em = entityManagerFactory.createEntityManager();
 		return reservations;
 	}
 	
-	public boolean reservationOpenBySerial(String serial) {
+	public boolean serialHasOpenReservation(String serial) {
 		List<Reservation> reservations = em.createNamedQuery("Reservation.findOpenBySerial", Reservation.class)
 				.setParameter(1, serial)
 				.getResultList();
@@ -119,4 +119,13 @@ EntityManager em = entityManagerFactory.createEntityManager();
 			return false;
 	}
 	
+	public int getOpenReservationIdBySerial(String serial) {
+		List<Reservation> reservations = em.createNamedQuery("Reservation.findOpenBySerial", Reservation.class)
+				.setParameter(1, serial)
+				.getResultList();
+		if (reservations.size() > 0)
+			return reservations.get(0).getReservationId();
+		else
+			return 0;
+	}
 }

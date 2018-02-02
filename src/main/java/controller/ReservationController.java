@@ -52,7 +52,6 @@ public class ReservationController {
 			@RequestParam(value="serial") String serial,
 			@RequestParam(value="reservationType") String reservationType)	{
     	
-    	
     	ReservationDao rdao = new ReservationDao();
     	EmployeeDao empdao = new EmployeeDao();
     	EquipmentDao edao = new EquipmentDao();
@@ -73,7 +72,7 @@ public class ReservationController {
     	else if (edao.getEquipmentIdBySerial(serial) == 0) {
     		throw new IllegalArgumentException("No equipment found for serial number: " + serial);
     	}
-    	else if (rdao.reservationOpenBySerial(serial)) {
+    	else if (rdao.serialHasOpenReservation(serial)) {
 			throw new IllegalArgumentException("Open reservation for serial number " + serial + " already found");
 		}
     	else if (!empdao.employeeExists(employeeId)) {
@@ -123,28 +122,30 @@ public class ReservationController {
     		
     		reservation = rdao.getDao();
     		reservation.setDateReturn(currentDate);
-    		rdao.persist(reservation);
+    		rdao.update(reservation);
     	}
     	return "Complete";
     }	
     
-    @RequestMapping("/rest/return")
-    public Reservation returnEquipment(
-    		@RequestParam(value="reservationId", defaultValue="0") String reservationId,
-    		@RequestParam(value="dateReturn", defaultValue="0") String dateReturn)	{
-    	
+    @RequestMapping("/rest/returnSingle")
+    public Reservation returnSingle(@RequestParam(value="serial") String serial)	{
     	ReservationDao rdao = new ReservationDao();
-    	    			
     	rdao.init();
-    	rdao.initialize(Integer.parseInt(reservationId));
-    	Reservation reservation = rdao.getDao();
-		    	
-    	// Parse dates from epoch to Date
-    	Date dr = new Date(Long.parseLong(dateReturn) * 1000);
-    	reservation.setDateReturn(dr);
-    	rdao.update(reservation);
-    	
-    	return reservation;
+    	if (serial == null || serial.isEmpty()) {
+    		throw new IllegalArgumentException("Serial number must not be empty");
+    	}
+    	else if (!rdao.serialHasOpenReservation(serial)) {
+    		throw new IllegalArgumentException("No open reservation found for serial number " + serial);
+    	}
+    	else {
+    		rdao.initialize(rdao.getOpenReservationIdBySerial(serial));
+        	Reservation reservation = rdao.getDao();
+        	Date currentDate = new Date();
+        	reservation.setDateReturn(currentDate);
+        	rdao.update(reservation);
+        	
+        	return reservation;	
+    	}
     }    
     
     @RequestMapping("/rest/insert")
@@ -239,10 +240,18 @@ public class ReservationController {
     }
 
     @RequestMapping("/rest/getbyEmployeeId")
-    public List<Reservation> getbyEmployeeId(@RequestParam(value="employeeId", defaultValue="0") String employeeId) {
+    public List<Reservation> getbyEmployeeId(@RequestParam(value="employeeId") String employeeId) {
+    	if (employeeId == null || employeeId.isEmpty()) {
+    		throw new IllegalArgumentException("Employee ID must not be empty");
+    	}
+    	
     	ReservationDao dao = new ReservationDao();
 		dao.init();
-		return dao.getByEmployeeId(employeeId);
+		List<Reservation> reservations = dao.getByEmployeeId(employeeId);
+		if (reservations.size() > 0)
+			return reservations;
+		else 
+			throw new IllegalArgumentException("No reservations found for employeeId " + employeeId);
     }
     
     @RequestMapping("/rest/getbyEquipmentId")
@@ -316,7 +325,7 @@ public class ReservationController {
 	void handleIllegalArgumentException(IllegalArgumentException e, HttpServletResponse response) throws IOException {
 		response.sendError(HttpStatus.BAD_REQUEST.value());
 	}
-    
+	  
     /*
     @RequestMapping("/rest/getbyEquipmentType")
     public List<Reservation> getbyEquipmentType(@RequestParam(value="equipmentType", defaultValue="0") String equipmentId) {

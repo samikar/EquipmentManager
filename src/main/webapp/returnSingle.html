@@ -33,13 +33,7 @@
       </div>
       <div id="navbar" class="navbar-collapse collapse">
         <ul class="nav navbar-nav">
-          <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Take<b class="caret"></b></a>
-            <ul class="dropdown-menu">
-              <li><a href="index.html">Take multiple</a></li>
-              <li><a href="takeSingle.html">Take single</a></li>
-            </ul>
-          </li>
+          <li><a href="index.html">Take</a></li>
           <li class="dropdown active">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Return<b class="caret"></b></a>
             <ul class="dropdown-menu">
@@ -66,42 +60,19 @@
     <div class="row">
       <div class="col-lg-3 col-md-3 cold-sm-6 col-xs-12">           
           <div class="input-group input-group-md">
-            <span class="input-group-addon">Employee ID</span>
-            <input type="text" class="form-control" placeholder="Your ID" id="txt_employeeId" value="123456789">
+            <span class="input-group-addon">Serial number</span>
+            <input type="text" class="form-control" placeholder="..." id="txt_serial">
           </div>
       </div>
       <br><br>
       <div class="col-lg-3 col-md-3 cold-sm-6 col-xs-12">
-        <button class="btn btn-primary mb-2" id="btn_findreservations">Find reservations</button>
+        <button class="btn btn-primary mb-2" id="btn_return">Return</button>
       </div>
     </div>
     <br>
-      <div class="row">
-        <div class="col-lg-12 col-md-12 cold-sm-12 col-xs-12">
-          <table class="table table-striped table-hover table-sm hidden" id="tbl_reservations">
-            <thead>
-              <tr>
-                <th scope="col"><input type="checkbox" class="form-check-input" id="chk_checkAll">Check all</th>
-                <th scope="col">Serial number</th>
-                <th scope="col">Name</th>
-                <th scope="col">Date taken</th>
-                <th scope="col">Type</th>
-              </tr>
-            </thead>
-          <tbody>
-          </tbody>
-          </table>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-lg-3 col-md-3 cold-sm-3 col-xs-6">
-          <button class="btn btn-primary mb-2 hidden" id="btn_submit">Return selected</button>
-        </div>
-      </div>
-    <br>
     <div class="row">
       <div class="col-lg-12 col-md-12 cold-sm-12 col-xs-12">
-        <div id="status" class="alert hidden"></div>    
+        <div id="status" class="alert hidden"><strong id="msg_type"></strong><span id="msg_text"></span></div>
       </div>
     </div>
   </div> <!-- /container -->
@@ -114,104 +85,41 @@
 
 <script>
   $(document).ready(function(){
-    $("#btn_findreservations").click(function(){
-      findReservations();
-    });
-
-    $("#btn_submit").click(function () {
-      returnEquipment();
+    $("#btn_return").click(function(){
+      returnSingle();
     });
     
     $(document).keypress(function(e) {
       if(e.which == 13) {
-        findReservations();
+        returnSingle();
       }
     });
 
-    // Check all checkboxes
-    $("#chk_checkAll").click(function () {
-      $(".check").prop('checked', $(this).prop('checked'));
-    });
-
-
-    /*
-    // Make rows clickable
-    $('#tbl_reservations tr').click(function(event) {
-      console.log("test");
-      if (event.target.type !== 'checkbox') {
-        $(':checkbox', this).trigger('click');
-      }
-    });
-    */
-
-
-    function findReservations() {
-      var employeeId = $('#txt_employeeId').val();
-      
-      $.post("rest/getbyEmployeeId",
-      {
-        employeeId: employeeId,
-      },
-      function(data){
-        $('#tbl_reservations tbody').empty();
-        $.each(data, function(i, item) {
-          // Converts epoch date to browser timezone date
-          var date_taken = new Date(item["dateTake"] / 1000);
-          var date_taken_timezoned = new Date(0); // The 0 there is the key, which sets the date to the epoch
-          date_taken_timezoned.setUTCSeconds(date_taken);
-           
-          $('#tbl_reservations tbody').append('<tr class="child"><td><input type="checkbox" class="form-check-input check" name="resIds" value="' + 
-            item.reservationId + '"></td><td>' +
-            item["equipment"]["serial"] + '</td><td>' + 
-            item["equipment"]["name"] + '</td><td>' + 
-            date_taken_timezoned + '</td><td>' +                                     
-            item["equipment"]["equipmenttype"]["typeName"] + '</td></tr>');
-        });
-        $("#tbl_reservations").removeClass('hidden');
-        $("#btn_submit").removeClass('hidden');
-        $("#status").removeClass('hidden');
-        $("#status").removeClass('alert-danger');
-        $("#status").addClass('alert-success');
-        $('#status').text("Reservations for employeeId " + employeeId + " retrieved");
-      })
-      .done(function() {
-        //alert( "second success" );
-      })
-      .fail(function(data) {
-        $('#txt_equipmentId').val("");
-        //$("#status").removeClass('alert-success');
-        $("#status").addClass('alert-danger');
-        $("#status").removeClass('hidden');
-        $('#status').text("Error returning:" + data[0]);  
-      })
-      .always(function() {
-        //alert( "finished" );
-      });
-    }
-
-    function returnEquipment() {
-       var ids = [];
-
-      // Initializing array with Checkbox checked values
-        $("input[name='resIds']:checked").each(function(){
-            ids.push(this.value);
-        });
-
-      $.post("rest/returnMultiple",
+    function returnSingle() {
+       var serial = $('#txt_serial').val();
+      $.post("rest/returnSingle",
         {
-          resIds: JSON.stringify(ids),
+          serial: serial,
         },
         function(data){
-          findReservations();
+          $('#txt_serial').val("");
+          $('#txt_serial').focus();
+          if($("#status").hasClass("hidden")) {$("#status").removeClass("hidden");}
+          if($("#status").hasClass("alert-info")) {$("#status").removeClass("alert-info");}
+          if($("#status").hasClass("alert-danger")) {$("#status").removeClass("alert-danger");}
+          $("#status").addClass("alert-success");
+          $("#msg_type").text("Success: ");
+          $('#msg_text').text("Equipment with serial number " + serial + " returned");
         })
         .done(function() {
           //alert( "second success" );
         })
-        .fail(function(data) {
+        .fail(function(jqXHR, textStatus) {
           $("#status").removeClass('alert-success');
           $("#status").addClass('alert-danger');
           $("#status").removeClass('hidden');
-          $('#status').text("Error");  
+          $("#msg_type").text("Error: ");
+          $('#msg_text').text(jqXHR["responseJSON"]["message"]); 
         })
         .always(function() {
           //alert( "finished" );
