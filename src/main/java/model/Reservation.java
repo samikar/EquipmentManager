@@ -17,6 +17,14 @@ import java.util.Date;
 			query	=	"SELECT * FROM reservation",
             			resultClass=Reservation.class
 	),
+	@NamedNativeQuery(
+	            name    =   "Reservation.findBySerial",
+	            query   =   "SELECT * " +
+	                        "FROM reservation " +
+	                        "INNER JOIN equipment on reservation.equipmentId = equipment.equipmentId " +
+	                        "WHERE equipment.serial = ?",
+	                        resultClass=Reservation.class
+	    ),
     @NamedNativeQuery(
             name    =   "Reservation.findByType",
             query   =   "SELECT * " +

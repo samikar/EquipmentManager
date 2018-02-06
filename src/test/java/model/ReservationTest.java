@@ -57,7 +57,7 @@ public class ReservationTest {
 				testReservation.setDateReturn(date2);
 			}
 			
-			int type = random.nextInt(2);
+			int type = random.nextInt(3);
 			
 			testReservation.setEquipment(testEquipment);
 			testReservation.setEmployee(testEmployee);

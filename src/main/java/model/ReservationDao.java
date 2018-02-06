@@ -82,6 +82,13 @@ EntityManager em = entityManagerFactory.createEntityManager();
 		return reservations;
 	}
 	
+	public List<Reservation> getBySerial(String serial) {
+		List<Reservation> reservations = em.createNamedQuery("Reservation.findBySerial", Reservation.class)
+				.setParameter(1, serial)
+				.getResultList();
+		return reservations;
+	}
+	
 	public List<Reservation> getByEmployeeId(String employeeId) {
 		List<Reservation> reservations = em.createNamedQuery("Reservation.findByEmployeeId", Reservation.class)
 				.setParameter(1, employeeId)
