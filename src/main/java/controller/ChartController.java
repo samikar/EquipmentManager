@@ -1,5 +1,6 @@
 package controller;
 
+import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.DayOfWeek;
@@ -12,48 +13,108 @@ import java.util.Date;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
+import javax.servlet.http.HttpServletResponse;
+
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import model.Equipment;
+import model.EquipmentDao;
+import model.EquipmentUsage;
 import model.Reservation;
 import model.ReservationDao;
 
 @RestController
 public class ChartController {
+	// Length of one workday in hours
+	private final double WORKDAY = 7.5;
+	
 	@RequestMapping("/rest/chartTest")
 	public String hello(@RequestParam(value = "name", defaultValue = "World") String name) {
 		return "{\"id\":\"hello\"}";
 	}
 
 	@RequestMapping("/rest/usageBySerial")
-	// public String[] usageBySerial(
-	public List<Reservation> usageBySerial(@RequestParam(value = "serial") String serial,
-			@RequestParam(value = "dateStartConstraint") String dateStartConstraintStr,
-			@RequestParam(value = "dateEndConstraint") String dateEndConstraintStr) {
 
-		ReservationDao rdao = new ReservationDao();
-
-		List<Reservation> reservationsAll = rdao.getBySerial(serial);
-
-		// Parse dates from epoch to Date
-		Date dateStartConstraint = new Date(Long.parseLong(dateStartConstraintStr) * 1000);
-		Date dateEndConstraint = new Date(Long.parseLong(dateEndConstraintStr) * 1000);
-
-		String pattern = "yyyy-MM-dd HH:mm:ss";
-		SimpleDateFormat sdf = new SimpleDateFormat(pattern);
-		System.out.println("Start: " + sdf.format(dateStartConstraint));
-		System.out.println("End: " + sdf.format(dateEndConstraint));
-
-		List<Reservation> reservationsInRange = reservationsInRange(reservationsAll, dateStartConstraint, dateEndConstraint);
+	//public double[] usageBySerial(@RequestParam(value = "serial") String serial,
+	public EquipmentUsage usageBySerial(@RequestParam(value = "serial") String serial,
+			@RequestParam(value = "start") String startStr,
+			@RequestParam(value = "end") String endStr) {
 		
-		System.out.println("Work hours: " + workhoursInRange(dateStartConstraint, dateEndConstraint));
+		if (serial == null || serial.isEmpty()) {
+    		throw new IllegalArgumentException("Serial number must not be empty");
+    	}
+		else if (startStr == null || startStr.isEmpty()) {
+    		throw new IllegalArgumentException("Start date must not be empty");
+    	}
+		else if (endStr == null || endStr.isEmpty()) {
+    		throw new IllegalArgumentException("End date must not be empty");
+    	}		
+		else {
+			EquipmentDao edao = new EquipmentDao();
+			ReservationDao rdao = new ReservationDao();
+			edao.init();
+			
+			
+			Equipment equipment = edao.getBySerial(serial);
+			EquipmentUsage usage = new EquipmentUsage(equipment);
+			List<Reservation> reservationsInRange = null;
+			
+			// Parse dates from epoch to Date
+			Date start = new Date(Long.parseLong(startStr) * 1000);
+			Date end = new Date(Long.parseLong(endStr) * 1000);
+			
+			
+			reservationsInRange = rdao.getBySerialAndDate(serial, start, end);
+			
+			for (Reservation currentReservation : reservationsInRange) {
+				double hours = 0;
+				hours = hoursInReservation(currentReservation, start, end);
+				switch (currentReservation.getReservationType()) {
+					case 0:
+						usage.setInUse(hours);
+						break;
+					case 1:
+						usage.setCalibration(hours);
+						break;
+					case 2:
+						usage.setMaintenance(hours);
+						break;
+				}
+			}
+			double available = workhoursInRange(start, end) - usage.getInUse() - usage.getCalibration() - usage.getMaintenance();			
+			usage.setAvailable(available);
 
-		return reservationsInRange;
+			return usage;
+		}
+	}
+	
+	@ExceptionHandler
+	void handleIllegalArgumentException(IllegalArgumentException e, HttpServletResponse response) throws IOException {
+		response.sendError(HttpStatus.BAD_REQUEST.value());
+	}
+	
+	public double hoursInReservation(Reservation reservation, Date start, Date end) {
+		double workhours = 0;
+		if (reservation.getDateTake().after(end) || reservation.getDateReturn().before(start))
+			return 0;
+		else {
+			if (reservation.getDateTake().before(start))
+				reservation.setDateTake(start);
+			if (reservation.getDateReturn().after(end))
+				reservation.setDateReturn(end);
+			
+			workhours = workhoursInRange(reservation.getDateTake(), reservation.getDateReturn());
+			
+			return workhours;
+		}
 	}
 
-	public float workhoursInStartAndEnd(Date startDate, Date endDate) {
-		float workhours = 0;
+	public double workhoursInStartAndEnd(Date startDate, Date endDate) {
+		double workhours = 0;
 		long startMinutes = 0;
 		long endMinutes = 0;
 		long resultMilliseconds;
@@ -64,8 +125,6 @@ public class ChartController {
 
 		long daysInBetween = ChronoUnit.DAYS.between(start, end);
 
-		System.out.println("Days in between: " + daysInBetween);
-
 		if (daysInBetween > 0) {
 			// Set workday to end at 16:00 at startDate
 			cal.setTime(startDate);
@@ -74,15 +133,8 @@ public class ChartController {
 			cal.set(Calendar.SECOND, 0);
 			cal.set(Calendar.MILLISECOND, 0);
 
-			// String pattern = "yyyy-MM-dd HH:mm:ss";
-			// SimpleDateFormat sdf = new SimpleDateFormat(pattern);
-
 			resultMilliseconds = cal.getTime().getTime() - startDate.getTime();
 			startMinutes = TimeUnit.MILLISECONDS.toMinutes(resultMilliseconds);
-
-			// System.out.println("Start: " + sdf.format(startDate));
-			// System.out.println("Start: 1: " + startDate.getTime() + " 2: " +
-			// cal.getTime().getTime() + " Result: " + startMinutes);
 
 			// Set workday to start at 08:30 at endDate
 			cal.setTime(endDate);
@@ -92,24 +144,23 @@ public class ChartController {
 			cal.set(Calendar.MILLISECOND, 0);
 
 			resultMilliseconds = endDate.getTime() - cal.getTime().getTime();
-			endMinutes = TimeUnit.MILLISECONDS.toMinutes(resultMilliseconds);
-
-			// System.out.println("End: " + sdf.format(endDate));
-			// System.out.println("end: 1: " + cal.getTime().getTime() + " 2: " +
-			// endDate.getTime() + " Result: " + endMinutes);			
+			endMinutes = TimeUnit.MILLISECONDS.toMinutes(resultMilliseconds);	
 		}
 		else {
 			resultMilliseconds = endDate.getTime() - startDate.getTime();
 			endMinutes = TimeUnit.MILLISECONDS.toMinutes(resultMilliseconds);
 		}
-		workhours = (float) (startMinutes + endMinutes) / 60;
+		workhours = (double) (startMinutes + endMinutes) / 60;
 		return workhours;
 	}
 
-	public float workhoursInRange(Date startDate, Date endDate) {
-		float workhours = 0;
-		float workhoursBetween = 0;
-		float workhoursAtStartAndEnd = 0;
+	public double workhoursInRange(Date startDate, Date endDate) {
+		double workhours = 0;
+		double workhoursBetween = 0;
+		double workhoursAtStartAndEnd = 0;
+		
+		int workdays = 0; // FOR DEBUGGING
+		
 		LocalDate start = startDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
 		LocalDate end = endDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
 
@@ -120,19 +171,23 @@ public class ChartController {
 				DayOfWeek dayOfWeek = date.getDayOfWeek();
 				if (!dayOfWeek.equals(DayOfWeek.SATURDAY) && !dayOfWeek.equals(DayOfWeek.SUNDAY)) {
 					// System.out.println("Day: " + date.getDayOfWeek());
-					workhoursBetween += 7.5;
+					workhoursBetween += WORKDAY;
+					workdays++;
 				}
 			}
 			// Substract the work hours for start and end day
 			workhoursBetween -= 15;
 		}
+		System.out.println("Workdays: " + workdays);
 		System.out.println("Workhours between start and end: " + workhoursBetween);
 		workhoursAtStartAndEnd = workhoursInStartAndEnd(startDate, endDate);
 		System.out.println("Workhours at start and end: " + workhoursAtStartAndEnd);
 		workhours = workhoursBetween + workhoursAtStartAndEnd;
+		
 		return workhours;
 	}
 
+	/*
 	public List<Reservation> reservationsInRange(List<Reservation> reservations, Date startDate, Date endDate) {
 		List<Reservation> reservationsInRange = new ArrayList<Reservation>();
 		for (Reservation currentReservation : reservations) {
@@ -144,11 +199,12 @@ public class ChartController {
 		}
 		return reservationsInRange;
 	}
+	*/
 
 	public static void main(String[] args) {
 		SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
-		String startString = "1-10-2017 09:00:00";
-		String endString = "25-06-2018 13:00:00";
+		String startString = "1-1-2018 08:30:00";
+		String endString = "1-06-2018 16:00:00";
 		Date start = null;
 		Date end = null;
 
@@ -162,6 +218,11 @@ public class ChartController {
 
 		ChartController cc = new ChartController();
 
-		System.out.println("WorkHoursInRange: " + cc.workhoursInRange(start, end));
+		ReservationDao rdao = new ReservationDao();
+		rdao.init();
+		rdao.initialize(4);
+		Reservation r = rdao.getDao();
+		
+		System.out.println("WorkHoursInRange: " + cc.hoursInReservation(r, start, end));
 	}
 }

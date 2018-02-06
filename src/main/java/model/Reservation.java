@@ -62,6 +62,16 @@ import java.util.Date;
                         "WHERE reservation.date_return IS null AND " +
                         "equipment.serial = ?",
                         resultClass=Reservation.class                        
+    ),
+    @NamedNativeQuery(
+            name    =   "Reservation.findBySerialAndDate",
+            query   =   "SELECT * " +
+                        "FROM reservation " +
+                        "INNER JOIN equipment on reservation.equipmentId = equipment.equipmentId " + 
+                        "WHERE equipment.serial = ? AND " +		// serial
+                        "reservation.date_take < ? AND " + 		// end 
+                        "reservation.date_return > ?",			// begin
+                        resultClass=Reservation.class                        
     )
     
     })

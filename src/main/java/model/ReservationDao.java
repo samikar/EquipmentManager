@@ -4,7 +4,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
 
-
+import java.util.Date;
 import java.util.List;
 
 public class ReservationDao {
@@ -115,6 +115,16 @@ EntityManager em = entityManagerFactory.createEntityManager();
 				.getResultList();
 		return reservations;
 	}
+	
+	public List<Reservation> getBySerialAndDate(String serial, Date start, Date end) {
+		List<Reservation> reservations = em.createNamedQuery("Reservation.findBySerialAndDate", Reservation.class)
+				.setParameter(1, serial)
+				.setParameter(2, end)
+				.setParameter(3, start)
+				.getResultList();
+		return reservations;
+	}
+
 	
 	public boolean serialHasOpenReservation(String serial) {
 		List<Reservation> reservations = em.createNamedQuery("Reservation.findOpenBySerial", Reservation.class)
