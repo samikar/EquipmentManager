@@ -95,7 +95,14 @@ EntityManager em = entityManagerFactory.createEntityManager();
 		return equipment.get(0);
 	}
 	
-	public List<Equipment> getEquipmentOrderedByType() {
+	public List<Equipment> getByType(int type) {
+		List<Equipment> equipment = entityManager.createNamedQuery("Equipment.findByType", Equipment.class)
+				.setParameter(1, type)
+				.getResultList();
+		return equipment;
+	}
+	
+	public List<Equipment> getOrderedByType() {
 		List<Equipment> equipment = entityManager.createNamedQuery("Equipment.findAllOrderedByType", Equipment.class)
 				.getResultList();
 		return equipment;

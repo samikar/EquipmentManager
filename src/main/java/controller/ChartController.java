@@ -37,10 +37,39 @@ public class ChartController {
 		return "{\"id\":\"hello\"}";
 	}
 
+	@RequestMapping("rest/usageByType") 
+	public List<EquipmentUsage> usageByType(@RequestParam(value = "type") String type,
+			@RequestParam(value = "start") String startStr,
+			@RequestParam(value = "end") String endStr) {
+		if (type == null || type.isEmpty()) {
+    		throw new IllegalArgumentException("Equipment type must not be empty");
+    	}
+		else if (startStr == null || startStr.isEmpty()) {
+    		throw new IllegalArgumentException("Start date must not be empty");
+    	}
+		else if (endStr == null || endStr.isEmpty()) {
+    		throw new IllegalArgumentException("End date must not be empty");
+    	}		
+		else {
+			List<EquipmentUsage> usageList = new ArrayList<EquipmentUsage>();
+			
+			EquipmentDao edao = new EquipmentDao();
+			ReservationDao rdao = new ReservationDao();
+			edao.init();
+			List<Equipment> equipmentsOfType = edao.getByType(Integer.parseInt(type));
+			Date start = new Date(Long.parseLong(startStr) * 1000);
+			Date end = new Date(Long.parseLong(endStr) * 1000);
+			
+			for (Equipment eq : equipmentsOfType) {
+				EquipmentUsage currentUsage = usageBySerial(eq.getSerial(), start, end);
+				usageList.add(currentUsage);
+			}
+			return usageList;
+		}
+	}
+	
 	@RequestMapping("/rest/usageBySerial")
-
-	//public double[] usageBySerial(@RequestParam(value = "serial") String serial,
-	public EquipmentUsage usageBySerial(@RequestParam(value = "serial") String serial,
+	public EquipmentUsage usageBySerial2(@RequestParam(value = "serial") String serial,
 			@RequestParam(value = "start") String startStr,
 			@RequestParam(value = "end") String endStr) {
 		
@@ -95,6 +124,39 @@ public class ChartController {
 	@ExceptionHandler
 	void handleIllegalArgumentException(IllegalArgumentException e, HttpServletResponse response) throws IOException {
 		response.sendError(HttpStatus.BAD_REQUEST.value());
+	}
+	
+	public EquipmentUsage usageBySerial(String serial, Date start, Date end) {
+		EquipmentDao edao = new EquipmentDao();
+		ReservationDao rdao = new ReservationDao();
+		edao.init();
+		
+		
+		Equipment equipment = edao.getBySerial(serial);
+		EquipmentUsage usage = new EquipmentUsage(equipment);
+		List<Reservation> reservationsInRange = null;
+		
+		reservationsInRange = rdao.getBySerialAndDate(serial, start, end);
+		
+		for (Reservation currentReservation : reservationsInRange) {
+			double hours = 0;
+			hours = hoursInReservation(currentReservation, start, end);
+			switch (currentReservation.getReservationType()) {
+				case 0:
+					usage.setInUse(hours);
+					break;
+				case 1:
+					usage.setCalibration(hours);
+					break;
+				case 2:
+					usage.setMaintenance(hours);
+					break;
+			}
+		}
+		double available = workhoursInRange(start, end) - usage.getInUse() - usage.getCalibration() - usage.getMaintenance();			
+		usage.setAvailable(available);
+
+		return usage;
 	}
 	
 	public double hoursInReservation(Reservation reservation, Date start, Date end) {

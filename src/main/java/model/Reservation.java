@@ -21,7 +21,7 @@ import java.util.Date;
 	            name    =   "Reservation.findBySerial",
 	            query   =   "SELECT * " +
 	                        "FROM reservation " +
-	                        "INNER JOIN equipment on reservation.equipmentId = equipment.equipmentId " +
+	                        "INNER JOIN equipment ON reservation.equipmentId = equipment.equipmentId " +
 	                        "WHERE equipment.serial = ?",
 	                        resultClass=Reservation.class
 	    ),
@@ -43,7 +43,7 @@ import java.util.Date;
             name    =   "Reservation.findByEmployeeId",
             query   =   "SELECT * " +
                         "FROM reservation " +
-                        "INNER JOIN employee on reservation.employeeKey = employee.employeeKey " + 
+                        "INNER JOIN employee ON reservation.employeeKey = employee.employeeKey " + 
                         "WHERE employee.employeeId = ? AND reservation.date_return IS NULL",
                         resultClass=Reservation.class
     ),
@@ -58,7 +58,7 @@ import java.util.Date;
             name    =   "Reservation.findOpenBySerial",
             query   =   "SELECT * " +
                         "FROM reservation " +
-                        "INNER JOIN equipment on reservation.equipmentId = equipment.equipmentId " + 
+                        "INNER JOIN equipment ON reservation.equipmentId = equipment.equipmentId " + 
                         "WHERE reservation.date_return IS null AND " +
                         "equipment.serial = ?",
                         resultClass=Reservation.class                        
@@ -67,7 +67,7 @@ import java.util.Date;
             name    =   "Reservation.findBySerialAndDate",
             query   =   "SELECT * " +
                         "FROM reservation " +
-                        "INNER JOIN equipment on reservation.equipmentId = equipment.equipmentId " + 
+                        "INNER JOIN equipment ON reservation.equipmentId = equipment.equipmentId " + 
                         "WHERE equipment.serial = ? AND " +		// serial
                         "reservation.date_take < ? AND " + 		// end 
                         "reservation.date_return > ?",			// begin

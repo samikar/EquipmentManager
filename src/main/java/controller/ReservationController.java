@@ -267,7 +267,7 @@ public class ReservationController {
 		edao.init();
 
 		List<Reservation> reservationList = rdao.getOpen();
-		List<Equipment> equipmentList = edao.getEquipmentOrderedByType();
+		List<Equipment> equipmentList = edao.getOrderedByType();
 		List<EquipmentStatus> equipmentStatusList = new ArrayList<EquipmentStatus>();
 
 		for (Equipment e : equipmentList) {

@@ -25,6 +25,14 @@ import javax.persistence.*;
 						resultClass=Equipment.class
 	),
 	@NamedNativeQuery(
+			name	=	"Equipment.findByType", 
+			query	=	"SELECT * "+
+						"FROM equipment " +
+						"INNER JOIN equipmentType ON equipment.equipmentTypeId = equipmentType.equipmentTypeId " +
+						"WHERE equipmentType.typeCode = ?",
+						resultClass=Equipment.class
+	),
+	@NamedNativeQuery(
 			name	=	"Equipment.findAllOrderedByType", 
 			query	=	"SELECT * "+
 						"FROM equipment " +
