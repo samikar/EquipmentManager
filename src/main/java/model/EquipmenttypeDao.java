@@ -1,17 +1,19 @@
 package model;
+
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
 
+import db.DatabaseUtil;
+
 import java.util.List;
 
 public class EquipmenttypeDao {
-private Equipmenttype dao;
+	private Equipmenttype dao;
+	EntityManagerFactory entityManagerFactory = DatabaseUtil.getSessionFactory();
+	private EntityManager entityManager;
 
-EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("EquipmentManager");
-EntityManager em = entityManagerFactory.createEntityManager();
-	
 	public Equipmenttype getDao() {
 		return dao;
 	}
@@ -20,10 +22,8 @@ EntityManager em = entityManagerFactory.createEntityManager();
 		this.dao = dao;
 	}
 	
-	private EntityManager entityManager;
-	
 	public void init(){
-		entityManager = Persistence.createEntityManagerFactory("EquipmentManager").createEntityManager();
+		entityManager = entityManagerFactory.createEntityManager();
 	}
 	
 	public List<Equipmenttype> getDaos(){
@@ -73,13 +73,13 @@ EntityManager em = entityManagerFactory.createEntityManager();
 	}
 	
 	public List<Equipmenttype> getAll() {
-		List<Equipmenttype> reservations = em.createNamedQuery("Equipmenttype.findAll", Equipmenttype.class)
+		List<Equipmenttype> reservations = entityManager.createNamedQuery("Equipmenttype.findAll", Equipmenttype.class)
 				.getResultList();
 		return reservations;
 	}
 	
 	public int getEquipmentTypeIdByTypeCode(int typeCode) {
-		List<Equipmenttype> equipmentTypeList = em
+		List<Equipmenttype> equipmentTypeList = entityManager
 				.createNamedQuery("Equipmenttype.findByTypeCode", Equipmenttype.class)
 				.setParameter(1, typeCode).getResultList();
 		if (equipmentTypeList.size() > 0) {

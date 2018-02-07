@@ -56,15 +56,15 @@ public class ChartController {
 			EquipmentDao edao = new EquipmentDao();
 			edao.init();
 			List<Equipment> equipmentOfType = edao.getByType(Integer.parseInt(type));
-			edao.destroy();
+			
 			Date start = new Date(Long.parseLong(startStr) * 1000);
 			Date end = new Date(Long.parseLong(endStr) * 1000);
 			
 			for (Equipment eq : equipmentOfType) {
-				EquipmentUsage currentUsage = usageBySerial(eq.getSerial(), start, end);
+				EquipmentUsage currentUsage = usageBySerial(eq.getSerial(), start, end, edao);
 				usageList.add(currentUsage);
 			}
-			
+			edao.destroy();
 			return usageList;
 		}
 	}
@@ -126,15 +126,17 @@ public class ChartController {
 		response.sendError(HttpStatus.BAD_REQUEST.value());
 	}
 	
-	public EquipmentUsage usageBySerial(String serial, Date start, Date end) {
-		EquipmentDao edao = new EquipmentDao();
+	public EquipmentUsage usageBySerial(String serial, Date start, Date end, EquipmentDao edao) {
+		//EquipmentDao edao = new EquipmentDao();
 		ReservationDao rdao = new ReservationDao();
-		edao.init();
+		//edao.init();
 		rdao.init();
 		Equipment equipment = edao.getBySerial(serial);
+		//edao.destroy();
 		EquipmentUsage usage = new EquipmentUsage(equipment);
 		List<Reservation> reservationsInRange = null;
 		reservationsInRange = rdao.getBySerialAndDate(serial, start, end);
+		rdao.destroy();
 		
 		for (Reservation currentReservation : reservationsInRange) {
 			double hours = 0;
@@ -153,8 +155,7 @@ public class ChartController {
 		}
 		double available = workhoursInRange(start, end) - usage.getInUse() - usage.getCalibration() - usage.getMaintenance();			
 		usage.setAvailable(available);
-		edao.destroy();
-		rdao.destroy();
+
 		return usage;
 	}
 	

@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import db.ADHandler;
+import db.DatabaseUtil;
 import model.Employee;
 import model.EmployeeDao;
 import model.Equipment;
@@ -289,6 +290,8 @@ public class ReservationController {
 
 		List<Reservation> reservationList = rdao.getOpen();
 		List<Equipment> equipmentList = edao.getOrderedByType();
+		rdao.destroy();
+		edao.destroy();
 		List<EquipmentStatus> equipmentStatusList = new ArrayList<EquipmentStatus>();
 
 		for (Equipment e : equipmentList) {
@@ -329,8 +332,7 @@ public class ReservationController {
 			eStatus.setAvailability(availability);
 			equipmentStatusList.add(eStatus);
 		}
-		rdao.destroy();
-		edao.destroy();
+
 		return equipmentStatusList;
 	}
 

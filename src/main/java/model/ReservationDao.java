@@ -1,30 +1,30 @@
 package model;
+
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
 
+import db.DatabaseUtil;
+
 import java.util.Date;
 import java.util.List;
 
 public class ReservationDao {
-private Reservation dao;
+	private Reservation dao;
+	EntityManagerFactory entityManagerFactory = DatabaseUtil.getSessionFactory();
+	private EntityManager entityManager;
 
-EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("EquipmentManager");
-EntityManager em = entityManagerFactory.createEntityManager();
-	
 	public Reservation getDao() {
 		return dao;
 	}
-	
+
 	public void setDao(Reservation dao) {
 		this.dao = dao;
 	}
 	
-	private EntityManager entityManager;
-	
 	public void init(){
-		entityManager = Persistence.createEntityManagerFactory("EquipmentManager").createEntityManager();
+		entityManager = entityManagerFactory.createEntityManager();
 	}
 	
 	public List<Reservation> getDaos(){
@@ -77,47 +77,47 @@ EntityManager em = entityManagerFactory.createEntityManager();
 	}
 	
 	public List<Reservation> getAll() {
-		List<Reservation> reservations = em.createNamedQuery("Reservation.findAll", Reservation.class)
+		List<Reservation> reservations = entityManager.createNamedQuery("Reservation.findAll", Reservation.class)
 				.getResultList();
 		return reservations;
 	}
 	
 	public List<Reservation> getBySerial(String serial) {
-		List<Reservation> reservations = em.createNamedQuery("Reservation.findBySerial", Reservation.class)
+		List<Reservation> reservations = entityManager.createNamedQuery("Reservation.findBySerial", Reservation.class)
 				.setParameter(1, serial)
 				.getResultList();
 		return reservations;
 	}
 	
 	public List<Reservation> getByEmployeeId(String employeeId) {
-		List<Reservation> reservations = em.createNamedQuery("Reservation.findByEmployeeId", Reservation.class)
+		List<Reservation> reservations = entityManager.createNamedQuery("Reservation.findByEmployeeId", Reservation.class)
 				.setParameter(1, employeeId)
 				.getResultList();
 		return reservations;
 	}
 	
 	public List<Reservation> getByEquipmentId(String equipmentId) {
-		List<Reservation> reservations = em.createNamedQuery("Reservation.findByEquipmentId", Reservation.class)
+		List<Reservation> reservations = entityManager.createNamedQuery("Reservation.findByEquipmentId", Reservation.class)
 				.setParameter(1, equipmentId)
 				.getResultList();
 		return reservations;
 	}
 	
 	public List<Reservation> getByType(String type) {
-		List<Reservation> reservations = em.createNamedQuery("Reservation.findByType", Reservation.class)
+		List<Reservation> reservations = entityManager.createNamedQuery("Reservation.findByType", Reservation.class)
 				.setParameter(1, type)
 				.getResultList();
 		return reservations;
 	}
 	
 	public List<Reservation> getOpen() {
-		List<Reservation> reservations = em.createNamedQuery("Reservation.findOpen", Reservation.class)
+		List<Reservation> reservations = entityManager.createNamedQuery("Reservation.findOpen", Reservation.class)
 				.getResultList();
 		return reservations;
 	}
 	
 	public List<Reservation> getBySerialAndDate(String serial, Date start, Date end) {
-		List<Reservation> reservations = em.createNamedQuery("Reservation.findBySerialAndDate", Reservation.class)
+		List<Reservation> reservations = entityManager.createNamedQuery("Reservation.findBySerialAndDate", Reservation.class)
 				.setParameter(1, serial)
 				.setParameter(2, end)
 				.setParameter(3, start)
@@ -127,7 +127,7 @@ EntityManager em = entityManagerFactory.createEntityManager();
 
 	
 	public boolean serialHasOpenReservation(String serial) {
-		List<Reservation> reservations = em.createNamedQuery("Reservation.findOpenBySerial", Reservation.class)
+		List<Reservation> reservations = entityManager.createNamedQuery("Reservation.findOpenBySerial", Reservation.class)
 				.setParameter(1, serial)
 				.getResultList();
 		if (reservations.size() > 0)
@@ -137,7 +137,7 @@ EntityManager em = entityManagerFactory.createEntityManager();
 	}
 	
 	public int getOpenReservationIdBySerial(String serial) {
-		List<Reservation> reservations = em.createNamedQuery("Reservation.findOpenBySerial", Reservation.class)
+		List<Reservation> reservations = entityManager.createNamedQuery("Reservation.findOpenBySerial", Reservation.class)
 				.setParameter(1, serial)
 				.getResultList();
 		if (reservations.size() > 0)

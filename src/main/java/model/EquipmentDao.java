@@ -1,4 +1,5 @@
 package model;
+
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Entity;
 import javax.persistence.EntityManager;
@@ -6,26 +7,26 @@ import javax.persistence.Persistence;
 import javax.persistence.Query;
 import javax.persistence.Table;
 
+import db.DatabaseUtil;
+
 import java.util.List;
 
 public class EquipmentDao {
-private Equipment dao;
-
-EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("EquipmentManager");
-EntityManager em = entityManagerFactory.createEntityManager();
+	private Equipment dao;
 	
+	EntityManagerFactory entityManagerFactory = DatabaseUtil.getSessionFactory();
+	private EntityManager entityManager;
+
 	public Equipment getDao() {
 		return dao;
 	}
-	
+
 	public void setDao(Equipment dao) {
 		this.dao = dao;
 	}
 	
-	private EntityManager entityManager;
-	
 	public void init(){
-		entityManager = Persistence.createEntityManagerFactory("EquipmentManager").createEntityManager();
+		entityManager = entityManagerFactory.createEntityManager();
 	}
 	
 	public List<Equipment> getDaos(){
@@ -78,7 +79,7 @@ EntityManager em = entityManagerFactory.createEntityManager();
 	}
 	
 	public int getEquipmentIdBySerial(String serial) {
-		List<Equipment> equipmentList = em.createNamedQuery("Equipment.findBySerial", Equipment.class)
+		List<Equipment> equipmentList = entityManager.createNamedQuery("Equipment.findBySerial", Equipment.class)
 				.setParameter(1, serial).getResultList();
 		if (equipmentList.size() > 0) {
 			Equipment e = equipmentList.get(0);

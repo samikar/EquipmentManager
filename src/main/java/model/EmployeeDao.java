@@ -6,14 +6,15 @@ import javax.persistence.Persistence;
 import javax.persistence.Query;
 
 import db.ADHandler;
+import db.DatabaseUtil;
 
 import java.util.List;
 
 public class EmployeeDao {
 	private Employee dao;
-
-	EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("EquipmentManager");
-	EntityManager em = entityManagerFactory.createEntityManager();
+	
+	EntityManagerFactory entityManagerFactory = DatabaseUtil.getSessionFactory();
+	private EntityManager entityManager;
 
 	public Employee getDao() {
 		return dao;
@@ -23,10 +24,8 @@ public class EmployeeDao {
 		this.dao = dao;
 	}
 
-	private EntityManager entityManager;
-
 	public void init() {
-		entityManager = Persistence.createEntityManagerFactory("EquipmentManager").createEntityManager();
+		entityManager = entityManagerFactory.createEntityManager();
 	}
 
 	public List<Employee> getDaos() {
@@ -76,12 +75,13 @@ public class EmployeeDao {
 	}
 
 	public List<Employee> getAll() {
-		List<Employee> reservations = em.createNamedQuery("Employee.findAll", Employee.class).getResultList();
+		List<Employee> reservations = entityManager.createNamedQuery("Employee.findAll", Employee.class).getResultList();
+		
 		return reservations;
 	}
 
 	public Employee getEmployeeByEmployeeId(String employeeId) {
-		List<Employee> employeeList = em.createNamedQuery("Employee.findByEmployeeId", Employee.class)
+		List<Employee> employeeList = entityManager.createNamedQuery("Employee.findByEmployeeId", Employee.class)
 				.setParameter(1, employeeId).getResultList();
 		
 		if (employeeList.size() > 0) { 
@@ -91,7 +91,7 @@ public class EmployeeDao {
 	}
 	
 	public int getEmployeeKeyByEmployeeId(String employeeId) {
-		List<Employee> employeeList = em.createNamedQuery("Employee.findByEmployeeId", Employee.class)
+		List<Employee> employeeList = entityManager.createNamedQuery("Employee.findByEmployeeId", Employee.class)
 				.setParameter(1, employeeId).getResultList();
 		if (employeeList.size() > 0) {
 			Employee e = employeeList.get(0);
@@ -111,7 +111,7 @@ public class EmployeeDao {
 	}
 
 	public boolean employeeInDB(String employeeId) {
-		List<Employee> employeeList = em.createNamedQuery("Employee.findByEmployeeId", Employee.class)
+		List<Employee> employeeList = entityManager.createNamedQuery("Employee.findByEmployeeId", Employee.class)
 				.setParameter(1, employeeId).getResultList();
 		if (employeeList.size() > 0)
 			return true;
