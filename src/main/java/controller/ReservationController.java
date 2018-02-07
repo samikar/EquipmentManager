@@ -39,9 +39,11 @@ public class ReservationController {
 
     @RequestMapping("/rest/getallreservations")
     public List<Reservation> getallreservations() {	
-    	ReservationDao dao = new ReservationDao();
-		dao.init();
-		return dao.getAll();
+    	ReservationDao rdao = new ReservationDao();
+		rdao.init();
+		List<Reservation> result = rdao.getAll();
+		rdao.destroy();
+		return result;
     }  
     
     @RequestMapping("/rest/take")
@@ -93,6 +95,10 @@ public class ReservationController {
 			reservation.setReservationType(Integer.parseInt(reservationType));
 
 			rdao.persist(reservation);	
+			empdao.destroy();
+			empdao2.destroy();
+			edao.destroy();
+			rdao.destroy();
 			return reservation;
 		}
 	}
@@ -121,6 +127,7 @@ public class ReservationController {
     		reservation = rdao.getDao();
     		reservation.setDateReturn(currentDate);
     		rdao.update(reservation);
+    		rdao.destroy();
     	}
     	return "Complete";
     }	
@@ -130,9 +137,11 @@ public class ReservationController {
     	ReservationDao rdao = new ReservationDao();
     	rdao.init();
     	if (serial == null || serial.isEmpty()) {
+    		rdao.destroy();
     		throw new IllegalArgumentException("Serial number must not be empty");
     	}
     	else if (!rdao.serialHasOpenReservation(serial)) {
+    		rdao.destroy();
     		throw new IllegalArgumentException("No open reservation found for serial number " + serial);
     	}
     	else {
@@ -141,7 +150,7 @@ public class ReservationController {
         	Date currentDate = new Date();
         	reservation.setDateReturn(currentDate);
         	rdao.update(reservation);
-        	
+        	rdao.destroy();
         	return reservation;	
     	}
     }    
@@ -181,6 +190,9 @@ public class ReservationController {
     	reservation.setReservationType(Integer.parseInt(reservationType));
     	
     	rdao.persist(reservation);
+    	rdao.destroy();
+		empdao.destroy();
+		edao.destroy();
     	return reservation;
     }
     
@@ -218,23 +230,29 @@ public class ReservationController {
     	reservation.setReservationType(Integer.parseInt(reservationType));
     	
     	rdao.update(reservation);
+    	rdao.destroy();
+		empdao.destroy();
+		edao.destroy();
     	return reservation;
     }
     
     // NOTE: testdbuser has no DELETE priviliges 
     @RequestMapping("/rest/deletereservation")
     public void deleteReservation(@RequestParam(value="reservationId", defaultValue="0") String reservationId) {
-    	ReservationDao dao = new ReservationDao();
-		dao.init();
-		dao.initialize(Integer.parseInt(reservationId));
-		dao.delete();
+    	ReservationDao rdao = new ReservationDao();
+		rdao.init();
+		rdao.initialize(Integer.parseInt(reservationId));
+		rdao.delete();
+		rdao.destroy();
     }
     
     @RequestMapping("/rest/getbyReservationType")
     public List<Reservation> getbyReservationType(@RequestParam(value="reservationType", defaultValue="0") String reservationType) {
-    	ReservationDao dao = new ReservationDao();
-		dao.init();
-		return dao.getByType(reservationType);
+    	ReservationDao rdao = new ReservationDao();
+		rdao.init();
+		List<Reservation> result = rdao.getByType(reservationType); 
+		rdao.destroy();
+		return result;
     }
 
     @RequestMapping("/rest/getbyEmployeeId")
@@ -243,9 +261,10 @@ public class ReservationController {
     		throw new IllegalArgumentException("Employee ID must not be empty");
     	}
     	
-    	ReservationDao dao = new ReservationDao();
-		dao.init();
-		List<Reservation> reservations = dao.getByEmployeeId(employeeId);
+    	ReservationDao rdao = new ReservationDao();
+		rdao.init();
+		List<Reservation> reservations = rdao.getByEmployeeId(employeeId);
+		rdao.destroy();
 		if (reservations.size() > 0)
 			return reservations;
 		else 
@@ -254,9 +273,11 @@ public class ReservationController {
     
     @RequestMapping("/rest/getbyEquipmentId")
     public List<Reservation> getbyEquipmentId(@RequestParam(value="equipmentId", defaultValue="0") String equipmentId) {
-    	ReservationDao dao = new ReservationDao();
-		dao.init();
-		return dao.getByEquipmentId(equipmentId);
+    	ReservationDao rdao = new ReservationDao();
+		rdao.init();
+		List<Reservation> result = rdao.getByEquipmentId(equipmentId);
+		rdao.destroy();
+		return result;
     }
 
 	@RequestMapping("rest/getEquipmentStatus")
@@ -308,6 +329,8 @@ public class ReservationController {
 			eStatus.setAvailability(availability);
 			equipmentStatusList.add(eStatus);
 		}
+		rdao.destroy();
+		edao.destroy();
 		return equipmentStatusList;
 	}
 
@@ -315,8 +338,9 @@ public class ReservationController {
 	public Employee getEmployeeName(@RequestParam(value="employeeId") String employeeId) {
 		EmployeeDao empdao = new EmployeeDao();
 		empdao.init();
-		Employee emp = empdao.getEmployeeByEmployeeId(employeeId);
-		return emp;
+		Employee result = empdao.getEmployeeByEmployeeId(employeeId);
+		empdao.destroy();
+		return result;
 	}
 	
 	@ExceptionHandler

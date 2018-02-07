@@ -54,16 +54,17 @@ public class ChartController {
 			List<EquipmentUsage> usageList = new ArrayList<EquipmentUsage>();
 			
 			EquipmentDao edao = new EquipmentDao();
-			ReservationDao rdao = new ReservationDao();
 			edao.init();
-			List<Equipment> equipmentsOfType = edao.getByType(Integer.parseInt(type));
+			List<Equipment> equipmentOfType = edao.getByType(Integer.parseInt(type));
+			edao.destroy();
 			Date start = new Date(Long.parseLong(startStr) * 1000);
 			Date end = new Date(Long.parseLong(endStr) * 1000);
 			
-			for (Equipment eq : equipmentsOfType) {
+			for (Equipment eq : equipmentOfType) {
 				EquipmentUsage currentUsage = usageBySerial(eq.getSerial(), start, end);
 				usageList.add(currentUsage);
 			}
+			
 			return usageList;
 		}
 	}
@@ -86,8 +87,6 @@ public class ChartController {
 			EquipmentDao edao = new EquipmentDao();
 			ReservationDao rdao = new ReservationDao();
 			edao.init();
-			
-			
 			Equipment equipment = edao.getBySerial(serial);
 			EquipmentUsage usage = new EquipmentUsage(equipment);
 			List<Reservation> reservationsInRange = null;
@@ -95,8 +94,9 @@ public class ChartController {
 			// Parse dates from epoch to Date
 			Date start = new Date(Long.parseLong(startStr) * 1000);
 			Date end = new Date(Long.parseLong(endStr) * 1000);
-			
-			
+			edao.destroy();
+			rdao.destroy();
+
 			reservationsInRange = rdao.getBySerialAndDate(serial, start, end);
 			
 			for (Reservation currentReservation : reservationsInRange) {
@@ -130,12 +130,10 @@ public class ChartController {
 		EquipmentDao edao = new EquipmentDao();
 		ReservationDao rdao = new ReservationDao();
 		edao.init();
-		
-		
+		rdao.init();
 		Equipment equipment = edao.getBySerial(serial);
 		EquipmentUsage usage = new EquipmentUsage(equipment);
 		List<Reservation> reservationsInRange = null;
-		
 		reservationsInRange = rdao.getBySerialAndDate(serial, start, end);
 		
 		for (Reservation currentReservation : reservationsInRange) {
@@ -155,7 +153,8 @@ public class ChartController {
 		}
 		double available = workhoursInRange(start, end) - usage.getInUse() - usage.getCalibration() - usage.getMaintenance();			
 		usage.setAvailable(available);
-
+		edao.destroy();
+		rdao.destroy();
 		return usage;
 	}
 	
@@ -284,7 +283,7 @@ public class ChartController {
 		rdao.init();
 		rdao.initialize(4);
 		Reservation r = rdao.getDao();
-		
+		rdao.destroy();
 		System.out.println("WorkHoursInRange: " + cc.hoursInReservation(r, start, end));
 	}
 }

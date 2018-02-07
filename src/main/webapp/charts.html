@@ -58,7 +58,7 @@
     <br>
     <br>
     <div class="row">
-      <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12">
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
         <canvas id="myChart" width="400" height="400"></canvas>
       </div>
     </div>
@@ -76,61 +76,38 @@
 
       <script>
         $(document).ready(function() {
-          var barChartData = {
-            labels: ["MI_070801900", 
-                      "MI_071004230", 
-                      "MI_080312504", 
-                      "MI_071004231"
-                      ],
-            datasets: [{
-                label: 'Maintenance',
-                backgroundColor: window.chartColors.red,
-                data: [
-                    50,
-                    30,
-                    60,
-                    20
-                ]
-            }, {
-                label: 'Calibration',
-                backgroundColor: window.chartColors.orange,
-                data: [
-                    50,
-                    30,
-                    60,
-                    10
-                ]
-            }, {
-                label: 'In use',
-                backgroundColor: window.chartColors.blue,
-                data: [
-                    50,
-                    30,
-                    60,
-                    5
-                ]
-            },  {
-                label: 'Available',
-                backgroundColor: window.chartColors.green,
-                data: [
-                    50,
-                    30,
-                    60,
-                    15
-                ]
-            }]
+                   var barChartData = {
+              labels: [],
+              datasets: [{
+                  label: 'Maintenance',
+                  backgroundColor: window.chartColors.red,
+                  data: []
+              }, {
+                  label: 'Calibration',
+                  backgroundColor: window.chartColors.orange,
+                  data: []
+              }, {
+                  label: 'In use',
+                  backgroundColor: window.chartColors.blue,
+                  data: []
+              },  {
+                  label: 'Available',
+                  backgroundColor: window.chartColors.green,
+                  data: []
+              }]
 
-        };
+          };
 
+          $.when(getData()).done(function(a1) {
 
           var ctx = document.getElementById("myChart").getContext("2d");
-            window.myBar = new Chart(ctx, {
+          window.myBar = new Chart(ctx, {
                 type: 'bar',
                 data: barChartData,
                 options: {
                     title:{
                         display:true,
-                        text:"Chart.js Bar Chart - Stacked"
+                        text:"EquipmentType usage"
                     },
                     tooltips: {
                         mode: 'index',
@@ -142,11 +119,57 @@
                             stacked: true,
                         }],
                         yAxes: [{
-                            stacked: true
+                            stacked: true,
+                            scaleLabel: {
+                              display: true,
+                              labelString: "Usage (%)"
+                          }
                         }]
                     }
                 }
-            });
+          });
+        });
+
+
+      function getData() {
+        $.post("rest/usageByType",
+          {
+                type : "1375",
+                start : "1514788200",
+                end : "1527858000"
+          },
+         function(data){
+
+          
+          $.each(data, function(i, item) {
+            //console.log(item);
+            putData(item);
+          });
+        })
+        .done(function() {
+          //alert( "second success" );
+        })
+        .fail(function(jqXHR, textStatus) {
+          // $('#txt_equipmentId').val("");
+          //$("#status").removeClass('alert-success');
+        })
+        .always(function() {
+          //alert( "finished" );
+        });
+      }
+
+      function putData(jsonItem) {
+        console.dir(jsonItem);
+        var totalHours = jsonItem.maintenance + jsonItem.calibration + jsonItem.inUse + jsonItem.available;
+        barChartData.labels.push(jsonItem.name);
+        barChartData.datasets[0].data.push((jsonItem.maintenance / totalHours) * 100);
+        barChartData.datasets[1].data.push((jsonItem.calibration / totalHours) * 100);
+        barChartData.datasets[2].data.push((jsonItem.inUse / totalHours) * 100);
+        barChartData.datasets[3].data.push((jsonItem.available / totalHours) * 100);
+        
+      }
+      
+      console.log(barChartData);
     });
   </script>
       
