@@ -73,9 +73,9 @@ public class EquipmenttypeDao {
 	}
 	
 	public List<Equipmenttype> getAll() {
-		List<Equipmenttype> reservations = entityManager.createNamedQuery("Equipmenttype.findAll", Equipmenttype.class)
+		List<Equipmenttype> result = entityManager.createNamedQuery("Equipmenttype.findAll", Equipmenttype.class)
 				.getResultList();
-		return reservations;
+		return result;
 	}
 	
 	public int getEquipmentTypeIdByTypeCode(int typeCode) {
@@ -90,4 +90,9 @@ public class EquipmenttypeDao {
 			return 0;
 	}
 	
+	public List<Equipmenttype> getEquipmentTypesWithEquipment() {
+		List<Equipmenttype> result = entityManager.createNamedQuery("Equipmenttype.findEquipmenttypesWithEquipment", Equipmenttype.class)
+				.getResultList();
+		return result;
+	}
 }

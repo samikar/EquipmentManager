@@ -12,7 +12,6 @@ public class DatabaseUtil {
             //if (sessionFactory == null || !sessionFactory.isOpen()) {
         	if (sessionFactory == null) {
             	sessionFactory = Persistence.createEntityManagerFactory("EquipmentManager");
-            	System.out.println("** EntityManagerFactory started! **");
             }
             
             return sessionFactory;

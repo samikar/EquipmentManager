@@ -24,6 +24,8 @@ import org.springframework.web.bind.annotation.RestController;
 import model.Equipment;
 import model.EquipmentDao;
 import model.EquipmentUsage;
+import model.Equipmenttype;
+import model.EquipmenttypeDao;
 import model.Reservation;
 import model.ReservationDao;
 
@@ -38,10 +40,10 @@ public class ChartController {
 	}
 
 	@RequestMapping("rest/usageByType") 
-	public List<EquipmentUsage> usageByType(@RequestParam(value = "type") String type,
+	public List<EquipmentUsage> usageByType(@RequestParam(value = "typeCode") String typeCode,
 			@RequestParam(value = "start") String startStr,
 			@RequestParam(value = "end") String endStr) {
-		if (type == null || type.isEmpty()) {
+		if (typeCode == null || typeCode.isEmpty()) {
     		throw new IllegalArgumentException("Equipment type must not be empty");
     	}
 		else if (startStr == null || startStr.isEmpty()) {
@@ -55,7 +57,7 @@ public class ChartController {
 			
 			EquipmentDao edao = new EquipmentDao();
 			edao.init();
-			List<Equipment> equipmentOfType = edao.getByType(Integer.parseInt(type));
+			List<Equipment> equipmentOfType = edao.getByType(Integer.parseInt(typeCode));
 			
 			Date start = new Date(Long.parseLong(startStr) * 1000);
 			Date end = new Date(Long.parseLong(endStr) * 1000);
@@ -70,7 +72,7 @@ public class ChartController {
 	}
 	
 	@RequestMapping("/rest/usageBySerial")
-	public EquipmentUsage usageBySerial2(@RequestParam(value = "serial") String serial,
+	public EquipmentUsage usageBySerial(@RequestParam(value = "serial") String serial,
 			@RequestParam(value = "start") String startStr,
 			@RequestParam(value = "end") String endStr) {
 		
@@ -119,6 +121,16 @@ public class ChartController {
 
 			return usage;
 		}
+	}
+	
+	@RequestMapping("/rest/getEquipmentTypes")
+	//public List<Equipmenttype> getbyEquipmentId() {
+	public List<Equipmenttype> getbyEquipmentId() {
+		EquipmenttypeDao etdao = new EquipmenttypeDao();
+		etdao.init();
+		List<Equipmenttype> result = etdao.getEquipmentTypesWithEquipment();
+		etdao.destroy();
+		return result;
 	}
 	
 	@ExceptionHandler

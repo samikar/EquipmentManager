@@ -22,6 +22,14 @@ import java.util.List;
 						"FROM equipmenttype " +
 						"WHERE equipmenttype.TypeCode = ?",
 						resultClass=Equipmenttype.class
+	),@NamedNativeQuery(
+			name	=	"Equipmenttype.findEquipmenttypesWithEquipment", 
+			query	=	"SELECT DISTINCT equipmenttype.equipmentTypeId, equipmenttype.typeCode, equipmenttype.typeName " +
+						"FROM equipmenttype " +
+						"LEFT JOIN equipment ON equipmenttype.equipmentTypeId = equipment.equipmentTypeId " +
+						"WHERE equipmenttype.equipmentTypeId = equipment.equipmentTypeId " +
+						"ORDER BY equipmenttype.typeName",
+						resultClass=Equipmenttype.class
 	)
 	})
 

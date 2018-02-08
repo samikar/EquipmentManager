@@ -7,6 +7,7 @@
 
   <!-- Bootstrap -->
   <link href = "css/bootstrap.min.css" rel = "stylesheet">
+  <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.css" />
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -58,85 +59,154 @@
     <br>
     <br>
     <div class="row">
-      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-        <canvas id="myChart" width="400" height="400"></canvas>
+      <div class="col-lg-4 col-md-5 col-sm-6 col-xs-12">
+        <form id="frm_typeForm">
+          <div class="form-group">
+            <label for="Equipment types">Equipment types</label>
+            <select multiple class="form-control" id="sel_types" size="40">
+            </select>
+            <br>
+            <button type="button" class="btn btn-primary" id="btn_select" data-toggle="modal" data-target="#demo-1">Select</button>
+          </div>
+        </div>
+      </form>
+    </div>
+    <!-- [ Modal #1 ] -->
+    <div class="modal fade" id="demo-1" tabindex="-1">
+      <div class="modal-dialog modal-lg">
+       <div class="modal-content">
+        <button type="button" class="close" data-dismiss="modal"><i class="icon-xs-o-md"></i></button>
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h3 class="modal-title caps"><strong id="modal_title"></strong></h3>
+          <p>Date range: <input type="text" name="daterange" id="daterange" value="" />
+            <button type="button" class="btn btn-primary" id="btn_update">Update</button>
+          </p>
+        </div>
+        <div class="modal-body">
+          <div id="chart_container">
+          <canvas id="usageChart" width="800" height="600"></canvas>
+        </div>
+
+
+
+
+
+
+
+
+          <!--div class="form-group">
+            <div class="input-group">
+              <input type="text" class="form-control" placeholder="Input Placeholder..." />
+              <span class="input-group-btn"><button class="btn btn-default" type="button">Action</button></span>
+            </div>
+          </div-->
+
+
+        </div>
+        <!--div class="modal-footer">
+          <div class="col-sm-4">
+            <input type="text" name="daterange" value="01/06/2017 - 08/02/2018" />
+          
+
+          </div>
+
+        </div-->
+
+         <!--div class="modal-footer">
+              <button type="button" class="btn btn-danger" data-dismiss="modal">&times;</button>
+              <button type="button" class="btn btn-info" data-toggle="modal" data-target="#demo-2" data-dismiss="modal">Close current, Launch Modal #2</button>
+              <button type="button" class="btn btn-default" data-toggle="modal" data-target="#demo-3" data-dismiss="modal">Close current, Launch Modal #3</button>
+          </div-->
+       </div>
       </div>
     </div>
-
   </div>
 
-      <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-      <script src = "js/jquery-3.2.1.js"></script>
-      
-      <!-- Include all compiled plugins (below), or include individual files as needed -->
-      <script src = "js/bootstrap.min.js"></script>
-      <script src = "js/Chart.bundle.min.js"></script>
-      <script src = "js/Chart.min.js"></script>
-      <script src = "js/utils.js"></script>
+  <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+  <script src = "js/jquery-3.2.1.js"></script>
 
-      <script>
-        $(document).ready(function() {
-                   var barChartData = {
-              labels: [],
-              datasets: [{
-                  label: 'Maintenance',
-                  backgroundColor: window.chartColors.red,
-                  data: []
-              }, {
-                  label: 'Calibration',
-                  backgroundColor: window.chartColors.orange,
-                  data: []
-              }, {
-                  label: 'In use',
-                  backgroundColor: window.chartColors.blue,
-                  data: []
-              },  {
-                  label: 'Available',
-                  backgroundColor: window.chartColors.green,
-                  data: []
-              }]
+  <!-- Include all compiled plugins (below), or include individual files as needed -->
+  <script src = "js/bootstrap.min.js"></script>
+  <script src = "js/Chart.bundle.min.js"></script>
+  <script src = "js/Chart.min.js"></script>
+  <script src = "js/utils.js"></script>
 
-          };
+  <!-- Required by Date Range Picker  -->
+  <script src = "js/moment.min.js"></script>  
+  <script src = "js/daterangepicker.js"></script>
+  <script src = "js/date-en-GB.js"></script>
 
-          $.when(getData()).done(function(a1) {
+  <script>
+    $(document).ready(function() {
+      findTypes();
+      $('input[name="daterange"]').daterangepicker();
 
-          var ctx = document.getElementById("myChart").getContext("2d");
-          window.myBar = new Chart(ctx, {
-                type: 'bar',
-                data: barChartData,
-                options: {
-                    title:{
-                        display:true,
-                        text:"EquipmentType usage"
-                    },
-                    tooltips: {
-                        mode: 'index',
-                        intersect: false
-                    },
-                    responsive: true,
-                    scales: {
-                        xAxes: [{
-                            stacked: true,
-                        }],
-                        yAxes: [{
-                            stacked: true,
-                            scaleLabel: {
-                              display: true,
-                              labelString: "Usage (%)"
-                          }
-                        }]
-                    }
-                }
+      // Set default daterange to today-6 months ago
+      var today = new Date();      
+      var todayStr = today.toString("dd/MM/yyyy");
+      var start = Date.today().add(-6).months();
+      var startStr = start.toString("dd/MM/yyyy");
+
+      $("#daterange").val(startStr + " - " + todayStr);
+      $("#btn_select").click(function(){
+        selectType();
+        //submitTypeForm();
+      });
+
+      $(document).keypress(function(e) {
+        if(e.which == 13) {
+          selectType();
+          //submitTypeForm();
+        }
+      });
+
+      var barChartData;
+
+      function findTypes() {
+        $.post("rest/getEquipmentTypes",
+          function(data){
+            $.each(data, function(i, item) {
+              $("#sel_types").append('<option value="' + item["typeCode"] + '">' + item["typeName"] + '</option>');
+            });
+            
+          })
+          .done(function() {
+            //alert( "second success" );
+          })
+          .fail(function(jqXHR, textStatus) {
+           
+          })
+          .always(function() {
+            //alert( "finished" );
           });
-        });
+      }
 
+      function selectType() {
+        // Set name of selected type to modal title
+        $("#modal_title").text($("#sel_types option:selected").text());
+        //var value = $("#sel_types option:selected" ).val();
+        clearData();
+        var typeCode = $("#sel_types option:selected" ).val();
+        console.log("Start: " + $("#daterange").val().substring(0,10));
+        console.log("End: " + $("#daterange").val().substring(13,23));
+        var start = (Date.parse($("#daterange").val().substring(0,10))).valueOf() / 1000;
+        var end = (Date.parse($("#daterange").val().substring(13,23))).valueOf() / 1000;
+        console.log("Start: " + start + " End: " + end);
+        getData(typeCode, start, end);
+        console.dir(barChartData);
+        printTypeBarChart(); 
 
-      function getData() {
+      }
+
+      function getData(typeCode, start, end) {
         $.post("rest/usageByType",
           {
-                type : "1375",
-                start : "1514788200",
-                end : "1527858000"
+                typeCode : typeCode,
+                start : start,
+                end : end
+                //start : "1514788200",
+                //end : "1527858000"
           },
          function(data){
 
@@ -159,17 +229,84 @@
       }
 
       function putData(jsonItem) {
-        console.dir(jsonItem);
         var totalHours = jsonItem.maintenance + jsonItem.calibration + jsonItem.inUse + jsonItem.available;
-        barChartData.labels.push(jsonItem.name);
+        barChartData.labels.push(jsonItem.name + "(" + jsonItem.serial + ")");
+        
+        // Usage in %
         barChartData.datasets[0].data.push((jsonItem.maintenance / totalHours) * 100);
         barChartData.datasets[1].data.push((jsonItem.calibration / totalHours) * 100);
         barChartData.datasets[2].data.push((jsonItem.inUse / totalHours) * 100);
         barChartData.datasets[3].data.push((jsonItem.available / totalHours) * 100);
         
+        // Usage in workhours
+        /*
+        barChartData.datasets[0].data.push(jsonItem.maintenance);
+        barChartData.datasets[1].data.push(jsonItem.calibration);
+        barChartData.datasets[2].data.push(jsonItem.inUse);
+        barChartData.datasets[3].data.push(jsonItem.available);
+        */
       }
-      
-      console.log(barChartData);
+
+      function printTypeBarChart() {
+        // Clears canvas for drawing new chart
+        var chartContent = document.getElementById("chart_container");
+        chartContent.innerHTML = "&nbsp;";
+        $("#chart_container").append('<canvas id="usageChart" width="800" height="600"></canvas>');
+
+        var ctx = document.getElementById("usageChart").getContext("2d");
+        var usageBar = new Chart(ctx, {
+              type: 'bar',
+              data: barChartData,
+              options: {
+                  title:{
+                      display:false,
+                      text:"EquipmentType usage"
+                  },
+                  tooltips: {
+                      mode: 'index',
+                      intersect: false
+                  },
+                  responsive: true,
+                  scales: {
+                      xAxes: [{
+                          stacked: true,
+                      }],
+                      yAxes: [{
+                          stacked: true,
+                          scaleLabel: {
+                            display: true,
+                            labelString: "Usage (%)"
+                        }
+                      }]
+                  }
+              }
+            });
+
+      }
+
+      function clearData() {
+        barChartData = {
+              labels: [],
+              datasets: [{
+                  label: 'Maintenance',
+                  backgroundColor: window.chartColors.red,
+                  data: []
+              }, {
+                  label: 'Calibration',
+                  backgroundColor: window.chartColors.orange,
+                  data: []
+              }, {
+                  label: 'In use',
+                  backgroundColor: window.chartColors.blue,
+                  data: []
+              },  {
+                  label: 'Available',
+                  backgroundColor: window.chartColors.green,
+                  data: []
+              }]
+        };
+      }
+
     });
   </script>
       
