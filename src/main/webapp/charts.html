@@ -139,7 +139,15 @@
 
   <script>
     $(document).ready(function() {
+      var usageBarChart;
+      var usageBarChartData;
+
+      var typeCode;
+      var end;
       findTypes();
+      initData();
+      initChart();
+      
       $('input[name="daterange"]').daterangepicker();
 
       // Set default daterange to today-6 months ago
@@ -147,21 +155,46 @@
       var todayStr = today.toString("dd/MM/yyyy");
       var start = Date.today().add(-6).months();
       var startStr = start.toString("dd/MM/yyyy");
-
       $("#daterange").val(startStr + " - " + todayStr);
+
       $("#btn_select").click(function(){
+        clearCanvas();
+        removeData();
+
+        getDateRange();
         selectType();
-        //submitTypeForm();
+        //removeData(usageBarChart);
+        getData(typeCode, start, end);
+        initChart();
       });
 
       $(document).keypress(function(e) {
         if(e.which == 13) {
           selectType();
-          //submitTypeForm();
+
         }
       });
 
-      var barChartData;
+      $("#btn_update").click(function(){
+        console.log("Updating...");
+        clearCanvas();
+        removeData();
+        
+        getDateRange();
+        getData(typeCode, start, end);
+        initChart();
+
+        //var ctx = document.getElementById("usageChart").getContext("2d");
+        //usageBarChart.data.datasets[0].data.pop();
+        //console.dir("Data: " + usageBarChart.data.datasets[0].data);
+        //usageBarChart.update();
+        /*
+        clearCanvas();
+        initChart();
+        */
+      });
+
+      
 
       function findTypes() {
         $.post("rest/getEquipmentTypes",
@@ -185,35 +218,23 @@
       function selectType() {
         // Set name of selected type to modal title
         $("#modal_title").text($("#sel_types option:selected").text());
-        //var value = $("#sel_types option:selected" ).val();
-        clearData();
-        var typeCode = $("#sel_types option:selected" ).val();
-        console.log("Start: " + $("#daterange").val().substring(0,10));
-        console.log("End: " + $("#daterange").val().substring(13,23));
-        var start = (Date.parse($("#daterange").val().substring(0,10))).valueOf() / 1000;
-        var end = (Date.parse($("#daterange").val().substring(13,23))).valueOf() / 1000;
-        console.log("Start: " + start + " End: " + end);
-        getData(typeCode, start, end);
-        console.dir(barChartData);
-        printTypeBarChart(); 
-
+        typeCode = $("#sel_types option:selected" ).val();
       }
 
       function getData(typeCode, start, end) {
+        //console.log("Getting...")
         $.post("rest/usageByType",
           {
                 typeCode : typeCode,
                 start : start,
                 end : end
-                //start : "1514788200",
-                //end : "1527858000"
           },
-         function(data){
-
+        function(data){
+          //console.log(data);
           
           $.each(data, function(i, item) {
             //console.log(item);
-            putData(item);
+            putData(item, i);
           });
         })
         .done(function() {
@@ -228,35 +249,37 @@
         });
       }
 
-      function putData(jsonItem) {
+      function putData(jsonItem, i) {
+        //console.log("Putting...")
         var totalHours = jsonItem.maintenance + jsonItem.calibration + jsonItem.inUse + jsonItem.available;
-        barChartData.labels.push(jsonItem.name + "(" + jsonItem.serial + ")");
+        //console.log("Name: " + jsonItem.name);
+
+        usageBarChartData.labels.push(jsonItem.name + "(" + jsonItem.serial + ")");
+        //usageBarChartData.labels[i].(jsonItem.name + "(" + jsonItem.serial + ")");
         
         // Usage in %
-        barChartData.datasets[0].data.push((jsonItem.maintenance / totalHours) * 100);
-        barChartData.datasets[1].data.push((jsonItem.calibration / totalHours) * 100);
-        barChartData.datasets[2].data.push((jsonItem.inUse / totalHours) * 100);
-        barChartData.datasets[3].data.push((jsonItem.available / totalHours) * 100);
+        usageBarChartData.datasets[0].data.push((jsonItem.maintenance / totalHours) * 100);
+        usageBarChartData.datasets[1].data.push((jsonItem.calibration / totalHours) * 100);
+        usageBarChartData.datasets[2].data.push((jsonItem.inUse / totalHours) * 100);
+        usageBarChartData.datasets[3].data.push((jsonItem.available / totalHours) * 100);
         
         // Usage in workhours
         /*
-        barChartData.datasets[0].data.push(jsonItem.maintenance);
-        barChartData.datasets[1].data.push(jsonItem.calibration);
-        barChartData.datasets[2].data.push(jsonItem.inUse);
-        barChartData.datasets[3].data.push(jsonItem.available);
+        usageBarChartData.datasets[0].data.push(jsonItem.maintenance);
+        usageBarChartData.datasets[1].data.push(jsonItem.calibration);
+        usageBarChartData.datasets[2].data.push(jsonItem.inUse);
+        usageBarChartData.datasets[3].data.push(jsonItem.available);
         */
       }
 
-      function printTypeBarChart() {
-        // Clears canvas for drawing new chart
-        var chartContent = document.getElementById("chart_container");
-        chartContent.innerHTML = "&nbsp;";
-        $("#chart_container").append('<canvas id="usageChart" width="800" height="600"></canvas>');
-
+      function initChart() {
+        //console.log("Drawing...");
+        console.log("Data: " + usageBarChartData.datasets.data.labels);
         var ctx = document.getElementById("usageChart").getContext("2d");
-        var usageBar = new Chart(ctx, {
+        //var usageBarChart = new Chart(ctx, {
+          usageBarChart = new Chart(ctx, {
               type: 'bar',
-              data: barChartData,
+              data: usageBarChartData,
               options: {
                   title:{
                       display:false,
@@ -270,6 +293,9 @@
                   scales: {
                       xAxes: [{
                           stacked: true,
+                          ticks: {
+                            autoSkip: false
+                          }
                       }],
                       yAxes: [{
                           stacked: true,
@@ -278,14 +304,23 @@
                             labelString: "Usage (%)"
                         }
                       }]
-                  }
+                  },
+                  
               }
             });
-
+        usageBarChart.update();
       }
 
-      function clearData() {
-        barChartData = {
+      function clearCanvas() {
+        // Clears canvas for drawing new chart
+        var chartContent = document.getElementById("chart_container");
+        chartContent.innerHTML = "&nbsp;";
+        $("#chart_container").append('<canvas id="usageChart" width="800" height="600"></canvas>');
+      }
+
+      function initData() {
+        //console.log("Initializing data...");
+        usageBarChartData = {
               labels: [],
               datasets: [{
                   label: 'Maintenance',
@@ -305,6 +340,26 @@
                   data: []
               }]
         };
+      }
+
+/*
+      function addData(data) {
+        usageBarChart.data.datasets[0].data[]
+      }
+*/
+      function removeData() {
+        //console.log("Removing...");
+        usageBarChartData.labels.pop();
+        usageBarChart.data.labels.pop();
+          usageBarChart.data.datasets.forEach((usageBarChartData) => {         
+            usageBarChartData.data.pop();
+        });
+      }
+
+      function getDateRange() {
+        start = (Date.parse($("#daterange").val().substring(0,10))).valueOf() / 1000;
+        end = (Date.parse($("#daterange").val().substring(13,23))).valueOf() / 1000;
+        //console.log("Start: " + start + " End: " + end);
       }
 
     });
