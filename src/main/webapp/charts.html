@@ -141,15 +141,10 @@
     $(document).ready(function() {
       var usageBarChart;
       var usageBarChartData;
-
       var typeCode;
       var end;
-      findTypes();
-      initData();
-      initChart();
       
       $('input[name="daterange"]').daterangepicker();
-
       // Set default daterange to today-6 months ago
       var today = new Date();      
       var todayStr = today.toString("dd/MM/yyyy");
@@ -157,32 +152,48 @@
       var startStr = start.toString("dd/MM/yyyy");
       $("#daterange").val(startStr + " - " + todayStr);
 
-      $("#btn_select").click(function(){
-        clearCanvas();
-        removeData();
+      findTypes();
+      initData();
+      initChart();
 
+      $("#btn_select").click(function(){
+
+        clearCanvas();
+        initChart();
         getDateRange();
         selectType();
-        //removeData(usageBarChart);
+        removeData();
+        removeDataLabels();
         getData(typeCode, start, end);
-        initChart();
+
       });
 
       $(document).keypress(function(e) {
         if(e.which == 13) {
           selectType();
-
         }
       });
 
       $("#btn_update").click(function(){
         console.log("Updating...");
         clearCanvas();
+        initChart();
+        getDateRange();
+        removeData();
+        removeDataLabels();
+        console.log("TypeCode: " + typeCode + " Start: " + start + " End: " + end);
+        getData(typeCode, start, end);
+        usageBarChart.update();
+
+        /*
+        clearCanvas();
         removeData();
         
         getDateRange();
         getData(typeCode, start, end);
-        initChart();
+        usageBarChart.update();
+        */
+        //initChart();
 
         //var ctx = document.getElementById("usageChart").getContext("2d");
         //usageBarChart.data.datasets[0].data.pop();
@@ -193,8 +204,6 @@
         initChart();
         */
       });
-
-      
 
       function findTypes() {
         $.post("rest/getEquipmentTypes",
@@ -233,7 +242,7 @@
           //console.log(data);
           
           $.each(data, function(i, item) {
-            //console.log(item);
+            //console.log("In Get: " + item.name);
             putData(item, i);
           });
         })
@@ -252,7 +261,7 @@
       function putData(jsonItem, i) {
         //console.log("Putting...")
         var totalHours = jsonItem.maintenance + jsonItem.calibration + jsonItem.inUse + jsonItem.available;
-        //console.log("Name: " + jsonItem.name);
+        //console.log("In put: " + jsonItem.name);
 
         usageBarChartData.labels.push(jsonItem.name + "(" + jsonItem.serial + ")");
         //usageBarChartData.labels[i].(jsonItem.name + "(" + jsonItem.serial + ")");
@@ -274,7 +283,7 @@
 
       function initChart() {
         //console.log("Drawing...");
-        console.log("Data: " + usageBarChartData.datasets.data.labels);
+        //console.log("Data: " + usageBarChartData.datasets.data.labels.);
         var ctx = document.getElementById("usageChart").getContext("2d");
         //var usageBarChart = new Chart(ctx, {
           usageBarChart = new Chart(ctx, {
@@ -347,18 +356,40 @@
         usageBarChart.data.datasets[0].data[]
       }
 */
+
       function removeData() {
-        //console.log("Removing...");
-        usageBarChartData.labels.pop();
-        usageBarChart.data.labels.pop();
-          usageBarChart.data.datasets.forEach((usageBarChartData) => {         
-            usageBarChartData.data.pop();
+        console.log("Removing...");
+        /*
+        var i = 0;
+        
+        usageBarChartData.labels.forEach(function(dataset) {
+            console.log("Item number: " + i + " Label: " + usageBarChartData.labels[i]);
+            usageBarChartData.datasets[i]["data"] = [];
+            i++;
+            //usageBarChartData.data.pop();
         });
+        */
+        usageBarChartData.datasets[0]["data"] = [];
+        usageBarChartData.datasets[1]["data"] = [];
+        usageBarChartData.datasets[2]["data"] = [];
+        usageBarChartData.datasets[3]["data"] = [];
+        
+      }
+
+      function removeDataLabels() {
+        usageBarChartData.labels = [];
       }
 
       function getDateRange() {
         start = (Date.parse($("#daterange").val().substring(0,10))).valueOf() / 1000;
         end = (Date.parse($("#daterange").val().substring(13,23))).valueOf() / 1000;
+
+        var startDate = new Date(0);
+        var endDate = new Date(0);
+        startDate.setUTCSeconds(start);
+        endDate.setUTCSeconds(end);
+        console.log("Start: " + startDate + " End: " + endDate);
+
         //console.log("Start: " + start + " End: " + end);
       }
 
