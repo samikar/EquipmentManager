@@ -144,7 +144,13 @@
       var typeCode;
       var end;
       
-      $('input[name="daterange"]').daterangepicker();
+      $('input[name="daterange"]').daterangepicker(
+        {
+        locale: {
+          format: 'DD/MM/YYYY'
+        }
+      });
+
       // Set default daterange to today-6 months ago
       var today = new Date();      
       var todayStr = today.toString("dd/MM/yyyy");
@@ -157,7 +163,6 @@
       initChart();
 
       $("#btn_select").click(function(){
-
         clearCanvas();
         initChart();
         getDateRange();
@@ -168,41 +173,23 @@
 
       });
 
-      $(document).keypress(function(e) {
-        if(e.which == 13) {
-          selectType();
-        }
-      });
-
       $("#btn_update").click(function(){
         console.log("Updating...");
-        clearCanvas();
-        initChart();
-        getDateRange();
-        removeData();
-        removeDataLabels();
-        console.log("TypeCode: " + typeCode + " Start: " + start + " End: " + end);
-        getData(typeCode, start, end);
-        usageBarChart.update();
-
-        /*
-        clearCanvas();
-        removeData();
         
-        getDateRange();
-        getData(typeCode, start, end);
-        usageBarChart.update();
-        */
-        //initChart();
-
-        //var ctx = document.getElementById("usageChart").getContext("2d");
-        //usageBarChart.data.datasets[0].data.pop();
-        //console.dir("Data: " + usageBarChart.data.datasets[0].data);
-        //usageBarChart.update();
-        /*
+console.log("1. clearCanvas...");
         clearCanvas();
+console.log("2. initChart...");
         initChart();
-        */
+console.log("3. getDateRange...");
+        getDateRange();
+console.log("4. removeData...");
+        removeData();
+console.log("5. removeDataLabels...");
+        removeDataLabels();
+console.log("6. getData...");
+        getData(typeCode, start, end);
+console.log("7. Done!");
+
       });
 
       function findTypes() {
@@ -259,12 +246,10 @@
       }
 
       function putData(jsonItem, i) {
-        //console.log("Putting...")
+        console.log("Putting...")
         var totalHours = jsonItem.maintenance + jsonItem.calibration + jsonItem.inUse + jsonItem.available;
-        //console.log("In put: " + jsonItem.name);
 
         usageBarChartData.labels.push(jsonItem.name + "(" + jsonItem.serial + ")");
-        //usageBarChartData.labels[i].(jsonItem.name + "(" + jsonItem.serial + ")");
         
         // Usage in %
         usageBarChartData.datasets[0].data.push((jsonItem.maintenance / totalHours) * 100);
@@ -317,7 +302,7 @@
                   
               }
             });
-        usageBarChart.update();
+        //usageBarChart.update();
       }
 
       function clearCanvas() {
@@ -359,16 +344,6 @@
 
       function removeData() {
         console.log("Removing...");
-        /*
-        var i = 0;
-        
-        usageBarChartData.labels.forEach(function(dataset) {
-            console.log("Item number: " + i + " Label: " + usageBarChartData.labels[i]);
-            usageBarChartData.datasets[i]["data"] = [];
-            i++;
-            //usageBarChartData.data.pop();
-        });
-        */
         usageBarChartData.datasets[0]["data"] = [];
         usageBarChartData.datasets[1]["data"] = [];
         usageBarChartData.datasets[2]["data"] = [];
@@ -388,9 +363,7 @@
         var endDate = new Date(0);
         startDate.setUTCSeconds(start);
         endDate.setUTCSeconds(end);
-        console.log("Start: " + startDate + " End: " + endDate);
-
-        //console.log("Start: " + start + " End: " + end);
+        console.log("Start: " + startDate + "\nEnd:   " + endDate);
       }
 
     });
