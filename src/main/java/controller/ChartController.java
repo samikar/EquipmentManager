@@ -5,6 +5,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
+import java.time.Year;
 import java.time.temporal.ChronoUnit;
 import java.time.ZoneId;
 import java.util.ArrayList;
@@ -24,8 +25,10 @@ import org.springframework.web.bind.annotation.RestController;
 import model.Equipment;
 import model.EquipmentDao;
 import model.EquipmentUsage;
+import model.EquipmentUsageMonth;
 import model.Equipmenttype;
 import model.EquipmenttypeDao;
+import model.MonthlyUsage;
 import model.Reservation;
 import model.ReservationDao;
 
@@ -53,21 +56,12 @@ public class ChartController {
     		throw new IllegalArgumentException("End date must not be empty");
     	}		
 		else {
-			List<EquipmentUsage> usageList = new ArrayList<EquipmentUsage>();
-			
-			EquipmentDao edao = new EquipmentDao();
-			edao.init();
-			List<Equipment> equipmentOfType = edao.getByType(Integer.parseInt(typeCode));
-			
+			// Parse dates from epoch to Date
 			Date start = new Date(Long.parseLong(startStr) * 1000);
 			Date end = new Date(Long.parseLong(endStr) * 1000);
+			List<EquipmentUsage> result = getUsageByType(typeCode, start, end);
 			
-			for (Equipment eq : equipmentOfType) {
-				EquipmentUsage currentUsage = usageBySerial(eq.getSerial(), start, end, edao);
-				usageList.add(currentUsage);
-			}
-			edao.destroy();
-			return usageList;
+			return result;
 		}
 	}
 	
@@ -86,45 +80,41 @@ public class ChartController {
     		throw new IllegalArgumentException("End date must not be empty");
     	}		
 		else {
-			EquipmentDao edao = new EquipmentDao();
-			ReservationDao rdao = new ReservationDao();
-			edao.init();
-			Equipment equipment = edao.getBySerial(serial);
-			EquipmentUsage usage = new EquipmentUsage(equipment);
-			List<Reservation> reservationsInRange = null;
+			// Parse dates from epoch to Date
+			Date start = new Date(Long.parseLong(startStr) * 1000);
+			Date end = new Date(Long.parseLong(endStr) * 1000);
+			EquipmentUsage result = getUsageBySerial(serial, start, end);
+				
+			return result;
+		}
+	}
+	
+	@RequestMapping("/rest/usageByMonth")
+	//public List<Equipmenttype> usageByMonth(@RequestParam(value = "serial") String serial,
+	public List<MonthlyUsage> usageByMonth(@RequestParam(value = "serial") String serial,
+			@RequestParam(value = "start") String startStr,
+			@RequestParam(value = "end") String endStr) {
+		if (serial == null || serial.isEmpty()) {
+    		throw new IllegalArgumentException("Serial number must not be empty");
+    	}
+		else if (startStr == null || startStr.isEmpty()) {
+    		throw new IllegalArgumentException("Start date must not be empty");
+    	}
+		else if (endStr == null || endStr.isEmpty()) {
+    		throw new IllegalArgumentException("End date must not be empty");
+    	}		
+		else {
 			
 			// Parse dates from epoch to Date
 			Date start = new Date(Long.parseLong(startStr) * 1000);
 			Date end = new Date(Long.parseLong(endStr) * 1000);
-			edao.destroy();
-			rdao.destroy();
-
-			reservationsInRange = rdao.getBySerialAndDate(serial, start, end);
 			
-			for (Reservation currentReservation : reservationsInRange) {
-				double hours = 0;
-				hours = hoursInReservation(currentReservation, start, end);
-				switch (currentReservation.getReservationType()) {
-					case 0:
-						usage.setInUse(hours);
-						break;
-					case 1:
-						usage.setCalibration(hours);
-						break;
-					case 2:
-						usage.setMaintenance(hours);
-						break;
-				}
-			}
-			double available = workhoursInRange(start, end) - usage.getInUse() - usage.getCalibration() - usage.getMaintenance();			
-			usage.setAvailable(available);
-
-			return usage;
+			List<MonthlyUsage> result = getUsageByMonth(serial, start, end);
+			return result;
 		}
 	}
 	
 	@RequestMapping("/rest/getEquipmentTypes")
-	//public List<Equipmenttype> getbyEquipmentId() {
 	public List<Equipmenttype> getbyEquipmentId() {
 		EquipmenttypeDao etdao = new EquipmenttypeDao();
 		etdao.init();
@@ -133,21 +123,34 @@ public class ChartController {
 		return result;
 	}
 	
-	@ExceptionHandler
-	void handleIllegalArgumentException(IllegalArgumentException e, HttpServletResponse response) throws IOException {
-		response.sendError(HttpStatus.BAD_REQUEST.value());
+
+	
+	public List<EquipmentUsage> getUsageByType(String typeCode, Date start, Date end) {
+		List<EquipmentUsage> usageList = new ArrayList<EquipmentUsage>();
+		EquipmentDao edao = new EquipmentDao();
+		edao.init();
+		List<Equipment> equipmentOfType = edao.getByType(Integer.parseInt(typeCode));
+		
+		for (Equipment eq : equipmentOfType) {
+			EquipmentUsage currentUsage = getUsageBySerial(eq.getSerial(), start, end);
+			usageList.add(currentUsage);
+		}
+		edao.destroy();
+		return usageList;
 	}
 	
-	public EquipmentUsage usageBySerial(String serial, Date start, Date end, EquipmentDao edao) {
-		//EquipmentDao edao = new EquipmentDao();
+	public EquipmentUsage getUsageBySerial(String serial, Date start, Date end) {
+		EquipmentDao edao = new EquipmentDao();
 		ReservationDao rdao = new ReservationDao();
-		//edao.init();
+		edao.init();
 		rdao.init();
+		
 		Equipment equipment = edao.getBySerial(serial);
-		//edao.destroy();
 		EquipmentUsage usage = new EquipmentUsage(equipment);
+		
 		List<Reservation> reservationsInRange = null;
 		reservationsInRange = rdao.getBySerialAndDate(serial, start, end);
+		edao.destroy();
 		rdao.destroy();
 		
 		for (Reservation currentReservation : reservationsInRange) {
@@ -169,6 +172,56 @@ public class ChartController {
 		usage.setAvailable(available);
 
 		return usage;
+	}
+	
+	public List<MonthlyUsage> getUsageByMonth(String serial, Date start, Date end) {
+		List<MonthlyUsage> usageByMonth = new ArrayList<MonthlyUsage>();
+		
+		EquipmentDao edao = new EquipmentDao();
+		edao.init();
+		//Equipment equipment = edao.getBySerial(serial);
+		edao.destroy();
+		//EquipmentUsageMonth usageByMonth = new EquipmentUsageMonth(equipment);
+		
+		LocalDate startConstraint = start.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+		LocalDate endConstraint = end.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+		
+		LocalDate startCurrent = startConstraint;
+		LocalDate endCurrent = startConstraint.withDayOfMonth(startConstraint.lengthOfMonth());
+		
+		
+		do {
+//			Date startDate = Date.from(currentStart.atStartOfDay(ZoneId.systemDefault()).toInstant());
+//			LocalDate lastDayOfMonth = currentStart.withDayOfMonth(currentStart.getMonth().length(currentStart.isLeapYear()));
+//			
+//			currentStart.plusMonths(1);
+//			currentStart = LocalDate.
+//			Date endDate = Date.from(currentStart.atStartOfDay(ZoneId.systemDefault()).toInstant());
+			//getUsageBySerial(serial, startCurrent, endCurrent);
+			
+			System.out.println("StartCurrent: " + startCurrent.toString() + "\nEndCurrent: " + endCurrent.toString());
+			
+			Date startSearch = Date.from(startCurrent.atStartOfDay(ZoneId.systemDefault()).toInstant());
+			Date endSearch = Date.from(endCurrent.atStartOfDay(ZoneId.systemDefault()).toInstant());
+			String monthName = startCurrent.getMonth().name();
+			int year = endCurrent.getYear();
+			String monthStr = monthName + ", " + year;
+			EquipmentUsage eUsage = getUsageBySerial(serial, startSearch, endSearch);
+			MonthlyUsage mUsage = new MonthlyUsage();
+			
+			mUsage.setMonth(monthStr);
+			mUsage.setInUse(eUsage.getInUse());
+			mUsage.setMaintenance(eUsage.getMaintenance());
+			mUsage.setCalibration(eUsage.getCalibration());
+			
+			usageByMonth.add(mUsage);
+			startCurrent = startCurrent.plusMonths(1);
+			endCurrent = startCurrent.withDayOfMonth(startCurrent.lengthOfMonth());
+			
+			
+		} while (startCurrent.getMonth().getValue() < endConstraint.getMonth().getValue());
+		
+		return usageByMonth;
 	}
 	
 	public double hoursInReservation(Reservation reservation, Date start, Date end) {
@@ -250,12 +303,13 @@ public class ChartController {
 				}
 			}
 			// Substract the work hours for start and end day
-			workhoursBetween -= 15;
+			workhoursBetween -= WORKDAY * 2;
 		}
-		System.out.println("Workdays: " + workdays);
-		System.out.println("Workhours between start and end: " + workhoursBetween);
+		//System.out.println("Workdays: " + workdays);
+		//System.out.println("Workhours between start and end: " + workhoursBetween);
+		
 		workhoursAtStartAndEnd = workhoursInStartAndEnd(startDate, endDate);
-		System.out.println("Workhours at start and end: " + workhoursAtStartAndEnd);
+		//System.out.println("Workhours at start and end: " + workhoursAtStartAndEnd);
 		workhours = workhoursBetween + workhoursAtStartAndEnd;
 		
 		return workhours;
@@ -274,10 +328,15 @@ public class ChartController {
 		return reservationsInRange;
 	}
 	*/
+	
+	@ExceptionHandler
+	void handleIllegalArgumentException(IllegalArgumentException e, HttpServletResponse response) throws IOException {
+		response.sendError(HttpStatus.BAD_REQUEST.value());
+	}
 
 	public static void main(String[] args) {
 		SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
-		String startString = "1-1-2018 08:30:00";
+		String startString = "1-1-2017 08:30:00";
 		String endString = "1-06-2018 16:00:00";
 		Date start = null;
 		Date end = null;
@@ -292,11 +351,6 @@ public class ChartController {
 
 		ChartController cc = new ChartController();
 
-		ReservationDao rdao = new ReservationDao();
-		rdao.init();
-		rdao.initialize(4);
-		Reservation r = rdao.getDao();
-		rdao.destroy();
-		System.out.println("WorkHoursInRange: " + cc.hoursInReservation(r, start, end));
+		List<MonthlyUsage> musage = cc.getUsageByMonth("MI_09A0364", start, end);
 	}
 }
