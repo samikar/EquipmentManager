@@ -210,6 +210,8 @@ public class ChartController {
 			MonthlyUsage mUsage = new MonthlyUsage();
 			
 			mUsage.setMonth(monthStr);
+			double available = workhoursInRange(startSearch, endSearch) - mUsage.getInUse() - mUsage.getCalibration() - mUsage.getMaintenance();			
+			mUsage.setAvailable(available);
 			mUsage.setInUse(eUsage.getInUse());
 			mUsage.setMaintenance(eUsage.getMaintenance());
 			mUsage.setCalibration(eUsage.getCalibration());
@@ -219,7 +221,7 @@ public class ChartController {
 			endCurrent = startCurrent.withDayOfMonth(startCurrent.lengthOfMonth());
 			
 			
-		} while (startCurrent.getMonth().getValue() < endConstraint.getMonth().getValue());
+		} while (startCurrent.isBefore(endConstraint));
 		
 		return usageByMonth;
 	}

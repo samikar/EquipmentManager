@@ -3,6 +3,8 @@ package model;
 public class MonthlyUsage {
 	private String month;
 	
+	private double available;
+	
 	private double inUse;
 	
 	private double calibration;
@@ -15,6 +17,14 @@ public class MonthlyUsage {
 
 	public void setMonth(String month) {
 		this.month = month;
+	}
+	
+	public double getAvailable() {
+		return available;
+	}
+
+	public void setAvailable(double available) {
+		this.available = available;
 	}
 
 	public double getInUse() {
