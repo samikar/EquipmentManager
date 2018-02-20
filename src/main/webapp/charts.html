@@ -84,7 +84,17 @@
             Date range: <input type="text" name="daterange" id="daterange" value="" />
             <button type="button" class="btn btn-primary" id="btn_update">Update</button>
           </div>
-          <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 text-right">
+          <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6 text-right">
+            <span class="btn-group " data-toggle="buttons">
+              <label class="btn btn-primary active">
+                <input type="radio" name="rad_view" id="option1" value="0" autocomplete="off" checked>Devices
+              </label>
+              <label class="btn btn-primary">
+                <input type="radio" name="rad_view" id="option2" value="1" autocomplete="off">Monthly
+              </label>
+            </span>
+          </div>
+          <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6 text-right">
             <span class="btn-group " data-toggle="buttons">
               <label class="btn btn-primary active">
                 <input type="radio" name="rad_dataType" id="option1" value="0" autocomplete="off" checked>%
@@ -148,6 +158,7 @@
       var usageBarChartData;
       var typeCode;
       var dataType = $("input[name=rad_dataType]:checked").val();
+      var view = $("input[name=rad_view]:checked").val();
       var end;
       
       $('input[name="daterange"]').daterangepicker(
@@ -171,19 +182,46 @@
       $("#btn_select").click(function(){
         selectType();
         getDateRange();
-        drawChart(typeCode, start, end, dataType);
+        drawEquipmentChart(typeCode, start, end, dataType);
       });
 
       $("#btn_update").click(function(){
         getDateRange();
-        drawChart(typeCode, start, end, dataType);
+        drawEquipmentChart(typeCode, start, end, dataType);
       });
 
       $('input[name=rad_dataType]').change(function(){
         dataType = $("input[name=rad_dataType]:checked").val();
         getDateRange();
-        drawChart(typeCode, start, end, dataType);
+        drawEquipmentChart(typeCode, start, end, dataType);
+      });
+
+      $('input[name=rad_view]').change(function(){
+        dataType = $("input[name=rad_dataType]:checked").val();
+        getDateRange();
+        drawEquipmentChart(typeCode, start, end, dataType);
       });    
+
+
+
+
+      
+
+      function drawEquipmentChart(typeCode, start, end, dataType) {
+        clearCanvas();
+        initChart();
+        removeData();
+        getEquipmentData(typeCode, start, end, dataType);
+        redrawChart();
+      }
+
+      function drawMonthChart(typeCode, start, end, dataType) {
+        clearCanvas();
+        initChart();
+        removeData();
+        getMonthData(typeCode, start, end, dataType);
+        redrawChart();
+      }
 
 
       function findTypes() {
@@ -205,22 +243,42 @@
           });
       }
 
-      // Set name of selected type to modal title
-      function selectType() {
-        $("#modal_title").text($("#sel_types option:selected").text());
-        typeCode = $("#sel_types option:selected" ).val();
-      }
-
-      function drawChart(typeCode, start, end, dataType) {
-        clearCanvas();
-        initChart();
-        removeData();
-        getData(typeCode, start, end, dataType);
-        redrawChart();
-      }
-
-      function getData(typeCode, start, end, dataType) {
+      function getEquipmentData(typeCode, start, end, dataType) {
         $.post("rest/usageByType",
+          {
+                typeCode : typeCode,
+                start : start,
+                end : end
+          },
+        function(data){
+          $.each(data, function(i, item) {
+            // Show usage in percentage
+            if (dataType == "0") {
+              insertDataInPercentage(item, i);
+              usageBarChart.options.scales.yAxes[0].scaleLabel.labelString = "Usage (%)";
+            }
+            else if (dataType == "1") {
+              // Show usage in work hours
+              insertDataInHours(item, i);
+              usageBarChart.options.scales.yAxes[0].scaleLabel.labelString = "Usage (h)";
+            }
+          });
+        })
+        .done(function() {
+          redrawChart();
+          //alert( "second success" );
+        })
+        .fail(function(jqXHR, textStatus) {
+          //$('#txt_equipmentId').val("");
+          //$("#status").removeClass('alert-success');
+        })
+        .always(function() {
+          //alert( "finished" );
+        });
+      }
+
+      function getMonthData(typeCode, start, end, dataType) {
+        $.post("rest/usageByMonth",
           {
                 typeCode : typeCode,
                 start : start,
@@ -355,6 +413,12 @@
         usageBarChartData.datasets[2]["data"] = [];
         usageBarChartData.datasets[3]["data"] = [];
         usageBarChartData.labels = [];
+      }
+
+      // Set name of selected type to modal title
+      function selectType() {
+        $("#modal_title").text($("#sel_types option:selected").text());
+        typeCode = $("#sel_types option:selected" ).val();
       }
 
       // Reads date range from relevant field
