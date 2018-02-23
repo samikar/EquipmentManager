@@ -94,8 +94,8 @@ public class ChartController {
 		}
 	}
 	
-	@RequestMapping("/rest/usageByMonthType")
-	public List<MonthlyUsage> usageByMonthType(@RequestParam(value = "typeCode") String typeCode,
+	@RequestMapping("/rest/monthlyUsageByType")
+	public List<MonthlyUsage> getMonthlyUsageByType(@RequestParam(value = "typeCode") String typeCode,
 			@RequestParam(value = "start") String startStr,
 			@RequestParam(value = "end") String endStr) {
 		if (typeCode == null || typeCode.isEmpty()) {
@@ -111,38 +111,14 @@ public class ChartController {
 			// Parse dates from epoch to Date
 			Date start = new Date(Long.parseLong(startStr) * 1000);
 			Date end = new Date(Long.parseLong(endStr) * 1000);
-			List<MonthlyUsage> result = new ArrayList<MonthlyUsage>();
-			
-			EquipmentDao edao = new EquipmentDao();
-			edao.init();
-			List<Equipment> equipmentList = edao.getByType(Integer.parseInt(typeCode));
-			edao.destroy();
-			
-			for (Equipment eq : equipmentList) {
-				List<MonthlyUsage> equipmentUsage = getUsageByMonth(eq.getSerial(), start, end);
-				if (result.size() == 0) {
-					System.out.println("Creating first data set...");
-					result = equipmentUsage;
-				}
-					
-				else {
-					for (int i=0; i < equipmentUsage.size(); i++) {
-						MonthlyUsage currentUsage = equipmentUsage.get(i);
-						MonthlyUsage totalUsage = result.get(i);
-						currentUsage.setAvailable(totalUsage.getAvailable() + currentUsage.getAvailable());
-						currentUsage.setInUse(totalUsage.getInUse() + currentUsage.getInUse());
-						currentUsage.setCalibration(totalUsage.getCalibration() + currentUsage.getCalibration());
-						currentUsage.setMaintenance(totalUsage.getMaintenance() + currentUsage.getMaintenance());
-						result.set(i, currentUsage);
-					}
-				}
-			}
+			List<MonthlyUsage> result = getMonthlyUsageByType(typeCode, start, end);
+
 			return result;
 		}
 	}
 	
 	@RequestMapping("/rest/usageByMonth")
-	public List<MonthlyUsage> usageByMonth(@RequestParam(value = "serial") String serial,
+	public List<MonthlyUsage> getMonthlyUsage(@RequestParam(value = "serial") String serial,
 			@RequestParam(value = "start") String startStr,
 			@RequestParam(value = "end") String endStr) {
 		if (serial == null || serial.isEmpty()) {
@@ -159,7 +135,7 @@ public class ChartController {
 			Date start = new Date(Long.parseLong(startStr) * 1000);
 			Date end = new Date(Long.parseLong(endStr) * 1000);
 			
-			List<MonthlyUsage> result = getUsageByMonth(serial, start, end);
+			List<MonthlyUsage> result = getMonthlyUsage(serial, start, end);
 			return result;
 		}
 	}
@@ -178,13 +154,12 @@ public class ChartController {
 		EquipmentDao edao = new EquipmentDao();
 		edao.init();
 		List<Equipment> equipmentOfType = edao.getByType(Integer.parseInt(typeCode));
+		edao.destroy();
 		
 		for (Equipment eq : equipmentOfType) {
 			EquipmentUsage currentUsage = getUsageBySerial(eq.getSerial(), start, end);
 			usageList.add(currentUsage);
 		}
-		
-		edao.destroy();
 		return usageList;
 	}
 	
@@ -203,6 +178,7 @@ public class ChartController {
 		rdao.destroy();
 		
 		for (Reservation currentReservation : reservationsInRange) {
+			System.out.println("**** Reservation: " + currentReservation.getReservationId() + " ****");
 			double hours = 0;
 			hours = hoursInReservation(currentReservation, start, end);
 			switch (currentReservation.getReservationType()) {
@@ -224,16 +200,46 @@ public class ChartController {
 		return usage;
 	}
 	
-	public List<MonthlyUsage> getUsageByMonth(String serial, Date start, Date end) {
-		List<MonthlyUsage> usageByMonth = new ArrayList<MonthlyUsage>();
+	public List<MonthlyUsage> getMonthlyUsageByType(String typeCode, Date start, Date end) {
+		List<MonthlyUsage> usageByTypeMonthly = new ArrayList<MonthlyUsage>();
+		EquipmentDao edao = new EquipmentDao();
+		edao.init();
+		List<Equipment> equipmentOfType = edao.getByType(Integer.parseInt(typeCode));
+		edao.destroy();
 		
+		for (Equipment eq : equipmentOfType) {
+			List<MonthlyUsage> currentEquipmentMonthlyUsage = getMonthlyUsage(eq.getSerial(), start, end);
+			if (usageByTypeMonthly.size() == 0) {
+				System.out.println("Creating first data set...");
+				usageByTypeMonthly = currentEquipmentMonthlyUsage;
+			}
+				
+			else {
+				for (int i=0; i < currentEquipmentMonthlyUsage.size(); i++) {
+					MonthlyUsage currentUsage = currentEquipmentMonthlyUsage.get(i);
+					MonthlyUsage totalUsage = usageByTypeMonthly.get(i);
+					totalUsage.setAvailable(totalUsage.getAvailable() + currentUsage.getAvailable());
+					totalUsage.setInUse(totalUsage.getInUse() + currentUsage.getInUse());
+					totalUsage.setCalibration(totalUsage.getCalibration() + currentUsage.getCalibration());
+					totalUsage.setMaintenance(totalUsage.getMaintenance() + currentUsage.getMaintenance());
+					usageByTypeMonthly.set(i, totalUsage);
+				}
+			}
+		}
+		
+		return usageByTypeMonthly;
+	}
+	
+	public List<MonthlyUsage> getMonthlyUsage(String serial, Date start, Date end) {
+		List<MonthlyUsage> monthlyUsage = new ArrayList<MonthlyUsage>();
+		
+		// Convert Dates to LocalDateTime
 		LocalDateTime startConstraint = LocalDateTime.ofInstant(start.toInstant(), ZoneId.systemDefault()); 
 		LocalDateTime endConstraint = LocalDateTime.ofInstant(end.toInstant(), ZoneId.systemDefault());
 		
-//		LocalDateTime startCurrent = startConstraint.with(startConstraint.plusHours(STARTHOUR).plusMinutes(STARTMINUTE));
-//		LocalDateTime endCurrent = startConstraint.with(startConstraint.plusMonths(1).withDayOfMonth(1).minusDays(1).plusHours(ENDHOUR).plusMinutes(ENDMINUTE));
-		
+		// Set start constraint time to start at defined starting time of workday
 		LocalDateTime startCurrent = startConstraint.plusHours(STARTHOUR).plusMinutes(STARTMINUTE);
+		
 		LocalDateTime endCurrent = startConstraint.with(startConstraint.plusMonths(1).withDayOfMonth(1).minusDays(1));
 		
 		
@@ -247,7 +253,7 @@ public class ChartController {
 			// Moves end date to the last day of the month
 			else { 
 				endCurrent = endCurrent.plusMonths(1).withDayOfMonth(1).minusDays(1);
-				endCurrent = endCurrent.minusHours(endCurrent.getHour()).minusMinutes(endCurrent.getMinute());
+				endCurrent = endCurrent.minusHours(endCurrent.getHour()).minusMinutes(endCurrent.getMinute());				
 				endCurrent = endCurrent.plusHours(ENDHOUR).plusMinutes(ENDMINUTE);
 			}
 			
@@ -273,58 +279,17 @@ public class ChartController {
 			mUsage.setMaintenance(eUsage.getMaintenance());
 			
 			
-			usageByMonth.add(mUsage);
+			monthlyUsage.add(mUsage);
 			// Moves start date to first the day of the month
 			startCurrent = startCurrent.minusDays(startCurrent.getDayOfMonth() - 1);
 			// Move dates one month ahead
 			startCurrent = startCurrent.plusMonths(1);
 			endCurrent = endCurrent.plusMonths(1);
 		} while (startCurrent.isBefore(endConstraint));
-				/*
-		do {			
-			System.out.println("StartCurrent: " + startCurrent.toString());
-			System.out.println("EndCurrent: " + endCurrent.toString());
-			
-			Date startSearch = Date.from(startCurrent.atZone(ZoneId.systemDefault()).toInstant()); 
-			Date endSearch = Date.from(endCurrent.atZone(ZoneId.systemDefault()).toInstant());
-			
-			
-			
-			Calendar cal =  Calendar.getInstance();
-			cal.setTime(startSearch);
 
-			cal.setTime(endSearch);
-			
-			EquipmentUsage eUsage = getUsageBySerial(serial, startSearch, endSearch);
-			MonthlyUsage mUsage = new MonthlyUsage();
-			
-			// Create month name & year for chart label
-			StringBuilder sb = new StringBuilder();
-			sb.append(startCurrent.getMonth().name() + ", " + endCurrent.getYear());
-			mUsage.setMonth(sb.toString());
-			
-			double available = workhoursInRange(startSearch, endSearch) - mUsage.getInUse() - mUsage.getCalibration() - mUsage.getMaintenance();			
-			mUsage.setAvailable(available);
-			mUsage.setInUse(eUsage.getInUse());
-			mUsage.setMaintenance(eUsage.getMaintenance());
-			mUsage.setCalibration(eUsage.getCalibration());
-			
-			usageByMonth.add(mUsage);
-			
-			startCurrent = startCurrent.plusMonths(1);
-			System.out.println("Current month: " + startCurrent.getMonthValue());
-			if (startConstraint.getMonthValue() == 1) {
-				System.out.println("Testing.......");
-				startCurrent = startCurrent.plusYears(1);
-			}
-			endCurrent = startCurrent.with(startConstraint.plusMonths(1).withDayOfMonth(1).minusDays(1));
-			
-			
-		} while (startCurrent.isBefore(endConstraint));
-		*/
-		return usageByMonth;
+		return monthlyUsage;
 	}
-	
+
 	public double hoursInReservation(Reservation reservation, Date start, Date end) {
 		double workhours = 0;
 		if (reservation.getDateTake().after(end) || reservation.getDateReturn().before(start))
@@ -342,7 +307,7 @@ public class ChartController {
 		}
 	}
 
-	public double workhoursInStartAndEnd(Date startDate, Date endDate) {
+	public double workhoursNotAtStartAndEnd(Date startDate, Date endDate) {
 		double workhours = 0;
 		long startMinutes = 0;
 		long endMinutes = 0;
@@ -379,42 +344,51 @@ public class ChartController {
 			resultMilliseconds = endDate.getTime() - startDate.getTime();
 			endMinutes = TimeUnit.MILLISECONDS.toMinutes(resultMilliseconds);
 		}
-		workhours = (double) (startMinutes + endMinutes) / 60;
+		workhours = (WORKDAY * 2) - ((double) (startMinutes + endMinutes) / 60);
 		return workhours;
 	}
 
 	public double workhoursInRange(Date startDate, Date endDate) {
 		double workhours = 0;
-		double workhoursBetween = 0;
+		//double workhoursBetween = 0;
 		double workhoursAtStartAndEnd = 0;
 		
 		int workdays = 0; // FOR DEBUGGING
 		
 		LocalDate start = startDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
 		LocalDate end = endDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-		System.out.println("Start: " + start.toString() + " End: " + end.toString());
-		long daysInBetween = ChronoUnit.DAYS.between(start, end);
-		System.out.println("Days between start & end: " + daysInBetween);
 		
-		if (daysInBetween > 0) {
-			for (LocalDate date = start; date.isBefore(end); date = date.plusDays(1)) {
-				DayOfWeek dayOfWeek = date.getDayOfWeek();
-				if (!dayOfWeek.equals(DayOfWeek.SATURDAY) && !dayOfWeek.equals(DayOfWeek.SUNDAY)) {
-					// System.out.println("Day: " + date.getDayOfWeek());
-					workhoursBetween += WORKDAY;
-					workdays++;
-				}
-			}
-			// Substract the work hours for start and end day
-			workhoursBetween -= WORKDAY * 2;
+		if (start.isEqual(end)) {
+			workhours = ((double) endDate.getTime() - (double) startDate.getTime()) / (60 * 60 * 1000);
+			System.out.println("One day: " + workhours);
+			return workhours;
 		}
+		System.out.println("Start: " + start.toString() + " End: " + end.toString());
+//		long daysInBetween = ChronoUnit.DAYS.between(start, end);
+//		System.out.println("Days between start & end: " + daysInBetween);
+
+		LocalDate date = start;
+		do {
+			DayOfWeek dayOfWeek = date.getDayOfWeek();
+			if (!dayOfWeek.equals(DayOfWeek.SATURDAY) && !dayOfWeek.equals(DayOfWeek.SUNDAY)) {
+				// System.out.println("Day: " + date.getDayOfWeek());
+				workhours += WORKDAY;
+				workdays++;
+			}
+			date = date.plusDays(1);
+		// Loop until date has passed end date
+		} while (date.isBefore(end.plusDays(1)));
+
+		// Substract the work hours for start and end day
+		//workhoursBetween -= WORKDAY * 2;
+
 		System.out.println("Workdays: " + workdays);
-		System.out.println("Workhours between start and end: " + workhoursBetween);
-		
-		workhoursAtStartAndEnd = workhoursInStartAndEnd(startDate, endDate);
-		System.out.println("Workhours at start and end: " + workhoursAtStartAndEnd);
-		workhours = workhoursBetween + workhoursAtStartAndEnd;
-		
+		System.out.println("Workhours between start and end: " + workhours);
+
+		workhoursAtStartAndEnd = workhoursNotAtStartAndEnd(startDate, endDate);
+		System.out.println("Workhours not at start & end: " + workhoursAtStartAndEnd);
+		workhours -= workhoursAtStartAndEnd;
+		System.out.println("Total workhours: " + workhours);
 		return workhours;
 	}
 
@@ -460,8 +434,10 @@ public class ChartController {
 
 		ChartController cc = new ChartController();
 		//double hours = cc.hoursInReservation(res, start, end);
-		cc.getUsageByMonth("MI_08/2007", start, end);
+		cc.getMonthlyUsage("MI_08/2007", start, end);
 
 		//List<MonthlyUsage> musage = cc.getUsageByMonth("MI_09A0364", start, end);
 	}
 }
+
+	
