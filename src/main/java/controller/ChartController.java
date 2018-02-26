@@ -117,7 +117,7 @@ public class ChartController {
 		}
 	}
 	
-	@RequestMapping("/rest/usageByMonth")
+	@RequestMapping("/rest/monthlyUsage")
 	public List<MonthlyUsage> getMonthlyUsage(@RequestParam(value = "serial") String serial,
 			@RequestParam(value = "start") String startStr,
 			@RequestParam(value = "end") String endStr) {
