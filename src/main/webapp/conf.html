@@ -57,9 +57,35 @@
 
   <div class="container">
     <br><br><br>
-    <div class="row">
-      <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-        Conffia
+      <div class="row">
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+            <div class="form-group">
+              <div class="input-group input-file" name="Fichier1">
+                <span class="input-group-btn">
+                  <button class="btn btn-default btn-choose" type="button">Choose</button>
+                </span>
+                <input type="text" class="form-control" placeholder='Equipment list...' />
+                <span class="input-group-btn">
+                  <button type="submit" class="btn btn-primary mb-2 pull-right" disabled>Submit</button>
+                </span>
+              </div>
+            </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+            <div class="form-group">
+              <div class="input-group input-file" name="Fichier1">
+                <span class="input-group-btn">
+                  <button class="btn btn-default btn-choose" type="button">Choose</button>
+                </span>
+                <input type="text" class="form-control" placeholder='Equipment types...' />
+                <span class="input-group-btn">
+                  <button type="submit" class="btn btn-primary mb-2 pull-right" disabled>Submit</button>
+                </span>
+              </div>
+            </div>
+        </div>
       </div>
     </div>
   </div> <!-- /container -->
@@ -73,47 +99,36 @@
 
   <script>
     $(document).ready(function(){
-      $("#btn_submit").click(function(){
-        takeEquipment();
-      });
 
-      $(document).keypress(function(e) {
-        if(e.which == 13) {
-          takeEquipment();
-        }
-      });
-
-      function takeEquipment() {
-        var employeeId = $('#txt_employeeId').val();
-        var serial = $('#txt_serial').val();
-        var reservationType = $('input[name=rad_type]:checked').val();
-        $.post("rest/take",
-        {
-          employeeId: employeeId,
-          serial: serial,
-          reservationType: reservationType
-        },
-        function(data){
-          $('#txt_serial').val("");
-          $('#txt_serial').focus();
-          $("#status").removeClass('hidden');
-          $("#status").removeClass('alert-danger');
-          $("#status").addClass('alert-success');
-          $('#status').text(data["equipment"]["serial"] + "/" +  data["equipment"]["name"] + " succesfully reserved.");
-        })
-        .done(function() {
-        //alert( "second success" );
-        })
-        .fail(function(jqXHR, textStatus) {
-          $('#txt_serial').val("");
-          $("#status").addClass('alert-danger');
-          $("#status").removeClass('hidden');
-          $('#status').text("Error: " + jqXHR["responseJSON"]["message"]);       
-        })
-        .always(function() {
-          //alert( "finished" );
-        });
+      function bs_input_file() {
+        $(".input-file").before(
+          function() {
+            if ( ! $(this).prev().hasClass('input-ghost') ) {
+              var element = $("<input type='file' class='input-ghost' style='visibility:hidden; height:0'>");
+              element.attr("name",$(this).attr("name"));
+              element.change(function(){
+                element.next(element).find('input').val((element.val()).split('\\').pop());
+              });
+              $(this).find("button.btn-choose").click(function(){
+                element.click();
+              });
+              $(this).find("button.btn-reset").click(function(){
+                element.val(null);
+                $(this).parents(".input-file").find('input').val('');
+              });
+              $(this).find('input').css("cursor","pointer");
+              $(this).find('input').mousedown(function() {
+                $(this).parents('.input-file').prev().click();
+                return false;
+              });
+              return element;
+            }
+          }
+        );
       }
+      $(function() {
+        bs_input_file();
+      });
     });
   </script>
 

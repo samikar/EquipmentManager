@@ -1,14 +1,13 @@
 package db;
 
-import java.io.FileInputStream;
 import java.util.Enumeration;
-import java.util.HashMap;
 import java.util.Properties;
+
 import javax.naming.Context;
 import javax.naming.NamingEnumeration;
 import javax.naming.NamingException;
-import javax.naming.directory.Attributes;
 import javax.naming.directory.Attribute;
+import javax.naming.directory.Attributes;
 import javax.naming.directory.DirContext;
 import javax.naming.directory.InitialDirContext;
 import javax.naming.directory.SearchControls;
@@ -20,27 +19,17 @@ public class ADHandler {
 	}
 
 	public static String findEmployeeName(String employeeId) {
+		Properties appProperties = PropertyUtils.loadProperties();
+		
 		Properties LDAPproperties = new Properties();
 		StringBuilder nameBuilder = new StringBuilder();
-		try {
-			// finding the current dir
-			String rootPath = "C:\\EquipmentManager\\ConfigFile\\";
-			// locating the config file
-			String appConfigPath = rootPath + "app.properties";
-			Properties appProperties = new Properties();
-			appProperties.load(new FileInputStream(appConfigPath));
-
-			LDAPproperties.put(Context.INITIAL_CONTEXT_FACTORY, "com.sun.jndi.ldap.LdapCtxFactory");
-			LDAPproperties.put(Context.PROVIDER_URL, appProperties.getProperty("ADURL"));
-			LDAPproperties.put(Context.SECURITY_AUTHENTICATION, "simple");
-			LDAPproperties.put(Context.SECURITY_PRINCIPAL, appProperties.getProperty("ADuser") + "@danfoss");
-			LDAPproperties.put(Context.SECURITY_CREDENTIALS, appProperties.getProperty("ADpassword"));
-		} catch (Exception ex) {
-			String msg = "Error reading properties file: " + ex.toString();
-			System.out.println(msg);
-			return msg;
-		}
-
+		
+		LDAPproperties.put(Context.INITIAL_CONTEXT_FACTORY, "com.sun.jndi.ldap.LdapCtxFactory");
+		LDAPproperties.put(Context.PROVIDER_URL, appProperties.getProperty("ADURL"));
+		LDAPproperties.put(Context.SECURITY_AUTHENTICATION, "simple");
+		LDAPproperties.put(Context.SECURITY_PRINCIPAL, appProperties.getProperty("ADuser") + "@danfoss");
+		LDAPproperties.put(Context.SECURITY_CREDENTIALS, appProperties.getProperty("ADpassword"));
+		
 		try {
 			DirContext context = new InitialDirContext(LDAPproperties);
 			SearchControls searchCtrls = new SearchControls();

@@ -10,12 +10,8 @@ import java.io.FileInputStream;
 
 public class LocalDBHandler {
 	
-//	public static void main(String[] args){
-//		Vector v = new SensorDataDB().fetchSensorData(null, null);
-//        System.out.println("Number of rows: " + v.size());
-//    }
-	
     public Connection initDB() {
+    	Properties appProperties = PropertyUtils.loadProperties();
 		try {
 			Class.forName("com.mysql.jdbc.Driver").newInstance();
 			System.out.println("Driver loaded");
@@ -24,12 +20,6 @@ public class LocalDBHandler {
             return null;
 		}
         try{
-            //finding the current dir
-            String rootPath = "C:\\EquipmentManager\\ConfigFile\\";
-            //locating the config file
-			String appConfigPath = rootPath + "app.properties";
-            Properties appProperties = new Properties();
-            appProperties.load(new FileInputStream(appConfigPath));
             //now read db address, db name, username and password from app.properties -file
 			String connPath = "jdbc:mysql://" + appProperties.getProperty("dbaddress") + "/" + appProperties.getProperty("dbname") + "?user=" + appProperties.getProperty("user") + "&password="+ appProperties.getProperty("password");
 			System.out.println(connPath);
