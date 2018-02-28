@@ -37,7 +37,7 @@ public class ConfigurationController {
 	@RequestMapping(value="/rest/uploadEquipmentFile", method=RequestMethod.POST, consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
 	public ResponseEntity<Object> uploadEquipmentFile(@RequestParam("file") MultipartFile file) throws IOException {		
 		if (!verifyFileExtension(file.getOriginalFilename())) {
-			return new ResponseEntity<>("File not uploaded: file extension should be \"xlsx\" (Excel spreadsheet)." , HttpStatus.UNSUPPORTED_MEDIA_TYPE);
+			return new ResponseEntity<>("File extension should be \"xlsx\" (Excel spreadsheet)." , HttpStatus.UNSUPPORTED_MEDIA_TYPE);
 		}
 		
 		File convertFile = new File("DataFiles" + File.separator + file.getOriginalFilename());
@@ -46,9 +46,11 @@ public class ConfigurationController {
 		fout.write(file.getBytes());
 		fout.close();
 		
-		if (!verifyEquipmentFileHeaders(convertFile.getAbsolutePath())) {
+		String headerVerify;
+		headerVerify = verifyEquipmentFileHeaders(convertFile.getAbsolutePath()); 
+		if (!headerVerify.equals("OK")) {
 			deleteFile(convertFile);
-			return new ResponseEntity<>("Spreadsheet headers wrong." , HttpStatus.UNSUPPORTED_MEDIA_TYPE);
+			return new ResponseEntity<>("Spreadsheet headers wrong: " + headerVerify + ". \nFix configuration file or spreadsheet headers.", HttpStatus.UNSUPPORTED_MEDIA_TYPE);
 		}
 		
 		EquipmentDataReader.readEquipmentFromFile(convertFile.getPath());
@@ -58,7 +60,7 @@ public class ConfigurationController {
 	@RequestMapping(value="/rest/uploadTypeFile", method=RequestMethod.POST, consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
 	public ResponseEntity<Object> uploadTypeFile(@RequestParam("file") MultipartFile file) throws IOException {		
 		if (!verifyFileExtension(file.getOriginalFilename())) {
-			return new ResponseEntity<>("File not uploaded: file extension should be \"xlsx\" (Excel spreadsheet)." , HttpStatus.UNSUPPORTED_MEDIA_TYPE);
+			return new ResponseEntity<>("File extension should be \"xlsx\" (Excel spreadsheet)." , HttpStatus.UNSUPPORTED_MEDIA_TYPE);
 		}
 		
 		File convertFile = new File("DataFiles" + File.separator + file.getOriginalFilename());
@@ -67,13 +69,16 @@ public class ConfigurationController {
 		fout.write(file.getBytes());
 		fout.close();
 		
-		if (!verifyTypeFileHeaders(convertFile.getAbsolutePath())) {
+		String headerVerify;
+		headerVerify = verifyTypeFileHeaders(convertFile.getAbsolutePath());
+		
+		if (!headerVerify.equals("OK")) {
 			deleteFile(convertFile);
-			return new ResponseEntity<>("Spreadsheet headers wrong." , HttpStatus.UNSUPPORTED_MEDIA_TYPE);
+			return new ResponseEntity<>("Spreadsheet headers wrong: " + headerVerify + ". \nFix configuration file or spreadsheet headers.", HttpStatus.UNSUPPORTED_MEDIA_TYPE);
 		}
 		
 		EquipmentDataReader.readEquipmentTypesFromFile(convertFile.getPath());
-		return new ResponseEntity<>("Equipment data read succesfully!", HttpStatus.OK);	
+		return new ResponseEntity<>("Equipment type data read succesfully!", HttpStatus.OK);	
 	}
 	
 	public boolean verifyFileExtension(String filePath) {	
@@ -89,7 +94,7 @@ public class ConfigurationController {
 			return true;
 	}
 	
-	public boolean verifyEquipmentFileHeaders(String filePath) {
+	public String verifyEquipmentFileHeaders(String filePath) {
                 
 		FileInputStream inputStreamEquipment = null;
 		try {
@@ -130,18 +135,16 @@ public class ConfigurationController {
 			Cell cell = cellIterator.next();
 			int column = cell.getColumnIndex();
 			if (column == descriptionColumn && !cell.getStringCellValue().equals(descriptionStr))
-				return false;
+				return "is \"" + cell.getStringCellValue() + "\", should be: \"" + descriptionStr + "\"";
 			else if (column == serialColumn && !cell.getStringCellValue().equals(serialStr))
-				return false;
+				return "is \"" + cell.getStringCellValue() + "\", should be: \"" + serialStr + "\"";
 			else if (column == typeCodeColumn && !cell.getStringCellValue().equals(typeCodeStr))
-				return false;
+				return "is \"" + cell.getStringCellValue() + "\", should be: \"" + typeCodeStr + "\"";
 		}
-		return true;
+		return "OK";
 	}
 	
-	public boolean verifyTypeFileHeaders(String filePath) {
-		
-		
+	public String verifyTypeFileHeaders(String filePath) {
 		FileInputStream inputStreamEquipment = null;
 		try {
 			inputStreamEquipment = new FileInputStream(new File(filePath));
@@ -177,11 +180,11 @@ public class ConfigurationController {
 			int column = cell.getColumnIndex();
 
 			if (column == typeNameColumn && !cell.getStringCellValue().equals(typeNameStr))
-				return false;
+				return "is \"" + cell.getStringCellValue() + "\", should be: \"" + typeNameStr + "\"";
 			else if (column == typeCodeColumn && !cell.getStringCellValue().equals(typeCodeStr))
-				return false;
+				return "is \"" + cell.getStringCellValue() + "\", should be: \"" + typeCodeStr + "\"";
 		}
-		return true;
+		return "OK";
 	}
 	
 	public boolean deleteFile(File file) {

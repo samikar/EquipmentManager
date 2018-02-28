@@ -43,6 +43,8 @@ public class EquipmentDataReader {
 		edao.init();
 		eqTypeDao.init();
 
+		System.out.println("Reading equipment file...");
+		
 		Iterator<Row> iterator = firstSheet.iterator();
 
 		for (int i=0; i<Integer.parseInt(appProperties.getProperty("EquipmentFileRowsBeforeData")); i++) {
@@ -144,7 +146,6 @@ public class EquipmentDataReader {
 				
 				Cell cell = cellIterator.next();
 				int column = cell.getColumnIndex();
-				
 				
 				if (column == typeNameColumn)
 					eqType.setTypeName(cell.getStringCellValue());
