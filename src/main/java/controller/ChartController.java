@@ -140,8 +140,8 @@ public class ChartController {
 		}
 	}
 	
-	@RequestMapping("/rest/getEquipmentTypes")
-	public List<Equipmenttype> getEquipmentTypes() {
+	@RequestMapping("/rest/getEquipmentTypesWithEquipment")
+	public List<Equipmenttype> getEquipmentTypesWithEquipment() {
 		EquipmenttypeDao etdao = new EquipmenttypeDao();
 		etdao.init();
 		List<Equipmenttype> result = etdao.getEquipmentTypesWithEquipment();

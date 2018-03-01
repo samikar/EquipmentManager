@@ -29,7 +29,7 @@ function drawMonthlyChart(typeCode, start, end, dataType) {
 }
 
 function findTypes() {
-  $.post("rest/getEquipmentTypes",
+  $.post("rest/getEquipmentTypesWithEquipment",
     function(data){
       $.each(data, function(i, item) {
         $("#sel_types").append('<option value="' + item["typeCode"] + '">' + item["typeName"] + '</option>');

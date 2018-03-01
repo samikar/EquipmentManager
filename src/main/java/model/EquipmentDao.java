@@ -78,6 +78,12 @@ public class EquipmentDao {
 		entityManager.close();
 	}
 	
+	public List<Equipment> getAll() {
+		List<Equipment> equipmentList = entityManager.createNamedQuery("Equipment.findAll", Equipment.class)
+				.getResultList();
+		return equipmentList;
+	}
+	
 	public int getEquipmentIdBySerial(String serial) {
 		List<Equipment> equipmentList = entityManager.createNamedQuery("Equipment.findBySerial", Equipment.class)
 				.setParameter(1, serial).getResultList();
