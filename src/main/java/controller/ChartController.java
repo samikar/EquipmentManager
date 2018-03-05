@@ -178,7 +178,7 @@ public class ChartController {
 		rdao.destroy();
 		
 		for (Reservation currentReservation : reservationsInRange) {
-			System.out.println("**** Reservation: " + currentReservation.getReservationId() + " ****");
+//			System.out.println("**** Reservation: " + currentReservation.getReservationId() + " ****");
 			double hours = 0;
 			hours = hoursInReservation(currentReservation, start, end);
 			switch (currentReservation.getReservationType()) {

@@ -9,11 +9,10 @@ public class DatabaseUtil {
 
     private static EntityManagerFactory buildSessionFactory() {
         try {
-            //if (sessionFactory == null || !sessionFactory.isOpen()) {
         	if (sessionFactory == null) {
             	sessionFactory = Persistence.createEntityManagerFactory("EquipmentManager");
             }
-            
+
             return sessionFactory;
         } catch (Throwable ex) {
             System.err.println("Initial EntityManagerFactory creation failed." + ex);

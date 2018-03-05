@@ -7,7 +7,7 @@ import java.util.Date;
 
 
 /**
- * The persistent class for the reservation database table.
+ * Persistence class for the reservation database table.
  * 
  */
 @Entity
@@ -70,7 +70,8 @@ import java.util.Date;
                         "INNER JOIN equipment ON reservation.equipmentId = equipment.equipmentId " + 
                         "WHERE equipment.serial = ? AND " +		// serial
                         "reservation.date_take < ? AND " + 		// end 
-                        "reservation.date_return > ?",			// begin
+                        "reservation.date_return > ? AND "+		// begin
+                        "equipment.status = 1",			// only look for active equipment
                         resultClass=Reservation.class                        
     )
     

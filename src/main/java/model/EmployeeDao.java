@@ -1,14 +1,13 @@
 package model;
 
-import javax.persistence.EntityManagerFactory;
+import java.util.List;
+
 import javax.persistence.EntityManager;
-import javax.persistence.Persistence;
+import javax.persistence.EntityManagerFactory;
 import javax.persistence.Query;
 
 import db.ADHandler;
 import db.DatabaseUtil;
-
-import java.util.List;
 
 public class EmployeeDao {
 	private Employee dao;
@@ -120,7 +119,10 @@ public class EmployeeDao {
 	}
 	
 	public boolean employeeInAD(String employeeId) {
-		String employeeName = ADHandler.findEmployeeName(employeeId);
+		ADHandler handler = new ADHandler();
+		handler.init();
+		String employeeName = handler.findEmployeeName(employeeId);
+		handler.close();
 		if (employeeName.length() > 0) {
 			addEmployeeToDB(employeeId, employeeName);
 			System.out.println("Employee added to DB");

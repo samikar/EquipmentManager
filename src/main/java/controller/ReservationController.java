@@ -31,12 +31,6 @@ public class ReservationController {
     public String hello(@RequestParam(value="name", defaultValue="World") String name) {
         return "{\"id\":\"hello\"}";
     }
-    
-    @RequestMapping("/rest/ADtest")
-    public String adTest(@RequestParam(value="employeeId", defaultValue="World") String employeeId) {
-    	String name = ADHandler.findEmployeeName(employeeId);
-        return name;
-    }
 
     @RequestMapping("/rest/getallreservations")
     public List<Reservation> getallreservations() {	
@@ -332,7 +326,6 @@ public class ReservationController {
 			eStatus.setAvailability(availability);
 			equipmentStatusList.add(eStatus);
 		}
-
 		return equipmentStatusList;
 	}
 
@@ -349,31 +342,4 @@ public class ReservationController {
 	void handleIllegalArgumentException(IllegalArgumentException e, HttpServletResponse response) throws IOException {
 		response.sendError(HttpStatus.BAD_REQUEST.value());
 	}
-	  
-    /*
-    @RequestMapping("/rest/getbyEquipmentType")
-    public List<Reservation> getbyEquipmentType(@RequestParam(value="equipmentType", defaultValue="0") String equipmentId) {
-    	
-    }
-    */  
-    
-    /*
-    @RequestMapping("/serialtest")
-    public String serialTest(@RequestParam(value="serial", defaultValue="0") String serial) {
-    	EquipmentDao edao = new EquipmentDao();
-		edao.init();
-		int foo = edao.getEquipmentIdBySerial(serial);
-		if (foo > 0)
-			return "Truu dat";
-		else
-			return "Fälse";
-    }
-    */
-    
-//    //TODO:
-//    @RequestMapping("/getbyEquipmentType")
-//    public List<Reservation> getReservationsByEquipmentId() {
-//    	
-//    }
-//    
 }

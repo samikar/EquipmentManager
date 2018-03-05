@@ -6,7 +6,7 @@ import java.util.List;
 
 
 /**
- * The persistent class for the employee database table.
+ * Persistence class for the employee database table.
  * 
  */
 @Entity

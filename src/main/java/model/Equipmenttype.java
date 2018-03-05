@@ -6,7 +6,7 @@ import java.util.List;
 
 
 /**
- * The persistent class for the equipmenttype database table.
+ * Persistence class for the equipmenttype database table.
  * 
  */
 @Entity
@@ -27,7 +27,8 @@ import java.util.List;
 			query	=	"SELECT DISTINCT equipmenttype.equipmentTypeId, equipmenttype.typeCode, equipmenttype.typeName " +
 						"FROM equipmenttype " +
 						"LEFT JOIN equipment ON equipmenttype.equipmentTypeId = equipment.equipmentTypeId " +
-						"WHERE equipmenttype.equipmentTypeId = equipment.equipmentTypeId " +
+						"WHERE equipmenttype.equipmentTypeId = equipment.equipmentTypeId AND " +
+						"equipment.status = 1 " +
 						"ORDER BY equipmenttype.typeName",
 						resultClass=Equipmenttype.class
 	)

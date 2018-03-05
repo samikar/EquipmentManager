@@ -7,7 +7,7 @@ import javax.persistence.*;
 
 
 /**
- * The persistent class for the equipment database table.
+ * Persistence class for the equipment database table.
  * 
  */
 @Entity
@@ -29,13 +29,15 @@ import javax.persistence.*;
 			query	=	"SELECT * "+
 						"FROM equipment " +
 						"INNER JOIN equipmentType ON equipment.equipmentTypeId = equipmentType.equipmentTypeId " +
-						"WHERE equipmentType.typeCode = ?",
+						"WHERE equipmentType.typeCode = ? AND " +
+						"equipment.status = 1",
 						resultClass=Equipment.class
 	),
 	@NamedNativeQuery(
 			name	=	"Equipment.findAllOrderedByType", 
-			query	=	"SELECT * "+
+			query	=	"SELECT * " +
 						"FROM equipment " +
+						"WHERE equipment.status = 1 " +
 						"ORDER BY equipmentTypeId",
 						resultClass=Equipment.class
 	),@NamedNativeQuery(
