@@ -13,7 +13,8 @@ import java.util.List;
 @NamedNativeQueries({
 	@NamedNativeQuery(
 			name	=	"Equipmenttype.findAll", 
-			query	=	"SELECT * FROM Equipmenttype",
+			query	=	"SELECT * FROM Equipmenttype " +
+						"ORDER BY TypeName ASC",
 						resultClass=Equipmenttype.class
 	),
 	@NamedNativeQuery(

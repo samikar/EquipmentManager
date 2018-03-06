@@ -82,9 +82,9 @@
           </div>
           <br>
           <div class="input-group mb-3">
-          <span class="input-group-addon">Serial number</span>
-          <input type="text" class="form-control" placeholder="..." id="txt_serial">
-        </div>
+            <span class="input-group-addon">Serial number</span>
+            <input type="text" class="form-control" placeholder="..." id="txt_serial">
+          </div>
         </div>
       </div>
     </div>
@@ -154,13 +154,8 @@
           getEmployeeName(employeeId, function(employeeName) {
             $("#msg_type").text("Success: ");
             $("#msg_text").text(data["equipment"]["serial"] + " / " +  data["equipment"]["name"] + " succesfully reserved for user " + employeeName + ".");
-            //$('#status').text(data["equipment"]["serial"] + " / <strong>" +  data["equipment"]["name"] + "</strong> succesfully reserved for user <strong>" + employeeName + "</strong>.");
           });
-
-
-
-
-          //$('#status').text(data["equipment"]["serial"] + "/" +  data["equipment"]["name"] + " succesfully reserved for user " + employeeName + ".");
+          
         })
         .done(function() {
         //alert( "second success" );
@@ -171,7 +166,6 @@
           if($("#status").hasClass("alert-info")) {$("#status").removeClass("alert-info");}
           if($("#status").hasClass("alert-success")) {$("#status").removeClass("alert-success");}
           $("#status").addClass("alert-danger");
-          //$("#status").text("ffff");
 
           $("#msg_type").text("Error: ");
           $("#msg_text").text(jqXHR["responseJSON"]["message"]);

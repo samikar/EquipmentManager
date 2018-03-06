@@ -1,13 +1,9 @@
 package controller;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.List;
 import java.util.Properties;
 
-import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -81,5 +77,41 @@ public class ConfigurationController {
 		return eq;
 	}
 	
+	@RequestMapping("/rest/updateEquipment")
+	public Equipment updateEquipment(@RequestParam(value = "equipmentId") String equipmentId, 
+ 									 @RequestParam(value = "name") String name,						
+									 @RequestParam(value = "serial") String serial,
+									 @RequestParam(value = "equipmentTypeId") String equipmentTypeId) {
+		EquipmentDao edao = new EquipmentDao();
+		edao.init();
+		edao.initialize(Integer.parseInt(equipmentId));
+		Equipment eq = edao.getDao();
+		
+		eq.setName(name);
+		eq.setSerial(serial);
+		if (Integer.parseInt(equipmentTypeId) > 0) {
+			EquipmenttypeDao etdao = new EquipmenttypeDao();
+			etdao.init();
+			etdao.initialize(Integer.parseInt(equipmentTypeId));
+			Equipmenttype etype = etdao.getDao();
+			eq.setEquipmenttype(etype);
+			etdao.destroy();
+		}
+		edao.update(eq);
+		edao.destroy();
+		
+		return eq;
+	}
+	
+	@RequestMapping("/rest/deleteEquipment")
+	public Equipment deleteEquipment(@RequestParam(value = "equipmentId") String equipmentId) {
+		EquipmentDao edao = new EquipmentDao();
+		edao.init();
+		edao.initialize(Integer.parseInt(equipmentId));
+		Equipment eq = edao.getDao();
+		edao.delete();
+		edao.destroy();
+		return eq;
+	}
 
 }
