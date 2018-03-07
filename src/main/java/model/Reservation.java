@@ -68,10 +68,11 @@ import java.util.Date;
             query   =   "SELECT * " +
                         "FROM reservation " +
                         "INNER JOIN equipment ON reservation.equipmentId = equipment.equipmentId " + 
-                        "WHERE equipment.serial = ? AND " +		// serial
-                        "reservation.date_take < ? AND " + 		// end 
-                        "reservation.date_return > ? AND "+		// begin
-                        "equipment.status = 1",			// only look for active equipment
+                        "WHERE equipment.serial = ? AND " +			// serial
+                        "reservation.date_take < ? AND " + 			// end 
+                        "(reservation.date_return > ? OR " +		// begin
+                        "reservation.date_return IS NULL) AND " +	// no return date
+                        "equipment.status = 1",						// only look for active equipment
                         resultClass=Reservation.class                        
     )
     

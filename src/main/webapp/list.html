@@ -80,9 +80,12 @@
 
   <!-- Data Tables library -->
   <script src = "js/datatables.min.js"></script>
+
+  <script src = "emanager_js/emanager_list.js"></script>
   
     <script>
       $(document).ready(function(){
+
         $.post("rest/getEquipmentStatus",
           function(data){
             // success

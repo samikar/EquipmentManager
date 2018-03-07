@@ -139,7 +139,15 @@ function openAddModal() {
 }
 
 function addEquipment(name, serial, equipmentTypeId) {
-
+  if (!$("#txt_name_add").val()) {
+    if($("#status_add").hasClass("hidden")) {$("#status").removeClass("hidden");}
+    if($("#status_add").hasClass("alert-info")) {$("#status").removeClass("alert-info");}
+    if($("#status_add").hasClass("alert-success")) {$("#status").removeClass("alert-danger");}
+    $("#status_add").addClass("alert-danger");
+    $("#msg_type_add").text("Error: ");
+    $("#msg_text_add").text("Name field empty");  
+  }
+  else {
   $.post("rest/insertEquipment",
     {
       name: name,
@@ -171,7 +179,7 @@ function addEquipment(name, serial, equipmentTypeId) {
       updateData();
     
   });
-    
+    }
 }
 
 function updateEquipment(equipmentId, name, serial, equipmentTypeId) {

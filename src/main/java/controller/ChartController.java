@@ -178,7 +178,6 @@ public class ChartController {
 		rdao.destroy();
 		
 		for (Reservation currentReservation : reservationsInRange) {
-//			System.out.println("**** Reservation: " + currentReservation.getReservationId() + " ****");
 			double hours = 0;
 			hours = hoursInReservation(currentReservation, start, end);
 			switch (currentReservation.getReservationType()) {
@@ -210,7 +209,7 @@ public class ChartController {
 		for (Equipment eq : equipmentOfType) {
 			List<MonthlyUsage> currentEquipmentMonthlyUsage = getMonthlyUsage(eq.getSerial(), start, end);
 			if (usageByTypeMonthly.size() == 0) {
-				System.out.println("Creating first data set...");
+//				System.out.println("Creating first data set...");
 				usageByTypeMonthly = currentEquipmentMonthlyUsage;
 			}
 				
@@ -242,7 +241,6 @@ public class ChartController {
 		
 		LocalDateTime endCurrent = startConstraint.with(startConstraint.plusMonths(1).withDayOfMonth(1).minusDays(1));
 		
-		
 		do {
 			// For the last month in constraints
 			if (endCurrent.isAfter(endConstraint)) {
@@ -258,10 +256,8 @@ public class ChartController {
 			}
 			
 		
-			System.out.println("StartCurrent: " + startCurrent.getHour() + ":" + startCurrent.getMinute() + ":" + startCurrent.getSecond() + " " + startCurrent.getDayOfMonth() + "/" + startCurrent.getMonthValue() + "/" + startCurrent.getYear());
-			System.out.println("EndCurrent:   " + endCurrent.getHour() + ":" + endCurrent.getMinute() + ":" + endCurrent.getSecond() + " " + endCurrent.getDayOfMonth() + "/" + endCurrent.getMonthValue() + "/" + endCurrent.getYear());
-			
-			
+//			System.out.println("StartCurrent: " + startCurrent.getHour() + ":" + startCurrent.getMinute() + ":" + startCurrent.getSecond() + " " + startCurrent.getDayOfMonth() + "/" + startCurrent.getMonthValue() + "/" + startCurrent.getYear());
+//			System.out.println("EndCurrent:   " + endCurrent.getHour() + ":" + endCurrent.getMinute() + ":" + endCurrent.getSecond() + " " + endCurrent.getDayOfMonth() + "/" + endCurrent.getMonthValue() + "/" + endCurrent.getYear());
 			
 			EquipmentUsage eUsage = getUsageBySerial(serial, 
 					Date.from(startCurrent.atZone(ZoneId.systemDefault()).toInstant()), 
@@ -292,17 +288,20 @@ public class ChartController {
 
 	public double hoursInReservation(Reservation reservation, Date start, Date end) {
 		double workhours = 0;
+		
+		// If reservation has no return date, set return date to end date
+		if (reservation.getDateReturn() == null)
+			reservation.setDateReturn(end);
 		if (reservation.getDateTake().after(end) || reservation.getDateReturn().before(start))
 			return 0;
 		else {
 			if (reservation.getDateTake().before(start))
 				reservation.setDateTake(start);
-			if (reservation.getDateReturn().after(end))
+			else if (reservation.getDateReturn().after(end))
 				reservation.setDateReturn(end);
 			
 			workhours = workhoursInRange(reservation.getDateTake(), reservation.getDateReturn());
 			
-//			System.out.println("Reservation: " + reservation.getReservationId() + " workhours: " + workhours);
 			return workhours;
 		}
 	}
@@ -353,17 +352,17 @@ public class ChartController {
 		//double workhoursBetween = 0;
 		double workhoursAtStartAndEnd = 0;
 		
-		int workdays = 0; // FOR DEBUGGING
+//		int workdays = 0; // FOR DEBUGGING
 		
 		LocalDate start = startDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
 		LocalDate end = endDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
 		
 		if (start.isEqual(end)) {
 			workhours = ((double) endDate.getTime() - (double) startDate.getTime()) / (60 * 60 * 1000);
-			System.out.println("One day: " + workhours);
+//			System.out.println("One day: " + workhours);
 			return workhours;
 		}
-		System.out.println("Start: " + start.toString() + " End: " + end.toString());
+//		System.out.println("Start: " + start.toString() + " End: " + end.toString());
 //		long daysInBetween = ChronoUnit.DAYS.between(start, end);
 //		System.out.println("Days between start & end: " + daysInBetween);
 
@@ -373,7 +372,7 @@ public class ChartController {
 			if (!dayOfWeek.equals(DayOfWeek.SATURDAY) && !dayOfWeek.equals(DayOfWeek.SUNDAY)) {
 				// System.out.println("Day: " + date.getDayOfWeek());
 				workhours += WORKDAY;
-				workdays++;
+//				workdays++;
 			}
 			date = date.plusDays(1);
 		// Loop until date has passed end date
@@ -382,29 +381,15 @@ public class ChartController {
 		// Substract the work hours for start and end day
 		//workhoursBetween -= WORKDAY * 2;
 
-		System.out.println("Workdays: " + workdays);
-		System.out.println("Workhours between start and end: " + workhours);
+//		System.out.println("Workdays: " + workdays);
+//		System.out.println("Workhours between start and end: " + workhours);
 
 		workhoursAtStartAndEnd = workhoursNotAtStartAndEnd(startDate, endDate);
-		System.out.println("Workhours not at start & end: " + workhoursAtStartAndEnd);
+//		System.out.println("Workhours not at start & end: " + workhoursAtStartAndEnd);
 		workhours -= workhoursAtStartAndEnd;
-		System.out.println("Total workhours: " + workhours);
+//		System.out.println("Total workhours: " + workhours);
 		return workhours;
 	}
-
-	/*
-	public List<Reservation> reservationsInRange(List<Reservation> reservations, Date startDate, Date endDate) {
-		List<Reservation> reservationsInRange = new ArrayList<Reservation>();
-		for (Reservation currentReservation : reservations) {
-			if ((currentReservation.getDateTake().after(startDate)
-					|| currentReservation.getDateReturn().after(startDate))
-					&& currentReservation.getDateReturn().before(endDate)) {
-				reservationsInRange.add(currentReservation);
-			}
-		}
-		return reservationsInRange;
-	}
-	*/
 	
 	@ExceptionHandler
 	void handleIllegalArgumentException(IllegalArgumentException e, HttpServletResponse response) throws IOException {

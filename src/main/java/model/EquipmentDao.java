@@ -115,6 +115,16 @@ public class EquipmentDao {
 		return equipment;
 	}
 	
+	public boolean serialExists(String serial) {
+		List<Equipment> equipment = entityManager.createNamedQuery("Equipment.findBySerial", Equipment.class)
+				.setParameter(1, serial)
+				.getResultList();
+		if (equipment.size() > 0)
+			return true;
+		else
+			return false;
+	}
+	
 	public Equipment getRandomAvailable() {
 		List<Equipment> equipment = entityManager.createNamedQuery("Equipment.findRandomAvailable", Equipment.class)
 				.getResultList();

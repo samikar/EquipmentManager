@@ -109,11 +109,10 @@
   <!-- Include all compiled plugins (below), or include individual files as needed -->
   <script src = "js/bootstrap.min.js"></script>
 
-  <script src = "js/emanager.js"></script>
+  <script src = "emanager_js/emanager_take.js"></script>
 
   <script>
     $(document).ready(function(){
-      //$('#btn_submit').button();
 
       $("#btn_submit").click(function(){
         statusWorking();
@@ -122,73 +121,15 @@
       });
 
       $(document).keypress(function(e) {
-        if(e.which == 13) {
+        if(e.which == 13 && $(document.activeElement).attr("id") == 'txt_serial') {
           statusWorking();
           takeEquipment();
           statusDone();
         }
+      if(e.which == 13 && $(document.activeElement).attr("id") == 'txt_employeeId') {
+          $("#txt_serial").focus();
+        }
       });
-
-      function takeEquipment() {
-        var employeeId = $('#txt_employeeId').val();
-        var serial = $('#txt_serial').val();
-        var reservationType = $('input[name=rad_type]:checked').val();
-
-
-        $.post("rest/take",
-        {
-          employeeId: employeeId,
-          serial: serial,
-          reservationType: reservationType
-        },
-        function(data){
-          var employeeName = "";
-          $('#txt_serial').val("");
-          $('#txt_serial').focus();
-          if($("#status").hasClass("hidden")) {$("#status").removeClass("hidden");}
-          if($("#status").hasClass("alert-info")) {$("#status").removeClass("alert-info");}
-          if($("#status").hasClass("alert-danger")) {$("#status").removeClass("alert-danger");}
-          $("#status").addClass("alert-success");
-
-          // Callback function needed to get result from ajax
-          getEmployeeName(employeeId, function(employeeName) {
-            $("#msg_type").text("Success: ");
-            $("#msg_text").text(data["equipment"]["serial"] + " / " +  data["equipment"]["name"] + " succesfully reserved for user " + employeeName + ".");
-          });
-          
-        })
-        .done(function() {
-        //alert( "second success" );
-        })
-        .fail(function(jqXHR, textStatus) {
-          $('#txt_serial').val("");
-          if($("#status").hasClass("hidden")) {$("#status").removeClass("hidden");}
-          if($("#status").hasClass("alert-info")) {$("#status").removeClass("alert-info");}
-          if($("#status").hasClass("alert-success")) {$("#status").removeClass("alert-success");}
-          $("#status").addClass("alert-danger");
-
-          $("#msg_type").text("Error: ");
-          $("#msg_text").text(jqXHR["responseJSON"]["message"]);
-        })
-        .always(function() {
-          //alert( "finished" );
-        });
-      }
-
-      function statusWorking() {
-        if($("#status").hasClass("hidden")) {$("#status").removeClass("hidden");}
-        if($("#status").hasClass("alert-danger")) {$("#status").removeClass("alert-danger");}
-        if($("#status").hasClass("alert-success")) {$("#status").removeClass("alert-success");}
-        $("#status").addClass("alert-info");
-        $("#msg_type").text("Working, please wait... ");
-        $("#msg_text").text("If this is your first time taking an item, this may take up to two minutes...");
-        //$("#status").text("<strong>Working...</strong> If this is your first time taking an item, this may take up to a minute...");
-      }
-
-      function statusDone() {
-        //$("#status").removeclass('alert-info');
-      }
-
     });
   </script>
 
