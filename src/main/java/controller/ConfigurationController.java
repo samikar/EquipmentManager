@@ -2,7 +2,6 @@ package controller;
 
 import java.io.IOException;
 import java.util.List;
-import java.util.Properties;
 
 import javax.servlet.http.HttpServletResponse;
 
@@ -17,7 +16,6 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import db.EquipmentDataReader;
-import db.PropertyUtils;
 import model.Equipment;
 import model.EquipmentDao;
 import model.Equipmenttype;
@@ -25,8 +23,6 @@ import model.EquipmenttypeDao;
 
 @RestController
 public class ConfigurationController {
-	Properties appProperties = PropertyUtils.loadProperties();
-
 	@RequestMapping(value = "/rest/uploadEquipmentFile", method = RequestMethod.POST, consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
 	public ResponseEntity<Object> uploadEquipmentFile(@RequestParam("file") MultipartFile file) throws IOException {
 		return EquipmentDataReader.verifyEquipmentFile(file);

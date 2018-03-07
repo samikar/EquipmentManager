@@ -157,5 +157,4 @@ public class Reservation implements Serializable {
 	public void setEquipment(Equipment equipment) {
 		this.equipment = equipment;
 	}
-
 }

@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
 import javax.servlet.http.HttpServletResponse;
@@ -23,6 +24,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import db.PropertyUtils;
 import model.Equipment;
 import model.EquipmentDao;
 import model.EquipmentUsage;
@@ -36,11 +38,12 @@ import model.ReservationDao;
 @RestController
 public class ChartController {
 	// Length of one workday in hours
-	private final double WORKDAY = 7.5;
-	private final int STARTHOUR = 8;
-	private final int STARTMINUTE = 30;
-	private final int ENDHOUR = 16;
-	private final int ENDMINUTE = 0;
+	Properties appProperties = PropertyUtils.loadProperties();
+	private final double WORKDAY = Double.parseDouble(appProperties.getProperty("WORKDAY"));
+	private final int STARTHOUR = Integer.parseInt(appProperties.getProperty("STARTHOUR"));
+	private final int STARTMINUTE = Integer.parseInt(appProperties.getProperty("STARTMINUTE"));
+	private final int ENDHOUR = Integer.parseInt(appProperties.getProperty("ENDHOUR"));
+	private final int ENDMINUTE = Integer.parseInt(appProperties.getProperty("ENDMINUTE"));;
 	
 	@RequestMapping("/rest/chartTest")
 	public String hello(@RequestParam(value = "name", defaultValue = "World") String name) {
@@ -225,7 +228,6 @@ public class ChartController {
 				}
 			}
 		}
-		
 		return usageByTypeMonthly;
 	}
 	

@@ -86,21 +86,20 @@
 <!-- Required emanager js-files -->
 <script src = "emanager_js/emanager_reservation.js"></script>
 
-<script>
-  $(document).ready(function(){
-    $("#btn_return").click(function(){
-      returnSingle();
-      $("#txt_serial").val("");
-    });
-    
-    $(document).keypress(function(e) {
-      if(e.which == 13) {
+  <script>
+    $(document).ready(function(){
+      $("#btn_return").click(function(){
         returnSingle();
         $("#txt_serial").val("");
-      }
-    });
+      });
+      
+      $(document).keypress(function(e) {
+        if(e.which == 13) {
+          returnSingle();
+          $("#txt_serial").val("");
+        }
+      });
     });
   </script>
-
 </body>
 </html>
