@@ -1,9 +1,9 @@
-function updateData() {
+function updateEquipmentData() {
  equipmentTable.clear();
   $.post("rest/getEquipment",
 
     function(data){
-      dataSet = parseJSONDataToDataSet(data);
+      dataSet = parseEquipmentJSONToDataSet(data);
     })
     .done(function() {
       equipmentTable.rows.add(dataSet).draw(false);
@@ -15,7 +15,24 @@ function updateData() {
     });
 }
 
-function parseJSONDataToDataSet(data) {
+function updateTypesData() {
+  equipmentTypeTable.clear();
+  $.post("rest/getEquipmentTypes",
+
+    function(data){
+      dataSet = parseTypesJSONToDataSet(data);
+    })
+    .done(function() {
+      equipmentTypeTable.rows.add(dataSet).draw(false);
+    })
+    .fail(function(jqXHR, textStatus) {
+
+    })
+    .always(function() {
+    });
+}
+
+function parseEquipmentJSONToDataSet(data) {
   var arrayLength = data.length;
   var dataSet = [];
   // Parse JSON-data to array for Data Tables
@@ -62,6 +79,26 @@ function parseJSONDataToDataSet(data) {
   return dataSet;
 }
 
+
+
+
+function parseTypesJSONToDataSet(data) {
+  var arrayLength = data.length;
+  var dataSet = [];
+  // Parse JSON-data to array for Data Tables
+  for (var i=0; i< arrayLength; i++) {
+    var equipmentTypeId = data[i]["equipmentTypeId"];
+    var typeCode = data[i]["typeCode"];
+    var typeName = data[i]["typeName"];
+
+    var equipmentType = [equipmentTypeId, 
+                         typeCode, 
+                         typeName];
+    dataSet.push(equipmentType);
+  }
+  return dataSet;
+}
+
 function disableEquipment(equipmentId) {
   $.post("rest/disableEquipment",
   {
@@ -87,7 +124,7 @@ function disableEquipment(equipmentId) {
     $("#msg_text").text("Disabling equipment failed: " + jqXHR["responseJSON"]["message"]);
   })
   .always(function() {
-    updateData();
+    updateEquipmentData();
   });
 }
 
@@ -116,7 +153,7 @@ function enableEquipment(equipmentId) {
     $("#msg_text").text("Enabling equipment failed: " + jqXHR["responseJSON"]["message"]);
   })
   .always(function() {
-    updateData();
+    updateEquipmentData();
   });
 }
 
@@ -176,7 +213,7 @@ function addEquipment(name, serial, equipmentTypeId) {
 
     })
     .always(function() {
-      updateData();
+      updateEquipmentData();
     
   });
     }
@@ -212,7 +249,7 @@ function updateEquipment(equipmentId, name, serial, equipmentTypeId) {
 
     })
     .always(function() {
-      updateData();
+      updateEquipmentData();
   });
 }
 
@@ -244,7 +281,7 @@ function deleteEquipment(equipmentId, name) {
       $("#msg_text").text("Deleting failed: " + jqXHR["responseJSON"]["message"]);   
     })
     .always(function() {
-      updateData();
+      updateEquipmentData();
     });
   }
 }
@@ -261,7 +298,7 @@ function getTypes() {
     }
   })
   .done(function() {
-    updateData();
+    updateEquipmentData();
   })
   .fail(function(data) {
 

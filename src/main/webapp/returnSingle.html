@@ -83,50 +83,22 @@
 <!-- Include all compiled plugins (below), or include individual files as needed -->
 <script src = "js/bootstrap.min.js"></script>
 
+<!-- Required emanager js-files -->
 <script src = "emanager_js/emanager_reservation.js"></script>
 
 <script>
   $(document).ready(function(){
     $("#btn_return").click(function(){
       returnSingle();
+      $("#txt_serial").val("");
     });
     
     $(document).keypress(function(e) {
       if(e.which == 13) {
         returnSingle();
+        $("#txt_serial").val("");
       }
     });
-
-    function returnSingle() {
-       var serial = $('#txt_serial').val();
-      $.post("rest/returnSingle",
-        {
-          serial: serial,
-        },
-        function(data){
-          $('#txt_serial').val("");
-          $('#txt_serial').focus();
-          if($("#status").hasClass("hidden")) {$("#status").removeClass("hidden");}
-          if($("#status").hasClass("alert-info")) {$("#status").removeClass("alert-info");}
-          if($("#status").hasClass("alert-danger")) {$("#status").removeClass("alert-danger");}
-          $("#status").addClass("alert-success");
-          $("#msg_type").text("Success: ");
-          $('#msg_text').text("Equipment with serial number " + serial + " returned");
-        })
-        .done(function() {
-          //alert( "second success" );
-        })
-        .fail(function(jqXHR, textStatus) {
-          $("#status").removeClass('alert-success');
-          $("#status").addClass('alert-danger');
-          $("#status").removeClass('hidden');
-          $("#msg_type").text("Error: ");
-          $('#msg_text').text(jqXHR["responseJSON"]["message"]); 
-        })
-        .always(function() {
-          //alert( "finished" );
-      });
-    }
     });
   </script>
 
