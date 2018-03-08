@@ -1,13 +1,31 @@
 package model;
 
+import static org.hamcrest.CoreMatchers.containsString;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertThat;
+
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.Date;
+import java.util.List;
 import java.util.Random;
 
+import org.junit.Test;
+
+import db.EquipmentDataReader;
+
 public class ReservationTest {
-	
+	ReservationDao rdao = new ReservationDao();
 	private Reservation reservation = new Reservation();
+	/*
+	@Test
+	public void reservationsFound() {
+		List<Reservation> reservations = rdao.getAll();
+		assertEquals(reservations.size(), 167);
+		//assertThat(EquipmentDataReader.readEquipmentFromFile("test_files/nosuchfile.txt"),  containsString("Equipment file not found:"));
+		rdao.destroy();
+	}
+	*/
 	
 	public static Reservation generateRandomOpenReservation() {
 		EmployeeDao empdao = new EmployeeDao();

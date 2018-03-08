@@ -26,6 +26,7 @@ import model.Equipmenttype;
 import model.EquipmenttypeDao;
 
 public class EquipmentDataReader {
+	private final static String dataFilePath = "DataFiles" + File.separator;
 	static Properties appProperties = PropertyUtils.loadProperties();
 	
 	public static ResponseEntity<Object> verifyEquipmentFile(MultipartFile file) {
@@ -34,7 +35,7 @@ public class EquipmentDataReader {
 			return new ResponseEntity<>("File extension should be \"xlsx\" (Excel spreadsheet).",
 					HttpStatus.UNSUPPORTED_MEDIA_TYPE);
 		else { 
-			File convertFile = EquipmentDataReader.writeFile(file);
+			File convertFile = EquipmentDataReader.writeFile(file, dataFilePath);
 			String headerVerify;
 			
 			headerVerify = verifyEquipmentFileHeaders(convertFile.getAbsolutePath());
@@ -57,7 +58,7 @@ public class EquipmentDataReader {
 			return new ResponseEntity<>("File extension should be \"xlsx\" (Excel spreadsheet).",
 					HttpStatus.UNSUPPORTED_MEDIA_TYPE);
 		else { 
-			File convertFile = EquipmentDataReader.writeFile(file);
+			File convertFile = EquipmentDataReader.writeFile(file, dataFilePath);
 			String headerVerify;
 			
 			headerVerify = verifyTypeFileHeaders(convertFile.getAbsolutePath());
@@ -75,14 +76,20 @@ public class EquipmentDataReader {
 	}
 	
 	public static String readEquipmentFromFile(String filePath) {
-
 		FileInputStream inputStreamEquipment = null;
+		
+		File f = new File(filePath);
+		if(!f.exists() && !f.isDirectory()) { 
+			return "Equipment file not found!";
+		}
+		/*
 		try {
 			inputStreamEquipment = new FileInputStream(new File(filePath));
 		} catch (FileNotFoundException e1) {
 			e1.printStackTrace();
 			return "Equipment file not found: " + e1.getMessage();
 		}
+		*/
 
 		Workbook workbook = null;
 		try {
@@ -164,7 +171,13 @@ public class EquipmentDataReader {
 	public static String readEquipmentTypesFromFile(String filePath) {
 		FileInputStream inputStreamType = null;
 		Workbook workbook = null;
+		
+		File f = new File(filePath);
+		if(!f.exists() && !f.isDirectory()) { 
+			return "Equipment type file not found!";
+		}
 
+		/*
 		try {
 			inputStreamType = new FileInputStream(new File(filePath));
 		} catch (FileNotFoundException e1) {
@@ -172,13 +185,13 @@ public class EquipmentDataReader {
 			System.out.println("Equipment type file could not be read: " + e1.getMessage());
 			return "Equipment type file could not be read: " + e1.getMessage();
 		}
+		*/
 
 		try {
 			workbook = new XSSFWorkbook(inputStreamType);
 		} catch (IOException e1) {
 			e1.printStackTrace();
-			System.out.println("Workbook could not be read: " + e1.getMessage());
-			return "Workbook could not be read: " + e1.getMessage();
+			return "Equipment type file could not be read: " + e1.getMessage();
 		}
 
 		Sheet firstSheet = workbook.getSheetAt(0);
@@ -335,8 +348,8 @@ public class EquipmentDataReader {
 		return "OK";
 	}
 	
-	public static File writeFile(MultipartFile file) {
-		File convertFile = new File("DataFiles" + File.separator + file.getOriginalFilename());
+	public static File writeFile(MultipartFile file, String path) {
+		File convertFile = new File(path + file.getOriginalFilename());
 		FileOutputStream fout = null;
 		try {
 			convertFile.createNewFile();
@@ -360,18 +373,18 @@ public class EquipmentDataReader {
 	
 	public static boolean deleteFile(File file) {
 		boolean result = false;
-		try {
-			result = Files.deleteIfExists(file.toPath());
-		} catch (NoSuchFileException x) {
-			System.err.format("%s: no such" + " file or directory%n", file);
-		} catch (DirectoryNotEmptyException x) {
-			System.err.format("%s not empty%n", file);
-		} catch (IOException x) {
-			// File permission problems are caught here.
-			System.err.println("Permission error: " + x);
+		if (file != null) {
+			try {
+				result = Files.deleteIfExists(file.toPath());
+			} catch (NoSuchFileException x) {
+				System.err.format("%s: no such" + " file or directory%n", file);
+			} catch (DirectoryNotEmptyException x) {
+				System.err.format("%s not empty%n", file);
+			} catch (IOException x) {
+				// File permission problems are caught here.
+				System.err.println("Permission error: " + x);
+			}
 		}
 		return result;
 	}
-	
-	
 }

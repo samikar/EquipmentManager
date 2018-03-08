@@ -1,14 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: db.EquipmentDataReaderTest
 -------------------------------------------------------------------------------
-Tests run: 2, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0.034 sec <<< FAILURE! - in db.EquipmentDataReaderTest
-equipmentFileCouldNotBeRead(db.EquipmentDataReaderTest)  Time elapsed: 0.033 sec  <<< ERROR!
-org.apache.poi.POIXMLException: org.apache.poi.openxml4j.exceptions.InvalidFormatException: Package should contain a content type part [M1.13]
-	at org.apache.poi.openxml4j.opc.ZipPackage.getPartsImpl(ZipPackage.java:178)
-	at org.apache.poi.openxml4j.opc.OPCPackage.getParts(OPCPackage.java:662)
-	at org.apache.poi.openxml4j.opc.OPCPackage.open(OPCPackage.java:269)
-	at org.apache.poi.util.PackageHelper.open(PackageHelper.java:39)
-	at org.apache.poi.xssf.usermodel.XSSFWorkbook.<init>(XSSFWorkbook.java:204)
-	at db.EquipmentDataReader.readEquipmentFromFile(EquipmentDataReader.java:33)
-	at db.EquipmentDataReaderTest.equipmentFileCouldNotBeRead(EquipmentDataReaderTest.java:18)
-
+Tests run: 13, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.864 sec - in db.EquipmentDataReaderTest
