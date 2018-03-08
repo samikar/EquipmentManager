@@ -13,8 +13,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import db.ADHandler;
-import db.DatabaseUtil;
 import model.Employee;
 import model.EmployeeDao;
 import model.Equipment;

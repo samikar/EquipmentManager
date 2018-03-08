@@ -2,11 +2,7 @@ package db;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.Statement;
-import java.sql.ResultSet;
-import java.util.Vector;
 import java.util.Properties;
-import java.io.FileInputStream;
 
 public class LocalDBHandler {
 	

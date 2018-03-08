@@ -1,9 +1,15 @@
 package model;
 
 import java.io.Serializable;
-import java.util.List;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedNativeQueries;
+import javax.persistence.NamedNativeQuery;
 
 
 /**
@@ -26,6 +32,14 @@ import javax.persistence.*;
 	),
 	@NamedNativeQuery(
 			name	=	"Equipment.findByType", 
+			query	=	"SELECT * "+
+						"FROM equipment " +
+						"INNER JOIN equipmentType ON equipment.equipmentTypeId = equipmentType.equipmentTypeId " +
+						"WHERE equipmentType.typeCode = ?" ,
+						resultClass=Equipment.class
+	),
+	@NamedNativeQuery(
+			name	=	"Equipment.findEnabledByType", 
 			query	=	"SELECT * "+
 						"FROM equipment " +
 						"INNER JOIN equipmentType ON equipment.equipmentTypeId = equipmentType.equipmentTypeId " +

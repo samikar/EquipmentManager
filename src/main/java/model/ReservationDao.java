@@ -1,14 +1,13 @@
 package model;
 
-import javax.persistence.EntityManagerFactory;
+import java.util.Date;
+import java.util.List;
+
 import javax.persistence.EntityManager;
-import javax.persistence.Persistence;
+import javax.persistence.EntityManagerFactory;
 import javax.persistence.Query;
 
 import db.DatabaseUtil;
-
-import java.util.Date;
-import java.util.List;
 
 public class ReservationDao {
 	private Reservation dao;

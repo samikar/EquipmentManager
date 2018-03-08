@@ -1,16 +1,5 @@
 package db;
 
-import org.apache.poi.ss.usermodel.*;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.multipart.MultipartFile;
-
-import model.Equipment;
-import model.EquipmentDao;
-import model.Equipmenttype;
-import model.EquipmenttypeDao;
-
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -21,6 +10,20 @@ import java.nio.file.Files;
 import java.nio.file.NoSuchFileException;
 import java.util.Iterator;
 import java.util.Properties;
+
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.multipart.MultipartFile;
+
+import model.Equipment;
+import model.EquipmentDao;
+import model.Equipmenttype;
+import model.EquipmenttypeDao;
 
 public class EquipmentDataReader {
 	static Properties appProperties = PropertyUtils.loadProperties();

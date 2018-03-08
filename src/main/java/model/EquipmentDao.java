@@ -1,15 +1,12 @@
 package model;
 
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Entity;
+import java.util.List;
+
 import javax.persistence.EntityManager;
-import javax.persistence.Persistence;
+import javax.persistence.EntityManagerFactory;
 import javax.persistence.Query;
-import javax.persistence.Table;
 
 import db.DatabaseUtil;
-
-import java.util.List;
 
 public class EquipmentDao {
 	private Equipment dao;
@@ -104,6 +101,13 @@ public class EquipmentDao {
 	
 	public List<Equipment> getByType(int typeCode) {
 		List<Equipment> equipment = entityManager.createNamedQuery("Equipment.findByType", Equipment.class)
+				.setParameter(1, typeCode)
+				.getResultList();
+		return equipment;
+	}
+	
+	public List<Equipment> getEnabledByType(int typeCode) {
+		List<Equipment> equipment = entityManager.createNamedQuery("Equipment.findEnabledByType", Equipment.class)
 				.setParameter(1, typeCode)
 				.getResultList();
 		return equipment;

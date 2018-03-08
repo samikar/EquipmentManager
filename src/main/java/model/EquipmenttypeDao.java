@@ -1,13 +1,12 @@
 package model;
 
-import javax.persistence.EntityManagerFactory;
+import java.util.List;
+
 import javax.persistence.EntityManager;
-import javax.persistence.Persistence;
+import javax.persistence.EntityManagerFactory;
 import javax.persistence.Query;
 
 import db.DatabaseUtil;
-
-import java.util.List;
 
 public class EquipmenttypeDao {
 	private Equipmenttype dao;
@@ -88,6 +87,17 @@ public class EquipmenttypeDao {
 		}
 		else
 			return 0;
+	}
+	
+	public boolean typeCodeExists(int typeCode) {
+		List<Equipmenttype> equipmentTypeList = entityManager
+				.createNamedQuery("Equipmenttype.findByTypeCode", Equipmenttype.class)
+				.setParameter(1, typeCode).getResultList();
+		if (equipmentTypeList.size() > 0) {
+			return true;
+		}
+		else
+			return false;
 	}
 	
 	public List<Equipmenttype> getEquipmentTypesWithEquipment() {

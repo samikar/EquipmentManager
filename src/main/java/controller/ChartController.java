@@ -6,9 +6,8 @@ import java.text.SimpleDateFormat;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.Year;
-import java.time.temporal.ChronoUnit;
 import java.time.ZoneId;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -28,7 +27,6 @@ import db.PropertyUtils;
 import model.Equipment;
 import model.EquipmentDao;
 import model.EquipmentUsage;
-import model.EquipmentUsageMonth;
 import model.Equipmenttype;
 import model.EquipmenttypeDao;
 import model.MonthlyUsage;
@@ -156,7 +154,7 @@ public class ChartController {
 		List<EquipmentUsage> usageList = new ArrayList<EquipmentUsage>();
 		EquipmentDao edao = new EquipmentDao();
 		edao.init();
-		List<Equipment> equipmentOfType = edao.getByType(Integer.parseInt(typeCode));
+		List<Equipment> equipmentOfType = edao.getEnabledByType(Integer.parseInt(typeCode));
 		edao.destroy();
 		
 		for (Equipment eq : equipmentOfType) {
@@ -206,7 +204,7 @@ public class ChartController {
 		List<MonthlyUsage> usageByTypeMonthly = new ArrayList<MonthlyUsage>();
 		EquipmentDao edao = new EquipmentDao();
 		edao.init();
-		List<Equipment> equipmentOfType = edao.getByType(Integer.parseInt(typeCode));
+		List<Equipment> equipmentOfType = edao.getEnabledByType(Integer.parseInt(typeCode));
 		edao.destroy();
 		
 		for (Equipment eq : equipmentOfType) {

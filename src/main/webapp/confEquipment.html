@@ -59,7 +59,7 @@
     <br><br><br>
     <div class="row">
       <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-        <button class="btn btn-primary mb-2" data-style="expand-right" data-toggle="modal" data-target="#modal_add" id="btn_addmodal" onclick="openAddModal()">
+        <button class="btn btn-primary mb-2" data-style="expand-right" data-toggle="modal" data-target="#modal_add" id="btn_addmodal" onclick="openAddEquipmentModal()">
           <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>&nbsp;
           Add new equipment
         </button>
@@ -92,7 +92,7 @@
     </div>
 
     <!-- Edit equipment modal -->
-    <div class="modal fade" tabindex="-1" id="modal_edit">
+    <div class="modal fade" tabindex="-1" id="modal_editEquipment">
       <div class="modal-dialog modal-lg">
         <div class="modal-content">
           <button type="button" class="close" data-dismiss="modal"><i class="icon-xs-o-md"></i></button>
@@ -106,7 +106,7 @@
                 <div class="input-group mb-3">
                   <div class="input-group input-group-md">
                     <span class="input-group-addon">Name</span>
-                    <input type="text" class="form-control" placeholder="..." id="txt_name_edit">
+                    <input type="text" class="form-control" placeholder="..." id="txt_equipmentName_edit">
                   </div>
                   <br>
                   <div class="input-group mb-3">
@@ -166,7 +166,7 @@
                 <div class="input-group mb-3">
                   <div class="input-group input-group-md">
                     <span class="input-group-addon">Name</span>
-                    <input type="text" class="form-control" placeholder="..." id="txt_name_add">
+                    <input type="text" class="form-control" placeholder="..." id="txt_equipmentName_add">
                   </div>
                   <br>
                   <div class="input-group mb-3">
@@ -248,45 +248,15 @@
           })
 
           $("#btn_save").click(function(){
-            var equipmentId = $("#hid_equipmentId_edit").val();
-            var name = $("#txt_name_edit").val();
-            var serial = $("#txt_serial_edit").val();
-            var equipmentTypeId = $("#hid_equipmentTypeId_edit").val();
-            updateEquipment(equipmentId, name, serial, equipmentTypeId);
-            $('.modal.in').modal('hide');
+            saveEquipmentBtnAction();
           });
           
           $("#btn_add").click(function(){
-            if (!$("#txt_name_add").val() || !$("#txt_serial_add").val() || !$("#hid_equipmentTypeId_add").val()) {
-              if($("#status_add").hasClass("hidden")) {$("#status").removeClass("hidden");}
-              if($("#status_add").hasClass("alert-info")) {$("#status").removeClass("alert-info");}
-              if($("#status_add").hasClass("alert-success")) {$("#status").removeClass("alert-danger");}
-              $("#status_add").addClass("alert-danger");
-              $("#msg_type_add").text("Error: ");
-              $("#msg_text_add").text("Empty fields: ");
-            }
-            if(!$("#txt_name_add").val()) {
-             $("#msg_text_add").append("Name "); 
-            }
-            if(!$("#txt_serial_add").val()) {
-             $("#msg_text_add").append("Serial "); 
-            }
-            if(!$("#hid_equipmentTypeId_add").val()) {
-             $("#msg_text_add").append("Type"); 
-            }
-            else {
-            var name = $("#txt_name_add").val();
-            var serial = $("#txt_serial_add").val();
-            var equipmentTypeId = $("#hid_equipmentTypeId_add").val();
-            addEquipment(name, serial, equipmentTypeId);
-            console.log("Name: " + name + "serial: " + serial + "Eqtype: " + equipmentTypeId)
-            $('.modal.in').modal('hide');
-          }
+            addEquipmentBtnAction();
           });
           
-
           $(".btn_cancel").click(function(){
-            $('.modal.in').modal('hide');
+            closeModal();
           });
       });
     </script> 

@@ -107,6 +107,32 @@ public class ConfigurationController {
 		}
 	}
 	
+	@RequestMapping("/rest/insertType")
+	public Equipmenttype insertType(@RequestParam(value = "typeName") String typeName,						
+									 @RequestParam(value = "typeCode") String typeCode) {
+		EquipmenttypeDao etdao = new EquipmenttypeDao();
+		etdao.init();
+		
+		if (!typeCode.matches("\\d+")) {
+			etdao.destroy();
+			throw new IllegalArgumentException("Typecode must be an integer value.");	
+		}
+		else if (etdao.typeCodeExists(Integer.parseInt(typeCode))) {
+			etdao.destroy();
+			throw new IllegalArgumentException("Equipment type with Typecode " + typeCode + " already exists.");
+		}
+		else {
+
+			Equipmenttype newType = new Equipmenttype();	
+			newType.setTypeName(typeName);
+			newType.setTypeCode(Integer.parseInt(typeCode));
+			etdao.persist(newType);
+			etdao.destroy();
+					
+			return newType;
+		}
+	}
+	
 	@RequestMapping("/rest/updateEquipment")
 	public Equipment updateEquipment(@RequestParam(value = "equipmentId") String equipmentId, 
  									 @RequestParam(value = "name") String name,						
@@ -133,6 +159,25 @@ public class ConfigurationController {
 		return eq;
 	}
 	
+	@RequestMapping("/rest/updateType")
+	public Equipmenttype updateType(@RequestParam(value = "equipmentTypeId") String equipmentTypeId, 
+ 									 @RequestParam(value = "typeName") String typeName,						
+									 @RequestParam(value = "typeCode") String typeCode) {
+		
+		EquipmenttypeDao etdao = new EquipmenttypeDao();
+		etdao.init();
+		etdao.initialize(Integer.parseInt(equipmentTypeId));
+		Equipmenttype etype = etdao.getDao();
+		
+		etype.setTypeName(typeName);
+		etype.setTypeCode(Integer.parseInt(typeCode));
+		
+		etdao.update(etype);
+		etdao.destroy();
+		
+		return etype;
+	}
+	
 	@RequestMapping("/rest/deleteEquipment")
 	public Equipment deleteEquipment(@RequestParam(value = "equipmentId") String equipmentId) {
 		EquipmentDao edao = new EquipmentDao();
@@ -142,6 +187,27 @@ public class ConfigurationController {
 		edao.delete();
 		edao.destroy();
 		return eq;
+	}
+	
+	@RequestMapping("/rest/deleteType")
+	public Equipmenttype deleteType(@RequestParam(value = "equipmentTypeId") String equipmentTypeId) {
+		EquipmentDao edao = new EquipmentDao();
+		EquipmenttypeDao etdao = new EquipmenttypeDao();
+		edao.init();
+		etdao.init();
+		etdao.initialize(Integer.parseInt(equipmentTypeId));
+		Equipmenttype etype = etdao.getDao();
+		List<Equipment> equipmentList = edao.getByType(etype.getTypeCode());
+		if (equipmentList.size() > 0) {
+			edao.destroy();
+			etdao.destroy();
+			throw new IllegalArgumentException("Cannot delete Type while it has Equipment attached to it.");
+		}
+		else {
+			etdao.delete();
+			etdao.destroy();
+			return etype;
+		}
 	}
 
 	@ExceptionHandler
