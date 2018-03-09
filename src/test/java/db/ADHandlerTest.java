@@ -23,7 +23,7 @@ public class ADHandlerTest {
 	}
 	
 	
-	@Ignore @Test
+	@Test
 	public void findAbcd() {
 		handler.init();
 		assertEquals(handler.findEmployeeName("abcd"), "");
@@ -31,7 +31,7 @@ public class ADHandlerTest {
 	}
 	
 	
-	@Ignore @Test
+	@Test
 	public void findVesaLaisi() {
 		handler.init();
 		assertEquals(handler.findEmployeeName("00186763"), "Vesa Laisi");

@@ -4,12 +4,13 @@ import java.io.FileInputStream;
 import java.util.Properties;
 
 public class PropertyUtils {
-	final static String CONFIG_PATH = "C:\\EquipmentManager\\ConfigFile\\";
-	final static String CONFIG_FILENAME = "app.properties";
-	final static String TESTCONFIG_FILENAME = "app_test.properties";
+	final static String PROPERTIES_PATH = "C:\\EquipmentManager\\ConfigFile\\";
+	final static String PROPERTIES_FILENAME = "app.properties";
+	final static String TESTPROPERTIES_PATH = "C:\\EquipmentManager\\ConfigFile\\";
+	final static String TESTPROPERTIES_FILENAME = "app_test.properties";
 
 	public static Properties loadProperties() {
-		String appConfigPath = CONFIG_PATH + CONFIG_FILENAME;
+		String appConfigPath = PROPERTIES_PATH + PROPERTIES_FILENAME;
 		Properties appProperties = new Properties();
 		try {
 			appProperties.load(new FileInputStream(appConfigPath));
@@ -22,7 +23,7 @@ public class PropertyUtils {
 	}
 	
 	public static Properties loadTestProperties() {
-		String appConfigPath = CONFIG_PATH + TESTCONFIG_FILENAME;
+		String appConfigPath = TESTPROPERTIES_PATH + TESTPROPERTIES_FILENAME;
 		Properties appProperties = new Properties();
 		try {
 			appProperties.load(new FileInputStream(appConfigPath));

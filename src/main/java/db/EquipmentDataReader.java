@@ -8,6 +8,8 @@ import java.io.IOException;
 import java.nio.file.DirectoryNotEmptyException;
 import java.nio.file.Files;
 import java.nio.file.NoSuchFileException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Iterator;
 import java.util.Properties;
 
@@ -349,33 +351,22 @@ public class EquipmentDataReader {
 	}
 	
 	public static File writeFile(MultipartFile file, String path) {
-		File convertFile = new File(path + file.getOriginalFilename());
-		FileOutputStream fout = null;
+		Path convertedFile = null;
 		try {
-			convertFile.createNewFile();
+			convertedFile = Paths.get(path + file.getOriginalFilename());
+			Files.write(convertedFile, file.getBytes());
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
-		try {
-			fout = new FileOutputStream(convertFile);
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		}
-		try {
-			fout.write(file.getBytes());
-			fout.close();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		return convertFile;
+		return convertedFile.toFile();
 	}
 	
 	public static boolean deleteFile(File file) {
 		boolean result = false;
 		if (file != null) {
 			try {
-				result = Files.deleteIfExists(file.toPath());
+				result = true;
+				Files.delete(file.toPath());
 			} catch (NoSuchFileException x) {
 				System.err.format("%s: no such" + " file or directory%n", file);
 			} catch (DirectoryNotEmptyException x) {

@@ -15,103 +15,132 @@ import java.util.Arrays;
 import java.util.List;
 
 import org.apache.poi.util.IOUtils;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.web.multipart.MultipartFile;
 
 public class EquipmentDataReaderTest {
-	private final String testFilePath = "test_files" + File.separator;
+	private final String TESTFILEPATH = "test_files" + File.separator;
+	private final String TESTFILENAME = "test_file.txt";
+	private final String NOSUCHFILE = "NOSUCHFILE.txt";
+	private final String EQUIPMENTFILE = "laitteet.xlsx";
+	private final String TYPEFILE = "luokat.xlsx";
+	private final String EQUIPMENTFILE_WRONGHEADERS = "laitteet_wrong.xlsx";
+	private final String TYPEFILE_WRONGHEADERS = "luokat_wrong.xlsx";
+	
 	
 	@Test
 	public void equipmentFileNotFound() {
-		assertTrue(EquipmentDataReader.readEquipmentFromFile(testFilePath + "nosuchfile.txt").equals("Equipment file not found!"));
+		assertTrue(EquipmentDataReader.readEquipmentFromFile(TESTFILEPATH + NOSUCHFILE).equals("Equipment file not found!"));
 	}
 	
 	@Test
 	public void equipmentTypeFileNotFound() {
-		assertTrue(EquipmentDataReader.readEquipmentTypesFromFile(testFilePath + "nosuchfile.txt").equals("Equipment type file not found!"));
+		assertTrue(EquipmentDataReader.readEquipmentTypesFromFile(TESTFILEPATH + NOSUCHFILE).equals("Equipment type file not found!"));
 	}
 	
 	@Test
 	public void verifyFileExtensionTrue() {
-		assertTrue(EquipmentDataReader.verifyFileExtension(testFilePath + "laitteet.xlsx"));
+		assertTrue(EquipmentDataReader.verifyFileExtension(TESTFILEPATH + EQUIPMENTFILE));
 	}
 
 	@Test
 	public void verifyFileExtensionFalse() {
-		assertFalse(EquipmentDataReader.verifyFileExtension(testFilePath + "test_file.txt"));
+		assertFalse(EquipmentDataReader.verifyFileExtension(TESTFILEPATH + TESTFILENAME));
 	}
 	
 	@Test
 	public void verifyFileExtensionNoSuchFile() {
-		assertFalse(EquipmentDataReader.verifyFileExtension(testFilePath + "nosuchfile.txt"));
+		assertFalse(EquipmentDataReader.verifyFileExtension(TESTFILEPATH + NOSUCHFILE));
 	}
 	
 	@Test
 	public void verifyEquipmentFileHeadersOK() {
-		assertTrue(EquipmentDataReader.verifyEquipmentFileHeaders(testFilePath + "laitteet.xlsx").equals("OK"));
+		assertTrue(EquipmentDataReader.verifyEquipmentFileHeaders(TESTFILEPATH + EQUIPMENTFILE).equals("OK"));
 	}
 	
 	@Test
 	public void verifyEquipmentFileHeadersNotOK() {
-		assertFalse(EquipmentDataReader.verifyEquipmentFileHeaders(testFilePath + "laitteet_wrong.xlsx").equals("OK"));
+		assertFalse(EquipmentDataReader.verifyEquipmentFileHeaders(TESTFILEPATH + EQUIPMENTFILE_WRONGHEADERS).equals("OK"));
 	}
 	
 	@Test
 	public void verifyTypeFileHeadersOK() {
-		assertTrue(EquipmentDataReader.verifyTypeFileHeaders(testFilePath + "luokat.xlsx").equals("OK"));
+		assertTrue(EquipmentDataReader.verifyTypeFileHeaders(TESTFILEPATH + TYPEFILE).equals("OK"));
 	}
 	
 	@Test
 	public void verifyTypeFileHeadersNotOK() {
-		assertFalse(EquipmentDataReader.verifyTypeFileHeaders(testFilePath + "luokat_wrong.xlsx").equals("OK"));
+		assertFalse(EquipmentDataReader.verifyTypeFileHeaders(TESTFILEPATH + TYPEFILE_WRONGHEADERS).equals("OK"));
 	}
 	
-	
+	@Test
+	public void writeFileWritingSuccesful() {
+		MultipartFile multipartFile = null;
+		File file = createTestFile(TESTFILEPATH, TESTFILENAME);
+		FileInputStream input = null;
+		
+		try {
+			input = new FileInputStream(file);
+		} catch (FileNotFoundException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
+		try {
+			multipartFile = new MockMultipartFile("file", file.getName(), "text/plain", IOUtils.toByteArray(input));
+			input.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		assertTrue(EquipmentDataReader.writeFile(multipartFile, TESTFILEPATH).equals(file));
+	}
 	
 	@Test
-	public void writeFileTest() {
-		File oldFile = new File(testFilePath + "test_file.txt");
-	    FileInputStream input = null;
-	    MultipartFile multipartFile = null;
+	public void writeFileContentsEqual() {
+		byte[] oldFileBytes = null;
+		byte[] newFileBytes = null;
+		File oldFile = createTestFile(TESTFILEPATH, TESTFILENAME);
+		File newFile = null;
+		FileInputStream input = null;
+		MultipartFile multipartFile = null;
+		
 		try {
 			input = new FileInputStream(oldFile);
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-	    try {
-			 multipartFile = new MockMultipartFile("file", "new_" + oldFile.getName(), "text/plain", IOUtils.toByteArray(input));
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	    File newFile = EquipmentDataReader.writeFile(multipartFile, testFilePath);
-	    
-	    byte[] oldFileBytes = null;
-	    byte[] newFileBytes = null;
-	    
 		try {
+			multipartFile = new MockMultipartFile("file", oldFile.getName(), "text/plain", IOUtils.toByteArray(input));
+			newFile = EquipmentDataReader.writeFile(multipartFile, TESTFILEPATH);
+			input.close();
 			oldFileBytes = Files.readAllBytes(oldFile.toPath());
 			newFileBytes = Files.readAllBytes(newFile.toPath());
-			
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-	    assertTrue(Arrays.equals(oldFileBytes, newFileBytes));
+		assertTrue(Arrays.equals(oldFileBytes, newFileBytes));
 	}
 	
-	// TODO: Bugittaa, ei poista tiedostoa
 	@Test
 	public void deleteFileTest() {
-		Path file = Paths.get(testFilePath + "new_test_file.txt");
+		File testFile = createTestFile(TESTFILEPATH, TESTFILENAME);
+		// File exists
+		assertTrue(testFile.exists());
+		// Method supposed to return true if file deleted succesfully
+		assertTrue(EquipmentDataReader.deleteFile(testFile));
+		// Checking if file deleted
+		assertFalse(testFile.exists());
+		
+	}
+	
+	public File createTestFile(String path, String fileName) {
+		Path file = Paths.get(path + fileName);
 		if(!file.toFile().exists()) { 
-			System.out.println("**** NO FILE *****");
 			List<String> fileContents = Arrays.asList("Foo", "bar", "Foobar");
-			
-//			file = Paths.get(testFilePath + "new_test_file.txt");
 			try {
 				Files.write(file, fileContents, Charset.forName("UTF-8"));
 			} catch (IOException e) {
@@ -119,23 +148,6 @@ public class EquipmentDataReaderTest {
 				e.printStackTrace();
 			}	
 		}
-		// File exists
-		assertTrue(file.toFile().exists());
-		// Method supposed to return true if file deleted succesfully
-		assertTrue(EquipmentDataReader.deleteFile(file.toFile()));
-		// Checking if file deleted
-		assertFalse(file.toFile().exists());
-		
-	}
-	
-	@Test
-	public void deleteNonExistentFile() {
-		Path file = Paths.get(testFilePath + "nosuchfile.txt");
-		assertFalse(EquipmentDataReader.deleteFile(file.toFile()));
-	}
-	
-	@Test
-	public void deleteNull() {
-		assertFalse(EquipmentDataReader.deleteFile(null));
+		return file.toFile();
 	}
 }
