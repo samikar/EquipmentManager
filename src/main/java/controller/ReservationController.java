@@ -67,12 +67,13 @@ public class ReservationController {
 			throw new IllegalArgumentException("No employee found for employeeId: " + employeeId);
 		} else {
 			Reservation reservation = new Reservation();
-			// New EmployeeDao needed in case a new employee added in DB
-			EmployeeDao empdao2 = new EmployeeDao();
-			empdao2.init();
-			empdao2.initialize(empdao2.getEmployeeKeyByEmployeeId(employeeId));
+			
+			// EmployeeDao needs to be refreshed in case a new employee has been added to DB
+			empdao.destroy();
+			empdao.init();
+			empdao.initialize(empdao.getEmployeeKeyByEmployeeId(employeeId));
 			edao.initialize(edao.getEquipmentIdBySerial(serial));
-			Employee emp = empdao2.getDao();
+			Employee emp = empdao.getDao();
 			Equipment e = edao.getDao();
 			Date currentDate = new Date();
 
@@ -83,7 +84,7 @@ public class ReservationController {
 
 			rdao.persist(reservation);
 			empdao.destroy();
-			empdao2.destroy();
+//			empdao2.destroy();
 			edao.destroy();
 			rdao.destroy();
 			return reservation;

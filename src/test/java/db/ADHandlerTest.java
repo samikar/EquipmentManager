@@ -22,7 +22,7 @@ public class ADHandlerTest {
 		handler.close();
 	}
 	
-	
+	@Ignore
 	@Test
 	public void findAbcd() {
 		handler.init();
@@ -30,7 +30,7 @@ public class ADHandlerTest {
 		handler.close();
 	}
 	
-	
+	@Ignore
 	@Test
 	public void findVesaLaisi() {
 		handler.init();

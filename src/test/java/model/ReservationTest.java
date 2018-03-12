@@ -15,6 +15,7 @@ import org.junit.Test;
 import db.EquipmentDataReader;
 
 public class ReservationTest {
+	
 	ReservationDao rdao = new ReservationDao();
 	private Reservation reservation = new Reservation();
 	/*
@@ -27,6 +28,7 @@ public class ReservationTest {
 	}
 	*/
 	
+	/*
 	public static Reservation generateRandomOpenReservation() {
 		EmployeeDao empdao = new EmployeeDao();
 		EquipmentDao eqdao = new EquipmentDao();
@@ -67,6 +69,7 @@ public class ReservationTest {
 		
 		return testReservation;
 	}
+	*/
 
 	
 	public static int randBetween(int start, int end) {

@@ -13,6 +13,7 @@ import model.Reservation;
 // TODO: make this a real testing class...
 public class DBTest extends LocalDBHandler {
 
+	/*
     public ArrayList<Reservation> fetchData() {
     	ArrayList<Reservation> reservations = new ArrayList<Reservation>();
         Connection connection = initDB();
@@ -65,4 +66,5 @@ public class DBTest extends LocalDBHandler {
     	
     	System.out.println(sb.toString());
     }
+    */
 }

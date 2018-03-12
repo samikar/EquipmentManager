@@ -15,6 +15,10 @@ public class EmployeeDao {
 	EntityManagerFactory entityManagerFactory = DatabaseUtil.getSessionFactory();
 	private EntityManager entityManager;
 
+	public void setEntityManager(EntityManager em) {
+		entityManager = em;
+	}
+
 	public Employee getDao() {
 		return dao;
 	}

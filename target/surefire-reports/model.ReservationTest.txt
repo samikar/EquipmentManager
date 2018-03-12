@@ -1,9 +1,0 @@
--------------------------------------------------------------------------------
-Test set: model.ReservationTest
--------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0 sec <<< FAILURE! - in model.ReservationTest
-reservationsFound(model.ReservationTest)  Time elapsed: 0 sec  <<< ERROR!
-java.lang.NullPointerException: null
-	at model.ReservationDao.getAll(ReservationDao.java:79)
-	at model.ReservationTest.reservationsFound(ReservationTest.java:23)
-

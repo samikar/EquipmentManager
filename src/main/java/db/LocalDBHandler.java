@@ -5,7 +5,7 @@ import java.sql.DriverManager;
 import java.util.Properties;
 
 public class LocalDBHandler {
-	
+	/*
     public Connection initDB() {
     	Properties appProperties = PropertyUtils.loadProperties();
 		try {
@@ -37,4 +37,5 @@ public class LocalDBHandler {
             return false;
 		}
     }
+    */
 }
