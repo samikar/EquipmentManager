@@ -11,8 +11,18 @@ import db.DatabaseUtil;
 
 public class ReservationDao {
 	private Reservation dao;
-	EntityManagerFactory entityManagerFactory = DatabaseUtil.getSessionFactory();
+	private EntityManagerFactory entityManagerFactory;
 	private EntityManager entityManager;
+	
+	public ReservationDao() {
+		try{
+	         entityManagerFactory = DatabaseUtil.getSessionFactory();
+	     }
+		catch (Exception e) {
+			// TODO: logger
+		}
+		
+	}
 
 	public Reservation getDao() {
 		return dao;

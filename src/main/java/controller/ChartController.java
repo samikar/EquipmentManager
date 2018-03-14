@@ -23,7 +23,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import db.PropertyUtils;
 import model.Equipment;
 import model.EquipmentDao;
 import model.EquipmentUsage;
@@ -32,6 +31,7 @@ import model.EquipmenttypeDao;
 import model.MonthlyUsage;
 import model.Reservation;
 import model.ReservationDao;
+import utils.PropertyUtils;
 
 @RestController
 public class ChartController {

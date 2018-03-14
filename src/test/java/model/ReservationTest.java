@@ -12,7 +12,7 @@ import java.util.Random;
 
 import org.junit.Test;
 
-import db.EquipmentDataReader;
+import utils.EquipmentDataReader;
 
 public class ReservationTest {
 	

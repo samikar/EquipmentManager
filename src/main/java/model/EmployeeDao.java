@@ -1,19 +1,38 @@
 package model;
 
 import java.util.List;
+import java.util.logging.Logger;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import db.ADHandler;
 import db.DatabaseUtil;
 
+@Repository
+@Transactional
 public class EmployeeDao {
+	
+	@PersistenceContext
+	private EntityManager entityManager;
+	private EntityManagerFactory entityManagerFactory;
+	
 	private Employee dao;
 	
-	EntityManagerFactory entityManagerFactory = DatabaseUtil.getSessionFactory();
-	private EntityManager entityManager;
+	public EmployeeDao() {
+		try{
+	         entityManagerFactory = DatabaseUtil.getSessionFactory();
+	     }
+		catch (Exception e) {
+			// TODO: logger
+		}
+		
+	}
 
 	public void setEntityManager(EntityManager em) {
 		entityManager = em;

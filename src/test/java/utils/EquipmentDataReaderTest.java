@@ -1,4 +1,4 @@
-package db;
+package utils;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
@@ -18,6 +18,8 @@ import org.apache.poi.util.IOUtils;
 import org.junit.Test;
 import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.web.multipart.MultipartFile;
+
+import utils.EquipmentDataReader;
 
 public class EquipmentDataReaderTest {
 	private final String TESTFILEPATH = "test_files" + File.separator;

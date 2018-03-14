@@ -10,10 +10,19 @@ import db.DatabaseUtil;
 
 public class EquipmentDao {
 	private Equipment dao;
-	
-	EntityManagerFactory entityManagerFactory = DatabaseUtil.getSessionFactory();
+	private EntityManagerFactory entityManagerFactory;
 	private EntityManager entityManager;
 
+	public EquipmentDao() {
+		try{
+	         entityManagerFactory = DatabaseUtil.getSessionFactory();
+	     }
+		catch (Exception e) {
+			// TODO: logger
+		}
+		
+	}
+	
 	public Equipment getDao() {
 		return dao;
 	}

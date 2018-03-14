@@ -8,17 +8,18 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedNativeQueries;
 import javax.persistence.NamedNativeQuery;
+import javax.persistence.Table;
 
 
 /**
  * Persistence class for the employee database table.
  * 
  */
-@Entity
+
 @NamedNativeQueries({
 	@NamedNativeQuery(
 			name	=	"Employee.findAll", 
-			query	=	"SELECT e FROM employee e",
+			query	=	"SELECT * FROM employee",
 						resultClass=Employee.class
 	),
 	@NamedNativeQuery(
@@ -30,6 +31,8 @@ import javax.persistence.NamedNativeQuery;
 	)
 	})
 
+@Entity(name="Employee")
+@Table (name="employee")
 public class Employee implements Serializable {
 	private static final long serialVersionUID = 1L;
 

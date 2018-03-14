@@ -13,6 +13,8 @@ import javax.naming.directory.InitialDirContext;
 import javax.naming.directory.SearchControls;
 import javax.naming.directory.SearchResult;
 
+import utils.PropertyUtils;
+
 public class ADHandler {
 	DirContext statcontext;
 	public ADHandler() {

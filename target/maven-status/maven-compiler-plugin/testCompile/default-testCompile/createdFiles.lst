@@ -1,0 +1,7 @@
+utils\PropertyUtilsTest.class
+model\EquipmentTypeDaoTest.class
+utils\EquipmentDataReaderTest.class
+model\EmployeeDaoTest.class
+db\DataBaseUtilTest.class
+db\ADHandlerTest.class
+model\ReservationTest.class

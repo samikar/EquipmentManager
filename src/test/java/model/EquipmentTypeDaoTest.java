@@ -17,16 +17,6 @@ public class EquipmentTypeDaoTest {
 	@Transactional
 	@Rollback(true)
 	public void testAddEmployee() {
-		Equipmenttype testEmployee = new Equipmenttype();
-		testEmployee.setTypeCode(9999);
-		testEmployee.setTypeName("Test type");
-		
-		etdao.init();
-		etdao.persist(testEmployee);
-		List<Equipmenttype> employees = etdao.getAll();
-		assertEquals(testEmployee.getTypeCode(), employees.get(0).getTypeCode());
-		assertEquals(testEmployee.getTypeName(), employees.get(0).getTypeName());
-		etdao.destroy();
 		
 	}
 }

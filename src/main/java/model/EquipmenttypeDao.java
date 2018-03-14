@@ -10,8 +10,18 @@ import db.DatabaseUtil;
 
 public class EquipmenttypeDao {
 	private Equipmenttype dao;
-	EntityManagerFactory entityManagerFactory = DatabaseUtil.getSessionFactory();
+	private EntityManagerFactory entityManagerFactory;
 	private EntityManager entityManager;
+	
+	public EquipmenttypeDao() {
+		try{
+	         entityManagerFactory = DatabaseUtil.getSessionFactory();
+	     }
+		catch (Exception e) {
+			// TODO: logger
+		}
+		
+	}
 
 	public Equipmenttype getDao() {
 		return dao;

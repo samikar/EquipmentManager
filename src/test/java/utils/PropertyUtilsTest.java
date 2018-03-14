@@ -1,4 +1,4 @@
-package db;
+package utils;
 
 import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertNotNull;
@@ -9,6 +9,8 @@ import java.nio.file.Paths;
 import java.util.Properties;
 
 import org.junit.Test;
+
+import utils.PropertyUtils;
 
 public class PropertyUtilsTest {
 	@Test
