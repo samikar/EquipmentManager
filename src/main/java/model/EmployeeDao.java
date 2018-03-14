@@ -25,13 +25,6 @@ public class EmployeeDao {
 	private Employee dao;
 	
 	public EmployeeDao() {
-		try{
-	         entityManagerFactory = DatabaseUtil.getSessionFactory();
-	     }
-		catch (Exception e) {
-			// TODO: logger
-		}
-		
 	}
 
 	public void setEntityManager(EntityManager em) {
@@ -47,6 +40,22 @@ public class EmployeeDao {
 	}
 
 	public void init() {
+		try {
+			entityManagerFactory = DatabaseUtil.getSessionFactory();
+		}
+		catch (Exception e) {
+			// TODO: logger
+		}
+		entityManager = entityManagerFactory.createEntityManager();
+	}
+	
+	public void initTest() {
+		try {
+	        entityManagerFactory = DatabaseUtil.getTestSessionFactory();
+	     }
+		catch (Exception e) {
+			// TODO: logger
+		}
 		entityManager = entityManagerFactory.createEntityManager();
 	}
 

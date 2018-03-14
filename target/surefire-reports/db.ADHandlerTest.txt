@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: db.ADHandlerTest
 -------------------------------------------------------------------------------
-Tests run: 4, Failures: 0, Errors: 0, Skipped: 4, Time elapsed: 0.004 sec - in db.ADHandlerTest
+Tests run: 4, Failures: 0, Errors: 0, Skipped: 3, Time elapsed: 0.172 sec - in db.ADHandlerTest

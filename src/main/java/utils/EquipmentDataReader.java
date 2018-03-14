@@ -3,7 +3,6 @@ package utils;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.file.DirectoryNotEmptyException;
 import java.nio.file.Files;
@@ -84,14 +83,14 @@ public class EquipmentDataReader {
 		if(!f.exists() && !f.isDirectory()) { 
 			return "Equipment file not found!";
 		}
-		/*
+		
 		try {
 			inputStreamEquipment = new FileInputStream(new File(filePath));
 		} catch (FileNotFoundException e1) {
 			e1.printStackTrace();
 			return "Equipment file not found: " + e1.getMessage();
 		}
-		*/
+		
 
 		Workbook workbook = null;
 		try {
@@ -179,7 +178,6 @@ public class EquipmentDataReader {
 			return "Equipment type file not found!";
 		}
 
-		/*
 		try {
 			inputStreamType = new FileInputStream(new File(filePath));
 		} catch (FileNotFoundException e1) {
@@ -187,7 +185,6 @@ public class EquipmentDataReader {
 			System.out.println("Equipment type file could not be read: " + e1.getMessage());
 			return "Equipment type file could not be read: " + e1.getMessage();
 		}
-		*/
 
 		try {
 			workbook = new XSSFWorkbook(inputStreamType);

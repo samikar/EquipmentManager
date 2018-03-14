@@ -3,6 +3,7 @@ package db;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
@@ -15,12 +16,11 @@ public class ADHandlerTest {
 		 handler.init();
 	}
 	
-	@Before
+	@After
 	public void destroy() {
 		handler.close();
 	}
 	
-	@Ignore
 	@Test
 	public void testADConnection() {
 		assertNotNull(handler);
