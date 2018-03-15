@@ -61,10 +61,14 @@ function takeEquipment() {
   })
   .always(function() {
     //alert( "finished" );
+    $("#txt_serial").attr("disabled", false);
+    $("#txt_employeeId").attr("disabled", false);
   });
 }
 
 function statusWorking() {
+  $("#txt_serial").attr("disabled", true);
+  $("#txt_employeeId").attr("disabled", true);
   if($("#status").hasClass("hidden")) {$("#status").removeClass("hidden");}
   if($("#status").hasClass("alert-danger")) {$("#status").removeClass("alert-danger");}
   if($("#status").hasClass("alert-success")) {$("#status").removeClass("alert-success");}

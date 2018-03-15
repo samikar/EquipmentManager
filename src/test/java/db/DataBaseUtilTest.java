@@ -7,7 +7,6 @@ import org.junit.Test;
 
 public class DataBaseUtilTest {
 	
-	@Ignore
 	@Test
 	public void testEntityManagerFactory() {
 		assertNotNull(DatabaseUtil.getSessionFactory());

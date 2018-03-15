@@ -4,14 +4,23 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import db.DatabaseUtil;
 
+@Repository
+@Transactional
 public class EquipmentDao {
-	private Equipment dao;
-	private EntityManagerFactory entityManagerFactory;
+	
+	@PersistenceContext
 	private EntityManager entityManager;
+	private EntityManagerFactory entityManagerFactory;
+	private Equipment dao;
+	
 
 	public EquipmentDao() {
 		try{
@@ -31,7 +40,23 @@ public class EquipmentDao {
 		this.dao = dao;
 	}
 	
-	public void init(){
+	public void init() {
+		try {
+			entityManagerFactory = DatabaseUtil.getSessionFactory();
+		}
+		catch (Exception e) {
+			// TODO: logger
+		}
+		entityManager = entityManagerFactory.createEntityManager();
+	}
+	
+	public void initTest() {
+		try {
+	        entityManagerFactory = DatabaseUtil.getTestSessionFactory();
+	     }
+		catch (Exception e) {
+			// TODO: logger
+		}
 		entityManager = entityManagerFactory.createEntityManager();
 	}
 	
@@ -123,7 +148,7 @@ public class EquipmentDao {
 	}
 	
 	public List<Equipment> getOrderedByType() {
-		List<Equipment> equipment = entityManager.createNamedQuery("Equipment.findAllOrderedByType", Equipment.class)
+		List<Equipment> equipment = entityManager.createNamedQuery("Equipment.findAllOrderedByTypeName", Equipment.class)
 				.getResultList();
 		return equipment;
 	}

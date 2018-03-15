@@ -37,18 +37,9 @@ public class EquipmentDataReader {
 					HttpStatus.UNSUPPORTED_MEDIA_TYPE);
 		else { 
 			File convertFile = EquipmentDataReader.writeFile(file, dataFilePath);
-			String headerVerify;
-			
-			headerVerify = verifyEquipmentFileHeaders(convertFile.getAbsolutePath());
-			if (!headerVerify.equals("OK")) {
-				return new ResponseEntity<>(
-						"Spreadsheet headers wrong: " + headerVerify + ". \nFix configuration file or spreadsheet headers.",
-						HttpStatus.UNSUPPORTED_MEDIA_TYPE);
-			}
-			else {
-				readEquipmentFromFile(convertFile.getPath());
-			}
-			EquipmentDataReader.deleteFile(convertFile);
+
+			readEquipmentFromFile(convertFile.getPath());
+			deleteFile(convertFile);
 		}
 		return new ResponseEntity<>("Equipment data read succesfully!", HttpStatus.OK);
 	}
@@ -59,24 +50,23 @@ public class EquipmentDataReader {
 			return new ResponseEntity<>("File extension should be \"xlsx\" (Excel spreadsheet).",
 					HttpStatus.UNSUPPORTED_MEDIA_TYPE);
 		else { 
-			File convertFile = EquipmentDataReader.writeFile(file, dataFilePath);
-			String headerVerify;
-			
-			headerVerify = verifyTypeFileHeaders(convertFile.getAbsolutePath());
-			if (!headerVerify.equals("OK")) {
-				return new ResponseEntity<>(
-						"Spreadsheet headers wrong: " + headerVerify + ". \nFix configuration file or spreadsheet headers.",
-						HttpStatus.UNSUPPORTED_MEDIA_TYPE);
-			}
-			else {
-				readEquipmentTypesFromFile(convertFile.getPath());
-			}
-			EquipmentDataReader.deleteFile(convertFile);
+			File convertFile = EquipmentDataReader.writeFile(file, dataFilePath);			
+
+			readEquipmentTypesFromFile(convertFile.getPath());
+			deleteFile(convertFile);
 		}
 		return new ResponseEntity<>("Equipment data read succesfully!", HttpStatus.OK);
 	}
 	
 	public static String readEquipmentFromFile(String filePath) {
+		int equipmentNameColumn = Integer.parseInt(appProperties.getProperty("EquipmentFileNameColumn")) - 1;
+		int serialColumn = Integer.parseInt(appProperties.getProperty("EquipmentFileSerialColumn")) - 1;
+		int typeColumn = Integer.parseInt(appProperties.getProperty("EquipmentFileTypeColumn")) - 1;
+		int firstRow = Integer.parseInt(appProperties.getProperty("EquipmentFileFirstDataRow"));
+		int lastRow = Integer.parseInt(appProperties.getProperty("EquipmentFileLastDataRow"));
+		
+		EquipmentDao edao = new EquipmentDao();
+		EquipmenttypeDao eqTypeDao = new EquipmenttypeDao();
 		FileInputStream inputStreamEquipment = null;
 		
 		File f = new File(filePath);
@@ -101,61 +91,57 @@ public class EquipmentDataReader {
 		}
 
 		Sheet firstSheet = workbook.getSheetAt(0);
-		int rows = firstSheet.getPhysicalNumberOfRows();
-		EquipmentDao edao = new EquipmentDao();
-		EquipmenttypeDao eqTypeDao = new EquipmenttypeDao();
+		Iterator<Row> iterator = firstSheet.iterator();
 		edao.init();
 		eqTypeDao.init();
-		
-		Iterator<Row> iterator = firstSheet.iterator();
 
-		for (int i=0; i<Integer.parseInt(appProperties.getProperty("EquipmentFileRowsBeforeData")); i++) {
+		for (int i=0; i<firstRow - 1; i++) {
 			iterator.next();	
-		}
-
-		for (int i = 3; i < rows - Integer.parseInt(appProperties.getProperty("EquipmentFileRowsAfterData")); i++) {
+		}		
+		
+		for (int i = firstRow; i <= lastRow; i++) {
+			System.out.println("i: " + i + " firstRow: " + firstRow + " lastRow: " + lastRow);
+			Equipment e = new Equipment();
 			Row nextRow = iterator.next();
 			Iterator<Cell> cellIterator = nextRow.cellIterator();
-			Equipment e = new Equipment();
 			String typeCode = "";
+			e.setName("foo");
+			e.setSerial(Integer.toString(i));
+			e.setEquipmenttype(null);
 
 			while (cellIterator.hasNext()) {
-				int descriptionColumn = Integer.parseInt(appProperties.getProperty("EquipmentFileDescriptionColumn"));
-				int serialColumn = Integer.parseInt(appProperties.getProperty("EquipmentFileSerialColumn"));
-				int typeCodeColumn = Integer.parseInt(appProperties.getProperty("EquipmentFileTypeCodeColumn"));
-				
-				
 				Cell cell = cellIterator.next();
 				int column = cell.getColumnIndex();
-
-				if (column == descriptionColumn)
+				if (column == equipmentNameColumn)
 					e.setName(cell.getStringCellValue());
 				else if (column == serialColumn)
 					e.setSerial(cell.getStringCellValue());
-				else if (column == typeCodeColumn)
+				else if (column == typeColumn) {
 					typeCode = cell.getStringCellValue();
-				
-				if (typeCode.length() >= 4) {
-					Equipmenttype eqType = new Equipmenttype();
-					// int typeCode = Integer.parseInt(cell.getStringCellValue());
-					eqTypeDao.initialize(eqTypeDao.getEquipmentTypeIdByTypeCode(Integer.parseInt(typeCode)));
-					eqType = eqTypeDao.getDao();
-					e.setEquipmenttype(eqType);
+					
+					if (eqTypeDao.typeCodeExists(Integer.parseInt(typeCode))) {
+						eqTypeDao.initialize(eqTypeDao.getEquipmentTypeIdByTypeCode(Integer.parseInt(typeCode)));
+						Equipmenttype eqType = new Equipmenttype();
+						eqType = eqTypeDao.getDao();
+						e.setEquipmenttype(eqType);
+					}
 				}
 				e.setStatus(1);
 			}
-
+			
 			// Check if equipment with serial is already in database, update if found,
 			// insert if not
-			int eId = edao.getEquipmentIdBySerial(e.getSerial());
-			if (eId > 0) {
+			if (edao.serialExists(e.getSerial())) {
 				Equipment equipmentInDB = edao.getBySerial(e.getSerial());
 				equipmentInDB.setName(e.getName());
 				equipmentInDB.setEquipmenttype(e.getEquipmenttype());
+				equipmentInDB.setStatus(e.getStatus());
 				edao.update(equipmentInDB);
-			} else
+			} 
+			else
 				edao.persist(e);
 		}
+		
 		// workbook.close();
 		edao.destroy();
 		eqTypeDao.destroy();
@@ -170,6 +156,12 @@ public class EquipmentDataReader {
 	}
 
 	public static String readEquipmentTypesFromFile(String filePath) {
+		int typeNameColumn = Integer.parseInt(appProperties.getProperty("TypeFileTypeNameColumn"));
+		int typeCodeColumn = Integer.parseInt(appProperties.getProperty("TypeFileTypeCodeColumn"));
+		int firstRow = Integer.parseInt(appProperties.getProperty("TypeFileFirstDataRow"));
+		int lastRow = Integer.parseInt(appProperties.getProperty("TypeFileLastDataRow"));
+		
+		EquipmenttypeDao eqTypeDao = new EquipmenttypeDao();
 		FileInputStream inputStreamType = null;
 		Workbook workbook = null;
 		
@@ -194,31 +186,28 @@ public class EquipmentDataReader {
 		}
 
 		Sheet firstSheet = workbook.getSheetAt(0);
-		int rows = firstSheet.getPhysicalNumberOfRows();
 		Iterator<Row> iterator = firstSheet.iterator();
-		EquipmenttypeDao eqTypeDao = new EquipmenttypeDao();
 		eqTypeDao.init();
-
-		for (int i=0; i<Integer.parseInt(appProperties.getProperty("TypeFileRowsBeforeData")); i++) {
+		
+		for (int i=0; i<firstRow - 1; i++) {
 			iterator.next();	
 		}
-
-		for (int i = 3; i < rows - Integer.parseInt(appProperties.getProperty("TypeFileRowsAfterData")); i++) {
+		
+		for (int i = firstRow; i <= lastRow; i++) {
 			Equipmenttype eqType = new Equipmenttype();
 			Row nextRow = iterator.next();
 			Iterator<Cell> cellIterator = nextRow.cellIterator();
 
 			while (cellIterator.hasNext()) {
-				int typeNameColumn = Integer.parseInt(appProperties.getProperty("TypeFileTypeNameColumn"));
-				int typeCodeColumn = Integer.parseInt(appProperties.getProperty("TypeFileTypeCodeColumn"));
-				
 				Cell cell = cellIterator.next();
 				int column = cell.getColumnIndex();
 				
-				if (column == typeNameColumn)
+				if (column == typeNameColumn) {
 					eqType.setTypeName(cell.getStringCellValue());
-				else if (column == typeCodeColumn)
+				}
+				else if (column == typeCodeColumn) {
 					eqType.setTypeCode(Integer.parseInt(cell.getStringCellValue()));
+				}
 			}
 			
 			// Check if equipment type with typeCode is already in database, update if found,
@@ -231,6 +220,7 @@ public class EquipmentDataReader {
 				eqTypeDao.persist(eqType);
 		}
 		// workbook.close();
+		
 		eqTypeDao.destroy();
 		try {
 			inputStreamType.close();
@@ -253,98 +243,6 @@ public class EquipmentDataReader {
 			return false;
 		else
 			return true;
-	}
-	
-	public static String verifyEquipmentFileHeaders(String filePath) {
-
-		FileInputStream inputStreamEquipment = null;
-		try {
-			inputStreamEquipment = new FileInputStream(new File(filePath));
-		} catch (FileNotFoundException e1) {
-			e1.printStackTrace();
-			// return "Equipment file not found: " + e1.getMessage();
-		}
-
-		Workbook workbook = null;
-		try {
-			workbook = new XSSFWorkbook(inputStreamEquipment);
-		} catch (IOException e1) {
-			e1.printStackTrace();
-			// return "Equipment file could not be read: " + e1.getMessage();
-		}
-
-		Sheet firstSheet = workbook.getSheetAt(0);
-
-		Iterator<Row> iterator = firstSheet.iterator();
-
-		for (int i = 0; i < Integer.parseInt(appProperties.getProperty("EquipmentFileRowsBeforeData")) - 1; i++) {
-			iterator.next();
-		}
-
-		Row headerRow = iterator.next();
-
-		Iterator<Cell> cellIterator = headerRow.cellIterator();
-		while (cellIterator.hasNext()) {
-			int descriptionColumn = Integer.parseInt(appProperties.getProperty("EquipmentFileDescriptionColumn"));
-			int serialColumn = Integer.parseInt(appProperties.getProperty("EquipmentFileSerialColumn"));
-			int typeCodeColumn = Integer.parseInt(appProperties.getProperty("EquipmentFileTypeCodeColumn"));
-			String descriptionStr = appProperties.getProperty("EquipmentFileDescriptionString");
-			String serialStr = appProperties.getProperty("EquipmentFileSerialString");
-			String typeCodeStr = appProperties.getProperty("EquipmentFileTypeCodeString");
-
-			Cell cell = cellIterator.next();
-			int column = cell.getColumnIndex();
-			if (column == descriptionColumn && !cell.getStringCellValue().equals(descriptionStr))
-				return "is \"" + cell.getStringCellValue() + "\", should be: \"" + descriptionStr + "\"";
-			else if (column == serialColumn && !cell.getStringCellValue().equals(serialStr))
-				return "is \"" + cell.getStringCellValue() + "\", should be: \"" + serialStr + "\"";
-			else if (column == typeCodeColumn && !cell.getStringCellValue().equals(typeCodeStr))
-				return "is \"" + cell.getStringCellValue() + "\", should be: \"" + typeCodeStr + "\"";
-		}
-		return "OK";
-	}
-	
-	public static String verifyTypeFileHeaders(String filePath) {
-		FileInputStream inputStreamEquipment = null;
-		try {
-			inputStreamEquipment = new FileInputStream(new File(filePath));
-		} catch (FileNotFoundException e1) {
-			e1.printStackTrace();
-			// return "Equipment file not found: " + e1.getMessage();
-		}
-
-		Workbook workbook = null;
-		try {
-			workbook = new XSSFWorkbook(inputStreamEquipment);
-		} catch (IOException e1) {
-			e1.printStackTrace();
-			// return "Equipment file could not be read: " + e1.getMessage();
-		}
-
-		Sheet firstSheet = workbook.getSheetAt(0);
-		Iterator<Row> iterator = firstSheet.iterator();
-
-		for (int i = 0; i < Integer.parseInt(appProperties.getProperty("TypeFileRowsBeforeData")) - 1; i++) {
-			iterator.next();
-		}
-		Row headerRow = iterator.next();
-
-		Iterator<Cell> cellIterator = headerRow.cellIterator();
-		while (cellIterator.hasNext()) {
-			int typeNameColumn = Integer.parseInt(appProperties.getProperty("TypeFileTypeNameColumn"));
-			int typeCodeColumn = Integer.parseInt(appProperties.getProperty("TypeFileTypeCodeColumn"));
-			String typeNameStr = appProperties.getProperty("TypeFileTypeNameStr");
-			String typeCodeStr = appProperties.getProperty("TypeFileTypeCodeStr");
-
-			Cell cell = cellIterator.next();
-			int column = cell.getColumnIndex();
-
-			if (column == typeNameColumn && !cell.getStringCellValue().equals(typeNameStr))
-				return "is \"" + cell.getStringCellValue() + "\", should be: \"" + typeNameStr + "\"";
-			else if (column == typeCodeColumn && !cell.getStringCellValue().equals(typeCodeStr))
-				return "is \"" + cell.getStringCellValue() + "\", should be: \"" + typeCodeStr + "\"";
-		}
-		return "OK";
 	}
 	
 	public static File writeFile(MultipartFile file, String path) {

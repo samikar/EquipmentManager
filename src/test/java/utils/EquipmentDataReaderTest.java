@@ -57,26 +57,6 @@ public class EquipmentDataReaderTest {
 	}
 	
 	@Test
-	public void verifyEquipmentFileHeadersOK() {
-		assertTrue(EquipmentDataReader.verifyEquipmentFileHeaders(TESTFILEPATH + EQUIPMENTFILE).equals("OK"));
-	}
-	
-	@Test
-	public void verifyEquipmentFileHeadersNotOK() {
-		assertFalse(EquipmentDataReader.verifyEquipmentFileHeaders(TESTFILEPATH + EQUIPMENTFILE_WRONGHEADERS).equals("OK"));
-	}
-	
-	@Test
-	public void verifyTypeFileHeadersOK() {
-		assertTrue(EquipmentDataReader.verifyTypeFileHeaders(TESTFILEPATH + TYPEFILE).equals("OK"));
-	}
-	
-	@Test
-	public void verifyTypeFileHeadersNotOK() {
-		assertFalse(EquipmentDataReader.verifyTypeFileHeaders(TESTFILEPATH + TYPEFILE_WRONGHEADERS).equals("OK"));
-	}
-	
-	@Test
 	public void writeFileWritingSuccesful() {
 		MultipartFile multipartFile = null;
 		File file = createTestFile(TESTFILEPATH, TESTFILENAME);

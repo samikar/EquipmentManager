@@ -33,7 +33,7 @@ public class DatabaseUtil {
     	persistenceMap.put("javax.persistence.jdbc.url", properties.getProperty("DBurl"));
     	persistenceMap.put("javax.persistence.jdbc.user", properties.getProperty("DBuser"));
     	persistenceMap.put("javax.persistence.jdbc.password", properties.getProperty("DBpassword"));
-    	persistenceMap.put("javax.persistence.jdbc.driver", properties.getProperty("testDBdriver"));
+    	persistenceMap.put("javax.persistence.jdbc.driver", properties.getProperty("DBdriver"));
     	entityManagerFactory = buildSessionFactory();
         return entityManagerFactory;
     }

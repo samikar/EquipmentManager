@@ -48,11 +48,12 @@ import javax.persistence.NamedNativeQuery;
 						resultClass=Equipment.class
 	),
 	@NamedNativeQuery(
-			name	=	"Equipment.findAllOrderedByType", 
+			name	=	"Equipment.findAllOrderedByTypeName", 
 			query	=	"SELECT * " +
 						"FROM equipment " +
+						"INNER JOIN equipmentType ON equipment.equipmentTypeId = equipmentType.equipmentTypeId " +
 						"WHERE equipment.status = 1 " +
-						"ORDER BY equipmentTypeId",
+						"ORDER BY equipmenttype.typeName",
 						resultClass=Equipment.class
 	),@NamedNativeQuery(
 			name	=	"Equipment.findRandomAvailable", 

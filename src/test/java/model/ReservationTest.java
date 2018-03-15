@@ -1,18 +1,9 @@
 package model;
 
-import static org.hamcrest.CoreMatchers.containsString;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertThat;
-
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.Date;
-import java.util.List;
 import java.util.Random;
-
-import org.junit.Test;
-
-import utils.EquipmentDataReader;
 
 public class ReservationTest {
 	
@@ -52,12 +43,15 @@ public class ReservationTest {
 		Equipment testEquipment = eqdao.getRandomAvailable();
 		
 	    //Get random amount of days between 1 and 180
-		int randomAmountOfDays = random.nextInt(179) + 1;
+		int takeDateRandom = random.nextInt(359) + 1;
+		int returnDateRandom = random.nextInt(358-takeDateRandom) + 1;
 		
-		Date takeDate = Date.from(localDateTime.atZone(ZoneId.systemDefault()).minusDays(randomAmountOfDays).toInstant());
+		Date takeDate = Date.from(localDateTime.atZone(ZoneId.systemDefault()).minusDays(takeDateRandom).toInstant());
+		
+		Date returnDate = Date.from(localDateTime.atZone(ZoneId.systemDefault()).minusDays(returnDateRandom).toInstant());
 		
 		testReservation.setDateTake(takeDate);
-	
+		testReservation.setDateReturn(returnDate);
 		testReservation.setEquipment(testEquipment);
 		testReservation.setEmployee(testEmployee);
 		testReservation.setReservationType(random.nextInt(3));
@@ -69,15 +63,11 @@ public class ReservationTest {
 		
 		return testReservation;
 	}
-	*/
-
-	
-	public static int randBetween(int start, int end) {
-        return start + (int)Math.round(Math.random() * (end - start));
-    }
 	
 	public static void main(String[] args) {
-		//generateRandomOpenReservation();
+		for (int i=0; i<50; i++) {
+			generateRandomOpenReservation();
+		}
 	}
-
+	 */
 }

@@ -22,7 +22,8 @@ function getEquipmentData() {
         { title: "User" },
         { title: "Type" },
         { title: "Availability" }
-      ]
+      ],
+      "order": [[ 3, "asc" ]]
       });
 
     })

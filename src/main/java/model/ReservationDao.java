@@ -5,14 +5,22 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import db.DatabaseUtil;
 
+@Repository
+@Transactional
 public class ReservationDao {
-	private Reservation dao;
-	private EntityManagerFactory entityManagerFactory;
+	@PersistenceContext
 	private EntityManager entityManager;
+	private EntityManagerFactory entityManagerFactory;
+	private Reservation dao;
+	
 	
 	public ReservationDao() {
 		try{
@@ -32,10 +40,25 @@ public class ReservationDao {
 		this.dao = dao;
 	}
 	
-	public void init(){
+	public void init() {
+		try {
+			entityManagerFactory = DatabaseUtil.getSessionFactory();
+		}
+		catch (Exception e) {
+			// TODO: logger
+		}
 		entityManager = entityManagerFactory.createEntityManager();
 	}
 	
+	public void initTest() {
+		try {
+	        entityManagerFactory = DatabaseUtil.getTestSessionFactory();
+	     }
+		catch (Exception e) {
+			// TODO: logger
+		}
+		entityManager = entityManagerFactory.createEntityManager();
+	}
 	public List<Reservation> getDaos(){
 		entityManager.getTransaction().begin();
 		Query query = entityManager.createNamedQuery("Reservation.findAll");

@@ -21,7 +21,6 @@ public class EmployeeDao {
 	@PersistenceContext
 	private EntityManager entityManager;
 	private EntityManagerFactory entityManagerFactory;
-	
 	private Employee dao;
 	
 	public EmployeeDao() {
@@ -153,24 +152,17 @@ public class EmployeeDao {
 	public boolean employeeInAD(String employeeId) {
 		ADHandler handler = new ADHandler();
 		handler.init();
-		String employeeName = handler.findEmployeeName(employeeId);
+		String name = handler.findEmployeeName(employeeId);
 		handler.close();
-		if (employeeName.length() > 0) {
-			addEmployeeToDB(employeeId, employeeName);
+		if (name.length() > 0) {
+			// Adds found employee to DB
+			dao.setEmployeeId(employeeId);
+			dao.setName(name);
+			persist(dao);
 			System.out.println("Employee added to DB");
 			return true;
 		}
 		else
 			return false;
-	}
-
-	public Employee addEmployeeToDB(String employeeId, String employeeName) {
-		Employee newEmployee = new Employee();
-		newEmployee.setEmployeeId(employeeId);
-		newEmployee.setName(employeeName);
-		entityManager.getTransaction().begin();
-		entityManager.persist(newEmployee);
-		entityManager.getTransaction().commit();
-		return newEmployee;
 	}
 }

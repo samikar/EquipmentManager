@@ -28,12 +28,12 @@ import javax.persistence.TemporalType;
             			resultClass=Reservation.class
 	),
 	@NamedNativeQuery(
-	            name    =   "Reservation.findBySerial",
-	            query   =   "SELECT * " +
-	                        "FROM reservation " +
-	                        "INNER JOIN equipment ON reservation.equipmentId = equipment.equipmentId " +
-	                        "WHERE equipment.serial = ?",
-	                        resultClass=Reservation.class
+			name    =   "Reservation.findBySerial",
+	        query   =   "SELECT * " +
+	                    "FROM reservation " +
+	                    "INNER JOIN equipment ON reservation.equipmentId = equipment.equipmentId " +
+	                    "WHERE equipment.serial = ?",
+	                    resultClass=Reservation.class
 	    ),
     @NamedNativeQuery(
             name    =   "Reservation.findByType",
