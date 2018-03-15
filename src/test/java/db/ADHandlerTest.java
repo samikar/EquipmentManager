@@ -21,6 +21,7 @@ public class ADHandlerTest {
 		handler.close();
 	}
 	
+	@Ignore
 	@Test
 	public void testADConnection() {
 		assertNotNull(handler);

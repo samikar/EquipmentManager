@@ -18,10 +18,7 @@ public class DatabaseUtil {
 
     private static EntityManagerFactory buildSessionFactory() {
         try {
-        	if (entityManagerFactory == null) {
-        		entityManagerFactory = Persistence.createEntityManagerFactory("EquipmentManager", persistenceMap);
-            }
-
+        	entityManagerFactory = Persistence.createEntityManagerFactory("EquipmentManager", persistenceMap);
             return entityManagerFactory;
         } catch (Throwable ex) {
             System.err.println("Initial EntityManagerFactory creation failed." + ex);

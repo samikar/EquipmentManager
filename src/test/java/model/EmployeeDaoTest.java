@@ -97,7 +97,7 @@ public class EmployeeDaoTest {
 		assertEquals(employeeToSearch.getEmployeeKey(), employeeKey);
     }
     
-//    @Ignore
+    @Ignore
     @Test
     @Transactional
     @Rollback(true)
@@ -106,7 +106,7 @@ public class EmployeeDaoTest {
 		assertTrue(empdao.employeeExists(vesaLaisiID));
     }
     
-//    @Ignore
+    @Ignore
     @Test
     @Transactional
     @Rollback(true)
@@ -114,6 +114,7 @@ public class EmployeeDaoTest {
 		assertFalse(empdao.employeeExists("foobar"));
     }
     
+    @Ignore
     @Test
     @Transactional
     @Rollback(true)
@@ -127,6 +128,7 @@ public class EmployeeDaoTest {
 		assertTrue(empdao.employeeInDB(employeeToSearch.getEmployeeId()));
     }
     
+    @Ignore
     @Test
     @Transactional
     @Rollback(true)
@@ -134,7 +136,7 @@ public class EmployeeDaoTest {
 		assertFalse(empdao.employeeInDB("foobar"));
     }
     
-//    @Ignore
+    @Ignore
     @Test
     @Transactional
     @Rollback(true)
@@ -145,7 +147,7 @@ public class EmployeeDaoTest {
 		assertTrue(empdao.employeeInDB(vesaLaisiID));		
     }
 
-//    @Ignore
+    @Ignore
     @Test
     @Transactional
     @Rollback(true)
