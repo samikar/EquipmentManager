@@ -5,7 +5,7 @@ import java.time.ZoneId;
 import java.util.Date;
 import java.util.Random;
 
-public class ReservationTest {
+public class ReservationDaoTest {
 	
 	ReservationDao rdao = new ReservationDao();
 	private Reservation reservation = new Reservation();

@@ -133,7 +133,7 @@ public class EquipmentDao {
 		return equipment.get(0);
 	}
 	
-	public List<Equipment> getByType(int typeCode) {
+	public List<Equipment> getByTypeCode(int typeCode) {
 		List<Equipment> equipment = entityManager.createNamedQuery("Equipment.findByType", Equipment.class)
 				.setParameter(1, typeCode)
 				.getResultList();

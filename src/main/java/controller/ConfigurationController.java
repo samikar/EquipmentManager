@@ -197,7 +197,7 @@ public class ConfigurationController {
 		etdao.init();
 		etdao.initialize(Integer.parseInt(equipmentTypeId));
 		Equipmenttype etype = etdao.getDao();
-		List<Equipment> equipmentList = edao.getByType(etype.getTypeCode());
+		List<Equipment> equipmentList = edao.getByTypeCode(etype.getTypeCode());
 		if (equipmentList.size() > 0) {
 			edao.destroy();
 			etdao.destroy();

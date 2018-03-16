@@ -57,6 +57,11 @@ public class Equipmenttype implements Serializable {
 	 */
 	public Equipmenttype() {
 	}
+	
+	public Equipmenttype(int typeCode, String typeName) {
+		this.typeCode = typeCode;
+		this.typeName = typeName;
+	}
 
 	public int getEquipmentTypeId() {
 		return this.equipmentTypeId;
