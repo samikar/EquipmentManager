@@ -11,7 +11,6 @@ import utils.PropertyUtils;
 
 public class DatabaseUtil {
 
-//    private static EntityManagerFactory sessionFactory = buildSessionFactory();
 	private static Properties properties = PropertyUtils.loadProperties();
 	private static EntityManagerFactory entityManagerFactory;
 	static Map<String, String> persistenceMap = new HashMap<String, String>();

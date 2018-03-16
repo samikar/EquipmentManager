@@ -22,12 +22,12 @@ public class EmployeeDaoTest {
     public void init() {
     	empdao = new EmployeeDao();
         empdao.initTest();
-        truncateTable();
+        emptyTables();
     }
 
     @After
     public void destroy() {
-    	truncateTable();
+    	emptyTables();
         empdao.destroy();
     }
 	
@@ -155,7 +155,7 @@ public class EmployeeDaoTest {
     	assertFalse(empdao.employeeInDB("foobar"));		
     }
     
-    public void truncateTable() {
+    public void emptyTables() {
     	List<Employee> employees = empdao.getAll();
     	for (Employee currentEmployee : employees) {
     		empdao.initialize(currentEmployee.getEmployeeKey());
