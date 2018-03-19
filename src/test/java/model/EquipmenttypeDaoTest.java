@@ -7,7 +7,9 @@ import static org.junit.Assert.assertTrue;
 import java.util.List;
 
 import org.junit.After;
+import org.junit.AfterClass;
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.annotation.Rollback;
@@ -15,23 +17,31 @@ import org.springframework.transaction.annotation.Transactional;
 
 public class EquipmenttypeDaoTest {
 	@Autowired
-	private EquipmenttypeDao etdao;
-	private EquipmentDao edao;
+	private static EquipmenttypeDao etdao;
+	private static EquipmentDao edao;
 
-	@Before
-	public void init() {
+	@BeforeClass
+	public static void init() {
 		edao = new EquipmentDao();
 		etdao = new EquipmenttypeDao();
 		edao.initTest();
 		etdao.initTest();
-		emptyTables();
 	}
 
-	@After
-	public void destroy() {
-		emptyTables();
+	@AfterClass
+	public static void destroy() {
 		edao.destroy();
 		etdao.destroy();
+	}
+	
+	@Before
+	public void initTables() {
+		emptyTables();
+	}
+	
+	@After
+	public void destroyTables() {
+		emptyTables();
 	}
 
 	@Test

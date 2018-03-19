@@ -84,7 +84,6 @@ public class ReservationController {
 
 			rdao.persist(reservation);
 			empdao.destroy();
-//			empdao2.destroy();
 			edao.destroy();
 			rdao.destroy();
 			return reservation;

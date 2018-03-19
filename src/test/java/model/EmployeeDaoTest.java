@@ -7,7 +7,9 @@ import static org.junit.Assert.assertTrue;
 import java.util.List;
 
 import org.junit.After;
+import org.junit.AfterClass;
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,34 +18,47 @@ import org.springframework.transaction.annotation.Transactional;
 
 public class EmployeeDaoTest {
 	@Autowired
-	private EmployeeDao empdao;
+	private static EmployeeDao empdao;
 	
-    @Before
-    public void init() {
+    @BeforeClass
+    public static void init() {
     	empdao = new EmployeeDao();
         empdao.initTest();
-        emptyTables();
     }
 
-    @After
-    public void destroy() {
-    	emptyTables();
+    @AfterClass
+    public static void destroy() {
         empdao.destroy();
     }
+    
+	@Before
+	public void initTables() {
+		emptyTables();
+	}
+	
+	@After
+	public void destroyTables() {
+		emptyTables();
+	}
 	
     @Test
     @Transactional
     @Rollback(true)
 	public void testAddEmployee() {
-		Employee employeeToAdd = new Employee();
+		Employee testEmployee = new Employee();
 
-		employeeToAdd.setName("Unit Test1");
-		employeeToAdd.setEmployeeId("000000001");
+		testEmployee.setName("Unit Test1");
+		testEmployee.setEmployeeId("000000001");
+		testEmployee.setEmployeeKey(empdao.persist(testEmployee));
 		
-		empdao.persist(employeeToAdd);
-		List<Employee> employees = empdao.getAll();
-		assertEquals(employeeToAdd.getEmployeeId(), employees.get(employees.size()-1).getEmployeeId());
-		assertEquals(employeeToAdd.getName(), employees.get(employees.size()-1).getName());
+		empdao.destroy();
+		empdao.initTest();
+		empdao.initialize(testEmployee.getEmployeeKey());
+		Employee DBemployee = empdao.getDao();
+
+		assertEquals(testEmployee.getEmployeeKey(), DBemployee.getEmployeeKey());
+		assertEquals(testEmployee.getEmployeeId(), DBemployee.getEmployeeId());
+		assertEquals(testEmployee.getName(), DBemployee.getName());		
 	}
     
     @Test

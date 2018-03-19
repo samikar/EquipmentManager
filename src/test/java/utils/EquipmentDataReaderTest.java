@@ -26,9 +26,6 @@ public class EquipmentDataReaderTest {
 	private final String TESTFILENAME = "test_file.txt";
 	private final String NOSUCHFILE = "NOSUCHFILE.txt";
 	private final String EQUIPMENTFILE = "laitteet.xlsx";
-	private final String TYPEFILE = "luokat.xlsx";
-	private final String EQUIPMENTFILE_WRONGHEADERS = "laitteet_wrong.xlsx";
-	private final String TYPEFILE_WRONGHEADERS = "luokat_wrong.xlsx";
 	
 	
 	@Test
