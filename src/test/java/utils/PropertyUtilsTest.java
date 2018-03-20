@@ -8,10 +8,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Properties;
 
-import org.junit.Ignore;
 import org.junit.Test;
-
-import utils.PropertyUtils;
 
 public class PropertyUtilsTest {
 	@Test
@@ -66,31 +63,31 @@ public class PropertyUtilsTest {
 	public void allPropertiesHaveValues() {
 		Properties properties = PropertyUtils.loadProperties();
 		
-		assertNotEquals(properties.getProperty("DBurl").length(), 0);
-		assertNotEquals(properties.getProperty("DBuser").length(), 0);
-		assertNotEquals(properties.getProperty("DBpassword").length(), 0);
-		assertNotEquals(properties.getProperty("DBdriver").length(), 0);
+		assertNotEquals(0, properties.getProperty("DBurl").length());
+		assertNotEquals(0, properties.getProperty("DBuser").length());
+		assertNotEquals(0, properties.getProperty("DBpassword").length());
+		assertNotEquals(0, properties.getProperty("DBdriver").length());
 		
-		assertNotEquals(properties.getProperty("testDBurl").length(), 0);
-		assertNotEquals(properties.getProperty("testDBuser").length(), 0);
-		assertNotEquals(properties.getProperty("testDBpassword").length(), 0);
-		assertNotEquals(properties.getProperty("testDBdriver").length(), 0);
+		assertNotEquals(0, properties.getProperty("testDBurl").length());
+		assertNotEquals(0, properties.getProperty("testDBuser").length());
+		assertNotEquals(0, properties.getProperty("testDBpassword").length());
+		assertNotEquals(0, properties.getProperty("testDBdriver").length());
 		
-		assertNotEquals(properties.getProperty("WORKDAY").length(), 0);
-		assertNotEquals(properties.getProperty("STARTHOUR").length(), 0);
-		assertNotEquals(properties.getProperty("STARTMINUTE").length(), 0);
-		assertNotEquals(properties.getProperty("ENDHOUR").length(), 0);
-		assertNotEquals(properties.getProperty("ENDMINUTE").length(), 0);
+		assertNotEquals(0, properties.getProperty("WORKDAY").length());
+		assertNotEquals(0, properties.getProperty("STARTHOUR").length());
+		assertNotEquals(0, properties.getProperty("STARTMINUTE").length());
+		assertNotEquals(0, properties.getProperty("ENDHOUR").length());
+		assertNotEquals(0, properties.getProperty("ENDMINUTE").length());
 		
-		assertNotEquals(properties.getProperty("EquipmentFileFirstDataRow").length(), 0);
-		assertNotEquals(properties.getProperty("EquipmentFileLastDataRow").length(), 0);
-		assertNotEquals(properties.getProperty("EquipmentFileNameColumn").length(), 0);
-		assertNotEquals(properties.getProperty("EquipmentFileSerialColumn").length(), 0);
-		assertNotEquals(properties.getProperty("EquipmentFileTypeColumn").length(), 0);
+		assertNotEquals(0, properties.getProperty("EquipmentFileFirstDataRow").length());
+		assertNotEquals(0, properties.getProperty("EquipmentFileLastDataRow").length());
+		assertNotEquals(0, properties.getProperty("EquipmentFileNameColumn").length());
+		assertNotEquals(0, properties.getProperty("EquipmentFileSerialColumn").length());
+		assertNotEquals(0, properties.getProperty("EquipmentFileTypeColumn").length());
 		
-		assertNotEquals(properties.getProperty("TypeFileFirstDataRow").length(), 0);
-		assertNotEquals(properties.getProperty("TypeFileLastDataRow").length(), 0);
-		assertNotEquals(properties.getProperty("TypeFileTypeNameColumn").length(), 0);
-		assertNotEquals(properties.getProperty("TypeFileTypeCodeColumn").length(), 0);
+		assertNotEquals(0, properties.getProperty("TypeFileFirstDataRow").length());
+		assertNotEquals(0, properties.getProperty("TypeFileLastDataRow").length());
+		assertNotEquals(0, properties.getProperty("TypeFileTypeNameColumn").length());
+		assertNotEquals(0, properties.getProperty("TypeFileTypeCodeColumn").length());
 	}
 }

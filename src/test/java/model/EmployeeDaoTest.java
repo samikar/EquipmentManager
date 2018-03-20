@@ -45,38 +45,35 @@ public class EmployeeDaoTest {
     @Transactional
     @Rollback(true)
 	public void testAddEmployee() {
-		Employee testEmployee = new Employee();
+    	String employeeId = "000000001";
+    	String employeeName = "Unit Test1";
+    	Employee testEmployee = new Employee(employeeId, employeeName);
 
-		testEmployee.setName("Unit Test1");
-		testEmployee.setEmployeeId("000000001");
-		testEmployee.setEmployeeKey(empdao.persist(testEmployee));
-		
-		empdao.destroy();
-		empdao.initTest();
+		empdao.persist(testEmployee);
 		empdao.initialize(testEmployee.getEmployeeKey());
 		Employee DBemployee = empdao.getDao();
 
-		assertEquals(testEmployee.getEmployeeKey(), DBemployee.getEmployeeKey());
-		assertEquals(testEmployee.getEmployeeId(), DBemployee.getEmployeeId());
-		assertEquals(testEmployee.getName(), DBemployee.getName());		
+		assertEquals(employeeId, DBemployee.getEmployeeId());
+		assertEquals(employeeName, DBemployee.getName());
+				
 	}
     
     @Test
     @Transactional
     @Rollback(true)
 	public void testAddAndDeleteEmployeeTest() {
-    	Employee employeeToDelete = new Employee();
+		String employeeName = "Unit Test2";
+		String employeeId = "000000002";
+    	Employee testEmployee = new Employee(employeeId, employeeName);
     	
-    	employeeToDelete.setName("Unit Test2");
-    	employeeToDelete.setEmployeeId("000000002");
-		empdao.persist(employeeToDelete);
+		empdao.persist(testEmployee);
 		List<Employee> employees = empdao.getAll();
     	
     	// Employee exists in table 
 		assertEquals(1, employees.size());
     	
-    	employeeToDelete = employees.get(0);
-    	empdao.initialize(employeeToDelete.getEmployeeKey());
+		testEmployee = employees.get(0);
+    	empdao.initialize(testEmployee.getEmployeeKey());
     	empdao.delete();
     	
     	employees = empdao.getAll();
@@ -88,28 +85,28 @@ public class EmployeeDaoTest {
     @Transactional
     @Rollback(true)
 	public void testGetEmployeeByEmployeeId() {
-    	Employee employeeToSearch = new Employee();
+		String employeeName = "Unit Test3";
+		String employeeId = "000000003";
+    	Employee testEmployee = new Employee(employeeId, employeeName);
     	
-    	employeeToSearch.setName("Unit Test3");
-    	employeeToSearch.setEmployeeId("000000003");
-		empdao.persist(employeeToSearch);
-		Employee foundEmployee = empdao.getEmployeeByEmployeeId(employeeToSearch.getEmployeeId());
-		assertEquals(employeeToSearch.getName(), foundEmployee.getName());
-		assertEquals(employeeToSearch.getEmployeeId(), foundEmployee.getEmployeeId());
+		empdao.persist(testEmployee);
+		Employee DBemployee = empdao.getEmployeeByEmployeeId(testEmployee.getEmployeeId());
+		assertEquals(employeeName, DBemployee.getName());
+		assertEquals(employeeId, DBemployee.getEmployeeId());
     }
     
     @Test
     @Transactional
     @Rollback(true)
 	public void testGetEmployeeKeyByEmployeeId() {
-    	Employee employeeToSearch = new Employee();
+		String employeeName = "Unit Test4";
+		String employeeId = "000000004";
+    	Employee testEmployee = new Employee(employeeId, employeeName);
     	
-    	employeeToSearch.setName("Unit Test4");
-    	employeeToSearch.setEmployeeId("000000004");
-		empdao.persist(employeeToSearch);
-		int employeeKey = empdao.getEmployeeKeyByEmployeeId(employeeToSearch.getEmployeeId());
+		empdao.persist(testEmployee);
+		int employeeKey = empdao.getEmployeeKeyByEmployeeId(testEmployee.getEmployeeId());
 		
-		assertEquals(employeeToSearch.getEmployeeKey(), employeeKey);
+		assertEquals(employeeKey, testEmployee.getEmployeeKey());
     }
     
     @Ignore
@@ -134,13 +131,13 @@ public class EmployeeDaoTest {
     @Transactional
     @Rollback(true)
 	public void employeeInDBTrue() {
-    	Employee employeeToSearch = new Employee();
+		String employeeName = "Unit Test5";
+		String employeeId = "000000005";
+    	Employee testEmployee = new Employee(employeeId, employeeName);
     	
-    	employeeToSearch.setName("Unit Test5");
-    	employeeToSearch.setEmployeeId("000000005");
-		empdao.persist(employeeToSearch);
+		empdao.persist(testEmployee);
 				
-		assertTrue(empdao.employeeInDB(employeeToSearch.getEmployeeId()));
+		assertTrue(empdao.employeeInDB(testEmployee.getEmployeeId()));
     }
     
     @Ignore

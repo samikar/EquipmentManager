@@ -140,14 +140,14 @@ public class EquipmentDao {
 		return equipment;
 	}
 	
-	public List<Equipment> getEnabledByType(int typeCode) {
+	public List<Equipment> getEnabledByTypeCode(int typeCode) {
 		List<Equipment> equipment = entityManager.createNamedQuery("Equipment.findEnabledByType", Equipment.class)
 				.setParameter(1, typeCode)
 				.getResultList();
 		return equipment;
 	}
 	
-	public List<Equipment> getOrderedByType() {
+	public List<Equipment> getOrderedByTypeName() {
 		List<Equipment> equipment = entityManager.createNamedQuery("Equipment.findAllOrderedByTypeName", Equipment.class)
 				.getResultList();
 		return equipment;
@@ -161,11 +161,5 @@ public class EquipmentDao {
 			return true;
 		else
 			return false;
-	}
-	
-	public Equipment getRandomAvailable() {
-		List<Equipment> equipment = entityManager.createNamedQuery("Equipment.findRandomAvailable", Equipment.class)
-				.getResultList();
-		return equipment.get(0);
 	}
 }

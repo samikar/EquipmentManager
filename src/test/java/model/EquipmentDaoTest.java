@@ -1,6 +1,8 @@
 package model;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 import java.util.List;
 
@@ -47,14 +49,16 @@ public class EquipmentDaoTest {
 	@Transactional
 	@Rollback(true)
 	public void testAddEquipment() {
-		Equipment testEquipment = new Equipment();
-		Equipmenttype testEquipmenttype = new Equipmenttype(1111, "TestType1");
-		testEquipment.setName("TestEquipment1");
-		testEquipment.setSerial("TestSerial1");
-		testEquipment.setStatus(1);
-		testEquipment.setEquipmenttype(testEquipmenttype);
+		int equipmentStatusEnabled = 1;
+		int equipmentTypeTypeCode = 1111;
+		String equipmentName = "TestEquipment1";
+		String equipmentSerial = "TestSerial1";
+		String equipmentTypeName = "TestType1";
+		
+		Equipmenttype testEquipmenttype = new Equipmenttype(equipmentTypeTypeCode, equipmentTypeName);
+		Equipment testEquipment = new Equipment(equipmentName, equipmentSerial, equipmentStatusEnabled, testEquipmenttype);
 		etdao.persist(testEquipmenttype);
-		testEquipment.setEquipmentId(edao.persist(testEquipment));
+		edao.persist(testEquipment);
 		edao.initialize(testEquipment.getEquipmentId());
 		assertEquals(testEquipment, edao.getDao());
 	}
@@ -63,104 +67,119 @@ public class EquipmentDaoTest {
 	@Transactional
 	@Rollback(true)
 	public void testGetAll() {
+		int equipmentStatusEnabled = 1;
+		int equipmentTypeTypeCode = 2222;
+		int equipmentCount = 5;
+		String equipmentName = "TestEquipment2_";
+		String equipmentSerial = "TestSerial2_";
+		String equipmentTypeName = "TestType2";
+		
 		List<Equipment> equipments = edao.getAll();
 		assertEquals(0, equipments.size());
 		
-		Equipmenttype et = new Equipmenttype(2222, "TestType2");
-		etdao.persist(et);
-		for (int i=0; i<5; i++) {
-			Equipment equipmentToAdd = new Equipment();
-			equipmentToAdd.setName("TestEquipment" + i);
-			equipmentToAdd.setSerial("TestSerial" + i);
-			equipmentToAdd.setEquipmenttype(et);
-			equipmentToAdd.setStatus(1);
-			edao.persist(equipmentToAdd);
+		Equipmenttype testEquipmenttype = new Equipmenttype(equipmentTypeTypeCode, equipmentTypeName);
+		etdao.persist(testEquipmenttype);
+		for (int i=0; i<equipmentCount; i++) {
+			Equipment testEquipment = new Equipment(equipmentName + i, equipmentSerial + i, equipmentStatusEnabled, testEquipmenttype);
+			edao.persist(testEquipment);
 		}
 		equipments = edao.getAll();
-		assertEquals(5, equipments.size());
+		assertEquals(equipmentCount, equipments.size());
 	}
 	
 	@Test
 	@Transactional
 	@Rollback(true)
 	public void testGetEquipmentIdBySerial_Found() {
-		Equipmenttype et = new Equipmenttype(3333, "TestType3");
-		etdao.persist(et);
+		int equipmentStatusEnabled = 1;
+		int equipmentTypeTypeCode = 3333;
+		String equipmentName = "TestEquipment3";
+		String equipmentSerial = "TestSerial3";
+		String equipmentTypeName = "TestType3";
 		
-		Equipment equipmentToAdd = new Equipment();
-		equipmentToAdd.setName("TestEquipment3");
-		equipmentToAdd.setSerial("TestSerial3");
-		equipmentToAdd.setEquipmenttype(et);
-		equipmentToAdd.setStatus(1);
-		int equipmentId = edao.persist(equipmentToAdd);
+		Equipmenttype testEquipmenttype = new Equipmenttype(equipmentTypeTypeCode, equipmentTypeName);
+		etdao.persist(testEquipmenttype);
+		Equipment testEquipment = new Equipment(equipmentName, equipmentSerial, equipmentStatusEnabled, testEquipmenttype);
+		int equipmentId = edao.persist(testEquipment);
 		
-		assertEquals(equipmentId, edao.getEquipmentIdBySerial("TestSerial3"));
+		assertEquals(equipmentId, edao.getEquipmentIdBySerial(equipmentSerial));
 	}
 	
 	@Test
 	@Transactional
 	@Rollback(true)
-	public void testGetEquipmentIdBySerial_NotFound() {
-		assertEquals(0, edao.getEquipmentIdBySerial("TestSerial4"));
+	public void testGetEquipmentIdBySerialNotFound() {
+		String equipmentSerial = "TestSerial4";
+		assertEquals(0, edao.getEquipmentIdBySerial(equipmentSerial));
 	}
 	
 	@Test
 	@Transactional
 	@Rollback(true)
 	public void testGetBySerial() {
-		Equipmenttype et = new Equipmenttype(4444, "TestType5");
-		etdao.persist(et);
+		int equipmentStatusEnabled = 1;
+		int equipmentTypeTypeCode = 5555;
+		String equipmentName = "TestEquipment5";
+		String equipmentSerial = "TestSerial5";
+		String equipmentTypeName = "TestType5";
 		
-		Equipment equipmentToAdd = new Equipment();
-		equipmentToAdd.setName("TestEquipment5");
-		equipmentToAdd.setSerial("TestSerial5");
-		equipmentToAdd.setEquipmenttype(et);
-		equipmentToAdd.setStatus(1);
-		edao.persist(equipmentToAdd);
-		equipmentToAdd.setEquipmentId(edao.persist(equipmentToAdd));
-		Equipment equipmentFromDB = edao.getBySerial("TestSerial5");
+		Equipmenttype testEquipmenttype = new Equipmenttype(equipmentTypeTypeCode, equipmentTypeName);
+		etdao.persist(testEquipmenttype);
+		
+		Equipment testEquipment = new Equipment(equipmentName, equipmentSerial, equipmentStatusEnabled, testEquipmenttype);
+		edao.persist(testEquipment);
+		Equipment equipmentFromDB = edao.getBySerial(equipmentSerial);
 
-		assertEquals(equipmentToAdd, equipmentFromDB);
+		assertEquals(equipmentName, equipmentFromDB.getName());
+		assertEquals(equipmentSerial, equipmentFromDB.getSerial());
+		assertEquals(equipmentStatusEnabled, equipmentFromDB.getStatus());
+		assertEquals(testEquipmenttype.getTypeCode(), equipmentFromDB.getEquipmenttype().getTypeCode());
+		assertEquals(testEquipmenttype.getTypeName(), equipmentFromDB.getEquipmenttype().getTypeName());
+		
 	}
 	
 	@Test
 	@Transactional
 	@Rollback(true)
 	public void testGetByType() {
-		Equipmenttype et1 = new Equipmenttype(6666, "TestType6");
-		Equipmenttype et2 = new Equipmenttype(7777, "TestType7");
-		etdao.persist(et1);
-		etdao.persist(et2);
+		int equipmentStatusEnabled = 1;
+		int equipmentTypeTypeCode1 = 6666;
+		int equipmentTypeTypeCode2 = 7777;
+		int equipmentType1Count = 5;
+		int equipmentType2Count = 3;
+		String equipmentName1 = "TestEquipment5_";
+		String equipmentName2 = "TestEquipment6_";
+		String equipmentSerial1 = "TestSerial5_";
+		String equipmentSerial2 = "TestSerial6_";
+		String equipmentTypeName1 = "TestType6";
+		String equipmentTypeName2 = "TestType7";
 		
-		for (int i=0; i<5; i++) {
-			Equipment equipmentToAdd1 = new Equipment();
-			equipmentToAdd1.setName("TestEquipment6_" + i);
-			equipmentToAdd1.setSerial("TestSerial6_" + i);
-			equipmentToAdd1.setEquipmenttype(et1);
-			equipmentToAdd1.setStatus(1);
-			edao.persist(equipmentToAdd1);
+		Equipmenttype testEquipmenttype1 = new Equipmenttype(equipmentTypeTypeCode1, equipmentTypeName1);
+		Equipmenttype testEquipmenttype2 = new Equipmenttype(equipmentTypeTypeCode2, equipmentTypeName2);
+		etdao.persist(testEquipmenttype1);
+		etdao.persist(testEquipmenttype2);
+		
+		for (int i=0; i<equipmentType1Count; i++) {
+			Equipment testEquipment = new Equipment(equipmentName1 + i, equipmentSerial1 + i, equipmentStatusEnabled, testEquipmenttype1);
+			edao.persist(testEquipment);
 		}
 		
-		for (int i=0; i<3; i++) {
-			Equipment equipmentToAdd1 = new Equipment();
-			equipmentToAdd1.setName("TestEquipment7_" + i);
-			equipmentToAdd1.setSerial("TestSerial7_" + i);
-			equipmentToAdd1.setEquipmenttype(et2);
-			equipmentToAdd1.setStatus(1);
-			edao.persist(equipmentToAdd1);
+		for (int i=0; i<equipmentType2Count; i++) {
+			Equipment testEquipment = new Equipment(equipmentName2 + i, equipmentSerial2 + i, equipmentStatusEnabled, testEquipmenttype2);
+			edao.persist(testEquipment);
 		}
 		
-		List<Equipment> equipmentOfType1 = edao.getByTypeCode(6666);
-		List<Equipment> equipmentOfType2 = edao.getByTypeCode(7777);
+		List<Equipment> equipmentOfType1 = edao.getByTypeCode(equipmentTypeTypeCode1);
+		List<Equipment> equipmentOfType2 = edao.getByTypeCode(equipmentTypeTypeCode2);
 		
-		assertEquals(5, equipmentOfType1.size());
-		assertEquals(3, equipmentOfType2.size());
+		assertEquals(equipmentType1Count, equipmentOfType1.size());
+		assertEquals(equipmentType2Count, equipmentOfType2.size());
 		
 		for (Equipment equipment: equipmentOfType1) {
-			assertEquals(et1, equipment.getEquipmenttype());
+			assertEquals(testEquipmenttype1, equipment.getEquipmenttype());
 		}
 		for (Equipment equipment: equipmentOfType2) {
-			assertEquals(et2, equipment.getEquipmenttype());
+			assertEquals(testEquipmenttype2, equipment.getEquipmenttype());
 		}
 		
 	}
@@ -169,13 +188,112 @@ public class EquipmentDaoTest {
 	@Transactional
 	@Rollback(true)
 	public void testGetEnabledByType() {
-		//TODO: To be continued...
+		int equipmentStatusDisabled = 0;
+		int equipmentStatusEnabled = 1;
+		int equipmentTypeTypeCode = 8888;
+		String equipmentName1 = "TestEquipment7";
+		String equipmentName2 = "TestEquipment8";
+		String equipmentName3 = "TestEquipment9";
+		String equipmentSerial1 = "TestSerial5";
+		String equipmentSerial2 = "TestSerial6";
+		String equipmentSerial3 = "TestSerial7";
+		String equipmentTypeName = "TestType6";
+
+		Equipmenttype testEquipmenttype = new Equipmenttype(equipmentTypeTypeCode, equipmentTypeName);
+		etdao.persist(testEquipmenttype);
+
+		// No equipment of type
+		assertEquals(0, edao.getEnabledByTypeCode(equipmentTypeTypeCode).size());
+		
+		// Add first (enabled) equipment of type
+		Equipment testEquipment1 = new Equipment(equipmentName1, equipmentSerial1, equipmentStatusEnabled, testEquipmenttype);
+		Equipment testEquipment2 = new Equipment(equipmentName2, equipmentSerial2, equipmentStatusEnabled, testEquipmenttype);
+		Equipment testEquipment3 = new Equipment(equipmentName3, equipmentSerial3, equipmentStatusDisabled, testEquipmenttype);
+		
+		edao.persist(testEquipment1);
+		assertEquals(1, edao.getEnabledByTypeCode(equipmentTypeTypeCode).size());
+		assertEquals(equipmentName1, edao.getEnabledByTypeCode(equipmentTypeTypeCode).get(0).getName());
+		assertEquals(equipmentSerial1, edao.getEnabledByTypeCode(equipmentTypeTypeCode).get(0).getSerial());
+		assertEquals(equipmentStatusEnabled, edao.getEnabledByTypeCode(equipmentTypeTypeCode).get(0).getStatus());
+		
+		// Add second (enabled) equipment of type
+		edao.persist(testEquipment2);
+		assertEquals(2, edao.getEnabledByTypeCode(equipmentTypeTypeCode).size());
+		assertEquals(equipmentName2, edao.getEnabledByTypeCode(equipmentTypeTypeCode).get(1).getName());
+		assertEquals(equipmentSerial2, edao.getEnabledByTypeCode(equipmentTypeTypeCode).get(1).getSerial());
+		assertEquals(equipmentStatusEnabled, edao.getEnabledByTypeCode(equipmentTypeTypeCode).get(1).getStatus());
+		
+		// Add third (disabled) equipment of type
+		edao.persist(testEquipment3);
+		assertEquals(2, edao.getEnabledByTypeCode(equipmentTypeTypeCode).size());
 	}
 	
+	@Test
+	@Transactional
+	@Rollback(true)
+	public void testGetOrderedByTypeName() {
+		int equipmentStatusEnabled = 1;
+		int equipmentTypeTypeCode1 = 1111;
+		int equipmentTypeTypeCode2 = 2222;
+		int equipmentTypeTypeCode3 = 3333;
+		String equipmentName1 = "TestEquipment7";
+		String equipmentName2 = "TestEquipment8";
+		String equipmentName3 = "TestEquipment9";
+		String equipmentSerial1 = "TestSerial5";
+		String equipmentSerial2 = "TestSerial6";
+		String equipmentSerial3 = "TestSerial7";
+		String equipmentTypeName1 = "CTestType";
+		String equipmentTypeName2 = "BTestType";
+		String equipmentTypeName3 = "ATestType";
+
+		Equipmenttype testEquipmenttype1 = new Equipmenttype(equipmentTypeTypeCode1, equipmentTypeName1);
+		Equipmenttype testEquipmenttype2 = new Equipmenttype(equipmentTypeTypeCode2, equipmentTypeName2);
+		Equipmenttype testEquipmenttype3 = new Equipmenttype(equipmentTypeTypeCode3, equipmentTypeName3);
+		Equipment testEquipment1 = new Equipment(equipmentName1, equipmentSerial1, equipmentStatusEnabled, testEquipmenttype1);
+		Equipment testEquipment2 = new Equipment(equipmentName2, equipmentSerial2, equipmentStatusEnabled, testEquipmenttype2);
+		Equipment testEquipment3 = new Equipment(equipmentName3, equipmentSerial3, equipmentStatusEnabled, testEquipmenttype3);
+		
+		etdao.persist(testEquipmenttype1);
+		etdao.persist(testEquipmenttype2);
+		etdao.persist(testEquipmenttype3);
+		edao.persist(testEquipment1);
+		edao.persist(testEquipment2);
+		edao.persist(testEquipment3);
+		
+		List<Equipment> equipmentList = edao.getOrderedByTypeName();
+		
+		assertEquals(testEquipment3, equipmentList.get(0));
+		assertEquals(testEquipment2, equipmentList.get(1));
+		assertEquals(testEquipment1, equipmentList.get(2));
+	}
 	
+	@Test
+	@Transactional
+	@Rollback(true)
+	public void testSerialExists_true() {
+		int equipmentStatusEnabled = 1;
+		int equipmentTypeTypeCode = 1111;
+		String equipmentName = "TestEquipment1";
+		String equipmentSerial = "TestSerial1";
+		String equipmentTypeName = "TestType!";
+		
+		Equipmenttype testEquipmenttype = new Equipmenttype(equipmentTypeTypeCode, equipmentTypeName);
+		Equipment testEquipment = new Equipment(equipmentName, equipmentSerial, equipmentStatusEnabled, testEquipmenttype);
+		
+		etdao.persist(testEquipmenttype);
+		edao.persist(testEquipment);
+		
+		assertTrue(edao.serialExists(equipmentSerial));
+	}
 	
-	
-	
+	@Test
+	@Transactional
+	@Rollback(true)
+	public void testSerialExists_false() {
+		String noSuchSerial = "foobar";
+		assertFalse(edao.serialExists(noSuchSerial));
+	}
+
 	public void emptyTables() {
 		List<Equipment> equipments = edao.getAll();
 		for (Equipment currentEquipment : equipments) {

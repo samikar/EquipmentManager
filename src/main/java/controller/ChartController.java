@@ -154,7 +154,7 @@ public class ChartController {
 		List<EquipmentUsage> usageList = new ArrayList<EquipmentUsage>();
 		EquipmentDao edao = new EquipmentDao();
 		edao.init();
-		List<Equipment> equipmentOfType = edao.getEnabledByType(Integer.parseInt(typeCode));
+		List<Equipment> equipmentOfType = edao.getEnabledByTypeCode(Integer.parseInt(typeCode));
 		edao.destroy();
 		
 		for (Equipment eq : equipmentOfType) {
@@ -204,7 +204,7 @@ public class ChartController {
 		List<MonthlyUsage> usageByTypeMonthly = new ArrayList<MonthlyUsage>();
 		EquipmentDao edao = new EquipmentDao();
 		edao.init();
-		List<Equipment> equipmentOfType = edao.getEnabledByType(Integer.parseInt(typeCode));
+		List<Equipment> equipmentOfType = edao.getEnabledByTypeCode(Integer.parseInt(typeCode));
 		edao.destroy();
 		
 		for (Equipment eq : equipmentOfType) {

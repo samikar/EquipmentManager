@@ -2,14 +2,11 @@ package model;
 
 import static org.junit.Assert.assertEquals;
 
-import java.text.SimpleDateFormat;
 import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
-import java.time.ZoneOffset;
 import java.util.Date;
 import java.util.List;
-import java.util.Locale;
 
 import org.junit.After;
 import org.junit.AfterClass;
@@ -63,24 +60,23 @@ public class ReservationDaoTest {
     @Transactional
     @Rollback(true)
     public void testAddReservation() {
-    	Employee testEmployee = new Employee();
-    	Equipmenttype testEquipmentType = new Equipmenttype();
-    	Equipment testEquipment = new Equipment();
+    	int equipmentStatusEnabled = 1;
+    	int equipmentTypeCode = 1111;
+    	int reservationType = 0;
+    	String employeeName = "Test Employee1";
+    	String employeeId = "123456789";
+    	String equipmentName = "Test Employee1";
+    	String equipmentSerial = "TestSerial1";
+    	String equipmentTypeName = "TestType1";
+    	
+    	Employee testEmployee = new Employee(employeeId, employeeName);
+    	Equipmenttype testEquipmentType = new Equipmenttype(equipmentTypeCode, equipmentTypeName);
+    	Equipment testEquipment = new Equipment(equipmentName, equipmentSerial, equipmentStatusEnabled, testEquipmentType);
     	Reservation testReservation = new Reservation();
     	
-    	testEmployee.setEmployeeId("123456789");
-    	testEmployee.setName("Test Employee1");
-    	testEmployee.setEmployeeKey(empdao.persist(testEmployee));
-    	
-    	testEquipmentType.setTypeCode(1111);
-    	testEquipmentType.setTypeName("Test Type1");
-    	testEquipmentType.setEquipmentTypeId(etdao.persist(testEquipmentType));
-    	
-    	testEquipment.setName("Test Equipment1");
-    	testEquipment.setSerial("TE1_001");
-    	testEquipment.setStatus(1);
-    	testEquipment.setEquipmenttype(testEquipmentType);
-    	testEquipment.setEquipmentId(edao.persist(testEquipment));
+    	empdao.persist(testEmployee);
+    	etdao.persist(testEquipmentType);
+    	edao.persist(testEquipment);
     	
     	LocalDateTime currentDateTime =  LocalDateTime.now();
     	Date dateTake = Date.from(currentDateTime.minusMonths(6).atZone(ZoneId.systemDefault()).toInstant()); 
@@ -90,8 +86,8 @@ public class ReservationDaoTest {
     	testReservation.setDateReturn(dateReturn);
     	testReservation.setEmployee(testEmployee);
     	testReservation.setEquipment(testEquipment);
-    	testReservation.setReservationType(0);
-    	testReservation.setReservationId(rdao.persist(testReservation));
+    	testReservation.setReservationType(reservationType);
+    	rdao.persist(testReservation);
   	
     	rdao.destroy();
     	rdao.initTest();
@@ -104,15 +100,17 @@ public class ReservationDaoTest {
     	LocalDateTime returnDB = LocalDateTime.ofInstant(Instant.ofEpochMilli(DBreservation.getDateReturn().getTime()), ZoneId.systemDefault());
     	LocalDateTime takeDB = LocalDateTime.ofInstant(Instant.ofEpochMilli(DBreservation.getDateTake().getTime()), ZoneId.systemDefault());
     	
-    	assertEquals(testReservation.getReservationId(), DBreservation.getReservationId());
     	assertEquals(returnTest.getYear(), returnDB.getYear());
     	assertEquals(returnTest.getMonth(), returnDB.getMonth());
     	assertEquals(takeTest.getDayOfMonth(), takeDB.getDayOfMonth());
     	assertEquals(returnTest.getHour(), returnDB.getHour());
     	assertEquals(returnTest.getMinute(), returnDB.getMinute());
-    	assertEquals(testReservation.getEmployee().getEmployeeId(), DBreservation.getEmployee().getEmployeeId());
-    	assertEquals(testReservation.getEquipment().getEquipmentId(), DBreservation.getEquipment().getEquipmentId());
-    	assertEquals(testReservation.getReservationType(), DBreservation.getReservationType());
+    	assertEquals(reservationType, DBreservation.getReservationType());
+    	
+    	assertEquals(employeeId, DBreservation.getEmployee().getEmployeeId());
+    	assertEquals(equipmentSerial, DBreservation.getEquipment().getSerial());
+    	assertEquals(equipmentTypeCode, DBreservation.getEquipment().getEquipmenttype().getTypeCode());
+    	
     }
     
     public void emptyTables() {
@@ -140,4 +138,5 @@ public class ReservationDaoTest {
     		etdao.delete();
     	}
     }
+    
 }

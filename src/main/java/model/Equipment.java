@@ -55,14 +55,6 @@ import javax.persistence.NamedNativeQuery;
 						"WHERE equipment.status = 1 " +
 						"ORDER BY equipmenttype.typeName",
 						resultClass=Equipment.class
-	),@NamedNativeQuery(
-			name	=	"Equipment.findRandomAvailable", 
-			query	=	"SELECT * "+
-						"FROM equipment " +
-						"LEFT JOIN reservation ON reservation.equipmentId = equipment.equipmentId " +
-						"WHERE reservation.date_take IS NULL AND reservation.date_return IS NULL " +
-						"ORDER BY RAND() LIMIT 1",
-						resultClass=Equipment.class
 	)
 	})
 
@@ -90,6 +82,13 @@ public class Equipment implements Serializable {
 	private List<Reservation> reservations;
 	 */
 	public Equipment() {
+	}
+	
+	public Equipment(String name, String serial, int status, Equipmenttype equipmenttype) {
+		this.name = name;
+		this.serial = serial;
+		this.status = status;
+		this.equipmenttype = equipmenttype;
 	}
 
 	public int getEquipmentId() {
