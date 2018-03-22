@@ -248,7 +248,7 @@ public class ReservationController {
 
 		ReservationDao rdao = new ReservationDao();
 		rdao.init();
-		List<Reservation> reservations = rdao.getByEmployeeId(employeeId);
+		List<Reservation> reservations = rdao.getOpenByEmployeeId(employeeId);
 		rdao.destroy();
 		if (reservations.size() > 0)
 			return reservations;

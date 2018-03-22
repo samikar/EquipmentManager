@@ -121,13 +121,6 @@ public class ReservationDao {
 		return reservations;
 	}
 	
-	public List<Reservation> getByEmployeeId(String employeeId) {
-		List<Reservation> reservations = entityManager.createNamedQuery("Reservation.findByEmployeeId", Reservation.class)
-				.setParameter(1, employeeId)
-				.getResultList();
-		return reservations;
-	}
-	
 	public List<Reservation> getByEquipmentId(String equipmentId) {
 		List<Reservation> reservations = entityManager.createNamedQuery("Reservation.findByEquipmentId", Reservation.class)
 				.setParameter(1, equipmentId)
@@ -148,6 +141,13 @@ public class ReservationDao {
 		return reservations;
 	}
 	
+	public List<Reservation> getOpenByEmployeeId(String employeeId) {
+		List<Reservation> reservations = entityManager.createNamedQuery("Reservation.findOpenByEmployeeId", Reservation.class)
+				.setParameter(1, employeeId)
+				.getResultList();
+		return reservations;
+	}
+	
 	public List<Reservation> getBySerialAndDate(String serial, Date start, Date end) {
 		List<Reservation> reservations = entityManager.createNamedQuery("Reservation.findBySerialAndDate", Reservation.class)
 				.setParameter(1, serial)
@@ -157,7 +157,6 @@ public class ReservationDao {
 		return reservations;
 	}
 
-	
 	public boolean serialHasOpenReservation(String serial) {
 		List<Reservation> reservations = entityManager.createNamedQuery("Reservation.findOpenBySerial", Reservation.class)
 				.setParameter(1, serial)

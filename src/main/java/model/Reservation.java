@@ -50,7 +50,7 @@ import javax.persistence.TemporalType;
                         resultClass=Reservation.class
     ),
     @NamedNativeQuery(
-            name    =   "Reservation.findByEmployeeId",
+            name    =   "Reservation.findOpenByEmployeeId",
             query   =   "SELECT * " +
                         "FROM reservation " +
                         "INNER JOIN employee ON reservation.employeeKey = employee.employeeKey " + 
