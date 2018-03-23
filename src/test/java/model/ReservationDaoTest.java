@@ -9,6 +9,7 @@ import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.Date;
 import java.util.List;
+import java.util.Properties;
 
 import org.junit.After;
 import org.junit.AfterClass;
@@ -19,7 +20,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.transaction.annotation.Transactional;
 
+import utils.PropertyUtils;
+
 public class ReservationDaoTest {
+	private static Properties properties = PropertyUtils.loadProperties();
 	
 	@Autowired
 	private static EmployeeDao empdao;
@@ -33,11 +37,16 @@ public class ReservationDaoTest {
     	edao = new EquipmentDao();
     	etdao = new EquipmenttypeDao();
     	rdao = new ReservationDao();
+    	
+    	empdao.setProperties(properties.getProperty("testDBurl"), properties.getProperty("testDBuser"), properties.getProperty("testDBpassword"), properties.getProperty("testDBdriver"));
+    	edao.setProperties(properties.getProperty("testDBurl"), properties.getProperty("testDBuser"), properties.getProperty("testDBpassword"), properties.getProperty("testDBdriver"));
+    	etdao.setProperties(properties.getProperty("testDBurl"), properties.getProperty("testDBuser"), properties.getProperty("testDBpassword"), properties.getProperty("testDBdriver"));
+    	rdao.setProperties(properties.getProperty("testDBurl"), properties.getProperty("testDBuser"), properties.getProperty("testDBpassword"), properties.getProperty("testDBdriver"));
         
-    	empdao.initTest();
-        edao.initTest();
-        etdao.initTest();
-        rdao.initTest();
+    	empdao.init();
+        edao.init();
+        etdao.init();
+        rdao.init();
     }
 
     @AfterClass
@@ -679,5 +688,4 @@ public class ReservationDaoTest {
     		etdao.delete();
     	}
     }
-    
 }

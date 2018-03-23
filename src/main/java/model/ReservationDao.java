@@ -16,6 +16,11 @@ import db.DatabaseUtil;
 @Repository
 @Transactional
 public class ReservationDao {
+	private String url;
+	private String user;
+	private String password;
+	private String driver;
+	
 	@PersistenceContext
 	private EntityManager entityManager;
 	private EntityManagerFactory entityManagerFactory;
@@ -23,13 +28,6 @@ public class ReservationDao {
 	
 	
 	public ReservationDao() {
-		try{
-	         entityManagerFactory = DatabaseUtil.getSessionFactory();
-	     }
-		catch (Exception e) {
-			// TODO: logger
-		}
-		
 	}
 
 	public Reservation getDao() {
@@ -41,6 +39,7 @@ public class ReservationDao {
 	}
 	
 	public void init() {
+		DatabaseUtil.setProperties(url, user, password, driver);
 		try {
 			entityManagerFactory = DatabaseUtil.getSessionFactory();
 		}
@@ -50,15 +49,13 @@ public class ReservationDao {
 		entityManager = entityManagerFactory.createEntityManager();
 	}
 	
-	public void initTest() {
-		try {
-	        entityManagerFactory = DatabaseUtil.getTestSessionFactory();
-	     }
-		catch (Exception e) {
-			// TODO: logger
-		}
-		entityManager = entityManagerFactory.createEntityManager();
+	public void setProperties(String url, String user, String password, String driver) {
+		this.url = url;
+		this.user = user;
+		this.password = password;
+		this.driver = driver;
 	}
+	
 	public List<Reservation> getDaos(){
 		entityManager.getTransaction().begin();
 		Query query = entityManager.createNamedQuery("Reservation.findAll");

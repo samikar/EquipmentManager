@@ -1,8 +1,6 @@
 package controller;
 
 import java.io.IOException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -23,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import model.EmployeeDao;
 import model.Equipment;
 import model.EquipmentDao;
 import model.EquipmentUsage;
@@ -35,20 +34,27 @@ import utils.PropertyUtils;
 
 @RestController
 public class ChartController {
-	// Length of one workday in hours
-	Properties appProperties = PropertyUtils.loadProperties();
-	private final double WORKDAY = Double.parseDouble(appProperties.getProperty("WORKDAY"));
-	private final int STARTHOUR = Integer.parseInt(appProperties.getProperty("STARTHOUR"));
-	private final int STARTMINUTE = Integer.parseInt(appProperties.getProperty("STARTMINUTE"));
-	private final int ENDHOUR = Integer.parseInt(appProperties.getProperty("ENDHOUR"));
-	private final int ENDMINUTE = Integer.parseInt(appProperties.getProperty("ENDMINUTE"));;
 	
-	@RequestMapping("/rest/chartTest")
-	public String hello(@RequestParam(value = "name", defaultValue = "World") String name) {
-		return "{\"id\":\"hello\"}";
-	}
+	Properties properties = PropertyUtils.loadProperties();
+	// Database properties
+	String DBurl = properties.getProperty("DBurl");
+	String DBuser = properties.getProperty("DBuser");
+	String DBpassword = properties.getProperty("DBpassword");
+	String DBdriver = properties.getProperty("DBdriver");
 
-	@RequestMapping("rest/usageByType") 
+	// Length of one workday in hours
+	private final double WORKDAY = Double.parseDouble(properties.getProperty("WORKDAY"));
+	private final int STARTHOUR = Integer.parseInt(properties.getProperty("STARTHOUR"));
+	private final int STARTMINUTE = Integer.parseInt(properties.getProperty("STARTMINUTE"));
+	private final int ENDHOUR = Integer.parseInt(properties.getProperty("ENDHOUR"));
+	private final int ENDMINUTE = Integer.parseInt(properties.getProperty("ENDMINUTE"));
+
+	ReservationDao rdao;
+	EmployeeDao empdao;
+	EquipmentDao edao;
+	EquipmenttypeDao etdao;
+
+	@RequestMapping("/rest/usageByType") 
 	public List<EquipmentUsage> usageByType(@RequestParam(value = "typeCode") String typeCode,
 			@RequestParam(value = "start") String startStr,
 			@RequestParam(value = "end") String endStr) {
@@ -143,7 +149,8 @@ public class ChartController {
 	
 	@RequestMapping("/rest/getEquipmentTypesWithEquipment")
 	public List<Equipmenttype> getEquipmentTypesWithEquipment() {
-		EquipmenttypeDao etdao = new EquipmenttypeDao();
+		etdao = new EquipmenttypeDao();
+		etdao.setProperties(DBurl, DBuser, DBpassword, DBdriver);
 		etdao.init();
 		List<Equipmenttype> result = etdao.getEquipmentTypesWithEquipment();
 		etdao.destroy();
@@ -152,7 +159,8 @@ public class ChartController {
 	
 	public List<EquipmentUsage> getUsageByType(String typeCode, Date start, Date end) {
 		List<EquipmentUsage> usageList = new ArrayList<EquipmentUsage>();
-		EquipmentDao edao = new EquipmentDao();
+		edao = new EquipmentDao();
+		edao.setProperties(DBurl, DBuser, DBpassword, DBdriver);
 		edao.init();
 		List<Equipment> equipmentOfType = edao.getEnabledByTypeCode(Integer.parseInt(typeCode));
 		edao.destroy();
@@ -165,8 +173,10 @@ public class ChartController {
 	}
 	
 	public EquipmentUsage getUsageBySerial(String serial, Date start, Date end) {
-		EquipmentDao edao = new EquipmentDao();
-		ReservationDao rdao = new ReservationDao();
+		edao = new EquipmentDao();
+		rdao = new ReservationDao();
+		edao.setProperties(DBurl, DBuser, DBpassword, DBdriver);;
+		rdao.setProperties(DBurl, DBuser, DBpassword, DBdriver);
 		edao.init();
 		rdao.init();
 		
@@ -202,7 +212,8 @@ public class ChartController {
 	
 	public List<MonthlyUsage> getMonthlyUsageByType(String typeCode, Date start, Date end) {
 		List<MonthlyUsage> usageByTypeMonthly = new ArrayList<MonthlyUsage>();
-		EquipmentDao edao = new EquipmentDao();
+		edao = new EquipmentDao();
+		edao.setProperties(DBurl, DBuser, DBpassword, DBdriver);
 		edao.init();
 		List<Equipment> equipmentOfType = edao.getEnabledByTypeCode(Integer.parseInt(typeCode));
 		edao.destroy();
@@ -210,7 +221,6 @@ public class ChartController {
 		for (Equipment eq : equipmentOfType) {
 			List<MonthlyUsage> currentEquipmentMonthlyUsage = getMonthlyUsage(eq.getSerial(), start, end);
 			if (usageByTypeMonthly.size() == 0) {
-//				System.out.println("Creating first data set...");
 				usageByTypeMonthly = currentEquipmentMonthlyUsage;
 			}
 				
@@ -254,10 +264,6 @@ public class ChartController {
 				endCurrent = endCurrent.minusHours(endCurrent.getHour()).minusMinutes(endCurrent.getMinute());				
 				endCurrent = endCurrent.plusHours(ENDHOUR).plusMinutes(ENDMINUTE);
 			}
-			
-		
-//			System.out.println("StartCurrent: " + startCurrent.getHour() + ":" + startCurrent.getMinute() + ":" + startCurrent.getSecond() + " " + startCurrent.getDayOfMonth() + "/" + startCurrent.getMonthValue() + "/" + startCurrent.getYear());
-//			System.out.println("EndCurrent:   " + endCurrent.getHour() + ":" + endCurrent.getMinute() + ":" + endCurrent.getSecond() + " " + endCurrent.getDayOfMonth() + "/" + endCurrent.getMonthValue() + "/" + endCurrent.getYear());
 			
 			EquipmentUsage eUsage = getUsageBySerial(serial, 
 					Date.from(startCurrent.atZone(ZoneId.systemDefault()).toInstant()), 
@@ -395,34 +401,7 @@ public class ChartController {
 	void handleIllegalArgumentException(IllegalArgumentException e, HttpServletResponse response) throws IOException {
 		response.sendError(HttpStatus.BAD_REQUEST.value());
 	}
-
-	public static void main(String[] args) {
-		SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
-		String startString = "15-12-2017 00:00:00";
-		String endString = "25-12-2017 00:00:00";
-		Date start = null;
-		Date end = null;
-
-		try {
-			start = sdf.parse(startString);
-			end = sdf.parse(endString);
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		ReservationDao rdao = new ReservationDao();
-		rdao.init();
-		rdao.initialize(7);
-		Reservation res = rdao.getDao();
-		rdao.destroy();
-
-		ChartController cc = new ChartController();
-		//double hours = cc.hoursInReservation(res, start, end);
-		cc.getMonthlyUsage("MI_08/2007", start, end);
-
-		//List<MonthlyUsage> musage = cc.getUsageByMonth("MI_09A0364", start, end);
-	}
+	
 }
 
 	

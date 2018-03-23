@@ -6,6 +6,7 @@ import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
 import java.util.List;
+import java.util.Properties;
 
 import org.junit.After;
 import org.junit.AfterClass;
@@ -16,7 +17,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.transaction.annotation.Transactional;
 
+import utils.PropertyUtils;
+
 public class EquipmenttypeDaoTest {
+	private static Properties properties = PropertyUtils.loadProperties();
 	@Autowired
 	private static EquipmenttypeDao etdao;
 	private static EquipmentDao edao;
@@ -25,8 +29,10 @@ public class EquipmenttypeDaoTest {
 	public static void init() {
 		edao = new EquipmentDao();
 		etdao = new EquipmenttypeDao();
-		edao.initTest();
-		etdao.initTest();
+		edao.setProperties(properties.getProperty("testDBurl"), properties.getProperty("testDBuser"), properties.getProperty("testDBpassword"), properties.getProperty("testDBdriver"));
+		etdao.setProperties(properties.getProperty("testDBurl"), properties.getProperty("testDBuser"), properties.getProperty("testDBpassword"), properties.getProperty("testDBdriver"));
+		edao.init();
+		etdao.init();
 	}
 
 	@AfterClass
@@ -165,7 +171,7 @@ public class EquipmenttypeDaoTest {
 
 		// Database connection needs to be refreshed
 		etdao.destroy();
-		etdao.initTest();
+		etdao.init();
 
 		equipmentTypesWithEquipment = etdao.getEquipmentTypesWithEquipment();
 		assertEquals(equipmentCount, equipmentTypesWithEquipment.size());

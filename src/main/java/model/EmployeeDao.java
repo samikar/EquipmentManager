@@ -1,7 +1,6 @@
 package model;
 
 import java.util.List;
-import java.util.logging.Logger;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -17,6 +16,11 @@ import db.DatabaseUtil;
 @Repository
 @Transactional
 public class EmployeeDao {
+	private String url;
+	private String user;
+	private String password;
+	private String driver;
+	
 	
 	@PersistenceContext
 	private EntityManager entityManager;
@@ -39,6 +43,7 @@ public class EmployeeDao {
 	}
 
 	public void init() {
+		DatabaseUtil.setProperties(url, user, password, driver);
 		try {
 			entityManagerFactory = DatabaseUtil.getSessionFactory();
 		}
@@ -46,6 +51,13 @@ public class EmployeeDao {
 			// TODO: logger
 		}
 		entityManager = entityManagerFactory.createEntityManager();
+	}
+	
+	public void setProperties(String url, String user, String password, String driver) {
+		this.url = url;
+		this.user = user;
+		this.password = password;
+		this.driver = driver;
 	}
 	
 	public void initTest() {

@@ -2,6 +2,7 @@ package controller;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Properties;
 
 import javax.servlet.http.HttpServletResponse;
 
@@ -15,14 +16,29 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import model.EmployeeDao;
 import model.Equipment;
 import model.EquipmentDao;
 import model.Equipmenttype;
 import model.EquipmenttypeDao;
+import model.ReservationDao;
 import utils.EquipmentDataReader;
+import utils.PropertyUtils;
 
 @RestController
 public class ConfigurationController {
+	// Database properties
+	private static Properties properties = PropertyUtils.loadProperties();
+	String DBurl = properties.getProperty("DBurl");
+	String DBuser = properties.getProperty("DBuser");
+	String DBpassword = properties.getProperty("DBpassword");
+	String DBdriver = properties.getProperty("DBdriver");
+	
+	ReservationDao rdao;
+	EmployeeDao empdao;
+	EquipmentDao edao;
+	EquipmenttypeDao etdao;
+	
 	@RequestMapping(value = "/rest/uploadEquipmentFile", method = RequestMethod.POST, consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
 	public ResponseEntity<Object> uploadEquipmentFile(@RequestParam("file") MultipartFile file) throws IOException {
 		return EquipmentDataReader.verifyEquipmentFile(file);
@@ -35,7 +51,8 @@ public class ConfigurationController {
 
 	@RequestMapping("/rest/getEquipment")
 	public List<Equipment> getEquipment() {
-		EquipmentDao edao = new EquipmentDao();
+		edao = new EquipmentDao();
+		edao.setProperties(DBurl, DBuser, DBpassword, DBdriver);
 		edao.init();
 		List<Equipment> result = edao.getAll();
 		edao.destroy();
@@ -44,7 +61,8 @@ public class ConfigurationController {
 	
 	@RequestMapping("/rest/getEquipmentTypes")
 	public List<Equipmenttype> getEquipmentTypes() {
-		EquipmenttypeDao etdao = new EquipmenttypeDao();
+		etdao = new EquipmenttypeDao();
+		etdao.setProperties(DBurl, DBuser, DBpassword, DBdriver);
 		etdao.init();
 		List<Equipmenttype> result = etdao.getAll();
 		etdao.destroy();
@@ -53,7 +71,8 @@ public class ConfigurationController {
 	
 	@RequestMapping("/rest/enableEquipment")
 	public Equipment enableEquipment(@RequestParam(value = "equipmentId") String equipmentId) {
-		EquipmentDao edao = new EquipmentDao();
+		edao = new EquipmentDao();
+		edao.setProperties(DBurl, DBuser, DBpassword, DBdriver);
 		edao.init();
 		edao.initialize(Integer.parseInt(equipmentId));
 		Equipment eq = edao.getDao();
@@ -65,7 +84,8 @@ public class ConfigurationController {
 
 	@RequestMapping("/rest/disableEquipment")
 	public Equipment disableEquipment(@RequestParam(value = "equipmentId") String equipmentId) {
-		EquipmentDao edao = new EquipmentDao();
+		edao = new EquipmentDao();
+		edao.setProperties(DBurl, DBuser, DBpassword, DBdriver);
 		edao.init();
 		edao.initialize(Integer.parseInt(equipmentId));
 		Equipment eq = edao.getDao();
@@ -79,8 +99,10 @@ public class ConfigurationController {
 	public Equipment insertEquipment(@RequestParam(value = "name") String name,						
 									 @RequestParam(value = "serial") String serial,
 									 @RequestParam(value = "equipmentTypeId") String equipmentTypeId) {
-		EquipmentDao edao = new EquipmentDao();
-		EquipmenttypeDao etdao = new EquipmenttypeDao();
+		edao = new EquipmentDao();
+		etdao = new EquipmenttypeDao();
+		edao.setProperties(DBurl, DBuser, DBpassword, DBdriver);
+		etdao.setProperties(DBurl, DBuser, DBpassword, DBdriver);
 		Equipment newEquipment = new Equipment();
 		edao.init();
 		etdao.init();
@@ -110,7 +132,8 @@ public class ConfigurationController {
 	@RequestMapping("/rest/insertType")
 	public Equipmenttype insertType(@RequestParam(value = "typeName") String typeName,						
 									 @RequestParam(value = "typeCode") String typeCode) {
-		EquipmenttypeDao etdao = new EquipmenttypeDao();
+		etdao = new EquipmenttypeDao();
+		etdao.setProperties(DBurl, DBuser, DBpassword, DBdriver);
 		etdao.init();
 		
 		if (!typeCode.matches("\\d+")) {
@@ -138,7 +161,8 @@ public class ConfigurationController {
  									 @RequestParam(value = "name") String name,						
 									 @RequestParam(value = "serial") String serial,
 									 @RequestParam(value = "equipmentTypeId") String equipmentTypeId) {
-		EquipmentDao edao = new EquipmentDao();
+		edao = new EquipmentDao();
+		edao.setProperties(DBurl, DBuser, DBpassword, DBdriver);
 		edao.init();
 		edao.initialize(Integer.parseInt(equipmentId));
 		Equipment eq = edao.getDao();
@@ -146,7 +170,8 @@ public class ConfigurationController {
 		eq.setName(name);
 		eq.setSerial(serial);
 		if (Integer.parseInt(equipmentTypeId) > 0) {
-			EquipmenttypeDao etdao = new EquipmenttypeDao();
+			etdao = new EquipmenttypeDao();
+			etdao.setProperties(DBurl, DBuser, DBpassword, DBdriver);
 			etdao.init();
 			etdao.initialize(Integer.parseInt(equipmentTypeId));
 			Equipmenttype etype = etdao.getDao();
@@ -164,7 +189,8 @@ public class ConfigurationController {
  									 @RequestParam(value = "typeName") String typeName,						
 									 @RequestParam(value = "typeCode") String typeCode) {
 		
-		EquipmenttypeDao etdao = new EquipmenttypeDao();
+		etdao = new EquipmenttypeDao();
+		etdao.setProperties(DBurl, DBuser, DBpassword, DBdriver);
 		etdao.init();
 		etdao.initialize(Integer.parseInt(equipmentTypeId));
 		Equipmenttype etype = etdao.getDao();
@@ -180,7 +206,8 @@ public class ConfigurationController {
 	
 	@RequestMapping("/rest/deleteEquipment")
 	public Equipment deleteEquipment(@RequestParam(value = "equipmentId") String equipmentId) {
-		EquipmentDao edao = new EquipmentDao();
+		edao = new EquipmentDao();
+		edao.setProperties(DBurl, DBuser, DBpassword, DBdriver);
 		edao.init();
 		edao.initialize(Integer.parseInt(equipmentId));
 		Equipment eq = edao.getDao();
@@ -191,8 +218,10 @@ public class ConfigurationController {
 	
 	@RequestMapping("/rest/deleteType")
 	public Equipmenttype deleteType(@RequestParam(value = "equipmentTypeId") String equipmentTypeId) {
-		EquipmentDao edao = new EquipmentDao();
-		EquipmenttypeDao etdao = new EquipmenttypeDao();
+		edao = new EquipmentDao();
+		etdao = new EquipmenttypeDao();
+		edao.setProperties(DBurl, DBuser, DBpassword, DBdriver);
+		etdao.setProperties(DBurl, DBuser, DBpassword, DBdriver);
 		edao.init();
 		etdao.init();
 		etdao.initialize(Integer.parseInt(equipmentTypeId));

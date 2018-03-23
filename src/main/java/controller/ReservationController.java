@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Properties;
 
 import javax.servlet.http.HttpServletResponse;
 
@@ -21,18 +22,28 @@ import model.EquipmentStatus;
 import model.Equipmenttype;
 import model.Reservation;
 import model.ReservationDao;
+import utils.PropertyUtils;
 
 @RestController
 public class ReservationController {
-
+	// Database properties
+	private static Properties properties = PropertyUtils.loadProperties();
+	String DBurl = properties.getProperty("DBurl");
+	String DBuser = properties.getProperty("DBuser");
+	String DBpassword = properties.getProperty("DBpassword");
+	String DBdriver = properties.getProperty("DBdriver");
+	ReservationDao rdao;
+	EmployeeDao empdao;
+	EquipmentDao edao;
+	
 	@RequestMapping("/rest/test")
 	public String hello(@RequestParam(value = "name", defaultValue = "World") String name) {
 		return "{\"id\":\"hello\"}";
 	}
 
 	@RequestMapping("/rest/getallreservations")
-	public List<Reservation> getallreservations() {
-		ReservationDao rdao = new ReservationDao();
+	public List<Reservation> DBuser() {
+		rdao.setProperties(DBurl, DBuser, DBpassword, DBdriver);
 		rdao.init();
 		List<Reservation> result = rdao.getAll();
 		rdao.destroy();
@@ -44,9 +55,14 @@ public class ReservationController {
 			@RequestParam(value = "serial") String serial,
 			@RequestParam(value = "reservationType") String reservationType) {
 
-		ReservationDao rdao = new ReservationDao();
-		EmployeeDao empdao = new EmployeeDao();
-		EquipmentDao edao = new EquipmentDao();
+		
+		rdao = new ReservationDao();
+		empdao = new EmployeeDao();
+		edao = new EquipmentDao();
+		rdao.setProperties(DBurl, DBuser, DBpassword, DBdriver);
+		empdao.setProperties(DBurl, DBuser, DBpassword, DBdriver);
+		edao.setProperties(DBurl, DBuser, DBpassword, DBdriver);
+		
 		rdao.init();
 		empdao.init();
 		edao.init();
@@ -106,8 +122,9 @@ public class ReservationController {
 
 		for (int i = 0; i < idsInt.length; i++) {
 			Date currentDate = new Date();
-			ReservationDao rdao = new ReservationDao();
 			Reservation reservation = new Reservation();
+			rdao = new ReservationDao();
+			rdao.setProperties(DBurl, DBuser, DBpassword, DBdriver);
 			rdao.init();
 			rdao.initialize(idsInt[i]);
 
@@ -121,7 +138,8 @@ public class ReservationController {
 
 	@RequestMapping("/rest/returnSingle")
 	public Reservation returnSingle(@RequestParam(value = "serial") String serial) {
-		ReservationDao rdao = new ReservationDao();
+		rdao = new ReservationDao();
+		rdao.setProperties(DBurl, DBuser, DBpassword, DBdriver);
 		rdao.init();
 		if (serial == null || serial.isEmpty()) {
 			rdao.destroy();
@@ -147,9 +165,12 @@ public class ReservationController {
 			@RequestParam(value = "equipmentId", defaultValue = "0") String equipmentId,
 			@RequestParam(value = "reservationType", defaultValue = "0") String reservationType) {
 
-		ReservationDao rdao = new ReservationDao();
-		EmployeeDao empdao = new EmployeeDao();
-		EquipmentDao edao = new EquipmentDao();
+		rdao = new ReservationDao();
+		empdao = new EmployeeDao();
+		edao = new EquipmentDao();
+		empdao.setProperties(DBurl, DBuser, DBpassword, DBdriver);
+		edao.setProperties(DBurl, DBuser, DBpassword, DBdriver);
+		rdao.setProperties(DBurl, DBuser, DBpassword, DBdriver);
 		rdao.init();
 		empdao.init();
 		edao.init();
@@ -189,9 +210,12 @@ public class ReservationController {
 			@RequestParam(value = "equipmentId", defaultValue = "0") String equipmentId,
 			@RequestParam(value = "reservationType", defaultValue = "0") String reservationType) {
 
-		ReservationDao rdao = new ReservationDao();
-		EmployeeDao empdao = new EmployeeDao();
-		EquipmentDao edao = new EquipmentDao();
+		rdao = new ReservationDao();
+		empdao = new EmployeeDao();
+		edao = new EquipmentDao();
+		empdao.setProperties(DBurl, DBuser, DBpassword, DBdriver);
+		edao.setProperties(DBurl, DBuser, DBpassword, DBdriver);
+		rdao.setProperties(DBurl, DBuser, DBpassword, DBdriver);
 		rdao.init();
 		edao.init();
 		empdao.init();
@@ -220,10 +244,10 @@ public class ReservationController {
 		return reservation;
 	}
 
-	// NOTE: testdbuser has no DELETE priviliges
 	@RequestMapping("/rest/deletereservation")
 	public void deleteReservation(@RequestParam(value = "reservationId", defaultValue = "0") String reservationId) {
-		ReservationDao rdao = new ReservationDao();
+		rdao = new ReservationDao();
+		rdao.setProperties(DBurl, DBuser, DBpassword, DBdriver);
 		rdao.init();
 		rdao.initialize(Integer.parseInt(reservationId));
 		rdao.delete();
@@ -233,7 +257,8 @@ public class ReservationController {
 	@RequestMapping("/rest/getbyReservationType")
 	public List<Reservation> getbyReservationType(
 			@RequestParam(value = "reservationType", defaultValue = "0") String reservationType) {
-		ReservationDao rdao = new ReservationDao();
+		rdao = new ReservationDao();
+		rdao.setProperties(DBurl, DBuser, DBpassword, DBdriver);
 		rdao.init();
 		List<Reservation> result = rdao.getByType(reservationType);
 		rdao.destroy();
@@ -246,7 +271,8 @@ public class ReservationController {
 			throw new IllegalArgumentException("Employee ID must not be empty");
 		}
 
-		ReservationDao rdao = new ReservationDao();
+		rdao = new ReservationDao();
+		rdao.setProperties(DBurl, DBuser, DBpassword, DBdriver);
 		rdao.init();
 		List<Reservation> reservations = rdao.getOpenByEmployeeId(employeeId);
 		rdao.destroy();
@@ -259,7 +285,8 @@ public class ReservationController {
 	@RequestMapping("/rest/getbyEquipmentId")
 	public List<Reservation> getbyEquipmentId(
 			@RequestParam(value = "equipmentId", defaultValue = "0") String equipmentId) {
-		ReservationDao rdao = new ReservationDao();
+		rdao = new ReservationDao();
+		rdao.setProperties(DBurl, DBuser, DBpassword, DBdriver);
 		rdao.init();
 		List<Reservation> result = rdao.getByEquipmentId(equipmentId);
 		rdao.destroy();
@@ -268,8 +295,10 @@ public class ReservationController {
 
 	@RequestMapping("rest/getEquipmentStatus")
 	public List<EquipmentStatus> getEquipmentStatus() {
-		ReservationDao rdao = new ReservationDao();
-		EquipmentDao edao = new EquipmentDao();
+		rdao = new ReservationDao();
+		edao = new EquipmentDao();
+		rdao.setProperties(properties.getProperty("DBurl"), properties.getProperty("DBuser"), properties.getProperty("DBpassword"), properties.getProperty("DBdriver"));
+		edao.setProperties(properties.getProperty("DBurl"), properties.getProperty("DBuser"), properties.getProperty("DBpassword"), properties.getProperty("DBdriver"));
 		rdao.init();
 		edao.init();
 
@@ -322,7 +351,8 @@ public class ReservationController {
 
 	@RequestMapping("rest/getEmployee")
 	public Employee getEmployeeName(@RequestParam(value = "employeeId") String employeeId) {
-		EmployeeDao empdao = new EmployeeDao();
+		empdao = new EmployeeDao();
+		empdao.setProperties(DBurl, DBuser, DBpassword, DBdriver);
 		empdao.init();
 		Employee result = empdao.getEmployeeByEmployeeId(employeeId);
 		empdao.destroy();

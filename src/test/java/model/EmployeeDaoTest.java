@@ -5,6 +5,7 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import java.util.List;
+import java.util.Properties;
 
 import org.junit.After;
 import org.junit.AfterClass;
@@ -16,14 +17,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.transaction.annotation.Transactional;
 
+import utils.PropertyUtils;
+
 public class EmployeeDaoTest {
+	private static Properties properties = PropertyUtils.loadProperties();
 	@Autowired
 	private static EmployeeDao empdao;
 	
     @BeforeClass
     public static void init() {
     	empdao = new EmployeeDao();
-        empdao.initTest();
+    	empdao.setProperties(properties.getProperty("testDBurl"), properties.getProperty("testDBuser"), properties.getProperty("testDBpassword"), properties.getProperty("testDBdriver"));
+        empdao.init();
     }
 
     @AfterClass

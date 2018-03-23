@@ -15,7 +15,10 @@ import db.DatabaseUtil;
 @Repository
 @Transactional
 public class EquipmenttypeDao {
-	
+	private String url;
+	private String user;
+	private String password;
+	private String driver;
 	
 	@PersistenceContext
 	private EntityManager entityManager;
@@ -34,6 +37,7 @@ public class EquipmenttypeDao {
 	}
 	
 	public void init(){
+		DatabaseUtil.setProperties(url, user, password, driver);
 		try {
 			entityManagerFactory = DatabaseUtil.getSessionFactory();
 		}
@@ -43,15 +47,22 @@ public class EquipmenttypeDao {
 		entityManager = entityManagerFactory.createEntityManager();
 	}
 	
-	public void initTest() {
-		try {
-	        entityManagerFactory = DatabaseUtil.getTestSessionFactory();
-	     }
-		catch (Exception e) {
-			// TODO: logger
-		}
-		entityManager = entityManagerFactory.createEntityManager();
+	public void setProperties(String url, String user, String password, String driver) {
+		this.url = url;
+		this.user = user;
+		this.password = password;
+		this.driver = driver;
 	}
+	
+//	public void initTest() {
+//		try {
+//	        entityManagerFactory = DatabaseUtil.getTestSessionFactory();
+//	     }
+//		catch (Exception e) {
+//			// TODO: logger
+//		}
+//		entityManager = entityManagerFactory.createEntityManager();
+//	}
 	
 	public List<Equipmenttype> getDaos(){
 		entityManager.getTransaction().begin();

@@ -15,6 +15,10 @@ import db.DatabaseUtil;
 @Repository
 @Transactional
 public class EquipmentDao {
+	private String url;
+	private String user;
+	private String password;
+	private String driver;
 	
 	@PersistenceContext
 	private EntityManager entityManager;
@@ -22,14 +26,7 @@ public class EquipmentDao {
 	private Equipment dao;
 	
 
-	public EquipmentDao() {
-		try{
-	         entityManagerFactory = DatabaseUtil.getSessionFactory();
-	     }
-		catch (Exception e) {
-			// TODO: logger
-		}
-		
+	public EquipmentDao() {		
 	}
 	
 	public Equipment getDao() {
@@ -41,6 +38,7 @@ public class EquipmentDao {
 	}
 	
 	public void init() {
+		DatabaseUtil.setProperties(url, user, password, driver);
 		try {
 			entityManagerFactory = DatabaseUtil.getSessionFactory();
 		}
@@ -50,15 +48,22 @@ public class EquipmentDao {
 		entityManager = entityManagerFactory.createEntityManager();
 	}
 	
-	public void initTest() {
-		try {
-	        entityManagerFactory = DatabaseUtil.getTestSessionFactory();
-	     }
-		catch (Exception e) {
-			// TODO: logger
-		}
-		entityManager = entityManagerFactory.createEntityManager();
+	public void setProperties(String url, String user, String password, String driver) {
+		this.url = url;
+		this.user = user;
+		this.password = password;
+		this.driver = driver;
 	}
+	
+//	public void initTest() {
+//		try {
+//	        entityManagerFactory = DatabaseUtil.getTestSessionFactory();
+//	     }
+//		catch (Exception e) {
+//			// TODO: logger
+//		}
+//		entityManager = entityManagerFactory.createEntityManager();
+//	}
 	
 	public List<Equipment> getDaos(){
 		entityManager.getTransaction().begin();
