@@ -42,7 +42,8 @@ public class ReservationController {
 	}
 
 	@RequestMapping("/rest/getallreservations")
-	public List<Reservation> DBuser() {
+	public List<Reservation> getAllReservations() {
+		rdao = new ReservationDao();
 		rdao.setProperties(DBurl, DBuser, DBpassword, DBdriver);
 		rdao.init();
 		List<Reservation> result = rdao.getAll();
@@ -54,15 +55,13 @@ public class ReservationController {
 	public Reservation takeEquipment(@RequestParam(value = "employeeId") String employeeId,
 			@RequestParam(value = "serial") String serial,
 			@RequestParam(value = "reservationType") String reservationType) {
-
-		
+	
 		rdao = new ReservationDao();
 		empdao = new EmployeeDao();
 		edao = new EquipmentDao();
 		rdao.setProperties(DBurl, DBuser, DBpassword, DBdriver);
 		empdao.setProperties(DBurl, DBuser, DBpassword, DBdriver);
 		edao.setProperties(DBurl, DBuser, DBpassword, DBdriver);
-		
 		rdao.init();
 		empdao.init();
 		edao.init();
@@ -86,6 +85,9 @@ public class ReservationController {
 			
 			// EmployeeDao needs to be refreshed in case a new employee has been added to DB
 			empdao.destroy();
+			edao.destroy();
+			
+			edao.init();
 			empdao.init();
 			empdao.initialize(empdao.getEmployeeKeyByEmployeeId(employeeId));
 			edao.initialize(edao.getEquipmentIdBySerial(serial));
@@ -101,6 +103,28 @@ public class ReservationController {
 			rdao.persist(reservation);
 			empdao.destroy();
 			edao.destroy();
+			rdao.destroy();
+			return reservation;
+		}
+	}
+	
+	@RequestMapping("/rest/returnSingle")
+	public Reservation returnSingle(@RequestParam(value = "serial") String serial) {
+		rdao = new ReservationDao();
+		rdao.setProperties(DBurl, DBuser, DBpassword, DBdriver);
+		rdao.init();
+		if (serial == null || serial.isEmpty()) {
+			rdao.destroy();
+			throw new IllegalArgumentException("Serial number must not be empty");
+		} else if (!rdao.serialHasOpenReservation(serial)) {
+			rdao.destroy();
+			throw new IllegalArgumentException("No open reservation found for serial number " + serial);
+		} else {
+			rdao.initialize(rdao.getOpenReservationIdBySerial(serial));
+			Reservation reservation = rdao.getDao();
+			Date currentDate = new Date();
+			reservation.setDateReturn(currentDate);
+			rdao.update(reservation);
 			rdao.destroy();
 			return reservation;
 		}
@@ -134,28 +158,6 @@ public class ReservationController {
 			rdao.destroy();
 		}
 		return "Complete";
-	}
-
-	@RequestMapping("/rest/returnSingle")
-	public Reservation returnSingle(@RequestParam(value = "serial") String serial) {
-		rdao = new ReservationDao();
-		rdao.setProperties(DBurl, DBuser, DBpassword, DBdriver);
-		rdao.init();
-		if (serial == null || serial.isEmpty()) {
-			rdao.destroy();
-			throw new IllegalArgumentException("Serial number must not be empty");
-		} else if (!rdao.serialHasOpenReservation(serial)) {
-			rdao.destroy();
-			throw new IllegalArgumentException("No open reservation found for serial number " + serial);
-		} else {
-			rdao.initialize(rdao.getOpenReservationIdBySerial(serial));
-			Reservation reservation = rdao.getDao();
-			Date currentDate = new Date();
-			reservation.setDateReturn(currentDate);
-			rdao.update(reservation);
-			rdao.destroy();
-			return reservation;
-		}
 	}
 
 	@RequestMapping("/rest/insert")

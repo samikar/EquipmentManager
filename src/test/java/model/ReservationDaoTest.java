@@ -26,6 +26,10 @@ public class ReservationDaoTest {
 	private static Properties properties = PropertyUtils.loadProperties();
 	
 	@Autowired
+	private static String testDBurl;
+	private static String testDBuser;
+	private static String testDBpassword;
+	private static String testDBdriver;
 	private static EmployeeDao empdao;
 	private static EquipmentDao edao;
 	private static EquipmenttypeDao etdao;
@@ -33,15 +37,20 @@ public class ReservationDaoTest {
 	
     @BeforeClass
     public static void init() {
+    	testDBurl = properties.getProperty("testDBurl");
+    	testDBuser = properties.getProperty("testDBuser");
+    	testDBpassword = properties.getProperty("testDBpassword");
+    	testDBdriver = properties.getProperty("testDBdriver");
+    	
     	empdao = new EmployeeDao();
     	edao = new EquipmentDao();
     	etdao = new EquipmenttypeDao();
     	rdao = new ReservationDao();
     	
-    	empdao.setProperties(properties.getProperty("testDBurl"), properties.getProperty("testDBuser"), properties.getProperty("testDBpassword"), properties.getProperty("testDBdriver"));
-    	edao.setProperties(properties.getProperty("testDBurl"), properties.getProperty("testDBuser"), properties.getProperty("testDBpassword"), properties.getProperty("testDBdriver"));
-    	etdao.setProperties(properties.getProperty("testDBurl"), properties.getProperty("testDBuser"), properties.getProperty("testDBpassword"), properties.getProperty("testDBdriver"));
-    	rdao.setProperties(properties.getProperty("testDBurl"), properties.getProperty("testDBuser"), properties.getProperty("testDBpassword"), properties.getProperty("testDBdriver"));
+    	empdao.setProperties(testDBurl, testDBuser, testDBpassword, testDBdriver);
+    	edao.setProperties(testDBurl, testDBuser, testDBpassword, testDBdriver);
+    	etdao.setProperties(testDBurl, testDBuser, testDBpassword, testDBdriver);
+    	rdao.setProperties(testDBurl, testDBuser, testDBpassword, testDBdriver);
         
     	empdao.init();
         edao.init();
@@ -79,14 +88,14 @@ public class ReservationDaoTest {
     	Date dateReturn = Date.from(currentDateTime.atZone(ZoneId.systemDefault()).toInstant());
     	String employeeId1 = "111111111";
     	String employeeName1 = "Test Employee";
-    	String equipmentName1 = "Test Employee";
+    	String equipmentName1 = "Test Equipment";
     	String equipmentSerial1 = "TestSerial";
     	String equipmentTypeName1 = "TestType";
 
     	Employee testEmployee = addEmployee(employeeId1, employeeName1);
     	Equipmenttype testEquipmenttype = addEquipmenttype(equipmentTypeCode, equipmentTypeName1);
     	Equipment testEquipment = addEquipment(equipmentName1, equipmentSerial1, equipmentStatusEnabled, testEquipmenttype);
-    	Reservation DBreservation1 = addReservation(equipmentStatusEnabled, reservationType, dateTake, dateReturn, testEmployee, testEquipment);
+    	Reservation DBreservation1 = addReservation(reservationType, dateTake, dateReturn, testEmployee, testEquipment);
     	
     	LocalDateTime dateTakeLdt = LocalDateTime.ofInstant(Instant.ofEpochMilli(dateTake.getTime()), ZoneId.systemDefault());
     	LocalDateTime dateReturnLdt = LocalDateTime.ofInstant(Instant.ofEpochMilli(dateReturn.getTime()), ZoneId.systemDefault());
@@ -103,7 +112,11 @@ public class ReservationDaoTest {
     	assertEquals(dateReturnLdt.getMonth(), DBreservation1Return.getMonth());
     	assertEquals(dateReturnLdt.getDayOfMonth(), DBreservation1Return.getDayOfMonth());
     	assertEquals(dateReturnLdt.getHour(), DBreservation1Return.getHour());
-    	assertEquals(dateReturnLdt.getMinute(), DBreservation1Return.getMinute());    	
+    	assertEquals(dateReturnLdt.getMinute(), DBreservation1Return.getMinute());
+    	
+    	assertEquals(reservationType, DBreservation1.getReservationType());
+    	assertEquals(testEmployee, DBreservation1.getEmployee());
+    	assertEquals(testEquipment, DBreservation1.getEquipment());
     }
     
     @Test
@@ -129,9 +142,9 @@ public class ReservationDaoTest {
     	Equipment testEquipment1 = addEquipment(equipmentName1, equipmentSerial1, equipmentStatusEnabled, testEquipmenttype1);
     	Equipment testEquipment2 = addEquipment(equipmentName2, equipmentSerial2, equipmentStatusEnabled, testEquipmenttype1);
     	
-    	addReservation(equipmentStatusEnabled, reservationType, dateTake, dateReturn, testEmployee, testEquipment1);
-    	addReservation(equipmentStatusEnabled, reservationType, dateTake, dateReturn, testEmployee, testEquipment1);
-    	addReservation(equipmentStatusEnabled, reservationType, dateTake, dateReturn, testEmployee, testEquipment2);
+    	addReservation(reservationType, dateTake, dateReturn, testEmployee, testEquipment1);
+    	addReservation(reservationType, dateTake, dateReturn, testEmployee, testEquipment1);
+    	addReservation(reservationType, dateTake, dateReturn, testEmployee, testEquipment2);
     	
     	List<Reservation> equipmentSerial1reservations = rdao.getBySerial(equipmentSerial1);
     	List<Reservation> equipmentSerial2reservations = rdao.getBySerial(equipmentSerial2);
@@ -219,9 +232,9 @@ public class ReservationDaoTest {
     	Equipmenttype testEquipmenttype1 = addEquipmenttype(equipmentTypeCode1, equipmentTypeName1);
     	Equipment testEquipment1 = addEquipment(equipmentName1, equipmentSerial1, equipmentStatusEnabled, testEquipmenttype1);
     	
-    	addReservation(equipmentStatusEnabled, reservationType, dateTake, null, testEmployee1, testEquipment1);
-    	addReservation(equipmentStatusEnabled, reservationType, dateTake, null, testEmployee1, testEquipment1);
-    	addReservation(equipmentStatusEnabled, reservationType, dateTake, null, testEmployee2, testEquipment1);
+    	addReservation(reservationType, dateTake, null, testEmployee1, testEquipment1);
+    	addReservation(reservationType, dateTake, null, testEmployee1, testEquipment1);
+    	addReservation(reservationType, dateTake, null, testEmployee2, testEquipment1);
     	
     	List<Reservation> employeeId1reservations = rdao.getOpenByEmployeeId(employeeId1);
     	List<Reservation> employeeId2reservations = rdao.getOpenByEmployeeId(employeeId2);
@@ -301,7 +314,7 @@ public class ReservationDaoTest {
     	Equipmenttype testEquipmenttype1 = addEquipmenttype(equipmentTypeCode1, equipmentTypeName1);
     	Equipment testEquipment1 = addEquipment(equipmentName1, equipmentSerial1, equipmentStatusEnabled, testEquipmenttype1);
 
-    	addReservation(equipmentStatusEnabled, reservationType, dateTake, dateReturn, testEmployee, testEquipment1);    	
+    	addReservation(reservationType, dateTake, dateReturn, testEmployee, testEquipment1);    	
     	List<Reservation> reservations = rdao.getBySerialAndDate(equipmentSerial1, start, end);
     	assertEquals(0, reservations.size());
     }
@@ -328,7 +341,7 @@ public class ReservationDaoTest {
     	Equipmenttype testEquipmenttype1 = addEquipmenttype(equipmentTypeCode1, equipmentTypeName1);
     	Equipment testEquipment1 = addEquipment(equipmentName1, equipmentSerial1, equipmentStatusEnabled, testEquipmenttype1);
 
-    	addReservation(equipmentStatusEnabled, reservationType, dateTake, dateReturn, testEmployee1, testEquipment1);    	
+    	addReservation(reservationType, dateTake, dateReturn, testEmployee1, testEquipment1);    	
     	List<Reservation> reservations = rdao.getBySerialAndDate(equipmentSerial1, start, end);
     	assertEquals(1, reservations.size());
     	Reservation DBreservation1 = reservations.get(0);
@@ -378,7 +391,7 @@ public class ReservationDaoTest {
     	Equipmenttype testEquipmenttype1 = addEquipmenttype(equipmentTypeCode1, equipmentTypeName1);
     	Equipment testEquipment1 = addEquipment(equipmentName1, equipmentSerial1, equipmentStatusEnabled, testEquipmenttype1);
 
-    	addReservation(equipmentStatusEnabled, reservationType, dateTake, null, testEmployee1, testEquipment1);    	
+    	addReservation(reservationType, dateTake, null, testEmployee1, testEquipment1);    	
     	List<Reservation> reservations = rdao.getBySerialAndDate(equipmentSerial1, start, end);
     	assertEquals(1, reservations.size());
     	Reservation DBreservation1 = reservations.get(0);
@@ -419,7 +432,7 @@ public class ReservationDaoTest {
     	Equipmenttype testEquipmenttype1 = addEquipmenttype(equipmentTypeCode1, equipmentTypeName1);
     	Equipment testEquipment1 = addEquipment(equipmentName1, equipmentSerial1, equipmentStatusEnabled, testEquipmenttype1);
 
-    	addReservation(equipmentStatusEnabled, reservationType, dateTake, dateReturn, testEmployee1, testEquipment1);    	
+    	addReservation(reservationType, dateTake, dateReturn, testEmployee1, testEquipment1);    	
     	List<Reservation> reservations = rdao.getBySerialAndDate(equipmentSerial1, start, end);
     	assertEquals(1, reservations.size());
     	Reservation DBreservation1 = reservations.get(0);
@@ -468,7 +481,7 @@ public class ReservationDaoTest {
     	Equipmenttype testEquipmenttype1 = addEquipmenttype(equipmentTypeCode1, equipmentTypeName1);
     	Equipment testEquipment1 = addEquipment(equipmentName1, equipmentSerial1, equipmentStatusEnabled, testEquipmenttype1);
 
-    	addReservation(equipmentStatusEnabled, reservationType, dateTake, null, testEmployee1, testEquipment1);    	
+    	addReservation(reservationType, dateTake, null, testEmployee1, testEquipment1);    	
     	List<Reservation> reservations = rdao.getBySerialAndDate(equipmentSerial1, start, end);
     	assertEquals(1, reservations.size());
     	Reservation DBreservation1 = reservations.get(0);
@@ -510,7 +523,7 @@ public class ReservationDaoTest {
     	Equipmenttype testEquipmenttype1 = addEquipmenttype(equipmentTypeCode1, equipmentTypeName1);
     	Equipment testEquipment1 = addEquipment(equipmentName1, equipmentSerial1, equipmentStatusEnabled, testEquipmenttype1);
 
-    	addReservation(equipmentStatusEnabled, reservationType, dateTake, dateReturn, testEmployee1, testEquipment1);    	
+    	addReservation(reservationType, dateTake, dateReturn, testEmployee1, testEquipment1);    	
     	List<Reservation> reservations = rdao.getBySerialAndDate(equipmentSerial1, start, end);
     	assertEquals(1, reservations.size());
     	Reservation DBreservation1 = reservations.get(0);
@@ -560,7 +573,7 @@ public class ReservationDaoTest {
     	Equipmenttype testEquipmenttype1 = addEquipmenttype(equipmentTypeCode1, equipmentTypeName1);
     	Equipment testEquipment1 = addEquipment(equipmentName1, equipmentSerial1, equipmentStatusEnabled, testEquipmenttype1);
 
-    	addReservation(equipmentStatusEnabled, reservationType, dateTake, dateReturn, testEmployee1, testEquipment1);    	
+    	addReservation(reservationType, dateTake, dateReturn, testEmployee1, testEquipment1);    	
     	List<Reservation> reservations = rdao.getBySerialAndDate(equipmentSerial1, start, end);
     	assertEquals(0, reservations.size());
     }
@@ -586,9 +599,9 @@ public class ReservationDaoTest {
     	Equipment testEquipment1 = addEquipment(equipmentName1, equipmentSerial1, equipmentStatusEnabled, testEquipmenttype1);
 
     	assertFalse(rdao.serialHasOpenReservation(equipmentSerial1));
-    	addReservation(equipmentStatusEnabled, reservationType, dateTake, dateReturn, testEmployee, testEquipment1);
+    	addReservation(reservationType, dateTake, dateReturn, testEmployee, testEquipment1);
     	assertFalse(rdao.serialHasOpenReservation(equipmentSerial1));
-    	addReservation(equipmentStatusEnabled, reservationType, dateTake, null, testEmployee, testEquipment1);
+    	addReservation(reservationType, dateTake, null, testEmployee, testEquipment1);
     	assertTrue(rdao.serialHasOpenReservation(equipmentSerial1));
     }
     
@@ -617,11 +630,11 @@ public class ReservationDaoTest {
     	assertEquals(0, rdao.getOpenReservationIdBySerial(equipmentSerial1));
     	
     	// Closed reservation in DB
-    	addReservation(equipmentStatusEnabled, reservationType, dateTake1, dateReturn1, testEmployee, testEquipment1);
+    	addReservation(reservationType, dateTake1, dateReturn1, testEmployee, testEquipment1);
     	assertEquals(0, rdao.getOpenReservationIdBySerial(equipmentSerial1));
     	
     	// Open reservation in DB
-    	int openReservationId = addReservation(equipmentStatusEnabled, reservationType, dateTake2, null, testEmployee, testEquipment1).getReservationId();
+    	int openReservationId = addReservation(reservationType, dateTake2, null, testEmployee, testEquipment1).getReservationId();
     	assertEquals(openReservationId, rdao.getOpenReservationIdBySerial(equipmentSerial1));
     }
     
@@ -648,7 +661,7 @@ public class ReservationDaoTest {
      * Returns Reservation from DB
      * @return
      */
-    public Reservation addReservation(int equipmentStatusEnabled, int reservationType, Date dateTake, Date dateReturn,
+    public Reservation addReservation(int reservationType, Date dateTake, Date dateReturn,
     							Employee employee, Equipment equipment) {
 
     	Reservation testReservation = new Reservation();

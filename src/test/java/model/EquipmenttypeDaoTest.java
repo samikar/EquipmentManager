@@ -21,19 +21,31 @@ import utils.PropertyUtils;
 
 public class EquipmenttypeDaoTest {
 	private static Properties properties = PropertyUtils.loadProperties();
+	
 	@Autowired
-	private static EquipmenttypeDao etdao;
+	private static String testDBurl;
+	private static String testDBuser;
+	private static String testDBpassword;
+	private static String testDBdriver;
 	private static EquipmentDao edao;
-
-	@BeforeClass
-	public static void init() {
-		edao = new EquipmentDao();
-		etdao = new EquipmenttypeDao();
-		edao.setProperties(properties.getProperty("testDBurl"), properties.getProperty("testDBuser"), properties.getProperty("testDBpassword"), properties.getProperty("testDBdriver"));
-		etdao.setProperties(properties.getProperty("testDBurl"), properties.getProperty("testDBuser"), properties.getProperty("testDBpassword"), properties.getProperty("testDBdriver"));
-		edao.init();
-		etdao.init();
-	}
+	private static EquipmenttypeDao etdao;
+	
+    @BeforeClass
+    public static void init() {
+    	testDBurl = properties.getProperty("testDBurl");
+    	testDBuser = properties.getProperty("testDBuser");
+    	testDBpassword = properties.getProperty("testDBpassword");
+    	testDBdriver = properties.getProperty("testDBdriver");
+    	
+    	edao = new EquipmentDao();
+    	etdao = new EquipmenttypeDao();
+    	
+    	edao.setProperties(testDBurl, testDBuser, testDBpassword, testDBdriver);
+    	etdao.setProperties(testDBurl, testDBuser, testDBpassword, testDBdriver);
+        
+        edao.init();
+        etdao.init();
+    }
 
 	@AfterClass
 	public static void destroy() {

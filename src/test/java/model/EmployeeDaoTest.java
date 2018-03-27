@@ -21,14 +21,26 @@ import utils.PropertyUtils;
 
 public class EmployeeDaoTest {
 	private static Properties properties = PropertyUtils.loadProperties();
+	
 	@Autowired
+	private static String testDBurl;
+	private static String testDBuser;
+	private static String testDBpassword;
+	private static String testDBdriver;
 	private static EmployeeDao empdao;
 	
     @BeforeClass
     public static void init() {
+    	testDBurl = properties.getProperty("testDBurl");
+    	testDBuser = properties.getProperty("testDBuser");
+    	testDBpassword = properties.getProperty("testDBpassword");
+    	testDBdriver = properties.getProperty("testDBdriver");
+    	
     	empdao = new EmployeeDao();
-    	empdao.setProperties(properties.getProperty("testDBurl"), properties.getProperty("testDBuser"), properties.getProperty("testDBpassword"), properties.getProperty("testDBdriver"));
-        empdao.init();
+    	
+    	empdao.setProperties(testDBurl, testDBuser, testDBpassword, testDBdriver);
+        
+    	empdao.init();
     }
 
     @AfterClass

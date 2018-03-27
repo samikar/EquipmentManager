@@ -1,6 +1,6 @@
-db\DataBaseutilTest.class
 model\EquipmenttypeDaoTest.class
 utils\PropertyUtilsTest.class
+db\DatabaseutilTest.class
 model\EquipmentDaoTest.class
 utils\EquipmentDataReaderTest.class
 model\EmployeeDaoTest.class
