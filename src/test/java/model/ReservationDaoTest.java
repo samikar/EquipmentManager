@@ -677,6 +677,14 @@ public class ReservationDaoTest {
     }
     
     public void emptyTables() {
+	 	empdao.destroy();
+        edao.destroy();
+        etdao.destroy();
+        rdao.destroy();
+		empdao.init();
+        edao.init();
+        etdao.init();
+        rdao.init();
     	List<Reservation> reservations = rdao.getAll();
     	for (Reservation currentReservation: reservations) {
     		rdao.initialize(currentReservation.getReservationId());
