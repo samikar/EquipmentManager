@@ -73,7 +73,7 @@ function statusWorking() {
   if($("#status").hasClass("alert-danger")) {$("#status").removeClass("alert-danger");}
   if($("#status").hasClass("alert-success")) {$("#status").removeClass("alert-success");}
   $("#status").addClass("alert-info");
-  $("#msg_type").text("Working, please wait... ");
+  $("#msg_type").text("Searching employeeId, please wait... ");
   $("#msg_text").text("If this is your first time taking an item, this may take up to two minutes...");
 }
 
