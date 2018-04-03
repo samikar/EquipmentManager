@@ -30,13 +30,13 @@ import utils.PropertyUtils;
 public class ReservationController {
 	// Database properties
 	private static Properties properties = PropertyUtils.loadProperties();
-	String DBurl = properties.getProperty("DBurl");
-	String DBuser = properties.getProperty("DBuser");
-	String DBpassword = properties.getProperty("DBpassword");
-	String DBdriver = properties.getProperty("DBdriver");
-	ReservationDao rdao;
-	EmployeeDao empdao;
-	EquipmentDao edao;
+	private String DBurl = properties.getProperty("DBurl");
+	private String DBuser = properties.getProperty("DBuser");
+	private String DBpassword = properties.getProperty("DBpassword");
+	private String DBdriver = properties.getProperty("DBdriver");
+	private ReservationDao rdao;
+	private EmployeeDao empdao;
+	private EquipmentDao edao;
 	
 	@RequestMapping("/rest/test")
 	public String hello(@RequestParam(value = "name", defaultValue = "World") String name) {
@@ -90,11 +90,9 @@ public class ReservationController {
 			Reservation reservation = new Reservation();
 			
 			// EmployeeDao needs to be refreshed in case a new employee has been added to DB
-			empdao.destroy();
-			edao.destroy();
+			empdao.refresh();
+			edao.refresh();
 			
-			edao.init();
-			empdao.init();
 			empdao.initialize(empdao.getEmployeeKeyByEmployeeId(employeeId));
 			edao.initialize(edao.getEquipmentIdBySerial(serial));
 			Employee emp = empdao.getDao();
@@ -173,17 +171,6 @@ public class ReservationController {
 		return "Done";
 	}
 
-//	@RequestMapping("/rest/getbyReservationType")
-//	public List<Reservation> getbyReservationType(
-//			@RequestParam(value = "reservationType", defaultValue = "0") String reservationType) {
-//		rdao = new ReservationDao();
-//		rdao.setProperties(DBurl, DBuser, DBpassword, DBdriver);
-//		rdao.init();
-//		List<Reservation> result = rdao.getByType(reservationType);
-//		rdao.destroy();
-//		return result;
-//	}
-
 	@RequestMapping("/rest/getbyEmployeeId")
 	public List<Reservation> getbyEmployeeId(@RequestParam(value = "employeeId") String employeeId) {
 		if (employeeId == null || employeeId.isEmpty()) {
@@ -200,17 +187,6 @@ public class ReservationController {
 		else
 			throw new IllegalArgumentException("No reservations found for employeeId " + employeeId);
 	}
-
-//	@RequestMapping("/rest/getbyEquipmentId")
-//	public List<Reservation> getbyEquipmentId(
-//			@RequestParam(value = "equipmentId", defaultValue = "0") String equipmentId) {
-//		rdao = new ReservationDao();
-//		rdao.setProperties(DBurl, DBuser, DBpassword, DBdriver);
-//		rdao.init();
-//		List<Reservation> result = rdao.getByEquipmentId(equipmentId);
-//		rdao.destroy();
-//		return result;
-//	}
 
 	@RequestMapping("rest/getEquipmentStatus")
 	public List<EquipmentStatus> getEquipmentStatus() {
@@ -269,13 +245,20 @@ public class ReservationController {
 	}
 
 	@RequestMapping("rest/getEmployee")
-	public Employee getEmployeeName(@RequestParam(value = "employeeId") String employeeId) {
+	public Employee getEmployee(@RequestParam(value = "employeeId") String employeeId) {
 		empdao = new EmployeeDao();
 		empdao.setProperties(DBurl, DBuser, DBpassword, DBdriver);
 		empdao.init();
 		Employee result = empdao.getEmployeeByEmployeeId(employeeId);
 		empdao.destroy();
 		return result;
+	}
+	
+	public void setProperties(String DBurl, String DBuser, String DBpassword, String DBdriver) {
+		this.DBurl = DBurl;
+		this.DBuser = DBuser;
+		this.DBpassword = DBpassword;
+		this.DBdriver = DBdriver;
 	}
 
 	@ExceptionHandler

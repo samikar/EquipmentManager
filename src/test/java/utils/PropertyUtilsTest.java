@@ -11,6 +11,7 @@ import java.util.Properties;
 import org.junit.Test;
 
 public class PropertyUtilsTest {
+	
 	@Test
 	public void propertyFileFound() {
 		Path file = Paths.get(PropertyUtils.PROPERTIES_PATH + PropertyUtils.PROPERTIES_FILENAME);

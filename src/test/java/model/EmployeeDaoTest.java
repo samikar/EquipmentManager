@@ -49,12 +49,12 @@ public class EmployeeDaoTest {
     }
     
 	@Before
-	public void initTables() {
+	public void initTest() {
 		emptyTables();
 	}
 	
 	@After
-	public void destroyTables() {
+	public void endTest() {
 		emptyTables();
 	}
 	

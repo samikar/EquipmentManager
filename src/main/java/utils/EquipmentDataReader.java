@@ -21,22 +21,33 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.multipart.MultipartFile;
 
+import model.EmployeeDao;
 import model.Equipment;
 import model.EquipmentDao;
 import model.Equipmenttype;
 import model.EquipmenttypeDao;
+import model.ReservationDao;
 
 public class EquipmentDataReader {
-	private final static String dataFilePath = "DataFiles" + File.separator;
-	static Properties appProperties = PropertyUtils.loadProperties();
+	// Database properties
+	private static Properties properties = PropertyUtils.loadProperties();
+	private String DBurl = properties.getProperty("DBurl");
+	private String DBuser = properties.getProperty("DBuser");
+	private String DBpassword = properties.getProperty("DBpassword");
+	private String DBdriver = properties.getProperty("DBdriver");
 	
-	public static ResponseEntity<Object> verifyEquipmentFile(MultipartFile file) {
+	private final static String dataFilePath = "DataFiles" + File.separator;
+	
+	EquipmentDao edao;
+	EquipmenttypeDao etdao;
+		
+	public ResponseEntity<Object> verifyEquipmentFile(MultipartFile file) {
 		
 		if (!verifyFileExtension(file.getOriginalFilename()))
 			return new ResponseEntity<>("File extension should be \"xlsx\" (Excel spreadsheet).",
 					HttpStatus.UNSUPPORTED_MEDIA_TYPE);
 		else { 
-			File convertFile = EquipmentDataReader.writeFile(file, dataFilePath);
+			File convertFile = writeFile(file, dataFilePath);
 
 			readEquipmentFromFile(convertFile.getPath());
 			deleteFile(convertFile);
@@ -44,13 +55,13 @@ public class EquipmentDataReader {
 		return new ResponseEntity<>("Equipment data read succesfully!", HttpStatus.OK);
 	}
 	
-	public static ResponseEntity<Object> verifyEquipmentTypeFile(MultipartFile file) {
+	public ResponseEntity<Object> verifyEquipmentTypeFile(MultipartFile file) {
 		
 		if (!verifyFileExtension(file.getOriginalFilename()))
 			return new ResponseEntity<>("File extension should be \"xlsx\" (Excel spreadsheet).",
 					HttpStatus.UNSUPPORTED_MEDIA_TYPE);
 		else { 
-			File convertFile = EquipmentDataReader.writeFile(file, dataFilePath);			
+			File convertFile = writeFile(file, dataFilePath);			
 
 			readEquipmentTypesFromFile(convertFile.getPath());
 			deleteFile(convertFile);
@@ -58,15 +69,20 @@ public class EquipmentDataReader {
 		return new ResponseEntity<>("Equipment data read succesfully!", HttpStatus.OK);
 	}
 	
-	public static String readEquipmentFromFile(String filePath) {
-		int equipmentNameColumn = Integer.parseInt(appProperties.getProperty("EquipmentFileNameColumn")) - 1;
-		int serialColumn = Integer.parseInt(appProperties.getProperty("EquipmentFileSerialColumn")) - 1;
-		int typeColumn = Integer.parseInt(appProperties.getProperty("EquipmentFileTypeColumn")) - 1;
-		int firstRow = Integer.parseInt(appProperties.getProperty("EquipmentFileFirstDataRow"));
-		int lastRow = Integer.parseInt(appProperties.getProperty("EquipmentFileLastDataRow"));
+	public String readEquipmentFromFile(String filePath) {
+		int equipmentNameColumn = Integer.parseInt(properties.getProperty("EquipmentFileNameColumn")) - 1;
+		int serialColumn = Integer.parseInt(properties.getProperty("EquipmentFileSerialColumn")) - 1;
+		int typeColumn = Integer.parseInt(properties.getProperty("EquipmentFileTypeColumn")) - 1;
+		int firstRow = Integer.parseInt(properties.getProperty("EquipmentFileFirstDataRow"));
+		int lastRow = Integer.parseInt(properties.getProperty("EquipmentFileLastDataRow"));
 		
-		EquipmentDao edao = new EquipmentDao();
-		EquipmenttypeDao eqTypeDao = new EquipmenttypeDao();
+		edao = new EquipmentDao();
+		etdao = new EquipmenttypeDao();
+		edao.setProperties(DBurl, DBuser, DBpassword, DBdriver);
+		etdao.setProperties(DBurl, DBuser, DBpassword, DBdriver);
+		edao.init();
+		etdao.init();
+		
 		FileInputStream inputStreamEquipment = null;
 		
 		File f = new File(filePath);
@@ -92,8 +108,7 @@ public class EquipmentDataReader {
 
 		Sheet firstSheet = workbook.getSheetAt(0);
 		Iterator<Row> iterator = firstSheet.iterator();
-		edao.init();
-		eqTypeDao.init();
+
 
 		for (int i=0; i<firstRow - 1; i++) {
 			iterator.next();	
@@ -105,7 +120,7 @@ public class EquipmentDataReader {
 			Row nextRow = iterator.next();
 			Iterator<Cell> cellIterator = nextRow.cellIterator();
 			String typeCode = "";
-			e.setName("foo");
+			e.setName("");
 			e.setSerial(Integer.toString(i));
 			e.setEquipmenttype(null);
 
@@ -119,10 +134,10 @@ public class EquipmentDataReader {
 				else if (column == typeColumn) {
 					typeCode = cell.getStringCellValue();
 					
-					if (eqTypeDao.typeCodeExists(Integer.parseInt(typeCode))) {
-						eqTypeDao.initialize(eqTypeDao.getEquipmentTypeIdByTypeCode(Integer.parseInt(typeCode)));
+					if (etdao.typeCodeExists(Integer.parseInt(typeCode))) {
+						etdao.initialize(etdao.getEquipmentTypeIdByTypeCode(Integer.parseInt(typeCode)));
 						Equipmenttype eqType = new Equipmenttype();
-						eqType = eqTypeDao.getDao();
+						eqType = etdao.getDao();
 						e.setEquipmenttype(eqType);
 					}
 				}
@@ -144,7 +159,7 @@ public class EquipmentDataReader {
 		
 		// workbook.close();
 		edao.destroy();
-		eqTypeDao.destroy();
+		etdao.destroy();
 		
 		try {
 			inputStreamEquipment.close();
@@ -155,13 +170,13 @@ public class EquipmentDataReader {
 		return "Equipment file read complete.";
 	}
 
-	public static String readEquipmentTypesFromFile(String filePath) {
-		int typeNameColumn = Integer.parseInt(appProperties.getProperty("TypeFileTypeNameColumn"));
-		int typeCodeColumn = Integer.parseInt(appProperties.getProperty("TypeFileTypeCodeColumn"));
-		int firstRow = Integer.parseInt(appProperties.getProperty("TypeFileFirstDataRow"));
-		int lastRow = Integer.parseInt(appProperties.getProperty("TypeFileLastDataRow"));
+	public String readEquipmentTypesFromFile(String filePath) {
+		int typeNameColumn = Integer.parseInt(properties.getProperty("TypeFileTypeNameColumn"));
+		int typeCodeColumn = Integer.parseInt(properties.getProperty("TypeFileTypeCodeColumn"));
+		int firstRow = Integer.parseInt(properties.getProperty("TypeFileFirstDataRow"));
+		int lastRow = Integer.parseInt(properties.getProperty("TypeFileLastDataRow"));
 		
-		EquipmenttypeDao eqTypeDao = new EquipmenttypeDao();
+		EquipmenttypeDao etdao = new EquipmenttypeDao();
 		FileInputStream inputStreamType = null;
 		Workbook workbook = null;
 		
@@ -187,7 +202,8 @@ public class EquipmentDataReader {
 
 		Sheet firstSheet = workbook.getSheetAt(0);
 		Iterator<Row> iterator = firstSheet.iterator();
-		eqTypeDao.init();
+		etdao.setProperties(DBurl, DBuser, DBpassword, DBdriver);
+		etdao.init();
 		
 		for (int i=0; i<firstRow - 1; i++) {
 			iterator.next();	
@@ -212,16 +228,16 @@ public class EquipmentDataReader {
 			
 			// Check if equipment type with typeCode is already in database, update if found,
 			// insert if not
-			int eTypeId = eqTypeDao.getEquipmentTypeIdByTypeCode(eqType.getTypeCode());
+			int eTypeId = etdao.getEquipmentTypeIdByTypeCode(eqType.getTypeCode());
 			if (eTypeId > 0) {
 				eqType.setEquipmentTypeId(eTypeId);
-				eqTypeDao.update(eqType);
+				etdao.update(eqType);
 			} else
-				eqTypeDao.persist(eqType);
+				etdao.persist(eqType);
 		}
 		// workbook.close();
 		
-		eqTypeDao.destroy();
+		etdao.destroy();
 		try {
 			inputStreamType.close();
 		} catch (IOException e) {
@@ -232,7 +248,7 @@ public class EquipmentDataReader {
 		return "Equipment type file read complete.";
 	}
 	
-	public static boolean verifyFileExtension(String filePath) {
+	public boolean verifyFileExtension(String filePath) {
 		String extension = "";
 		int i = filePath.lastIndexOf('.');
 		if (i > 0) {
@@ -245,7 +261,7 @@ public class EquipmentDataReader {
 			return true;
 	}
 	
-	public static File writeFile(MultipartFile file, String path) {
+	public File writeFile(MultipartFile file, String path) {
 		Path convertedFile = null;
 		try {
 			convertedFile = Paths.get(path + file.getOriginalFilename());
@@ -256,7 +272,7 @@ public class EquipmentDataReader {
 		return convertedFile.toFile();
 	}
 	
-	public static boolean deleteFile(File file) {
+	public boolean deleteFile(File file) {
 		boolean result = false;
 		if (file != null) {
 			try {
@@ -272,5 +288,12 @@ public class EquipmentDataReader {
 			}
 		}
 		return result;
+	}
+	
+	public void setProperties(String DBurl, String DBuser, String DBpassword, String DBdriver) {
+		this.DBurl = DBurl;
+		this.DBuser = DBuser;
+		this.DBpassword = DBpassword;
+		this.DBdriver = DBdriver;
 	}
 }

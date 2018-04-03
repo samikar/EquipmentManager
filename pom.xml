@@ -87,6 +87,14 @@
 			<version>2.4.0</version>
 		</dependency>
 		
+		<!--  For logging -->
+		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+			<version>1.2.17</version>
+		</dependency>
+		<!--  End logging -->
+		
 		<!-- For testing -->
 		<!-- https://mvnrepository.com/artifact/org.apache.httpcomponents/httpclient -->
 		<dependency>

@@ -56,6 +56,11 @@ public class ReservationDao {
 		this.driver = driver;
 	}
 	
+	public void refresh() {
+		this.destroy();
+		this.init();
+	}
+	
 	public List<Reservation> getDaos(){
 		entityManager.getTransaction().begin();
 		Query query = entityManager.createNamedQuery("Reservation.findAll");

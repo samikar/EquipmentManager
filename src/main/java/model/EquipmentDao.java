@@ -55,15 +55,10 @@ public class EquipmentDao {
 		this.driver = driver;
 	}
 	
-//	public void initTest() {
-//		try {
-//	        entityManagerFactory = DatabaseUtil.getTestSessionFactory();
-//	     }
-//		catch (Exception e) {
-//			// TODO: logger
-//		}
-//		entityManager = entityManagerFactory.createEntityManager();
-//	}
+	public void refresh() {
+		this.destroy();
+		this.init();
+	}
 	
 	public List<Equipment> getDaos(){
 		entityManager.getTransaction().begin();

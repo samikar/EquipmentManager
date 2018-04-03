@@ -9,6 +9,7 @@ import static org.junit.Assert.assertTrue;
 import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
+import java.time.temporal.ChronoUnit;
 import java.util.Date;
 import java.util.List;
 import java.util.Properties;
@@ -46,6 +47,7 @@ public class ReservationControllerTest {
 	private static EquipmentDao edao;
 	private static EquipmenttypeDao etdao;
 	private static ReservationDao rdao;
+	private static ReservationController controller;
 	
     @BeforeClass
     public static void init() {
@@ -68,6 +70,9 @@ public class ReservationControllerTest {
         edao.init();
         etdao.init();
         rdao.init();
+        
+		controller = new ReservationController();
+		controller.setProperties(testDBurl, testDBuser, testDBpassword, testDBdriver);
     }
 
     @AfterClass
@@ -79,32 +84,28 @@ public class ReservationControllerTest {
     }
     
 	@Before
-	public void initTables() {
+	public void initTest() {
+
 		emptyTables();
 	}
 	
 	@After
-	public void destroyTables() {
+	public void endTest() {
 		emptyTables();
 	}
 	
 	@Test
 	public void testGetAllReservations_noReservations() {
-		ReservationController controller = new ReservationController();
-		controller.DBurl = testDBurl;
-		controller.DBuser = testDBuser;
-		controller.DBpassword = testDBpassword;
-		controller.DBdriver = testDBdriver;
 		List<Reservation> reservations = controller.getAllReservations();
 		assertEquals(0, reservations.size());
 	}
 	
 	@Test
-	public void testGetAllReservations_1Reservation1() {
+	public void testGetAllReservations_1Reservation() {
     	int equipmentStatusEnabled = 1;
     	int equipmentTypeCode = 1111;
     	int reservationTypeInUse = 0;
-    	LocalDateTime currentDateTime =  LocalDateTime.now();
+    	LocalDateTime currentDateTime =  LocalDateTime.now().truncatedTo(ChronoUnit.MINUTES);
     	Date dateTake = Date.from(currentDateTime.minusMonths(6).atZone(ZoneId.systemDefault()).toInstant()); 
     	Date dateReturn = Date.from(currentDateTime.atZone(ZoneId.systemDefault()).toInstant());
     	String employeeId1 = "111111111";
@@ -113,12 +114,6 @@ public class ReservationControllerTest {
     	String equipmentSerial1 = "TestSerial";
     	String equipmentTypeName1 = "TestType";
     	
-		ReservationController controller = new ReservationController();
-		controller.DBurl = testDBurl;
-		controller.DBuser = testDBuser;
-		controller.DBpassword = testDBpassword;
-		controller.DBdriver = testDBdriver;
-
     	Employee testEmployee = addEmployee(employeeId1, employeeName1);
     	Equipmenttype testEquipmenttype = addEquipmenttype(equipmentTypeCode, equipmentTypeName1);
     	Equipment testEquipment = addEquipment(equipmentName1, equipmentSerial1, equipmentStatusEnabled, testEquipmenttype);
@@ -181,11 +176,6 @@ public class ReservationControllerTest {
     	String equipmentSerial3 = "TestSerial3";
     	String equipmentTypeName1 = "TestType1";
     	String equipmentTypeName2 = "TestType2";
-		ReservationController controller = new ReservationController();
-		controller.DBurl = testDBurl;
-		controller.DBuser = testDBuser;
-		controller.DBpassword = testDBpassword;
-		controller.DBdriver = testDBdriver;
     	
     	Employee testEmployee1 = addEmployee(employeeId1, employeeName1);
     	Employee testEmployee2 = addEmployee(employeeId2, employeeName2);
@@ -271,7 +261,7 @@ public class ReservationControllerTest {
 	}
 	
 	@Test
-	public void testTakeEquipment_success() {
+	public void testTakeEquipment_OK() {
     	int equipmentStatusEnabled = 1;
     	int equipmentTypeCode = 1111;
     	int reservationTypeInUse = 0;
@@ -280,12 +270,6 @@ public class ReservationControllerTest {
     	String equipmentName1 = "Test Equipment";
     	String equipmentSerial1 = "TestSerial";
     	String equipmentTypeName1 = "TestType";
-    	
-		ReservationController controller = new ReservationController();
-		controller.DBurl = testDBurl;
-		controller.DBuser = testDBuser;
-		controller.DBpassword = testDBpassword;
-		controller.DBdriver = testDBdriver;
 
     	addEmployee(employeeId1, employeeName1);
     	Equipmenttype testEquipmenttype = addEquipmenttype(equipmentTypeCode, equipmentTypeName1);
@@ -321,12 +305,6 @@ public class ReservationControllerTest {
     	String exceptionMessage = "";
     	String expectedExceptionMessage = "Employee ID must not be empty";
     	
-		ReservationController controller = new ReservationController();
-		controller.DBurl = testDBurl;
-		controller.DBuser = testDBuser;
-		controller.DBpassword = testDBpassword;
-		controller.DBdriver = testDBdriver;
-    	
     	try {
     		controller.takeEquipment(null, equipmentSerial1, Integer.toString(reservationTypeInUse));
     	} catch (IllegalArgumentException e) {
@@ -343,15 +321,7 @@ public class ReservationControllerTest {
 		int reservationTypeInUse = 0;
     	String employeeId1 = "111111111";
     	String exceptionMessage = "";
-    	String expectedExceptionMessage = "Serial number must not be empty";
-    	
-		ReservationController controller = new ReservationController();
-		controller.DBurl = testDBurl;
-		controller.DBuser = testDBuser;
-		controller.DBpassword = testDBpassword;
-		controller.DBdriver = testDBdriver;
-
-    	
+    	String expectedExceptionMessage = "Serial number must not be empty";    	
     	
     	try {
     		controller.takeEquipment(employeeId1, null, Integer.toString(reservationTypeInUse));
@@ -375,12 +345,6 @@ public class ReservationControllerTest {
     	String equipmentTypeName1 = "TestType";
     	String exceptionMessage = "";
     	String expectedExceptionMessage = "Reservation type must be selected";
-    	
-		ReservationController controller = new ReservationController();
-		controller.DBurl = testDBurl;
-		controller.DBuser = testDBuser;
-		controller.DBpassword = testDBpassword;
-		controller.DBdriver = testDBdriver;
 
     	addEmployee(employeeId1, employeeName1);
     	Equipmenttype testEquipmenttype = addEquipmenttype(equipmentTypeCode, equipmentTypeName1);
@@ -405,12 +369,6 @@ public class ReservationControllerTest {
     	String equipmentSerial1 = "NoSuchSerial";
     	String expectedExceptionMessage = "No equipment found for serial number: " + equipmentSerial1;
     	String exceptionMessage = "";
-    	
-    	ReservationController controller = new ReservationController();
-		controller.DBurl = testDBurl;
-		controller.DBuser = testDBuser;
-		controller.DBpassword = testDBpassword;
-		controller.DBdriver = testDBdriver;
 
     	addEmployee(employeeId1, employeeName1);
     	    	
@@ -440,12 +398,6 @@ public class ReservationControllerTest {
     	String equipmentTypeName1 = "TestType";
     	String exceptionMessage = "";
     	String expectedExceptionMessage = "Open reservation for serial number " + equipmentSerial1;
-    	
-    	ReservationController controller = new ReservationController();
-		controller.DBurl = testDBurl;
-		controller.DBuser = testDBuser;
-		controller.DBpassword = testDBpassword;
-		controller.DBdriver = testDBdriver;
 
     	addEmployee(employeeId1, employeeName1);
     	addEmployee(employeeId2, employeeName2);
@@ -481,12 +433,6 @@ public class ReservationControllerTest {
     	String exceptionMessage = "";
     	String expectedExceptionMessage = "No employee found for employeeId: " + employeeId1;
     	
-    	ReservationController controller = new ReservationController();
-		controller.DBurl = testDBurl;
-		controller.DBuser = testDBuser;
-		controller.DBpassword = testDBpassword;
-		controller.DBdriver = testDBdriver;
-    	
 		Equipmenttype testEquipmenttype = addEquipmenttype(equipmentTypeCode, equipmentTypeName1);
     	addEquipment(equipmentName1, equipmentSerial1, equipmentStatusEnabled, testEquipmenttype);
     	    	
@@ -507,11 +453,6 @@ public class ReservationControllerTest {
 		String equipmentSerial1 = "NoSuchSerial";
 		String exceptionMessage = "";
 		String expectedExceptionMessage = "No equipment found for serial number: " + equipmentSerial1;
-    	ReservationController controller = new ReservationController();
-		controller.DBurl = testDBurl;
-		controller.DBuser = testDBuser;
-		controller.DBpassword = testDBpassword;
-		controller.DBdriver = testDBdriver;
     	    		
     	try {
     		controller.returnSingle(equipmentSerial1);
@@ -527,12 +468,6 @@ public class ReservationControllerTest {
 	public void testReturnSingle_serialNotFound() { 	
 		boolean exceptionThrown = false;
 		String exceptionMessage = "";
-		
-		ReservationController controller = new ReservationController();
-		controller.DBurl = testDBurl;
-		controller.DBuser = testDBuser;
-		controller.DBpassword = testDBpassword;
-		controller.DBdriver = testDBdriver;
     	    	
     	try {
     		controller.returnSingle(null);
@@ -556,12 +491,6 @@ public class ReservationControllerTest {
     	String equipmentTypeName1 = "TestType";
     	String exceptionMessage = "";
     	String expectedExceptionMessage = "No open reservation found for serial number " + equipmentSerial1;
-    	
-    	ReservationController controller = new ReservationController();
-		controller.DBurl = testDBurl;
-		controller.DBuser = testDBuser;
-		controller.DBpassword = testDBpassword;
-		controller.DBdriver = testDBdriver;
     	
 		addEmployee(employeeId1, employeeName1);
 		Equipmenttype testEquipmenttype = addEquipmenttype(equipmentTypeCode, equipmentTypeName1);
@@ -594,12 +523,6 @@ public class ReservationControllerTest {
     	String exceptionMessage = "";
     	String expectedExceptionMessage = "No open reservation found for serial number " + equipmentSerial1;
     	
-    	ReservationController controller = new ReservationController();
-		controller.DBurl = testDBurl;
-		controller.DBuser = testDBuser;
-		controller.DBpassword = testDBpassword;
-		controller.DBdriver = testDBdriver;
-    	
 		Employee testEmployee = addEmployee(employeeId1, employeeName1);
 		Equipmenttype testEquipmenttype = addEquipmenttype(equipmentTypeCode, equipmentTypeName1);
     	Equipment testEquipment = addEquipment(equipmentName1, equipmentSerial1, equipmentStatusEnabled, testEquipmenttype);
@@ -616,7 +539,7 @@ public class ReservationControllerTest {
 	}
     
 	@Test
-	public void testReturnMultiple_success() {
+	public void testReturnMultiple_OK() {
 		int equipmentStatusEnabled = 1;
     	int equipmentTypeCode = 1111;
 		int reservationTypeInUse = 0;
@@ -631,12 +554,6 @@ public class ReservationControllerTest {
     	String equipmentSerial2 = "TestSerial2";
     	String equipmentTypeName1 = "TestType";
     	String reservationIdsJSON = "";
-    	
-    	ReservationController controller = new ReservationController();
-		controller.DBurl = testDBurl;
-		controller.DBuser = testDBuser;
-		controller.DBpassword = testDBpassword;
-		controller.DBdriver = testDBdriver;
     	
 		Employee testEmployee = addEmployee(employeeId1, employeeName1);
 		Equipmenttype testEquipmenttype = addEquipmenttype(equipmentTypeCode, equipmentTypeName1);
@@ -665,17 +582,11 @@ public class ReservationControllerTest {
 	@Test
 	public void testReturnMultiple_invalidJSON() {
 		String invalidJSONStr = "foobar";
-    	ReservationController controller = new ReservationController();
-		controller.DBurl = testDBurl;
-		controller.DBuser = testDBuser;
-		controller.DBpassword = testDBpassword;
-		controller.DBdriver = testDBdriver;
-
     	assertEquals("Error formatting JSON String", controller.returnMultiple(invalidJSONStr));
 	}
 	
 	@Test
-	public void testGetByEmployeeId_success() {
+	public void testGetByEmployeeId_OK() {
 		int equipmentStatusEnabled = 1;
     	int equipmentTypeCode = 1111;
 		int reservationTypeInUse = 0;
@@ -694,12 +605,6 @@ public class ReservationControllerTest {
     	String equipmentSerial3 = "TestSerial3";
     	String equipmentSerial4 = "TestSerial4";
     	String equipmentTypeName1 = "TestType";
-    	
-    	ReservationController controller = new ReservationController();
-		controller.DBurl = testDBurl;
-		controller.DBuser = testDBuser;
-		controller.DBpassword = testDBpassword;
-		controller.DBdriver = testDBdriver;
     	
 		Employee testEmployee1 = addEmployee(employeeId1, employeeName1);
 		Employee testEmployee2 = addEmployee(employeeId2, employeeName2);
@@ -741,15 +646,7 @@ public class ReservationControllerTest {
 	public void testGetByEmployeeId_noEmployeeId() {
 		boolean exceptionThrown = false;
 		String exceptionMessage = "";
-		String expectedExceptionMessage = "Employee ID must not be empty";
-		
-		
-		ReservationController controller = new ReservationController();
-		controller.DBurl = testDBurl;
-		controller.DBuser = testDBuser;
-		controller.DBpassword = testDBpassword;
-		controller.DBdriver = testDBdriver;
-		 
+		String expectedExceptionMessage = "Employee ID must not be empty";		 
 		
     	try {
     		controller.getbyEmployeeId(null);
@@ -767,13 +664,6 @@ public class ReservationControllerTest {
 		String employeeId1 = "111111111";
 		String exceptionMessage = "";
 		String expectedExceptionMessage = "No reservations found for employeeId " + employeeId1;
-		
-		
-		ReservationController controller = new ReservationController();
-		controller.DBurl = testDBurl;
-		controller.DBuser = testDBuser;
-		controller.DBpassword = testDBpassword;
-		controller.DBdriver = testDBdriver;
 		 
     	try {
     		controller.getbyEmployeeId(employeeId1);
@@ -810,24 +700,21 @@ public class ReservationControllerTest {
     	String reservationTypeStrCalibration = "Calibration";
     	String reservationTypeStrMaintenance = "Maintenance";
     	
-    	ReservationController controller = new ReservationController();
-		controller.DBurl = testDBurl;
-		controller.DBuser = testDBuser;
-		controller.DBpassword = testDBpassword;
-		controller.DBdriver = testDBdriver;
-    	
 		Employee testEmployee1 = addEmployee(employeeId1, employeeName1);
 		Equipmenttype testEquipmenttype = addEquipmenttype(equipmentTypeCode, equipmentTypeName1);
-    	addEquipment(equipmentName1, equipmentSerial1, equipmentStatusEnabled, testEquipmenttype);
+		addEquipment(equipmentName1, equipmentSerial1, equipmentStatusEnabled, testEquipmenttype);
     	Equipment testEquipment2 = addEquipment(equipmentName2, equipmentSerial2, equipmentStatusEnabled, testEquipmenttype);
     	Equipment testEquipment3 = addEquipment(equipmentName3, equipmentSerial3, equipmentStatusEnabled, testEquipmenttype);
     	Equipment testEquipment4 = addEquipment(equipmentName4, equipmentSerial4, equipmentStatusEnabled, testEquipmenttype);
+    	
     	
     	addReservation(reservationTypeInUse, dateTake, null, testEmployee1, testEquipment2);
     	addReservation(reservationTypeCalibration, dateTake, null, testEmployee1, testEquipment3);
     	addReservation(reservationTypeMaintentance, dateTake, null, testEmployee1, testEquipment4);
     	
     	List<EquipmentStatus> equipmentStatusList = controller.getEquipmentStatus();
+    	
+    	assertEquals(4, equipmentStatusList.size());
     	
     	assertEquals(equipmentSerial1, equipmentStatusList.get(0).getSerial());
     	assertEquals(equipmentName1, equipmentStatusList.get(0).getName());
@@ -847,9 +734,24 @@ public class ReservationControllerTest {
 	}
 	
 	
-	tbc
+	public void testGetEmployee_OK() {
+		String employeeId1 = "111111111";
+		String employeeName1 = "Test Employee1";
+		ReservationController controller = new ReservationController();
+		
+		addEmployee(employeeId1, employeeName1);
+		Employee DBEmployee = controller.getEmployee(employeeId1);
+		assertEquals(employeeId1, DBEmployee.getEmployeeId());
+		assertEquals(employeeName1, DBEmployee.getName());
+	}
 	
-	
+	public void testGetEmployee_noSuchEmployee() {
+		String employeeId1 = "111111111";
+		ReservationController controller = new ReservationController();
+		Employee DBEmployee = controller.getEmployee(employeeId1);
+		
+		assertNull(DBEmployee);
+	}
 	
     public Employee addEmployee(String employeeId, String employeeName) {
     	Employee testEmployee = new Employee(employeeId, employeeName);
@@ -890,14 +792,11 @@ public class ReservationControllerTest {
     }
 	
     public void emptyTables() {
-	 	empdao.destroy();
-        edao.destroy();
-        etdao.destroy();
-        rdao.destroy();
-		empdao.init();
-        edao.init();
-        etdao.init();
-        rdao.init();
+    	empdao.refresh();
+    	edao.refresh();
+    	etdao.refresh();
+    	rdao.refresh();
+    	
     	List<Reservation> reservations = rdao.getAll();
     	for (Reservation currentReservation: reservations) {
     		rdao.initialize(currentReservation.getReservationId());
@@ -922,6 +821,5 @@ public class ReservationControllerTest {
     		etdao.delete();
     	}
     }
-   
 }
 

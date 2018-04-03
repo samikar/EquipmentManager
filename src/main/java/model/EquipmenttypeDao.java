@@ -54,16 +54,11 @@ public class EquipmenttypeDao {
 		this.driver = driver;
 	}
 	
-//	public void initTest() {
-//		try {
-//	        entityManagerFactory = DatabaseUtil.getTestSessionFactory();
-//	     }
-//		catch (Exception e) {
-//			// TODO: logger
-//		}
-//		entityManager = entityManagerFactory.createEntityManager();
-//	}
-	
+	public void refresh() {
+		this.destroy();
+		this.init();
+	}
+		
 	public List<Equipmenttype> getDaos(){
 		entityManager.getTransaction().begin();
 		Query query = entityManager.createNamedQuery("Equipmenttype.findAll");

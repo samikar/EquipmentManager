@@ -2,7 +2,6 @@ package model;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
 import java.util.List;
@@ -54,12 +53,12 @@ public class EquipmenttypeDaoTest {
 	}
 	
 	@Before
-	public void initTables() {
+	public void initTest() {
 		emptyTables();
 	}
 	
 	@After
-	public void destroyTables() {
+	public void endTest() {
 		emptyTables();
 	}
 
@@ -182,8 +181,7 @@ public class EquipmenttypeDaoTest {
 		}
 
 		// Database connection needs to be refreshed
-		etdao.destroy();
-		etdao.init();
+		etdao.refresh();
 
 		equipmentTypesWithEquipment = etdao.getEquipmentTypesWithEquipment();
 		assertEquals(equipmentCount, equipmentTypesWithEquipment.size());

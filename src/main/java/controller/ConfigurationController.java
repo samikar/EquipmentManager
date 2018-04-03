@@ -29,24 +29,26 @@ import utils.PropertyUtils;
 public class ConfigurationController {
 	// Database properties
 	private static Properties properties = PropertyUtils.loadProperties();
-	String DBurl = properties.getProperty("DBurl");
-	String DBuser = properties.getProperty("DBuser");
-	String DBpassword = properties.getProperty("DBpassword");
-	String DBdriver = properties.getProperty("DBdriver");
+	private String DBurl = properties.getProperty("DBurl");
+	private String DBuser = properties.getProperty("DBuser");
+	private String DBpassword = properties.getProperty("DBpassword");
+	private String DBdriver = properties.getProperty("DBdriver");
 	
-	ReservationDao rdao;
-	EmployeeDao empdao;
-	EquipmentDao edao;
-	EquipmenttypeDao etdao;
+	private EquipmentDao edao;
+	private EquipmenttypeDao etdao;
 	
 	@RequestMapping(value = "/rest/uploadEquipmentFile", method = RequestMethod.POST, consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
 	public ResponseEntity<Object> uploadEquipmentFile(@RequestParam("file") MultipartFile file) throws IOException {
-		return EquipmentDataReader.verifyEquipmentFile(file);
+		EquipmentDataReader equipmentDataReader = new EquipmentDataReader();
+		equipmentDataReader.setProperties(DBurl, DBuser, DBpassword, DBdriver);
+		return equipmentDataReader.verifyEquipmentFile(file);
 	}
 
 	@RequestMapping(value = "/rest/uploadTypeFile", method = RequestMethod.POST, consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
 	public ResponseEntity<Object> uploadTypeFile(@RequestParam("file") MultipartFile file) throws IOException {
-		return EquipmentDataReader.verifyEquipmentTypeFile(file);
+		EquipmentDataReader equipmentDataReader = new EquipmentDataReader();
+		equipmentDataReader.setProperties(DBurl, DBuser, DBpassword, DBdriver);
+		return equipmentDataReader.verifyEquipmentTypeFile(file);
 	}
 
 	@RequestMapping("/rest/getEquipment")
@@ -239,6 +241,13 @@ public class ConfigurationController {
 		}
 	}
 
+	public void setProperties(String DBurl, String DBuser, String DBpassword, String DBdriver) {
+		this.DBurl = DBurl;
+		this.DBuser = DBuser;
+		this.DBpassword = DBpassword;
+		this.DBdriver = DBdriver;
+	}
+	
 	@ExceptionHandler
 	void handleIllegalArgumentException(IllegalArgumentException e, HttpServletResponse response) throws IOException {
 		response.sendError(HttpStatus.BAD_REQUEST.value());
