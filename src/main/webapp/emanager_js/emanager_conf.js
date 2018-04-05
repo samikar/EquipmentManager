@@ -229,7 +229,7 @@ function addEquipment(name, serial, equipmentTypeId) {
       if($("#status").hasClass("alert-success")) {$("#status").removeClass("alert-danger");}
       $("#status").addClass("alert-danger");
       $("#msg_type").text("Error: ");
-      $("#msg_text").text("Adding equipment failed: " + jqXHR["responseJSON"]["message"]);  
+      $("#msg_text").text("Adding new equipment failed: " + jqXHR["responseJSON"]["message"]);  
 
     })
     .always(function() {
@@ -272,7 +272,7 @@ function addType(typeName, typeCode) {
       if($("#status").hasClass("alert-success")) {$("#status").removeClass("alert-danger");}
       $("#status").addClass("alert-danger");
       $("#msg_type").text("Error: ");
-      $("#msg_text").text("Adding equipment failed: " + jqXHR["responseJSON"]["message"]);  
+      $("#msg_text").text("Adding new equipment type failed: " + jqXHR["responseJSON"]["message"]);  
 
     })
     .always(function() {

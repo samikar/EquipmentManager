@@ -133,7 +133,7 @@ public class ConfigurationController {
 	
 	@RequestMapping("/rest/insertType")
 	public Equipmenttype insertType(@RequestParam(value = "typeName") String typeName,						
-									 @RequestParam(value = "typeCode") String typeCode) {
+									@RequestParam(value = "typeCode") String typeCode) {
 		etdao = new EquipmenttypeDao();
 		etdao.setProperties(DBurl, DBuser, DBpassword, DBdriver);
 		etdao.init();
@@ -157,53 +157,67 @@ public class ConfigurationController {
 			return newType;
 		}
 	}
-	
+
 	@RequestMapping("/rest/updateEquipment")
-	public Equipment updateEquipment(@RequestParam(value = "equipmentId") String equipmentId, 
- 									 @RequestParam(value = "name") String name,						
+	public Equipment updateEquipment(@RequestParam(value = "equipmentId") String equipmentId,
+									 @RequestParam(value = "name") String name, 
 									 @RequestParam(value = "serial") String serial,
 									 @RequestParam(value = "equipmentTypeId") String equipmentTypeId) {
 		edao = new EquipmentDao();
 		edao.setProperties(DBurl, DBuser, DBpassword, DBdriver);
 		edao.init();
-		edao.initialize(Integer.parseInt(equipmentId));
-		Equipment eq = edao.getDao();
+
 		
-		eq.setName(name);
-		eq.setSerial(serial);
-		if (Integer.parseInt(equipmentTypeId) > 0) {
-			etdao = new EquipmenttypeDao();
-			etdao.setProperties(DBurl, DBuser, DBpassword, DBdriver);
-			etdao.init();
-			etdao.initialize(Integer.parseInt(equipmentTypeId));
-			Equipmenttype etype = etdao.getDao();
-			eq.setEquipmenttype(etype);
-			etdao.destroy();
+		if (edao.serialExists(serial) && Integer.parseInt(equipmentId) != (edao.getBySerial(serial).getEquipmentId())) {
+				edao.destroy();
+				throw new IllegalArgumentException("Equipment with serial number " + serial + " already exists.");
+		} else {
+			edao.initialize(Integer.parseInt(equipmentId));
+			Equipment eq = edao.getDao();
+
+			eq.setName(name);
+			eq.setSerial(serial);
+			if (Integer.parseInt(equipmentTypeId) > 0) {
+				etdao = new EquipmenttypeDao();
+				etdao.setProperties(DBurl, DBuser, DBpassword, DBdriver);
+				etdao.init();
+				etdao.initialize(Integer.parseInt(equipmentTypeId));
+				Equipmenttype etype = etdao.getDao();
+				eq.setEquipmenttype(etype);
+				etdao.destroy();
+			}
+			edao.update(eq);
+			edao.destroy();
+
+			return eq;
 		}
-		edao.update(eq);
-		edao.destroy();
-		
-		return eq;
 	}
 	
 	@RequestMapping("/rest/updateType")
 	public Equipmenttype updateType(@RequestParam(value = "equipmentTypeId") String equipmentTypeId, 
- 									 @RequestParam(value = "typeName") String typeName,						
-									 @RequestParam(value = "typeCode") String typeCode) {
+ 									@RequestParam(value = "typeName") String typeName,						
+									@RequestParam(value = "typeCode") String typeCode) {
 		
 		etdao = new EquipmenttypeDao();
 		etdao.setProperties(DBurl, DBuser, DBpassword, DBdriver);
 		etdao.init();
-		etdao.initialize(Integer.parseInt(equipmentTypeId));
-		Equipmenttype etype = etdao.getDao();
 		
-		etype.setTypeName(typeName);
-		etype.setTypeCode(Integer.parseInt(typeCode));
-		
-		etdao.update(etype);
-		etdao.destroy();
-		
-		return etype;
+		if (etdao.typeCodeExists(Integer.parseInt(typeCode)) && Integer.parseInt(typeCode) != etdao.getByTypeCode(Integer.parseInt(typeCode)).getTypeCode()) {
+			etdao.destroy();
+			throw new IllegalArgumentException("Equipment type with Type Code " + typeCode + " already exists.");
+		}
+		else {
+			etdao.initialize(Integer.parseInt(equipmentTypeId));
+			Equipmenttype etype = etdao.getDao();
+			
+			etype.setTypeName(typeName);
+			etype.setTypeCode(Integer.parseInt(typeCode));
+			
+			etdao.update(etype);
+			etdao.destroy();
+			
+			return etype;
+		}
 	}
 	
 	@RequestMapping("/rest/deleteEquipment")

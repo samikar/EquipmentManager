@@ -20,7 +20,9 @@ import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -43,7 +45,6 @@ public class ConfigurationControllerTest {
 	
 	private final static String TESTFILEPATH = "test_files" + File.separator;
 	private final static String TESTFILENAME = "test_file.txt";
-	private final static String NOSUCHFILE = "NOSUCHFILE.txt";
 	private final static String EQUIPMENTFILE = "laitteet.xlsx";
 	private final static String TYPETFILE = "luokat.xlsx";
 	
@@ -55,6 +56,9 @@ public class ConfigurationControllerTest {
 	private static EquipmentDao edao;
 	private static EquipmenttypeDao etdao;
 	private static ConfigurationController controller;
+	
+	@Rule
+	public final ExpectedException exception = ExpectedException.none();
 	
     @BeforeClass
     public static void init() {
@@ -98,8 +102,8 @@ public class ConfigurationControllerTest {
 	@Test
 	public void uploadEquipmentFileTest_OK() {
 		File testFile = createTestFile(TESTFILEPATH, EQUIPMENTFILE);
-		
 		ResponseEntity<Object> response = null;
+		
 		MultipartFile multipartFile = convertFileToMultipartFile(testFile);
 		
 		try {
@@ -124,7 +128,39 @@ public class ConfigurationControllerTest {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		assertEquals("File extension should be \"xlsx\" (Excel spreadsheet).", response.getBody());
+		assertEquals(HttpStatus.UNSUPPORTED_MEDIA_TYPE, response.getStatusCode());
+	}
+	
+	@Test
+	public void uploadTypeFileTest_OK() {
+		File testFile = createTestFile(TESTFILEPATH, TYPETFILE);
+		ResponseEntity<Object> response = null;
+		MultipartFile multipartFile = convertFileToMultipartFile(testFile);
 		
+		try {
+			response = controller.uploadTypeFile(multipartFile);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		assertEquals(HttpStatus.OK, response.getStatusCode());
+	}
+	
+	@Test
+	public void uploadTypeFileTest_wrongFileType() {
+		File testFile = createTestFile(TESTFILEPATH, TESTFILENAME);
+		ResponseEntity<Object> response = null;
+		MultipartFile multipartFile = convertFileToMultipartFile(testFile);
+		
+		try {
+			response = controller.uploadTypeFile(multipartFile);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		assertEquals("File extension should be \"xlsx\" (Excel spreadsheet).", response.getBody());
 		assertEquals(HttpStatus.UNSUPPORTED_MEDIA_TYPE, response.getStatusCode());
 	}
 	
@@ -134,7 +170,6 @@ public class ConfigurationControllerTest {
 		int equipmentTypeTypeCode2 = 2222;
 		String equipmentTypeName1 = "TestType1";
 		String equipmentTypeName2 = "TestType2";
-		
 		Equipmenttype testEquipmentType1 = new Equipmenttype(equipmentTypeTypeCode1, equipmentTypeName1);
 		Equipmenttype testEquipmentType2 = new Equipmenttype(equipmentTypeTypeCode2, equipmentTypeName2);
 		
@@ -161,9 +196,6 @@ public class ConfigurationControllerTest {
 		String equipmentSerial2 = "TestSerial2";
 		String equipmentSerial3 = "TestSerial3";
 		String equipmentTypeName1 = "TestType1";
-		
-		
-		
 		Equipmenttype testEquipmentType1 = new Equipmenttype(equipmentTypeTypeCode1, equipmentTypeName1);
 		Equipment testEquipment1 = new Equipment(equipmentName1, equipmentSerial1, equipmentStatusEnabled, testEquipmentType1);
 		Equipment testEquipment2 = new Equipment(equipmentName2, equipmentSerial2, equipmentStatusEnabled, testEquipmentType1);
@@ -194,6 +226,126 @@ public class ConfigurationControllerTest {
 		assertEquals(equipmentStatusEnabled, equipments.get(2).getStatus());
 		assertEquals(equipmentTypeTypeCode1, equipments.get(2).getEquipmenttype().getTypeCode());
 		assertEquals(equipmentTypeName1, equipments.get(2).getEquipmenttype().getTypeName());		
+	}
+	
+	@Test
+	public void enableEquipmentTest_disable() {
+		int equipmentStatusEnabled = 1;
+		int equipmentStatusDisabled = 0;
+		int equipmentTypeTypeCode1 = 1111;
+		int equipmentId;
+		String equipmentName1 = "TestEquipment1";
+		String equipmentSerial1 = "TestSerial1";
+		String equipmentTypeName1 = "TestType1";
+		Equipmenttype testEquipmentType1 = new Equipmenttype(equipmentTypeTypeCode1, equipmentTypeName1);
+		Equipment DBequipment = null;
+		Equipment testEquipment1 = new Equipment(equipmentName1, equipmentSerial1, equipmentStatusEnabled, testEquipmentType1);
+		
+		etdao.persist(testEquipmentType1);
+		equipmentId = edao.persist(testEquipment1);
+		DBequipment = edao.getBySerial(equipmentSerial1);
+		assertEquals(equipmentStatusEnabled, DBequipment.getStatus());
+		controller.disableEquipment(Integer.toString(equipmentId));
+		edao.refresh();
+		DBequipment = edao.getBySerial(equipmentSerial1);
+		assertEquals(equipmentStatusDisabled, DBequipment.getStatus());
+	}
+	
+	@Test
+	public void enableEquipmentTest_enable() {
+		int equipmentStatusEnabled = 1;
+		int equipmentStatusDisabled = 0;
+		int equipmentTypeTypeCode1 = 1111;
+		String equipmentName1 = "TestEquipment1";
+		String equipmentSerial1 = "TestSerial1";
+		String equipmentTypeName1 = "TestType1";
+		Equipmenttype testEquipmentType1 = new Equipmenttype(equipmentTypeTypeCode1, equipmentTypeName1);
+		Equipment DBequipment = null;
+		Equipment testEquipment1 = new Equipment(equipmentName1, equipmentSerial1, equipmentStatusDisabled, testEquipmentType1);
+		
+		etdao.persist(testEquipmentType1);
+		int equipmentId = edao.persist(testEquipment1);
+		DBequipment = edao.getBySerial(equipmentSerial1);
+		assertEquals(equipmentStatusDisabled, DBequipment.getStatus());
+		controller.enableEquipment(Integer.toString(equipmentId));
+		edao.refresh();
+		DBequipment = edao.getBySerial(equipmentSerial1);
+		assertEquals(equipmentStatusEnabled, DBequipment.getStatus());
+	}
+	
+	@Test
+	public void insertEquipmentTest_OK() {
+		int equipmentStatusEnabled = 1;
+		int equipmentTypeTypeCode1 = 1111;
+		int equipmentTypeId;
+		String equipmentName1 = "TestEquipment1";
+		String equipmentSerial1 = "TestSerial1";
+		String equipmentTypeName1 = "TestType1";
+		Equipment DBequipment = null;
+		Equipmenttype testEquipmentType1 = new Equipmenttype(equipmentTypeTypeCode1, equipmentTypeName1);
+		
+		equipmentTypeId = etdao.persist(testEquipmentType1);
+		controller.insertEquipment(equipmentName1, equipmentSerial1, Integer.toString(equipmentTypeId));
+		edao.refresh();
+		DBequipment = edao.getBySerial(equipmentSerial1);
+		
+		assertEquals(equipmentName1, DBequipment.getName());
+		assertEquals(equipmentSerial1, DBequipment.getSerial());
+		assertEquals(equipmentStatusEnabled, DBequipment.getStatus());
+		assertEquals(equipmentTypeName1, DBequipment.getEquipmenttype().getTypeName());
+		assertEquals(equipmentTypeTypeCode1, DBequipment.getEquipmenttype().getTypeCode());
+	}
+	
+	@Test
+	public void insertEquipmentTest_DuplicateSerial() {
+		int equipmentTypeTypeCode1 = 1111;
+		int equipmentTypeId;
+		String equipmentName1 = "TestEquipment1";
+		String equipmentName2 = "TestEquipment1";
+		String equipmentSerial1 = "TestSerial1";
+		String equipmentTypeName1 = "TestType1";
+		Equipmenttype testEquipmentType1 = new Equipmenttype(equipmentTypeTypeCode1, equipmentTypeName1);
+		
+		equipmentTypeId = etdao.persist(testEquipmentType1);
+		controller.insertEquipment(equipmentName1, equipmentSerial1, Integer.toString(equipmentTypeId));
+		exception.expect(IllegalArgumentException.class);
+		controller.insertEquipment(equipmentName2, equipmentSerial1, Integer.toString(equipmentTypeId));
+	}
+	
+	@Test
+	public void insertTypeTest_OK() {
+		int equipmentTypeTypeCode1 = 1111;
+		String equipmentTypeName1 = "TestType1";
+		Equipmenttype DBequipmenttype = null;
+
+		controller.insertType(equipmentTypeName1, Integer.toString(equipmentTypeTypeCode1));
+		etdao.refresh();
+		etdao.initialize(etdao.getEquipmentTypeIdByTypeCode(equipmentTypeTypeCode1));
+		DBequipmenttype = etdao.getDao();
+		
+		assertEquals(1, etdao.getAll().size());
+		assertEquals(equipmentTypeTypeCode1, DBequipmenttype.getTypeCode());
+		assertEquals(equipmentTypeName1, DBequipmenttype.getTypeName());
+	}
+	
+	@Test
+	public void insertTypeTest_DuplicateTypeCode() {
+		int equipmentTypeTypeCode1 = 1111;
+		String equipmentTypeName1 = "TestType1";
+		String equipmentTypeName2 = "TestType2";
+				
+		controller.insertType(equipmentTypeName1, Integer.toString(equipmentTypeTypeCode1));
+		exception.expect(IllegalArgumentException.class);
+		controller.insertType(equipmentTypeName2, Integer.toString(equipmentTypeTypeCode1));
+	}
+	
+	@Test
+	public void insertTypeTest_StringTypeCode() {
+		String equipmentTypeTypeCode1 = "foobar";
+		String equipmentTypeName1 = "TestType1";
+		
+		exception.expect(IllegalArgumentException.class);
+		controller.insertType(equipmentTypeName1, equipmentTypeTypeCode1);
 	}
 	
 	public File createTestFile(String path, String fileName) {

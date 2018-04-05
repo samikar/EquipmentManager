@@ -123,6 +123,16 @@ public class EquipmenttypeDao {
 			return 0;
 	}
 	
+	public Equipmenttype getByTypeCode(int typeCode) {
+		List<Equipmenttype> equipmentTypeList = entityManager
+				.createNamedQuery("Equipmenttype.findByTypeCode", Equipmenttype.class)
+				.setParameter(1, typeCode).getResultList();
+		if (equipmentTypeList.size() == 0)
+			return null;
+		else
+			return equipmentTypeList.get(0);
+	}
+	
 	public boolean typeCodeExists(int typeCode) {
 		List<Equipmenttype> equipmentTypeList = entityManager
 				.createNamedQuery("Equipmenttype.findByTypeCode", Equipmenttype.class)

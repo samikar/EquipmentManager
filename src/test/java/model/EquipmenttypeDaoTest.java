@@ -2,6 +2,7 @@ package model;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
 import java.util.List;
@@ -133,6 +134,35 @@ public class EquipmenttypeDaoTest {
 		assertEquals(0, etdao.getEquipmentTypeIdByTypeCode(nonExistentTypeCode));
 	}
 
+	@Test
+	@Transactional
+	@Rollback(true)
+	public void testGetByTypeCode_Found() {
+		int equipmentTypeTypeCode = 1111;
+		String equipmentTypeName = "TestType3";
+		Equipmenttype DBequipmenttype = null;
+		Equipmenttype testEquipmenttype = null;
+		
+		testEquipmenttype= new Equipmenttype(equipmentTypeTypeCode, equipmentTypeName);	
+		etdao.persist(testEquipmenttype);
+		DBequipmenttype = etdao.getByTypeCode(equipmentTypeTypeCode);
+		
+		assertEquals(equipmentTypeTypeCode, DBequipmenttype.getTypeCode());
+		assertEquals(equipmentTypeName, DBequipmenttype.getTypeName());
+	}
+	
+	@Test
+	@Transactional
+	@Rollback(true)
+	public void testGetByTypeCode_NotFound() {
+		int equipmentTypeTypeCode = 1111;
+		Equipmenttype DBequipmenttype = null;
+		
+		DBequipmenttype = etdao.getByTypeCode(equipmentTypeTypeCode);
+		
+		assertNull(DBequipmenttype);
+	}
+	
 	@Test
 	@Transactional
 	@Rollback(true)
