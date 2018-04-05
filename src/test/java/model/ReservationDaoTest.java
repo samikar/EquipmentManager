@@ -20,6 +20,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.transaction.annotation.Transactional;
 
+import db.DatabaseUtil;
 import utils.PropertyUtils;
 
 public class ReservationDaoTest {
@@ -64,6 +65,7 @@ public class ReservationDaoTest {
         edao.destroy();
         etdao.destroy();
         rdao.destroy();
+        DatabaseUtil.shutdown();
     }
     
 	@Before

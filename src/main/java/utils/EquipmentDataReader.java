@@ -115,7 +115,7 @@ public class EquipmentDataReader {
 		}		
 		
 		for (int i = firstRow; i <= lastRow; i++) {
-			System.out.println("i: " + i + " firstRow: " + firstRow + " lastRow: " + lastRow);
+//			System.out.println("i: " + i + " firstRow: " + firstRow + " lastRow: " + lastRow);
 			Equipment e = new Equipment();
 			Row nextRow = iterator.next();
 			Iterator<Cell> cellIterator = nextRow.cellIterator();

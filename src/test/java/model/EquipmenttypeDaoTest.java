@@ -16,6 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.transaction.annotation.Transactional;
 
+import db.DatabaseUtil;
 import utils.PropertyUtils;
 
 public class EquipmenttypeDaoTest {
@@ -50,6 +51,7 @@ public class EquipmenttypeDaoTest {
 	public static void destroy() {
 		edao.destroy();
 		etdao.destroy();
+		DatabaseUtil.shutdown();
 	}
 	
 	@Before

@@ -17,6 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.transaction.annotation.Transactional;
 
+import db.DatabaseUtil;
 import utils.PropertyUtils;
 
 public class EmployeeDaoTest {
@@ -46,6 +47,7 @@ public class EmployeeDaoTest {
     @AfterClass
     public static void destroy() {
         empdao.destroy();
+        DatabaseUtil.shutdown();
     }
     
 	@Before

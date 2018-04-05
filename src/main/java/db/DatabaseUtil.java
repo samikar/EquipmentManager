@@ -12,13 +12,16 @@ public class DatabaseUtil {
 	static Map<String, String> persistenceMap = new HashMap<String, String>();
 
 	private static EntityManagerFactory buildSessionFactory() {
-		try {
-			entityManagerFactory = Persistence.createEntityManagerFactory("EquipmentManager", persistenceMap);
-			return entityManagerFactory;
-		} catch (Throwable ex) {
-			System.err.println("Initial EntityManagerFactory creation failed." + ex);
-			throw new ExceptionInInitializerError(ex);
-		}
+//		if (!entityManagerFactory.isOpen()) {
+			try {
+				entityManagerFactory = Persistence.createEntityManagerFactory("EquipmentManager", persistenceMap);
+				return entityManagerFactory;
+			} catch (Throwable ex) {
+				System.err.println("Initial EntityManagerFactory creation failed." + ex);
+				throw new ExceptionInInitializerError(ex);
+			}
+//		}
+//		return entityManagerFactory;
 	}
 
 	public static void setProperties(String url, String user, String password, String driver) {

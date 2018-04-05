@@ -4,56 +4,54 @@
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="java.vm.version" value="9.0.4+11"/>
     <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk-9.0.4\bin"/>
-    <property name="user.country.format" value="FI"/>
-    <property name="maven.multiModuleProjectDirectory" value="C:\EquipmentManager\Eclipse_workspace\EquipmentManager"/>
+    <property name="maven.multiModuleProjectDirectory" value="C:\Users\samik\git\EquipmentManager"/>
     <property name="java.vm.vendor" value="Oracle Corporation"/>
     <property name="java.vendor.url" value="http://java.oracle.com/"/>
     <property name="guice.disable.misplaced.annotation.check" value="true"/>
     <property name="path.separator" value=";"/>
     <property name="java.vm.name" value="Java HotSpot(TM) 64-Bit Server VM"/>
     <property name="file.encoding.pkg" value="sun.io"/>
-    <property name="sun.os.patch.level" value="Service Pack 1"/>
+    <property name="sun.os.patch.level" value=""/>
     <property name="user.script" value=""/>
-    <property name="user.country" value="US"/>
+    <property name="user.country" value="FI"/>
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
-    <property name="user.dir" value="C:\EquipmentManager\Eclipse_workspace\EquipmentManager"/>
+    <property name="user.dir" value="C:\Users\samik\git\EquipmentManager"/>
     <property name="java.vm.compressedOopsMode" value="Zero based"/>
     <property name="java.runtime.version" value="9.0.4+11"/>
     <property name="java.awt.graphicsenv" value="sun.awt.Win32GraphicsEnvironment"/>
     <property name="os.arch" value="amd64"/>
-    <property name="java.io.tmpdir" value="C:\Users\U319994\AppData\Local\Temp\"/>
+    <property name="java.io.tmpdir" value="C:\Users\samik\AppData\Local\Temp\"/>
     <property name="line.separator" value="&#10;"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="user.variant" value=""/>
-    <property name="os.name" value="Windows 7"/>
-    <property name="classworlds.conf" value="C:\EquipmentManager\Eclipse_workspace\.metadata\.plugins\org.eclipse.m2e.launching\launches\m2conf7703538140002802154.tmp"/>
+    <property name="os.name" value="Windows 10"/>
+    <property name="classworlds.conf" value="C:\Users\samik\eclipse-workspace\.metadata\.plugins\org.eclipse.m2e.launching\launches\m2conf7098308904407928102.tmp"/>
     <property name="sun.jnu.encoding" value="Cp1252"/>
-    <property name="java.library.path" value="C:\Program Files\Java\jdk-9.0.4\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:/Program Files/Java/jre1.8.0_152/bin/server;C:/Program Files/Java/jre1.8.0_152/bin;C:/Program Files/Java/jre1.8.0_152/lib/amd64;C:\ProgramData\Oracle\Java\javapath;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files\MySQL\MySQL Utilities 1.6\;C:\Program Files\nodejs\;C:\Program Files\Intel\WiFi\bin\;C:\Program Files\Common Files\Intel\WirelessCommon\;C:\Program Files\Internet Explorer;C:\ProgramData\Oracle\Java\javapath;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Programs\Git\cmd;C:\Programs\apache-maven-3.5.2\bin;C:\Program Files\Java\jdk1.8.0_152\bin;C:\Users\U319994\AppData\Roaming\npm;C:\Programs\Eclipse_Oxygen\eclipse;;."/>
+    <property name="java.library.path" value="C:\Program Files\Java\jdk-9.0.4\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:/Program Files/Java/jre1.8.0_151/bin/server;C:/Program Files/Java/jre1.8.0_151/bin;C:/Program Files/Java/jre1.8.0_151/lib/amd64;C:\ProgramData\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files\Git\cmd;C:\Program Files (x86)\Windows Kits\8.1\Windows Performance Toolkit\;C:\Program Files\Microsoft SQL Server\110\Tools\Binn\;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files\nodejs\;C:\Android;C:\Users\samik\AppData\Local\Microsoft\WindowsApps;C:\Program Files (x86)\Nmap;C:\Program Files\Java\jdk1.8.0_112\bin;C:\Users\samik\AppData\Roaming\npm;C:\apache-maven-3.5.0\bin;C:\adb;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\MySQL\MySQL Utilities 1.6\;C:\Users\samik\AppData\Local\Microsoft\WindowsApps;C:\Program Files (x86)\Nmap;C:\Program Files\Java\jdk1.8.0_112\bin;C:\Users\samik\AppData\Roaming\npm;C:\apache-maven-3.5.0\bin;;C:\WINDOWS\system32;;."/>
     <property name="jdk.debug" value="release"/>
     <property name="java.class.version" value="53.0"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
-    <property name="os.version" value="6.1"/>
-    <property name="user.home" value="C:\Users\U319994"/>
+    <property name="os.version" value="10.0"/>
+    <property name="user.home" value="C:\Users\samik"/>
     <property name="user.timezone" value="Europe/Helsinki"/>
     <property name="java.awt.printerjob" value="sun.awt.windows.WPrinterJob"/>
     <property name="file.encoding" value="Cp1252"/>
     <property name="java.specification.version" value="9"/>
-    <property name="user.name" value="U319994"/>
-    <property name="java.class.path" value="C:\Users\U319994\.p2\pool\plugins\org.eclipse.m2e.maven.runtime_1.8.2.20171007-0216\jars\plexus-classworlds-2.5.2.jar"/>
+    <property name="user.name" value="S"/>
+    <property name="java.class.path" value="C:\Users\samik\.p2\pool\plugins\org.eclipse.m2e.maven.runtime_1.8.2.20171007-0216\jars\plexus-classworlds-2.5.2.jar"/>
     <property name="java.vm.specification.version" value="9"/>
     <property name="sun.arch.data.model" value="64"/>
     <property name="sun.java.command" value="org.codehaus.plexus.classworlds.launcher.Launcher -B test"/>
     <property name="java.home" value="C:\Program Files\Java\jdk-9.0.4"/>
-    <property name="user.language" value="en"/>
+    <property name="user.language" value="fi"/>
     <property name="java.specification.vendor" value="Oracle Corporation"/>
-    <property name="user.language.format" value="fi"/>
     <property name="awt.toolkit" value="sun.awt.windows.WToolkit"/>
     <property name="java.vm.info" value="mixed mode"/>
     <property name="java.version" value="9.0.4"/>
     <property name="java.vendor" value="Oracle Corporation"/>
-    <property name="maven.home" value="C:\EquipmentManager\Eclipse_workspace\EquipmentManager\EMBEDDED"/>
+    <property name="maven.home" value="C:\Users\samik\git\EquipmentManager\EMBEDDED"/>
     <property name="file.separator" value="\"/>
     <property name="java.vendor.url.bug" value="http://bugreport.java.com/bugreport/"/>
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
@@ -63,6 +61,1297 @@
   </properties>
   <testcase name="findEmptyString" classname="db.ADHandlerTest" time="0">
     <skipped/>
+    <system-out><![CDATA[09:09:07.799 [main] DEBUG org.hibernate.boot.registry.classloading.internal.ClassLoaderServiceImpl - Incoming config yielded no classloaders; adding standard SE ones
+09:09:07.801 [main] DEBUG org.hibernate.jpa.HibernatePersistenceProvider - Located and parsed 1 persistence units; checking each
+09:09:07.801 [main] DEBUG org.hibernate.jpa.HibernatePersistenceProvider - Checking persistence-unit [name=EquipmentManager, explicit-provider=org.hibernate.ejb.HibernatePersistence] against incoming persistence unit name [EquipmentManager]
+09:09:07.801 [main] DEBUG org.hibernate.jpa.boot.spi.ProviderChecker - Persistence-unit [EquipmentManager] requested PersistenceProvider [org.hibernate.ejb.HibernatePersistence]
+09:09:07.801 [main] DEBUG org.hibernate.jpa.internal.util.LogHelper - PersistenceUnitInfo [
+	name: EquipmentManager
+	persistence provider classname: org.hibernate.ejb.HibernatePersistence
+	classloader: null
+	excludeUnlistedClasses: false
+	JTA datasource: null
+	Non JTA datasource: null
+	Transaction type: RESOURCE_LOCAL
+	PU root URL: file:/C:/Users/samik/git/EquipmentManager/target/classes/
+	Shared Cache Mode: null
+	Validation Mode: null
+	Jar files URLs []
+	Managed classes names [
+		model.Employee
+		model.Equipment
+		model.Equipmenttype
+		model.Reservation]
+	Mapping files names []
+	Properties [
+		javax.persistence.jdbc.driver: com.mysql.jdbc.Driver
+		javax.persistence.jdbc.password: testpwd
+		javax.persistence.jdbc.url: jdbc:mysql://localhost:3306/emanager_testdb
+		javax.persistence.jdbc.user: testdbuser]
+09:09:07.801 [main] DEBUG org.hibernate.integrator.internal.IntegratorServiceImpl - Adding Integrator [org.hibernate.cfg.beanvalidation.BeanValidationIntegrator].
+09:09:07.801 [main] DEBUG org.hibernate.integrator.internal.IntegratorServiceImpl - Adding Integrator [org.hibernate.secure.spi.JaccIntegrator].
+09:09:07.801 [main] DEBUG org.hibernate.integrator.internal.IntegratorServiceImpl - Adding Integrator [org.hibernate.cache.internal.CollectionCacheInvalidator].
+09:09:07.801 [main] DEBUG org.hibernate.integrator.internal.IntegratorServiceImpl - Adding Integrator [org.hibernate.jpa.event.spi.JpaIntegrator].
+09:09:07.802 [main] DEBUG org.hibernate.service.spi.ServiceBinding - Overriding existing service binding [org.hibernate.secure.spi.JaccService]
+09:09:07.802 [main] DEBUG org.hibernate.cache.internal.RegionFactoryInitiator - Cache region factory : org.hibernate.cache.internal.NoCachingRegionFactory
+09:09:07.807 [main] DEBUG org.hibernate.type.BasicTypeRegistry - Adding type registration boolean -> org.hibernate.type.BooleanType@36328d33
+09:09:07.807 [main] DEBUG org.hibernate.type.BasicTypeRegistry - Adding type registration boolean -> org.hibernate.type.BooleanType@36328d33
+09:09:07.807 [main] DEBUG org.hibernate.type.BasicTypeRegistry - Adding type registration java.lang.Boolean -> org.hibernate.type.BooleanType@36328d33
+09:09:07.807 [main] DEBUG org.hibernate.type.BasicTypeRegistry - Adding type registration numeric_boolean -> org.hibernate.type.NumericBooleanType@49ff7d8c
+09:09:07.807 [main] DEBUG org.hibernate.type.BasicTypeRegistry - Adding type registration true_false -> org.hibernate.type.TrueFalseType@50d13246
+09:09:07.807 [main] DEBUG org.hibernate.type.BasicTypeRegistry - Adding type registration yes_no -> org.hibernate.type.YesNoType@64a40280
+09:09:07.807 [main] DEBUG org.hibernate.type.BasicTypeRegistry - Adding type registration byte -> org.hibernate.type.ByteType@2b76ff4e
+09:09:07.807 [main] DEBUG org.hibernate.type.BasicTypeRegistry - Adding type registration byte -> org.hibernate.type.ByteType@2b76ff4e
+09:09:07.807 [main] DEBUG org.hibernate.type.BasicTypeRegistry - Adding type registration java.lang.Byte -> org.hibernate.type.ByteType@2b76ff4e
+09:09:07.807 [main] DEBUG org.hibernate.type.BasicTypeRegistry - Adding type registration character -> org.hibernate.type.CharacterType@1b84f475
+09:09:07.807 [main] DEBUG org.hibernate.type.BasicTypeRegistry - Adding type registration char -> org.hibernate.type.CharacterType@1b84f475
+09:09:07.807 [main] DEBUG org.hibernate.type.BasicTypeRegistry - Adding type registration java.lang.Character -> org.hibernate.type.CharacterType@1b84f475
+09:09:07.807 [main] DEBUG org.hibernate.type.BasicTypeRegistry - Adding type registration short -> org.hibernate.type.ShortType@1608bcbd
+09:09:07.807 [main] DEBUG org.hibernate.type.BasicTypeRegistry - Adding type registration short -> org.hibernate.type.ShortType@1608bcbd
+09:09:07.807 [main] DEBUG org.hibernate.type.BasicTypeRegistry - Adding type registration java.lang.Short -> org.hibernate.type.ShortType@1608bcbd
+09:09:07.807 [main] DEBUG org.hibernate.type.BasicTypeRegistry - Adding type registration integer -> org.hibernate.type.IntegerType@55493582
+09:09:07.807 [main] DEBUG org.hibernate.type.BasicTypeRegistry - Adding type registration int -> org.hibernate.type.IntegerType@55493582
+09:09:07.807 [main] DEBUG org.hibernate.type.BasicTypeRegistry - Adding type registration java.lang.Integer -> org.hibernate.type.IntegerType@55493582
+09:09:07.807 [main] DEBUG org.hibernate.type.BasicTypeRegistry - Adding type registration long -> org.hibernate.type.LongType@6dab9b6d
+09:09:07.807 [main] DEBUG org.hibernate.type.BasicTypeRegistry - Adding type registration long -> org.hibernate.type.LongType@6dab9b6d
+09:09:07.807 [main] DEBUG org.hibernate.type.BasicTypeRegistry - Adding type registration java.lang.Long -> org.hibernate.type.LongType@6dab9b6d
+09:09:07.807 [main] DEBUG org.hibernate.type.BasicTypeRegistry - Adding type registration float -> org.hibernate.type.FloatType@72437d8d
+09:09:07.807 [main] DEBUG org.hibernate.type.BasicTypeRegistry - Adding type registration float -> org.hibernate.type.FloatType@72437d8d
+09:09:07.807 [main] DEBUG org.hibernate.type.BasicTypeRegistry - Adding type registration java.lang.Float -> org.hibernate.type.FloatType@72437d8d
+09:09:07.807 [main] DEBUG org.hibernate.type.BasicTypeRegistry - Adding type registration double -> org.hibernate.type.DoubleType@3a4621bd
+09:09:07.807 [main] DEBUG org.hibernate.type.BasicTypeRegistry - Adding type registration double -> org.hibernate.type.DoubleType@3a4621bd
+09:09:07.807 [main] DEBUG org.hibernate.type.BasicTypeRegistry - Adding type registration java.lang.Double -> org.hibernate.type.DoubleType@3a4621bd
+09:09:07.807 [main] DEBUG org.hibernate.type.BasicTypeRegistry - Adding type registration big_decimal -> org.hibernate.type.BigDecimalType@6bca7e0d
+09:09:07.807 [main] DEBUG org.hibernate.type.BasicTypeRegistry - Adding type registration java.math.BigDecimal -> org.hibernate.type.BigDecimalType@6bca7e0d
+09:09:07.807 [main] DEBUG org.hibernate.type.BasicTypeRegistry - Adding type registration big_integer -> org.hibernate.type.BigIntegerType@bcef303
+09:09:07.807 [main] DEBUG org.hibernate.type.BasicTypeRegistry - Adding type registration java.math.BigInteger -> org.hibernate.type.BigIntegerType@bcef303
+09:09:07.807 [main] DEBUG org.hibernate.type.BasicTypeRegistry - Adding type registration string -> org.hibernate.type.StringType@63787180
+09:09:07.807 [main] DEBUG org.hibernate.type.BasicTypeRegistry - Adding type registration java.lang.String -> org.hibernate.type.StringType@63787180
+09:09:07.807 [main] DEBUG org.hibernate.type.BasicTypeRegistry - Adding type registration nstring -> org.hibernate.type.StringNVarcharType@34f22f9d
+09:09:07.807 [main] DEBUG org.hibernate.type.BasicTypeRegistry - Adding type registration ncharacter -> org.hibernate.type.CharacterNCharType@5e4bd84a
+09:09:07.807 [main] DEBUG org.hibernate.type.BasicTypeRegistry - Adding type registration url -> org.hibernate.type.UrlType@4ce1d6d0
+09:09:07.807 [main] DEBUG org.hibernate.type.BasicTypeRegistry - Adding type registration java.net.URL -> org.hibernate.type.UrlType@4ce1d6d0
+09:09:07.807 [main] DEBUG org.hibernate.type.BasicTypeRegistry - Adding type registration date -> org.hibernate.type.DateType@6138e79a
+09:09:07.807 [main] DEBUG org.hibernate.type.BasicTypeRegistry - Adding type registration java.sql.Date -> org.hibernate.type.DateType@6138e79a
+09:09:07.807 [main] DEBUG org.hibernate.type.BasicTypeRegistry - Adding type registration time -> org.hibernate.type.TimeType@74f5ce22
+09:09:07.807 [main] DEBUG org.hibernate.type.BasicTypeRegistry - Adding type registration java.sql.Time -> org.hibernate.type.TimeType@74f5ce22
+09:09:07.807 [main] DEBUG org.hibernate.type.BasicTypeRegistry - Adding type registration timestamp -> org.hibernate.type.TimestampType@4eb386df
+09:09:07.807 [main] DEBUG org.hibernate.type.BasicTypeRegistry - Adding type registration java.sql.Timestamp -> org.hibernate.type.TimestampType@4eb386df
+09:09:07.807 [main] DEBUG org.hibernate.type.BasicTypeRegistry - Adding type registration java.util.Date -> org.hibernate.type.TimestampType@4eb386df
+09:09:07.807 [main] DEBUG org.hibernate.type.BasicTypeRegistry - Adding type registration dbtimestamp -> org.hibernate.type.DbTimestampType@289710d9
+09:09:07.807 [main] DEBUG org.hibernate.type.BasicTypeRegistry - Adding type registration calendar -> org.hibernate.type.CalendarType@77825085
+09:09:07.807 [main] DEBUG org.hibernate.type.BasicTypeRegistry - Adding type registration java.util.Calendar -> org.hibernate.type.CalendarType@77825085
+09:09:07.807 [main] DEBUG org.hibernate.type.BasicTypeRegistry - Adding type registration java.util.GregorianCalendar -> org.hibernate.type.CalendarType@77825085
+09:09:07.807 [main] DEBUG org.hibernate.type.BasicTypeRegistry - Adding type registration calendar_date -> org.hibernate.type.CalendarDateType@294a6b8e
+09:09:07.807 [main] DEBUG org.hibernate.type.BasicTypeRegistry - Adding type registration locale -> org.hibernate.type.LocaleType@16414e40
+09:09:07.807 [main] DEBUG org.hibernate.type.BasicTypeRegistry - Adding type registration java.util.Locale -> org.hibernate.type.LocaleType@16414e40
+09:09:07.807 [main] DEBUG org.hibernate.type.BasicTypeRegistry - Adding type registration currency -> org.hibernate.type.CurrencyType@53dbe163
+09:09:07.807 [main] DEBUG org.hibernate.type.BasicTypeRegistry - Adding type registration java.util.Currency -> org.hibernate.type.CurrencyType@53dbe163
+09:09:07.807 [main] DEBUG org.hibernate.type.BasicTypeRegistry - Adding type registration timezone -> org.hibernate.type.TimeZoneType@18a136ac
+09:09:07.807 [main] DEBUG org.hibernate.type.BasicTypeRegistry - Adding type registration java.util.TimeZone -> org.hibernate.type.TimeZoneType@18a136ac
+09:09:07.807 [main] DEBUG org.hibernate.type.BasicTypeRegistry - Adding type registration class -> org.hibernate.type.ClassType@134d26af
+09:09:07.807 [main] DEBUG org.hibernate.type.BasicTypeRegistry - Adding type registration java.lang.Class -> org.hibernate.type.ClassType@134d26af
+09:09:07.807 [main] DEBUG org.hibernate.type.BasicTypeRegistry - Adding type registration uuid-binary -> org.hibernate.type.UUIDBinaryType@2c1156a7
+09:09:07.807 [main] DEBUG org.hibernate.type.BasicTypeRegistry - Adding type registration java.util.UUID -> org.hibernate.type.UUIDBinaryType@2c1156a7
+09:09:07.807 [main] DEBUG org.hibernate.type.BasicTypeRegistry - Adding type registration uuid-char -> org.hibernate.type.UUIDCharType@4f1bfe23
+09:09:07.807 [main] DEBUG org.hibernate.type.BasicTypeRegistry - Adding type registration binary -> org.hibernate.type.BinaryType@1a760689
+09:09:07.807 [main] DEBUG org.hibernate.type.BasicTypeRegistry - Adding type registration byte[] -> org.hibernate.type.BinaryType@1a760689
+09:09:07.807 [main] DEBUG org.hibernate.type.BasicTypeRegistry - Adding type registration [B -> org.hibernate.type.BinaryType@1a760689
+09:09:07.807 [main] DEBUG org.hibernate.type.BasicTypeRegistry - Adding type registration wrapper-binary -> org.hibernate.type.WrapperBinaryType@253d9f73
+09:09:07.807 [main] DEBUG org.hibernate.type.BasicTypeRegistry - Adding type registration Byte[] -> org.hibernate.type.WrapperBinaryType@253d9f73
+09:09:07.807 [main] DEBUG org.hibernate.type.BasicTypeRegistry - Adding type registration [Ljava.lang.Byte; -> org.hibernate.type.WrapperBinaryType@253d9f73
+09:09:07.807 [main] DEBUG org.hibernate.type.BasicTypeRegistry - Adding type registration row_version -> org.hibernate.type.RowVersionType@a22cb6a
+09:09:07.807 [main] DEBUG org.hibernate.type.BasicTypeRegistry - Adding type registration image -> org.hibernate.type.ImageType@7502291e
+09:09:07.807 [main] DEBUG org.hibernate.type.BasicTypeRegistry - Adding type registration characters -> org.hibernate.type.CharArrayType@22875539
+09:09:07.807 [main] DEBUG org.hibernate.type.BasicTypeRegistry - Adding type registration char[] -> org.hibernate.type.CharArrayType@22875539
+09:09:07.807 [main] DEBUG org.hibernate.type.BasicTypeRegistry - Adding type registration [C -> org.hibernate.type.CharArrayType@22875539
+09:09:07.807 [main] DEBUG org.hibernate.type.BasicTypeRegistry - Adding type registration wrapper-characters -> org.hibernate.type.CharacterArrayType@e8df99a
+09:09:07.807 [main] DEBUG org.hibernate.type.BasicTypeRegistry - Adding type registration [Ljava.lang.Character; -> org.hibernate.type.CharacterArrayType@e8df99a
+09:09:07.807 [main] DEBUG org.hibernate.type.BasicTypeRegistry - Adding type registration Character[] -> org.hibernate.type.CharacterArrayType@e8df99a
+09:09:07.807 [main] DEBUG org.hibernate.type.BasicTypeRegistry - Adding type registration text -> org.hibernate.type.TextType@12ed9db6
+09:09:07.807 [main] DEBUG org.hibernate.type.BasicTypeRegistry - Adding type registration ntext -> org.hibernate.type.NTextType@146587a2
+09:09:07.807 [main] DEBUG org.hibernate.type.BasicTypeRegistry - Adding type registration blob -> org.hibernate.type.BlobType@75f95314
+09:09:07.807 [main] DEBUG org.hibernate.type.BasicTypeRegistry - Adding type registration java.sql.Blob -> org.hibernate.type.BlobType@75f95314
+09:09:07.807 [main] DEBUG org.hibernate.type.BasicTypeRegistry - Adding type registration materialized_blob -> org.hibernate.type.MaterializedBlobType@76012793
+09:09:07.807 [main] DEBUG org.hibernate.type.BasicTypeRegistry - Adding type registration clob -> org.hibernate.type.ClobType@13d73fa
+09:09:07.807 [main] DEBUG org.hibernate.type.BasicTypeRegistry - Adding type registration java.sql.Clob -> org.hibernate.type.ClobType@13d73fa
+09:09:07.807 [main] DEBUG org.hibernate.type.BasicTypeRegistry - Adding type registration nclob -> org.hibernate.type.NClobType@436bc36
+09:09:07.807 [main] DEBUG org.hibernate.type.BasicTypeRegistry - Adding type registration java.sql.NClob -> org.hibernate.type.NClobType@436bc36
+09:09:07.807 [main] DEBUG org.hibernate.type.BasicTypeRegistry - Adding type registration materialized_clob -> org.hibernate.type.MaterializedClobType@66fdec9
+09:09:07.807 [main] DEBUG org.hibernate.type.BasicTypeRegistry - Adding type registration materialized_nclob -> org.hibernate.type.MaterializedNClobType@52851b44
+09:09:07.807 [main] DEBUG org.hibernate.type.BasicTypeRegistry - Adding type registration serializable -> org.hibernate.type.SerializableType@5ef6ae06
+09:09:07.807 [main] DEBUG org.hibernate.type.BasicTypeRegistry - Adding type registration object -> org.hibernate.type.ObjectType@1477089c
+09:09:07.807 [main] DEBUG org.hibernate.type.BasicTypeRegistry - Adding type registration java.lang.Object -> org.hibernate.type.ObjectType@1477089c
+09:09:07.807 [main] DEBUG org.hibernate.type.BasicTypeRegistry - Adding type registration imm_date -> org.hibernate.type.AdaptedImmutableType@21bc3980
+09:09:07.807 [main] DEBUG org.hibernate.type.BasicTypeRegistry - Adding type registration imm_time -> org.hibernate.type.AdaptedImmutableType@68997235
+09:09:07.807 [main] DEBUG org.hibernate.type.BasicTypeRegistry - Adding type registration imm_timestamp -> org.hibernate.type.AdaptedImmutableType@54dda1c3
+09:09:07.807 [main] DEBUG org.hibernate.type.BasicTypeRegistry - Adding type registration imm_dbtimestamp -> org.hibernate.type.AdaptedImmutableType@54f6ee9d
+09:09:07.807 [main] DEBUG org.hibernate.type.BasicTypeRegistry - Adding type registration imm_calendar -> org.hibernate.type.AdaptedImmutableType@14c6bdba
+09:09:07.807 [main] DEBUG org.hibernate.type.BasicTypeRegistry - Adding type registration imm_calendar_date -> org.hibernate.type.AdaptedImmutableType@37ed7dcd
+09:09:07.807 [main] DEBUG org.hibernate.type.BasicTypeRegistry - Adding type registration imm_binary -> org.hibernate.type.AdaptedImmutableType@e07014a
+09:09:07.807 [main] DEBUG org.hibernate.type.BasicTypeRegistry - Adding type registration imm_serializable -> org.hibernate.type.AdaptedImmutableType@6de69411
+09:09:07.807 [main] WARN org.hibernate.orm.connections - HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+09:09:07.807 [main] INFO org.hibernate.orm.connections - HHH10001005: using driver [com.mysql.jdbc.Driver] at URL [jdbc:mysql://localhost:3306/emanager_testdb]
+09:09:07.807 [main] INFO org.hibernate.orm.connections - HHH10001001: Connection properties: {password=testpwd, user=testdbuser}
+09:09:07.807 [main] INFO org.hibernate.orm.connections - HHH10001003: Autocommit mode: false
+09:09:07.807 [main] DEBUG org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl - Initializing Connection pool with 1 Connections
+09:09:07.807 [main] INFO org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000115: Hibernate connection pool size: 20 (min=1)
+09:09:07.810 [main] DEBUG org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator - Database ->
+       name : MySQL
+    version : 5.7.21-log
+      major : 5
+      minor : 7
+09:09:07.810 [main] DEBUG org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator - Driver ->
+       name : MySQL Connector Java
+    version : mysql-connector-java-5.1.40 ( Revision: 402933ef52cad9aa82624e80acbea46e3a701ce6 )
+      major : 5
+      minor : 1
+09:09:07.810 [main] DEBUG org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator - JDBC version : 4.0
+09:09:07.810 [main] INFO org.hibernate.dialect.Dialect - HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
+09:09:07.810 [main] DEBUG org.hibernate.engine.jdbc.env.spi.IdentifierHelperBuilder - JDBC driver metadata reported database stores quoted identifiers in more than one case
+09:09:07.810 [main] DEBUG org.hibernate.engine.jdbc.env.spi.IdentifierHelperBuilder - IdentifierCaseStrategy for both quoted and unquoted identifiers was set to the same strategy [LOWER]; that will likely lead to problems in schema update and validation if using quoted identifiers
+09:09:07.811 [main] DEBUG org.hibernate.id.factory.internal.DefaultIdentifierGeneratorFactory - Registering IdentifierGenerator strategy [uuid2] -> [org.hibernate.id.UUIDGenerator]
+09:09:07.811 [main] DEBUG org.hibernate.id.factory.internal.DefaultIdentifierGeneratorFactory - Registering IdentifierGenerator strategy [guid] -> [org.hibernate.id.GUIDGenerator]
+09:09:07.811 [main] DEBUG org.hibernate.id.factory.internal.DefaultIdentifierGeneratorFactory - Registering IdentifierGenerator strategy [uuid] -> [org.hibernate.id.UUIDHexGenerator]
+09:09:07.811 [main] DEBUG org.hibernate.id.factory.internal.DefaultIdentifierGeneratorFactory - Registering IdentifierGenerator strategy [uuid.hex] -> [org.hibernate.id.UUIDHexGenerator]
+09:09:07.811 [main] DEBUG org.hibernate.id.factory.internal.DefaultIdentifierGeneratorFactory - Registering IdentifierGenerator strategy [assigned] -> [org.hibernate.id.Assigned]
+09:09:07.811 [main] DEBUG org.hibernate.id.factory.internal.DefaultIdentifierGeneratorFactory - Registering IdentifierGenerator strategy [identity] -> [org.hibernate.id.IdentityGenerator]
+09:09:07.811 [main] DEBUG org.hibernate.id.factory.internal.DefaultIdentifierGeneratorFactory - Registering IdentifierGenerator strategy [select] -> [org.hibernate.id.SelectGenerator]
+09:09:07.811 [main] DEBUG org.hibernate.id.factory.internal.DefaultIdentifierGeneratorFactory - Registering IdentifierGenerator strategy [sequence] -> [org.hibernate.id.enhanced.SequenceStyleGenerator]
+09:09:07.811 [main] DEBUG org.hibernate.id.factory.internal.DefaultIdentifierGeneratorFactory - Registering IdentifierGenerator strategy [seqhilo] -> [org.hibernate.id.SequenceHiLoGenerator]
+09:09:07.811 [main] DEBUG org.hibernate.id.factory.internal.DefaultIdentifierGeneratorFactory - Registering IdentifierGenerator strategy [increment] -> [org.hibernate.id.IncrementGenerator]
+09:09:07.811 [main] DEBUG org.hibernate.id.factory.internal.DefaultIdentifierGeneratorFactory - Registering IdentifierGenerator strategy [foreign] -> [org.hibernate.id.ForeignGenerator]
+09:09:07.811 [main] DEBUG org.hibernate.id.factory.internal.DefaultIdentifierGeneratorFactory - Registering IdentifierGenerator strategy [sequence-identity] -> [org.hibernate.id.SequenceIdentityGenerator]
+09:09:07.811 [main] DEBUG org.hibernate.id.factory.internal.DefaultIdentifierGeneratorFactory - Registering IdentifierGenerator strategy [enhanced-sequence] -> [org.hibernate.id.enhanced.SequenceStyleGenerator]
+09:09:07.811 [main] DEBUG org.hibernate.id.factory.internal.DefaultIdentifierGeneratorFactory - Registering IdentifierGenerator strategy [enhanced-table] -> [org.hibernate.id.enhanced.TableGenerator]
+09:09:07.811 [main] DEBUG org.hibernate.boot.model.relational.Namespace - Created database namespace [logicalName=Name{catalog=null, schema=null}, physicalName=Name{catalog=null, schema=null}]
+09:09:07.811 [main] DEBUG org.hibernate.cfg.AnnotationBinder - Binding entity from annotated class: model.Equipmenttype
+09:09:07.811 [main] DEBUG org.hibernate.cfg.annotations.QueryBinder - Binding named native query: Equipmenttype.findAll => SELECT * FROM Equipmenttype ORDER BY TypeName ASC
+09:09:07.811 [main] DEBUG org.hibernate.cfg.annotations.QueryBinder - Binding named native query: Equipmenttype.findByTypeCode => SELECT * FROM equipmenttype WHERE equipmenttype.TypeCode = ?
+09:09:07.811 [main] DEBUG org.hibernate.cfg.annotations.QueryBinder - Binding named native query: Equipmenttype.findEquipmenttypesWithEquipment => SELECT DISTINCT equipmenttype.equipmentTypeId, equipmenttype.typeCode, equipmenttype.typeName FROM equipmenttype LEFT JOIN equipment ON equipmenttype.equipmentTypeId = equipment.equipmentTypeId WHERE equipmenttype.equipmentTypeId = equipment.equipmentTypeId AND equipment.status = 1 ORDER BY equipmenttype.typeName
+09:09:07.811 [main] DEBUG org.hibernate.cfg.Ejb3Column - Binding column: Ejb3DiscriminatorColumn{logicalColumnName'DTYPE', discriminatorTypeName='string'}
+09:09:07.811 [main] DEBUG org.hibernate.cfg.annotations.EntityBinder - Import with entity name Equipmenttype
+09:09:07.811 [main] DEBUG org.hibernate.cfg.annotations.EntityBinder - Bind entity model.Equipmenttype on table Equipmenttype
+09:09:07.811 [main] DEBUG org.hibernate.cfg.Ejb3Column - Binding column: Ejb3Column{table=org.hibernate.mapping.Table(Equipmenttype), mappingColumn=equipmentTypeId, insertable=true, updatable=true, unique=false}
+09:09:07.811 [main] DEBUG org.hibernate.cfg.annotations.PropertyBinder - MetadataSourceProcessor property equipmentTypeId with lazy=false
+09:09:07.811 [main] DEBUG org.hibernate.cfg.AbstractPropertyHolder - Attempting to locate auto-apply AttributeConverter for property [model.Equipmenttype:equipmentTypeId]
+09:09:07.811 [main] DEBUG org.hibernate.cfg.annotations.SimpleValueBinder - building SimpleValue for equipmentTypeId
+09:09:07.811 [main] DEBUG org.hibernate.cfg.annotations.PropertyBinder - Building property equipmentTypeId
+09:09:07.811 [main] DEBUG org.hibernate.cfg.Ejb3Column - Binding column: Ejb3Column{table=org.hibernate.mapping.Table(Equipmenttype), mappingColumn=typeCode, insertable=true, updatable=true, unique=false}
+09:09:07.811 [main] DEBUG org.hibernate.cfg.annotations.PropertyBinder - MetadataSourceProcessor property typeCode with lazy=false
+09:09:07.811 [main] DEBUG org.hibernate.cfg.AbstractPropertyHolder - Attempting to locate auto-apply AttributeConverter for property [model.Equipmenttype:typeCode]
+09:09:07.811 [main] DEBUG org.hibernate.cfg.annotations.SimpleValueBinder - building SimpleValue for typeCode
+09:09:07.811 [main] DEBUG org.hibernate.cfg.annotations.PropertyBinder - Building property typeCode
+09:09:07.811 [main] DEBUG org.hibernate.cfg.Ejb3Column - Binding column: Ejb3Column{table=org.hibernate.mapping.Table(Equipmenttype), mappingColumn=typeName, insertable=true, updatable=true, unique=false}
+09:09:07.811 [main] DEBUG org.hibernate.cfg.annotations.PropertyBinder - MetadataSourceProcessor property typeName with lazy=false
+09:09:07.811 [main] DEBUG org.hibernate.cfg.AbstractPropertyHolder - Attempting to locate auto-apply AttributeConverter for property [model.Equipmenttype:typeName]
+09:09:07.811 [main] DEBUG org.hibernate.cfg.annotations.SimpleValueBinder - building SimpleValue for typeName
+09:09:07.811 [main] DEBUG org.hibernate.cfg.annotations.PropertyBinder - Building property typeName
+09:09:07.811 [main] DEBUG org.hibernate.cfg.AnnotationBinder - Binding entity from annotated class: model.Employee
+09:09:07.811 [main] DEBUG org.hibernate.cfg.annotations.QueryBinder - Binding named native query: Employee.findAll => SELECT * FROM employee
+09:09:07.811 [main] DEBUG org.hibernate.cfg.annotations.QueryBinder - Binding named native query: Employee.findByEmployeeId => SELECT * FROM employee WHERE employeeId = ?
+09:09:07.811 [main] DEBUG org.hibernate.cfg.Ejb3Column - Binding column: Ejb3DiscriminatorColumn{logicalColumnName'DTYPE', discriminatorTypeName='string'}
+09:09:07.811 [main] DEBUG org.hibernate.cfg.annotations.EntityBinder - Import with entity name Employee
+09:09:07.811 [main] DEBUG org.hibernate.cfg.annotations.EntityBinder - Bind entity model.Employee on table employee
+09:09:07.811 [main] DEBUG org.hibernate.cfg.Ejb3Column - Binding column: Ejb3Column{table=org.hibernate.mapping.Table(employee), mappingColumn=employeeKey, insertable=true, updatable=true, unique=false}
+09:09:07.811 [main] DEBUG org.hibernate.cfg.annotations.PropertyBinder - MetadataSourceProcessor property employeeKey with lazy=false
+09:09:07.811 [main] DEBUG org.hibernate.cfg.AbstractPropertyHolder - Attempting to locate auto-apply AttributeConverter for property [model.Employee:employeeKey]
+09:09:07.811 [main] DEBUG org.hibernate.cfg.annotations.SimpleValueBinder - building SimpleValue for employeeKey
+09:09:07.811 [main] DEBUG org.hibernate.cfg.annotations.PropertyBinder - Building property employeeKey
+09:09:07.811 [main] DEBUG org.hibernate.cfg.Ejb3Column - Binding column: Ejb3Column{table=org.hibernate.mapping.Table(employee), mappingColumn=employeeId, insertable=true, updatable=true, unique=false}
+09:09:07.811 [main] DEBUG org.hibernate.cfg.annotations.PropertyBinder - MetadataSourceProcessor property employeeId with lazy=false
+09:09:07.811 [main] DEBUG org.hibernate.cfg.AbstractPropertyHolder - Attempting to locate auto-apply AttributeConverter for property [model.Employee:employeeId]
+09:09:07.811 [main] DEBUG org.hibernate.cfg.annotations.SimpleValueBinder - building SimpleValue for employeeId
+09:09:07.811 [main] DEBUG org.hibernate.cfg.annotations.PropertyBinder - Building property employeeId
+09:09:07.811 [main] DEBUG org.hibernate.cfg.Ejb3Column - Binding column: Ejb3Column{table=org.hibernate.mapping.Table(employee), mappingColumn=name, insertable=true, updatable=true, unique=false}
+09:09:07.811 [main] DEBUG org.hibernate.cfg.annotations.PropertyBinder - MetadataSourceProcessor property name with lazy=false
+09:09:07.811 [main] DEBUG org.hibernate.cfg.AbstractPropertyHolder - Attempting to locate auto-apply AttributeConverter for property [model.Employee:name]
+09:09:07.811 [main] DEBUG org.hibernate.cfg.annotations.SimpleValueBinder - building SimpleValue for name
+09:09:07.811 [main] DEBUG org.hibernate.cfg.annotations.PropertyBinder - Building property name
+09:09:07.811 [main] DEBUG org.hibernate.cfg.AnnotationBinder - Binding entity from annotated class: model.Equipment
+09:09:07.811 [main] DEBUG org.hibernate.cfg.annotations.QueryBinder - Binding named native query: Equipment.findAll => SELECT * FROM Equipment
+09:09:07.811 [main] DEBUG org.hibernate.cfg.annotations.QueryBinder - Binding named native query: Equipment.findBySerial => SELECT * FROM equipment WHERE equipment.serial = ?
+09:09:07.811 [main] DEBUG org.hibernate.cfg.annotations.QueryBinder - Binding named native query: Equipment.findByType => SELECT * FROM equipment INNER JOIN equipmentType ON equipment.equipmentTypeId = equipmentType.equipmentTypeId WHERE equipmentType.typeCode = ?
+09:09:07.811 [main] DEBUG org.hibernate.cfg.annotations.QueryBinder - Binding named native query: Equipment.findEnabledByType => SELECT * FROM equipment INNER JOIN equipmentType ON equipment.equipmentTypeId = equipmentType.equipmentTypeId WHERE equipmentType.typeCode = ? AND equipment.status = 1
+09:09:07.811 [main] DEBUG org.hibernate.cfg.annotations.QueryBinder - Binding named native query: Equipment.findAllOrderedByTypeName => SELECT * FROM equipment INNER JOIN equipmentType ON equipment.equipmentTypeId = equipmentType.equipmentTypeId WHERE equipment.status = 1 ORDER BY equipmenttype.typeName
+09:09:07.811 [main] DEBUG org.hibernate.cfg.Ejb3Column - Binding column: Ejb3DiscriminatorColumn{logicalColumnName'DTYPE', discriminatorTypeName='string'}
+09:09:07.811 [main] DEBUG org.hibernate.cfg.annotations.EntityBinder - Import with entity name Equipment
+09:09:07.811 [main] DEBUG org.hibernate.cfg.annotations.EntityBinder - Bind entity model.Equipment on table Equipment
+09:09:07.811 [main] DEBUG org.hibernate.cfg.Ejb3Column - Binding column: Ejb3Column{table=org.hibernate.mapping.Table(Equipment), mappingColumn=equipmentId, insertable=true, updatable=true, unique=false}
+09:09:07.811 [main] DEBUG org.hibernate.cfg.annotations.PropertyBinder - MetadataSourceProcessor property equipmentId with lazy=false
+09:09:07.811 [main] DEBUG org.hibernate.cfg.AbstractPropertyHolder - Attempting to locate auto-apply AttributeConverter for property [model.Equipment:equipmentId]
+09:09:07.811 [main] DEBUG org.hibernate.cfg.annotations.SimpleValueBinder - building SimpleValue for equipmentId
+09:09:07.811 [main] DEBUG org.hibernate.cfg.annotations.PropertyBinder - Building property equipmentId
+09:09:07.811 [main] DEBUG org.hibernate.cfg.Ejb3Column - Binding column: Ejb3JoinColumn{logicalColumnName='equipmentTypeId', referencedColumn='', mappedBy=''}
+09:09:07.812 [main] DEBUG org.hibernate.cfg.Ejb3Column - Binding column: Ejb3Column{table=org.hibernate.mapping.Table(Equipment), mappingColumn=equipmenttype, insertable=true, updatable=true, unique=false}
+09:09:07.812 [main] DEBUG org.hibernate.cfg.annotations.PropertyBinder - Building property equipmenttype
+09:09:07.812 [main] DEBUG org.hibernate.cfg.Ejb3Column - Binding column: Ejb3Column{table=org.hibernate.mapping.Table(Equipment), mappingColumn=name, insertable=true, updatable=true, unique=false}
+09:09:07.812 [main] DEBUG org.hibernate.cfg.annotations.PropertyBinder - MetadataSourceProcessor property name with lazy=false
+09:09:07.812 [main] DEBUG org.hibernate.cfg.AbstractPropertyHolder - Attempting to locate auto-apply AttributeConverter for property [model.Equipment:name]
+09:09:07.812 [main] DEBUG org.hibernate.cfg.annotations.SimpleValueBinder - building SimpleValue for name
+09:09:07.812 [main] DEBUG org.hibernate.cfg.annotations.PropertyBinder - Building property name
+09:09:07.812 [main] DEBUG org.hibernate.cfg.Ejb3Column - Binding column: Ejb3Column{table=org.hibernate.mapping.Table(Equipment), mappingColumn=serial, insertable=true, updatable=true, unique=false}
+09:09:07.812 [main] DEBUG org.hibernate.cfg.annotations.PropertyBinder - MetadataSourceProcessor property serial with lazy=false
+09:09:07.812 [main] DEBUG org.hibernate.cfg.AbstractPropertyHolder - Attempting to locate auto-apply AttributeConverter for property [model.Equipment:serial]
+09:09:07.812 [main] DEBUG org.hibernate.cfg.annotations.SimpleValueBinder - building SimpleValue for serial
+09:09:07.812 [main] DEBUG org.hibernate.cfg.annotations.PropertyBinder - Building property serial
+09:09:07.812 [main] DEBUG org.hibernate.cfg.Ejb3Column - Binding column: Ejb3Column{table=org.hibernate.mapping.Table(Equipment), mappingColumn=status, insertable=true, updatable=true, unique=false}
+09:09:07.812 [main] DEBUG org.hibernate.cfg.annotations.PropertyBinder - MetadataSourceProcessor property status with lazy=false
+09:09:07.812 [main] DEBUG org.hibernate.cfg.AbstractPropertyHolder - Attempting to locate auto-apply AttributeConverter for property [model.Equipment:status]
+09:09:07.812 [main] DEBUG org.hibernate.cfg.annotations.SimpleValueBinder - building SimpleValue for status
+09:09:07.812 [main] DEBUG org.hibernate.cfg.annotations.PropertyBinder - Building property status
+09:09:07.812 [main] DEBUG org.hibernate.cfg.AnnotationBinder - Binding entity from annotated class: model.Reservation
+09:09:07.812 [main] DEBUG org.hibernate.cfg.annotations.QueryBinder - Binding named native query: Reservation.findAll => SELECT * FROM reservation
+09:09:07.812 [main] DEBUG org.hibernate.cfg.annotations.QueryBinder - Binding named native query: Reservation.findBySerial => SELECT * FROM reservation INNER JOIN equipment ON reservation.equipmentId = equipment.equipmentId WHERE equipment.serial = ?
+09:09:07.812 [main] DEBUG org.hibernate.cfg.annotations.QueryBinder - Binding named native query: Reservation.findByType => SELECT * FROM reservation WHERE reservation.reservationType = ?
+09:09:07.812 [main] DEBUG org.hibernate.cfg.annotations.QueryBinder - Binding named native query: Reservation.findByEquipmentId => SELECT * FROM reservation WHERE reservation.equipmentId = ?
+09:09:07.812 [main] DEBUG org.hibernate.cfg.annotations.QueryBinder - Binding named native query: Reservation.findOpenByEmployeeId => SELECT * FROM reservation INNER JOIN employee ON reservation.employeeKey = employee.employeeKey WHERE employee.employeeId = ? AND reservation.date_return IS NULL
+09:09:07.812 [main] DEBUG org.hibernate.cfg.annotations.QueryBinder - Binding named native query: Reservation.findOpen => SELECT * FROM reservation WHERE date_return IS NULL
+09:09:07.812 [main] DEBUG org.hibernate.cfg.annotations.QueryBinder - Binding named native query: Reservation.findOpenBySerial => SELECT * FROM reservation INNER JOIN equipment ON reservation.equipmentId = equipment.equipmentId WHERE reservation.date_return IS null AND equipment.serial = ?
+09:09:07.812 [main] DEBUG org.hibernate.cfg.annotations.QueryBinder - Binding named native query: Reservation.findBySerialAndDate => SELECT * FROM reservation INNER JOIN equipment ON reservation.equipmentId = equipment.equipmentId WHERE equipment.serial = ? AND reservation.date_take < ? AND (reservation.date_return > ? OR reservation.date_return IS NULL) AND equipment.status = 1
+09:09:07.812 [main] DEBUG org.hibernate.cfg.Ejb3Column - Binding column: Ejb3DiscriminatorColumn{logicalColumnName'DTYPE', discriminatorTypeName='string'}
+09:09:07.812 [main] DEBUG org.hibernate.cfg.annotations.EntityBinder - Import with entity name Reservation
+09:09:07.812 [main] DEBUG org.hibernate.cfg.annotations.EntityBinder - Bind entity model.Reservation on table Reservation
+09:09:07.812 [main] DEBUG org.hibernate.cfg.Ejb3Column - Binding column: Ejb3Column{table=org.hibernate.mapping.Table(Reservation), mappingColumn=reservationId, insertable=true, updatable=true, unique=false}
+09:09:07.812 [main] DEBUG org.hibernate.cfg.annotations.PropertyBinder - MetadataSourceProcessor property reservationId with lazy=false
+09:09:07.812 [main] DEBUG org.hibernate.cfg.AbstractPropertyHolder - Attempting to locate auto-apply AttributeConverter for property [model.Reservation:reservationId]
+09:09:07.812 [main] DEBUG org.hibernate.cfg.annotations.SimpleValueBinder - building SimpleValue for reservationId
+09:09:07.812 [main] DEBUG org.hibernate.cfg.annotations.PropertyBinder - Building property reservationId
+09:09:07.812 [main] DEBUG org.hibernate.cfg.Ejb3Column - Binding column: Ejb3Column{table=org.hibernate.mapping.Table(Reservation), mappingColumn=date_return, insertable=true, updatable=true, unique=false}
+09:09:07.812 [main] DEBUG org.hibernate.cfg.annotations.PropertyBinder - MetadataSourceProcessor property dateReturn with lazy=false
+09:09:07.812 [main] DEBUG org.hibernate.cfg.AbstractPropertyHolder - Attempting to locate auto-apply AttributeConverter for property [model.Reservation:dateReturn]
+09:09:07.812 [main] DEBUG org.hibernate.cfg.annotations.SimpleValueBinder - building SimpleValue for dateReturn
+09:09:07.812 [main] DEBUG org.hibernate.cfg.annotations.PropertyBinder - Building property dateReturn
+09:09:07.812 [main] DEBUG org.hibernate.cfg.Ejb3Column - Binding column: Ejb3Column{table=org.hibernate.mapping.Table(Reservation), mappingColumn=date_take, insertable=true, updatable=true, unique=false}
+09:09:07.812 [main] DEBUG org.hibernate.cfg.annotations.PropertyBinder - MetadataSourceProcessor property dateTake with lazy=false
+09:09:07.812 [main] DEBUG org.hibernate.cfg.AbstractPropertyHolder - Attempting to locate auto-apply AttributeConverter for property [model.Reservation:dateTake]
+09:09:07.812 [main] DEBUG org.hibernate.cfg.annotations.SimpleValueBinder - building SimpleValue for dateTake
+09:09:07.812 [main] DEBUG org.hibernate.cfg.annotations.PropertyBinder - Building property dateTake
+09:09:07.812 [main] DEBUG org.hibernate.cfg.Ejb3Column - Binding column: Ejb3JoinColumn{logicalColumnName='employeeKey', referencedColumn='', mappedBy=''}
+09:09:07.812 [main] DEBUG org.hibernate.cfg.Ejb3Column - Binding column: Ejb3Column{table=org.hibernate.mapping.Table(Reservation), mappingColumn=employee, insertable=true, updatable=true, unique=false}
+09:09:07.812 [main] DEBUG org.hibernate.cfg.annotations.PropertyBinder - Building property employee
+09:09:07.812 [main] DEBUG org.hibernate.cfg.Ejb3Column - Binding column: Ejb3JoinColumn{logicalColumnName='equipmentId', referencedColumn='', mappedBy=''}
+09:09:07.812 [main] DEBUG org.hibernate.cfg.Ejb3Column - Binding column: Ejb3Column{table=org.hibernate.mapping.Table(Reservation), mappingColumn=equipment, insertable=true, updatable=true, unique=false}
+09:09:07.812 [main] DEBUG org.hibernate.cfg.annotations.PropertyBinder - Building property equipment
+09:09:07.812 [main] DEBUG org.hibernate.cfg.Ejb3Column - Binding column: Ejb3Column{table=org.hibernate.mapping.Table(Reservation), mappingColumn=reservationType, insertable=true, updatable=true, unique=false}
+09:09:07.812 [main] DEBUG org.hibernate.cfg.annotations.PropertyBinder - MetadataSourceProcessor property reservationType with lazy=false
+09:09:07.812 [main] DEBUG org.hibernate.cfg.AbstractPropertyHolder - Attempting to locate auto-apply AttributeConverter for property [model.Reservation:reservationType]
+09:09:07.812 [main] DEBUG org.hibernate.cfg.annotations.SimpleValueBinder - building SimpleValue for reservationType
+09:09:07.812 [main] DEBUG org.hibernate.cfg.annotations.PropertyBinder - Building property reservationType
+09:09:07.812 [main] DEBUG org.hibernate.cfg.annotations.SimpleValueBinder - Starting fillSimpleValue for equipmentTypeId
+09:09:07.812 [main] DEBUG org.hibernate.cfg.annotations.SimpleValueBinder - Starting fillSimpleValue for typeCode
+09:09:07.812 [main] DEBUG org.hibernate.cfg.annotations.SimpleValueBinder - Starting fillSimpleValue for typeName
+09:09:07.812 [main] DEBUG org.hibernate.cfg.annotations.SimpleValueBinder - Starting fillSimpleValue for employeeKey
+09:09:07.812 [main] DEBUG org.hibernate.cfg.annotations.SimpleValueBinder - Starting fillSimpleValue for employeeId
+09:09:07.812 [main] DEBUG org.hibernate.cfg.annotations.SimpleValueBinder - Starting fillSimpleValue for name
+09:09:07.812 [main] DEBUG org.hibernate.cfg.annotations.SimpleValueBinder - Starting fillSimpleValue for equipmentId
+09:09:07.812 [main] DEBUG org.hibernate.cfg.annotations.SimpleValueBinder - Starting fillSimpleValue for name
+09:09:07.812 [main] DEBUG org.hibernate.cfg.annotations.SimpleValueBinder - Starting fillSimpleValue for serial
+09:09:07.813 [main] DEBUG org.hibernate.cfg.annotations.SimpleValueBinder - Starting fillSimpleValue for status
+09:09:07.813 [main] DEBUG org.hibernate.cfg.annotations.SimpleValueBinder - Starting fillSimpleValue for reservationId
+09:09:07.813 [main] DEBUG org.hibernate.cfg.annotations.SimpleValueBinder - Starting fillSimpleValue for dateReturn
+09:09:07.813 [main] DEBUG org.hibernate.cfg.annotations.SimpleValueBinder - Starting fillSimpleValue for dateTake
+09:09:07.813 [main] DEBUG org.hibernate.cfg.annotations.SimpleValueBinder - Starting fillSimpleValue for reservationType
+09:09:07.813 [main] DEBUG org.hibernate.mapping.PrimaryKey - Forcing column [equipmenttypeid] to be non-null as it is part of the primary key for table [equipmenttype]
+09:09:07.813 [main] DEBUG org.hibernate.mapping.PrimaryKey - Forcing column [employeekey] to be non-null as it is part of the primary key for table [employee]
+09:09:07.813 [main] DEBUG org.hibernate.mapping.PrimaryKey - Forcing column [equipmentid] to be non-null as it is part of the primary key for table [equipment]
+09:09:07.813 [main] DEBUG org.hibernate.mapping.PrimaryKey - Forcing column [reservationid] to be non-null as it is part of the primary key for table [reservation]
+09:09:07.813 [main] DEBUG org.hibernate.boot.internal.InFlightMetadataCollectorImpl - Resolving reference to class: model.Equipmenttype
+09:09:07.813 [main] DEBUG org.hibernate.boot.internal.InFlightMetadataCollectorImpl - Resolving reference to class: model.Employee
+09:09:07.813 [main] DEBUG org.hibernate.boot.internal.InFlightMetadataCollectorImpl - Resolving reference to class: model.Equipment
+09:09:07.813 [main] DEBUG org.hibernate.boot.internal.InFlightMetadataCollectorImpl - Resolving reference to class: model.Equipmenttype
+09:09:07.813 [main] DEBUG org.hibernate.boot.internal.InFlightMetadataCollectorImpl - Resolving reference to class: model.Employee
+09:09:07.813 [main] DEBUG org.hibernate.boot.internal.InFlightMetadataCollectorImpl - Resolving reference to class: model.Equipment
+09:09:07.813 [main] DEBUG org.hibernate.internal.SessionFactoryImpl - Building session factory
+09:09:07.813 [main] DEBUG org.hibernate.cfg.Settings - SessionFactory name : null
+09:09:07.813 [main] DEBUG org.hibernate.cfg.Settings - Automatic flush during beforeCompletion(): disabled
+09:09:07.813 [main] DEBUG org.hibernate.cfg.Settings - Automatic session close at end of transaction: disabled
+09:09:07.813 [main] DEBUG org.hibernate.cfg.Settings - Statistics: disabled
+09:09:07.813 [main] DEBUG org.hibernate.cfg.Settings - Deleted entity synthetic identifier rollback: disabled
+09:09:07.813 [main] DEBUG org.hibernate.cfg.Settings - Default entity-mode: pojo
+09:09:07.813 [main] DEBUG org.hibernate.cfg.Settings - Check Nullability in Core (should be disabled when Bean Validation is on): enabled
+09:09:07.813 [main] DEBUG org.hibernate.cfg.Settings - Allow initialization of lazy state outside session : disabled
+09:09:07.813 [main] DEBUG org.hibernate.cfg.Settings - Using BatchFetchStyle : LEGACY
+09:09:07.813 [main] DEBUG org.hibernate.cfg.Settings - Default batch fetch size: -1
+09:09:07.813 [main] DEBUG org.hibernate.cfg.Settings - Maximum outer join fetch depth: 2
+09:09:07.813 [main] DEBUG org.hibernate.cfg.Settings - Default null ordering: NONE
+09:09:07.813 [main] DEBUG org.hibernate.cfg.Settings - Order SQL updates by primary key: disabled
+09:09:07.813 [main] DEBUG org.hibernate.cfg.Settings - Order SQL inserts for batching: disabled
+09:09:07.813 [main] DEBUG org.hibernate.cfg.Settings - multi-tenancy strategy : NONE
+09:09:07.813 [main] DEBUG org.hibernate.cfg.Settings - JTA Track by Thread: enabled
+09:09:07.813 [main] DEBUG org.hibernate.cfg.Settings - Query language substitutions: {}
+09:09:07.813 [main] DEBUG org.hibernate.cfg.Settings - JPA query language strict compliance: disabled
+09:09:07.813 [main] DEBUG org.hibernate.cfg.Settings - Named query checking : enabled
+09:09:07.813 [main] DEBUG org.hibernate.cfg.Settings - Second-level cache: enabled
+09:09:07.814 [main] DEBUG org.hibernate.cfg.Settings - Second-level query cache: disabled
+09:09:07.814 [main] DEBUG org.hibernate.cfg.Settings - Second-level query cache factory: org.hibernate.cache.internal.StandardQueryCacheFactory@100f9bbe
+09:09:07.814 [main] DEBUG org.hibernate.cfg.Settings - Second-level cache region prefix: null
+09:09:07.814 [main] DEBUG org.hibernate.cfg.Settings - Optimize second-level cache for minimal puts: disabled
+09:09:07.814 [main] DEBUG org.hibernate.cfg.Settings - Structured second-level cache entries: disabled
+09:09:07.814 [main] DEBUG org.hibernate.cfg.Settings - Second-level cache direct-reference entries: disabled
+09:09:07.814 [main] DEBUG org.hibernate.cfg.Settings - Automatic eviction of collection cache: disabled
+09:09:07.814 [main] DEBUG org.hibernate.cfg.Settings - JDBC batch size: 15
+09:09:07.814 [main] DEBUG org.hibernate.cfg.Settings - JDBC batch updates for versioned data: enabled
+09:09:07.814 [main] DEBUG org.hibernate.cfg.Settings - Scrollable result sets: enabled
+09:09:07.814 [main] DEBUG org.hibernate.cfg.Settings - Wrap result sets: disabled
+09:09:07.814 [main] DEBUG org.hibernate.cfg.Settings - JDBC3 getGeneratedKeys(): enabled
+09:09:07.814 [main] DEBUG org.hibernate.cfg.Settings - JDBC result set fetch size: null
+09:09:07.814 [main] DEBUG org.hibernate.cfg.Settings - Connection release mode: ON_CLOSE
+09:09:07.814 [main] DEBUG org.hibernate.cfg.Settings - Generate SQL with comments: disabled
+09:09:07.814 [main] DEBUG org.hibernate.internal.SessionFactoryImpl - Returning a Reference to the SessionFactory
+09:09:07.814 [main] DEBUG org.hibernate.internal.SessionFactoryImpl - Session factory constructed with filter configurations : {}
+09:09:07.814 [main] DEBUG org.hibernate.internal.SessionFactoryImpl - Instantiating session factory with properties: {awt.toolkit=sun.awt.windows.WToolkit, java.specification.version=9, sun.cpu.isalist=amd64, sun.jnu.encoding=Cp1252, sun.arch.data.model=64, java.vendor.url=http://java.oracle.com/, javax.persistence.jdbc.url=jdbc:mysql://localhost:3306/emanager_testdb, javax.persistence.jdbc.user=testdbuser, sun.boot.library.path=C:\Program Files\Java\jdk-9.0.4\bin, sun.java.command=C:\Users\samik\git\EquipmentManager\target\surefire\surefirebooter134966787709709701.jar C:\Users\samik\git\EquipmentManager\target\surefire\surefire651792211951989900tmp C:\Users\samik\git\EquipmentManager\target\surefire\surefire_06873634233931086929tmp, jdk.debug=release, java.specification.vendor=Oracle Corporation, java.home=C:\Program Files\Java\jdk-9.0.4, file.separator=\, basedir=C:\Users\samik\git\EquipmentManager, java.vm.compressedOopsMode=Zero based, line.separator=
+, java.vm.specification.vendor=Oracle Corporation, java.specification.name=Java Platform API Specification, hibernate.transaction.coordinator_class=class org.hibernate.resource.transaction.backend.jdbc.internal.JdbcResourceLocalTransactionCoordinatorBuilderImpl, user.script=, sun.management.compiler=HotSpot 64-Bit Tiered Compilers, java.runtime.version=9.0.4+11, user.name=S, file.encoding=Cp1252, localRepository=C:\Users\samik\.m2\repository, hibernate.connection.driver_class=com.mysql.jdbc.Driver, java.io.tmpdir=C:\Users\samik\AppData\Local\Temp\, java.version=9.0.4, java.vm.specification.name=Java Virtual Machine Specification, java.awt.printerjob=sun.awt.windows.WPrinterJob, sun.os.patch.level=, java.library.path=C:\Program Files\Java\jdk-9.0.4\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:/Program Files/Java/jre1.8.0_151/bin/server;C:/Program Files/Java/jre1.8.0_151/bin;C:/Program Files/Java/jre1.8.0_151/lib/amd64;C:\ProgramData\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files\Git\cmd;C:\Program Files (x86)\Windows Kits\8.1\Windows Performance Toolkit\;C:\Program Files\Microsoft SQL Server\110\Tools\Binn\;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files\nodejs\;C:\Android;C:\Users\samik\AppData\Local\Microsoft\WindowsApps;C:\Program Files (x86)\Nmap;C:\Program Files\Java\jdk1.8.0_112\bin;C:\Users\samik\AppData\Roaming\npm;C:\apache-maven-3.5.0\bin;C:\adb;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\MySQL\MySQL Utilities 1.6\;C:\Users\samik\AppData\Local\Microsoft\WindowsApps;C:\Program Files (x86)\Nmap;C:\Program Files\Java\jdk1.8.0_112\bin;C:\Users\samik\AppData\Roaming\npm;C:\apache-maven-3.5.0\bin;;C:\WINDOWS\system32;;., java.vendor=Oracle Corporation, sun.io.unicode.encoding=UnicodeLittle, sun.desktop=windows, file.encoding.pkg=sun.io, java.class.path=C:\Users\samik\git\EquipmentManager\target\test-classes;C:\Users\samik\git\EquipmentManager\target\classes;C:\Users\samik\.m2\repository\org\springframework\boot\spring-boot-starter-data-jpa\1.5.1.RELEASE\spring-boot-starter-data-jpa-1.5.1.RELEASE.jar;C:\Users\samik\.m2\repository\org\springframework\boot\spring-boot-starter\1.5.1.RELEASE\spring-boot-starter-1.5.1.RELEASE.jar;C:\Users\samik\.m2\repository\org\springframework\boot\spring-boot\1.5.1.RELEASE\spring-boot-1.5.1.RELEASE.jar;C:\Users\samik\.m2\repository\org\springframework\boot\spring-boot-autoconfigure\1.5.1.RELEASE\spring-boot-autoconfigure-1.5.1.RELEASE.jar;C:\Users\samik\.m2\repository\org\springframework\boot\spring-boot-starter-logging\1.5.1.RELEASE\spring-boot-starter-logging-1.5.1.RELEASE.jar;C:\Users\samik\.m2\repository\ch\qos\logback\logback-classic\1.1.9\logback-classic-1.1.9.jar;C:\Users\samik\.m2\repository\ch\qos\logback\logback-core\1.1.9\logback-core-1.1.9.jar;C:\Users\samik\.m2\repository\org\slf4j\jul-to-slf4j\1.7.22\jul-to-slf4j-1.7.22.jar;C:\Users\samik\.m2\repository\org\slf4j\log4j-over-slf4j\1.7.22\log4j-over-slf4j-1.7.22.jar;C:\Users\samik\.m2\repository\org\yaml\snakeyaml\1.17\snakeyaml-1.17.jar;C:\Users\samik\.m2\repository\org\springframework\boot\spring-boot-starter-aop\1.5.1.RELEASE\spring-boot-starter-aop-1.5.1.RELEASE.jar;C:\Users\samik\.m2\repository\org\springframework\spring-aop\4.3.6.RELEASE\spring-aop-4.3.6.RELEASE.jar;C:\Users\samik\.m2\repository\org\aspectj\aspectjweaver\1.8.9\aspectjweaver-1.8.9.jar;C:\Users\samik\.m2\repository\org\springframework\boot\spring-boot-starter-jdbc\1.5.1.RELEASE\spring-boot-starter-jdbc-1.5.1.RELEASE.jar;C:\Users\samik\.m2\repository\org\apache\tomcat\tomcat-jdbc\8.5.11\tomcat-jdbc-8.5.11.jar;C:\Users\samik\.m2\repository\org\apache\tomcat\tomcat-juli\8.5.11\tomcat-juli-8.5.11.jar;C:\Users\samik\.m2\repository\org\springframework\spring-jdbc\4.3.6.RELEASE\spring-jdbc-4.3.6.RELEASE.jar;C:\Users\samik\.m2\repository\org\hibernate\hibernate-core\5.0.11.Final\hibernate-core-5.0.11.Final.jar;C:\Users\samik\.m2\repository\org\jboss\logging\jboss-logging\3.3.0.Final\jboss-logging-3.3.0.Final.jar;C:\Users\samik\.m2\repository\org\hibernate\javax\persistence\hibernate-jpa-2.1-api\1.0.0.Final\hibernate-jpa-2.1-api-1.0.0.Final.jar;C:\Users\samik\.m2\repository\org\javassist\javassist\3.21.0-GA\javassist-3.21.0-GA.jar;C:\Users\samik\.m2\repository\antlr\antlr\2.7.7\antlr-2.7.7.jar;C:\Users\samik\.m2\repository\org\jboss\jandex\2.0.0.Final\jandex-2.0.0.Final.jar;C:\Users\samik\.m2\repository\org\hibernate\common\hibernate-commons-annotations\5.0.1.Final\hibernate-commons-annotations-5.0.1.Final.jar;C:\Users\samik\.m2\repository\org\hibernate\hibernate-entitymanager\5.0.11.Final\hibernate-entitymanager-5.0.11.Final.jar;C:\Users\samik\.m2\repository\javax\transaction\javax.transaction-api\1.2\javax.transaction-api-1.2.jar;C:\Users\samik\.m2\repository\org\springframework\data\spring-data-jpa\1.11.0.RELEASE\spring-data-jpa-1.11.0.RELEASE.jar;C:\Users\samik\.m2\repository\org\springframework\data\spring-data-commons\1.13.0.RELEASE\spring-data-commons-1.13.0.RELEASE.jar;C:\Users\samik\.m2\repository\org\springframework\spring-orm\4.3.6.RELEASE\spring-orm-4.3.6.RELEASE.jar;C:\Users\samik\.m2\repository\org\springframework\spring-context\4.3.6.RELEASE\spring-context-4.3.6.RELEASE.jar;C:\Users\samik\.m2\repository\org\springframework\spring-tx\4.3.6.RELEASE\spring-tx-4.3.6.RELEASE.jar;C:\Users\samik\.m2\repository\org\springframework\spring-beans\4.3.6.RELEASE\spring-beans-4.3.6.RELEASE.jar;C:\Users\samik\.m2\repository\org\slf4j\jcl-over-slf4j\1.7.22\jcl-over-slf4j-1.7.22.jar;C:\Users\samik\.m2\repository\org\springframework\spring-aspects\4.3.6.RELEASE\spring-aspects-4.3.6.RELEASE.jar;C:\Users\samik\.m2\repository\org\springframework\boot\spring-boot-starter-web\1.5.1.RELEASE\spring-boot-starter-web-1.5.1.RELEASE.jar;C:\Users\samik\.m2\repository\org\springframework\boot\spring-boot-starter-tomcat\1.5.1.RELEASE\spring-boot-starter-tomcat-1.5.1.RELEASE.jar;C:\Users\samik\.m2\repository\org\apache\tomcat\embed\tomcat-embed-websocket\8.5.11\tomcat-embed-websocket-8.5.11.jar;C:\Users\samik\.m2\repository\org\hibernate\hibernate-validator\5.3.4.Final\hibernate-validator-5.3.4.Final.jar;C:\Users\samik\.m2\repository\javax\validation\validation-api\1.1.0.Final\validation-api-1.1.0.Final.jar;C:\Users\samik\.m2\repository\com\fasterxml\jackson\core\jackson-databind\2.8.6\jackson-databind-2.8.6.jar;C:\Users\samik\.m2\repository\com\fasterxml\jackson\core\jackson-annotations\2.8.0\jackson-annotations-2.8.0.jar;C:\Users\samik\.m2\repository\org\springframework\spring-web\4.3.6.RELEASE\spring-web-4.3.6.RELEASE.jar;C:\Users\samik\.m2\repository\org\springframework\spring-webmvc\4.3.6.RELEASE\spring-webmvc-4.3.6.RELEASE.jar;C:\Users\samik\.m2\repository\org\springframework\spring-expression\4.3.6.RELEASE\spring-expression-4.3.6.RELEASE.jar;C:\Users\samik\.m2\repository\org\springframework\boot\spring-boot-starter-test\1.5.1.RELEASE\spring-boot-starter-test-1.5.1.RELEASE.jar;C:\Users\samik\.m2\repository\org\springframework\boot\spring-boot-test\1.5.1.RELEASE\spring-boot-test-1.5.1.RELEASE.jar;C:\Users\samik\.m2\repository\org\springframework\boot\spring-boot-test-autoconfigure\1.5.1.RELEASE\spring-boot-test-autoconfigure-1.5.1.RELEASE.jar;C:\Users\samik\.m2\repository\com\jayway\jsonpath\json-path\2.2.0\json-path-2.2.0.jar;C:\Users\samik\.m2\repository\net\minidev\json-smart\2.2.1\json-smart-2.2.1.jar;C:\Users\samik\.m2\repository\net\minidev\accessors-smart\1.1\accessors-smart-1.1.jar;C:\Users\samik\.m2\repository\org\ow2\asm\asm\5.0.3\asm-5.0.3.jar;C:\Users\samik\.m2\repository\junit\junit\4.12\junit-4.12.jar;C:\Users\samik\.m2\repository\org\assertj\assertj-core\2.6.0\assertj-core-2.6.0.jar;C:\Users\samik\.m2\repository\org\mockito\mockito-core\1.10.19\mockito-core-1.10.19.jar;C:\Users\samik\.m2\repository\org\objenesis\objenesis\2.1\objenesis-2.1.jar;C:\Users\samik\.m2\repository\org\hamcrest\hamcrest-core\1.3\hamcrest-core-1.3.jar;C:\Users\samik\.m2\repository\org\hamcrest\hamcrest-library\1.3\hamcrest-library-1.3.jar;C:\Users\samik\.m2\repository\org\skyscreamer\jsonassert\1.4.0\jsonassert-1.4.0.jar;C:\Users\samik\.m2\repository\com\vaadin\external\google\android-json\0.0.20131108.vaadin1\android-json-0.0.20131108.vaadin1.jar;C:\Users\samik\.m2\repository\org\springframework\spring-core\4.3.6.RELEASE\spring-core-4.3.6.RELEASE.jar;C:\Users\samik\.m2\repository\org\springframework\spring-test\4.3.6.RELEASE\spring-test-4.3.6.RELEASE.jar;C:\Users\samik\.m2\repository\javax\xml\bind\jaxb-api\2.3.0\jaxb-api-2.3.0.jar;C:\Users\samik\.m2\repository\org\apache\poi\poi\3.9\poi-3.9.jar;C:\Users\samik\.m2\repository\commons-codec\commons-codec\1.10\commons-codec-1.10.jar;C:\Users\samik\.m2\repository\org\apache\poi\poi-ooxml\3.9\poi-ooxml-3.9.jar;C:\Users\samik\.m2\repository\org\apache\poi\poi-ooxml-schemas\3.9\poi-ooxml-schemas-3.9.jar;C:\Users\samik\.m2\repository\org\apache\xmlbeans\xmlbeans\2.3.0\xmlbeans-2.3.0.jar;C:\Users\samik\.m2\repository\stax\stax-api\1.0.1\stax-api-1.0.1.jar;C:\Users\samik\.m2\repository\dom4j\dom4j\1.6.1\dom4j-1.6.1.jar;C:\Users\samik\.m2\repository\xml-apis\xml-apis\1.4.01\xml-apis-1.4.01.jar;C:\Users\samik\.m2\repository\com\h2database\h2\1.3.156\h2-1.3.156.jar;C:\Users\samik\.m2\repository\org\apache\tomcat\embed\tomcat-embed-jasper\8.5.11\tomcat-embed-jasper-8.5.11.jar;C:\Users\samik\.m2\repository\org\apache\tomcat\embed\tomcat-embed-core\8.5.11\tomcat-embed-core-8.5.11.jar;C:\Users\samik\.m2\repository\org\apache\tomcat\embed\tomcat-embed-el\8.5.11\tomcat-embed-el-8.5.11.jar;C:\Users\samik\.m2\repository\org\eclipse\jdt\core\compiler\ecj\4.5.1\ecj-4.5.1.jar;C:\Users\samik\.m2\repository\org\eclipse\persistence\eclipselink\2.5.0-RC1\eclipselink-2.5.0-RC1.jar;C:\Users\samik\.m2\repository\org\eclipse\persistence\javax.persistence\2.1.0-RC1\javax.persistence-2.1.0-RC1.jar;C:\Users\samik\.m2\repository\org\eclipse\persistence\commonj.sdo\2.1.1\commonj.sdo-2.1.1.jar;C:\Users\samik\.m2\repository\mysql\mysql-connector-java\5.1.40\mysql-connector-java-5.1.40.jar;C:\Users\samik\.m2\repository\io\springfox\springfox-swagger2\2.4.0\springfox-swagger2-2.4.0.jar;C:\Users\samik\.m2\repository\io\swagger\swagger-annotations\1.5.6\swagger-annotations-1.5.6.jar;C:\Users\samik\.m2\repository\io\swagger\swagger-models\1.5.6\swagger-models-1.5.6.jar;C:\Users\samik\.m2\repository\io\springfox\springfox-spi\2.4.0\springfox-spi-2.4.0.jar;C:\Users\samik\.m2\repository\io\springfox\springfox-core\2.4.0\springfox-core-2.4.0.jar;C:\Users\samik\.m2\repository\io\springfox\springfox-schema\2.4.0\springfox-schema-2.4.0.jar;C:\Users\samik\.m2\repository\io\springfox\springfox-swagger-common\2.4.0\springfox-swagger-common-2.4.0.jar;C:\Users\samik\.m2\repository\io\springfox\springfox-spring-web\2.4.0\springfox-spring-web-2.4.0.jar;C:\Users\samik\.m2\repository\com\google\guava\guava\18.0\guava-18.0.jar;C:\Users\samik\.m2\repository\com\fasterxml\classmate\1.3.3\classmate-1.3.3.jar;C:\Users\samik\.m2\repository\org\slf4j\slf4j-api\1.7.22\slf4j-api-1.7.22.jar;C:\Users\samik\.m2\repository\org\springframework\plugin\spring-plugin-core\1.2.0.RELEASE\spring-plugin-core-1.2.0.RELEASE.jar;C:\Users\samik\.m2\repository\org\springframework\plugin\spring-plugin-metadata\1.2.0.RELEASE\spring-plugin-metadata-1.2.0.RELEASE.jar;C:\Users\samik\.m2\repository\io\springfox\springfox-swagger-ui\2.4.0\springfox-swagger-ui-2.4.0.jar;C:\Users\samik\.m2\repository\log4j\log4j\1.2.17\log4j-1.2.17.jar;C:\Users\samik\.m2\repository\org\apache\httpcomponents\httpclient\4.5.5\httpclient-4.5.5.jar;C:\Users\samik\.m2\repository\org\apache\httpcomponents\httpcore\4.4.6\httpcore-4.4.6.jar;C:\Users\samik\.m2\repository\com\fasterxml\jackson\core\jackson-core\2.9.4\jackson-core-2.9.4.jar;C:\Users\samik\.m2\repository\com\google\code\gson\gson\2.8.0\gson-2.8.0.jar;, java.vm.vendor=Oracle Corporation, user.variant=, user.timezone=Europe/Helsinki, os.name=Windows 10, java.vm.specification.version=9, sun.java.launcher=SUN_STANDARD, user.country=FI, surefire.test.class.path=C:\Users\samik\git\EquipmentManager\target\test-classes;C:\Users\samik\git\EquipmentManager\target\classes;C:\Users\samik\.m2\repository\org\springframework\boot\spring-boot-starter-data-jpa\1.5.1.RELEASE\spring-boot-starter-data-jpa-1.5.1.RELEASE.jar;C:\Users\samik\.m2\repository\org\springframework\boot\spring-boot-starter\1.5.1.RELEASE\spring-boot-starter-1.5.1.RELEASE.jar;C:\Users\samik\.m2\repository\org\springframework\boot\spring-boot\1.5.1.RELEASE\spring-boot-1.5.1.RELEASE.jar;C:\Users\samik\.m2\repository\org\springframework\boot\spring-boot-autoconfigure\1.5.1.RELEASE\spring-boot-autoconfigure-1.5.1.RELEASE.jar;C:\Users\samik\.m2\repository\org\springframework\boot\spring-boot-starter-logging\1.5.1.RELEASE\spring-boot-starter-logging-1.5.1.RELEASE.jar;C:\Users\samik\.m2\repository\ch\qos\logback\logback-classic\1.1.9\logback-classic-1.1.9.jar;C:\Users\samik\.m2\repository\ch\qos\logback\logback-core\1.1.9\logback-core-1.1.9.jar;C:\Users\samik\.m2\repository\org\slf4j\jul-to-slf4j\1.7.22\jul-to-slf4j-1.7.22.jar;C:\Users\samik\.m2\repository\org\slf4j\log4j-over-slf4j\1.7.22\log4j-over-slf4j-1.7.22.jar;C:\Users\samik\.m2\repository\org\yaml\snakeyaml\1.17\snakeyaml-1.17.jar;C:\Users\samik\.m2\repository\org\springframework\boot\spring-boot-starter-aop\1.5.1.RELEASE\spring-boot-starter-aop-1.5.1.RELEASE.jar;C:\Users\samik\.m2\repository\org\springframework\spring-aop\4.3.6.RELEASE\spring-aop-4.3.6.RELEASE.jar;C:\Users\samik\.m2\repository\org\aspectj\aspectjweaver\1.8.9\aspectjweaver-1.8.9.jar;C:\Users\samik\.m2\repository\org\springframework\boot\spring-boot-starter-jdbc\1.5.1.RELEASE\spring-boot-starter-jdbc-1.5.1.RELEASE.jar;C:\Users\samik\.m2\repository\org\apache\tomcat\tomcat-jdbc\8.5.11\tomcat-jdbc-8.5.11.jar;C:\Users\samik\.m2\repository\org\apache\tomcat\tomcat-juli\8.5.11\tomcat-juli-8.5.11.jar;C:\Users\samik\.m2\repository\org\springframework\spring-jdbc\4.3.6.RELEASE\spring-jdbc-4.3.6.RELEASE.jar;C:\Users\samik\.m2\repository\org\hibernate\hibernate-core\5.0.11.Final\hibernate-core-5.0.11.Final.jar;C:\Users\samik\.m2\repository\org\jboss\logging\jboss-logging\3.3.0.Final\jboss-logging-3.3.0.Final.jar;C:\Users\samik\.m2\repository\org\hibernate\javax\persistence\hibernate-jpa-2.1-api\1.0.0.Final\hibernate-jpa-2.1-api-1.0.0.Final.jar;C:\Users\samik\.m2\repository\org\javassist\javassist\3.21.0-GA\javassist-3.21.0-GA.jar;C:\Users\samik\.m2\repository\antlr\antlr\2.7.7\antlr-2.7.7.jar;C:\Users\samik\.m2\repository\org\jboss\jandex\2.0.0.Final\jandex-2.0.0.Final.jar;C:\Users\samik\.m2\repository\org\hibernate\common\hibernate-commons-annotations\5.0.1.Final\hibernate-commons-annotations-5.0.1.Final.jar;C:\Users\samik\.m2\repository\org\hibernate\hibernate-entitymanager\5.0.11.Final\hibernate-entitymanager-5.0.11.Final.jar;C:\Users\samik\.m2\repository\javax\transaction\javax.transaction-api\1.2\javax.transaction-api-1.2.jar;C:\Users\samik\.m2\repository\org\springframework\data\spring-data-jpa\1.11.0.RELEASE\spring-data-jpa-1.11.0.RELEASE.jar;C:\Users\samik\.m2\repository\org\springframework\data\spring-data-commons\1.13.0.RELEASE\spring-data-commons-1.13.0.RELEASE.jar;C:\Users\samik\.m2\repository\org\springframework\spring-orm\4.3.6.RELEASE\spring-orm-4.3.6.RELEASE.jar;C:\Users\samik\.m2\repository\org\springframework\spring-context\4.3.6.RELEASE\spring-context-4.3.6.RELEASE.jar;C:\Users\samik\.m2\repository\org\springframework\spring-tx\4.3.6.RELEASE\spring-tx-4.3.6.RELEASE.jar;C:\Users\samik\.m2\repository\org\springframework\spring-beans\4.3.6.RELEASE\spring-beans-4.3.6.RELEASE.jar;C:\Users\samik\.m2\repository\org\slf4j\jcl-over-slf4j\1.7.22\jcl-over-slf4j-1.7.22.jar;C:\Users\samik\.m2\repository\org\springframework\spring-aspects\4.3.6.RELEASE\spring-aspects-4.3.6.RELEASE.jar;C:\Users\samik\.m2\repository\org\springframework\boot\spring-boot-starter-web\1.5.1.RELEASE\spring-boot-starter-web-1.5.1.RELEASE.jar;C:\Users\samik\.m2\repository\org\springframework\boot\spring-boot-starter-tomcat\1.5.1.RELEASE\spring-boot-starter-tomcat-1.5.1.RELEASE.jar;C:\Users\samik\.m2\repository\org\apache\tomcat\embed\tomcat-embed-websocket\8.5.11\tomcat-embed-websocket-8.5.11.jar;C:\Users\samik\.m2\repository\org\hibernate\hibernate-validator\5.3.4.Final\hibernate-validator-5.3.4.Final.jar;C:\Users\samik\.m2\repository\javax\validation\validation-api\1.1.0.Final\validation-api-1.1.0.Final.jar;C:\Users\samik\.m2\repository\com\fasterxml\jackson\core\jackson-databind\2.8.6\jackson-databind-2.8.6.jar;C:\Users\samik\.m2\repository\com\fasterxml\jackson\core\jackson-annotations\2.8.0\jackson-annotations-2.8.0.jar;C:\Users\samik\.m2\repository\org\springframework\spring-web\4.3.6.RELEASE\spring-web-4.3.6.RELEASE.jar;C:\Users\samik\.m2\repository\org\springframework\spring-webmvc\4.3.6.RELEASE\spring-webmvc-4.3.6.RELEASE.jar;C:\Users\samik\.m2\repository\org\springframework\spring-expression\4.3.6.RELEASE\spring-expression-4.3.6.RELEASE.jar;C:\Users\samik\.m2\repository\org\springframework\boot\spring-boot-starter-test\1.5.1.RELEASE\spring-boot-starter-test-1.5.1.RELEASE.jar;C:\Users\samik\.m2\repository\org\springframework\boot\spring-boot-test\1.5.1.RELEASE\spring-boot-test-1.5.1.RELEASE.jar;C:\Users\samik\.m2\repository\org\springframework\boot\spring-boot-test-autoconfigure\1.5.1.RELEASE\spring-boot-test-autoconfigure-1.5.1.RELEASE.jar;C:\Users\samik\.m2\repository\com\jayway\jsonpath\json-path\2.2.0\json-path-2.2.0.jar;C:\Users\samik\.m2\repository\net\minidev\json-smart\2.2.1\json-smart-2.2.1.jar;C:\Users\samik\.m2\repository\net\minidev\accessors-smart\1.1\accessors-smart-1.1.jar;C:\Users\samik\.m2\repository\org\ow2\asm\asm\5.0.3\asm-5.0.3.jar;C:\Users\samik\.m2\repository\junit\junit\4.12\junit-4.12.jar;C:\Users\samik\.m2\repository\org\assertj\assertj-core\2.6.0\assertj-core-2.6.0.jar;C:\Users\samik\.m2\repository\org\mockito\mockito-core\1.10.19\mockito-core-1.10.19.jar;C:\Users\samik\.m2\repository\org\objenesis\objenesis\2.1\objenesis-2.1.jar;C:\Users\samik\.m2\repository\org\hamcrest\hamcrest-core\1.3\hamcrest-core-1.3.jar;C:\Users\samik\.m2\repository\org\hamcrest\hamcrest-library\1.3\hamcrest-library-1.3.jar;C:\Users\samik\.m2\repository\org\skyscreamer\jsonassert\1.4.0\jsonassert-1.4.0.jar;C:\Users\samik\.m2\repository\com\vaadin\external\google\android-json\0.0.20131108.vaadin1\android-json-0.0.20131108.vaadin1.jar;C:\Users\samik\.m2\repository\org\springframework\spring-core\4.3.6.RELEASE\spring-core-4.3.6.RELEASE.jar;C:\Users\samik\.m2\repository\org\springframework\spring-test\4.3.6.RELEASE\spring-test-4.3.6.RELEASE.jar;C:\Users\samik\.m2\repository\javax\xml\bind\jaxb-api\2.3.0\jaxb-api-2.3.0.jar;C:\Users\samik\.m2\repository\org\apache\poi\poi\3.9\poi-3.9.jar;C:\Users\samik\.m2\repository\commons-codec\commons-codec\1.10\commons-codec-1.10.jar;C:\Users\samik\.m2\repository\org\apache\poi\poi-ooxml\3.9\poi-ooxml-3.9.jar;C:\Users\samik\.m2\repository\org\apache\poi\poi-ooxml-schemas\3.9\poi-ooxml-schemas-3.9.jar;C:\Users\samik\.m2\repository\org\apache\xmlbeans\xmlbeans\2.3.0\xmlbeans-2.3.0.jar;C:\Users\samik\.m2\repository\stax\stax-api\1.0.1\stax-api-1.0.1.jar;C:\Users\samik\.m2\repository\dom4j\dom4j\1.6.1\dom4j-1.6.1.jar;C:\Users\samik\.m2\repository\xml-apis\xml-apis\1.4.01\xml-apis-1.4.01.jar;C:\Users\samik\.m2\repository\com\h2database\h2\1.3.156\h2-1.3.156.jar;C:\Users\samik\.m2\repository\org\apache\tomcat\embed\tomcat-embed-jasper\8.5.11\tomcat-embed-jasper-8.5.11.jar;C:\Users\samik\.m2\repository\org\apache\tomcat\embed\tomcat-embed-core\8.5.11\tomcat-embed-core-8.5.11.jar;C:\Users\samik\.m2\repository\org\apache\tomcat\embed\tomcat-embed-el\8.5.11\tomcat-embed-el-8.5.11.jar;C:\Users\samik\.m2\repository\org\eclipse\jdt\core\compiler\ecj\4.5.1\ecj-4.5.1.jar;C:\Users\samik\.m2\repository\org\eclipse\persistence\eclipselink\2.5.0-RC1\eclipselink-2.5.0-RC1.jar;C:\Users\samik\.m2\repository\org\eclipse\persistence\javax.persistence\2.1.0-RC1\javax.persistence-2.1.0-RC1.jar;C:\Users\samik\.m2\repository\org\eclipse\persistence\commonj.sdo\2.1.1\commonj.sdo-2.1.1.jar;C:\Users\samik\.m2\repository\mysql\mysql-connector-java\5.1.40\mysql-connector-java-5.1.40.jar;C:\Users\samik\.m2\repository\io\springfox\springfox-swagger2\2.4.0\springfox-swagger2-2.4.0.jar;C:\Users\samik\.m2\repository\io\swagger\swagger-annotations\1.5.6\swagger-annotations-1.5.6.jar;C:\Users\samik\.m2\repository\io\swagger\swagger-models\1.5.6\swagger-models-1.5.6.jar;C:\Users\samik\.m2\repository\io\springfox\springfox-spi\2.4.0\springfox-spi-2.4.0.jar;C:\Users\samik\.m2\repository\io\springfox\springfox-core\2.4.0\springfox-core-2.4.0.jar;C:\Users\samik\.m2\repository\io\springfox\springfox-schema\2.4.0\springfox-schema-2.4.0.jar;C:\Users\samik\.m2\repository\io\springfox\springfox-swagger-common\2.4.0\springfox-swagger-common-2.4.0.jar;C:\Users\samik\.m2\repository\io\springfox\springfox-spring-web\2.4.0\springfox-spring-web-2.4.0.jar;C:\Users\samik\.m2\repository\com\google\guava\guava\18.0\guava-18.0.jar;C:\Users\samik\.m2\repository\com\fasterxml\classmate\1.3.3\classmate-1.3.3.jar;C:\Users\samik\.m2\repository\org\slf4j\slf4j-api\1.7.22\slf4j-api-1.7.22.jar;C:\Users\samik\.m2\repository\org\springframework\plugin\spring-plugin-core\1.2.0.RELEASE\spring-plugin-core-1.2.0.RELEASE.jar;C:\Users\samik\.m2\repository\org\springframework\plugin\spring-plugin-metadata\1.2.0.RELEASE\spring-plugin-metadata-1.2.0.RELEASE.jar;C:\Users\samik\.m2\repository\io\springfox\springfox-swagger-ui\2.4.0\springfox-swagger-ui-2.4.0.jar;C:\Users\samik\.m2\repository\log4j\log4j\1.2.17\log4j-1.2.17.jar;C:\Users\samik\.m2\repository\org\apache\httpcomponents\httpclient\4.5.5\httpclient-4.5.5.jar;C:\Users\samik\.m2\repository\org\apache\httpcomponents\httpcore\4.4.6\httpcore-4.4.6.jar;C:\Users\samik\.m2\repository\com\fasterxml\jackson\core\jackson-core\2.9.4\jackson-core-2.9.4.jar;C:\Users\samik\.m2\repository\com\google\code\gson\gson\2.8.0\gson-2.8.0.jar;, sun.cpu.endian=little, user.home=C:\Users\samik, user.language=fi, java.awt.graphicsenv=sun.awt.Win32GraphicsEnvironment, javax.persistence.jdbc.driver=com.mysql.jdbc.Driver, surefire.real.class.path=C:\Users\samik\git\EquipmentManager\target\surefire\surefirebooter134966787709709701.jar, path.separator=;, hibernate.connection.username=testdbuser, os.version=10.0, java.runtime.name=Java(TM) SE Runtime Environment, hibernate.connection.url=jdbc:mysql://localhost:3306/emanager_testdb, hibernate.ejb.persistenceUnitName=EquipmentManager, java.vm.name=Java HotSpot(TM) 64-Bit Server VM, java.vendor.url.bug=http://bugreport.java.com/bugreport/, user.dir=C:\Users\samik\git\EquipmentManager, os.arch=amd64, hibernate.connection.password=testpwd, hibernate.boot.CfgXmlAccessService.key=org.hibernate.boot.cfgxml.spi.LoadedConfig@3b82e13f, java.vm.info=mixed mode, java.vm.version=9.0.4+11, hibernate.bytecode.use_reflection_optimizer=false, javax.persistence.jdbc.password=testpwd, java.class.version=53.0}
+09:09:07.814 [main] DEBUG org.hibernate.validator.internal.engine.resolver.DefaultTraversableResolver - Found javax.persistence.Persistence on classpath containing 'getPersistenceUtil'. Assuming JPA 2 environment. Trying to instantiate JPA aware TraversableResolver
+09:09:07.814 [main] DEBUG org.hibernate.validator.internal.engine.resolver.DefaultTraversableResolver - Instantiated JPA aware TraversableResolver of type org.hibernate.validator.internal.engine.resolver.JPATraversableResolver.
+09:09:07.814 [main] DEBUG org.hibernate.validator.internal.xml.ValidationXmlParser - Trying to load META-INF/validation.xml for XML based Validator configuration.
+09:09:07.814 [main] DEBUG org.hibernate.validator.internal.xml.ResourceLoaderHelper - Trying to load META-INF/validation.xml via TCCL
+09:09:07.815 [main] DEBUG org.hibernate.validator.internal.xml.ResourceLoaderHelper - Trying to load META-INF/validation.xml via Hibernate Validator's class loader
+09:09:07.815 [main] DEBUG org.hibernate.validator.internal.xml.ValidationXmlParser - No META-INF/validation.xml found. Using annotation based configuration only.
+09:09:07.816 [main] DEBUG org.hibernate.boot.internal.ClassLoaderAccessImpl - Not known whether passed class name [model.Equipmenttype] is safe
+09:09:07.816 [main] DEBUG org.hibernate.boot.internal.ClassLoaderAccessImpl - No temp ClassLoader provided; using live ClassLoader for loading potentially unsafe class : model.Equipmenttype
+09:09:07.817 [main] DEBUG org.hibernate.boot.internal.ClassLoaderAccessImpl - Not known whether passed class name [model.Employee] is safe
+09:09:07.817 [main] DEBUG org.hibernate.boot.internal.ClassLoaderAccessImpl - No temp ClassLoader provided; using live ClassLoader for loading potentially unsafe class : model.Employee
+09:09:07.817 [main] DEBUG org.hibernate.boot.internal.ClassLoaderAccessImpl - Not known whether passed class name [model.Equipment] is safe
+09:09:07.817 [main] DEBUG org.hibernate.boot.internal.ClassLoaderAccessImpl - No temp ClassLoader provided; using live ClassLoader for loading potentially unsafe class : model.Equipment
+09:09:07.817 [main] DEBUG org.hibernate.boot.internal.ClassLoaderAccessImpl - Not known whether passed class name [model.Reservation] is safe
+09:09:07.817 [main] DEBUG org.hibernate.boot.internal.ClassLoaderAccessImpl - No temp ClassLoader provided; using live ClassLoader for loading potentially unsafe class : model.Reservation
+09:09:07.818 [main] DEBUG org.hibernate.secure.spi.JaccIntegrator - Skipping JACC integration as it was not enabled
+09:09:07.818 [main] DEBUG org.hibernate.engine.spi.CascadeStyles - External cascade style regsitration [persist : STYLE_PERSIST_SKIPLAZY] overrode base registration [STYLE_PERSIST_SKIPLAZY]
+09:09:07.818 [main] DEBUG org.hibernate.boot.internal.ClassLoaderAccessImpl - Not known whether passed class name [model.Equipmenttype] is safe
+09:09:07.818 [main] DEBUG org.hibernate.boot.internal.ClassLoaderAccessImpl - No temp ClassLoader provided; using live ClassLoader for loading potentially unsafe class : model.Equipmenttype
+09:09:07.818 [main] DEBUG org.hibernate.boot.internal.ClassLoaderAccessImpl - Not known whether passed class name [model.Equipmenttype] is safe
+09:09:07.818 [main] DEBUG org.hibernate.boot.internal.ClassLoaderAccessImpl - No temp ClassLoader provided; using live ClassLoader for loading potentially unsafe class : model.Equipmenttype
+09:09:07.818 [main] DEBUG org.hibernate.boot.internal.ClassLoaderAccessImpl - Not known whether passed class name [model.Employee] is safe
+09:09:07.818 [main] DEBUG org.hibernate.boot.internal.ClassLoaderAccessImpl - No temp ClassLoader provided; using live ClassLoader for loading potentially unsafe class : model.Employee
+09:09:07.818 [main] DEBUG org.hibernate.boot.internal.ClassLoaderAccessImpl - Not known whether passed class name [model.Employee] is safe
+09:09:07.818 [main] DEBUG org.hibernate.boot.internal.ClassLoaderAccessImpl - No temp ClassLoader provided; using live ClassLoader for loading potentially unsafe class : model.Employee
+09:09:07.818 [main] DEBUG org.hibernate.boot.internal.ClassLoaderAccessImpl - Not known whether passed class name [model.Equipment] is safe
+09:09:07.818 [main] DEBUG org.hibernate.boot.internal.ClassLoaderAccessImpl - No temp ClassLoader provided; using live ClassLoader for loading potentially unsafe class : model.Equipment
+09:09:07.818 [main] DEBUG org.hibernate.boot.internal.ClassLoaderAccessImpl - Not known whether passed class name [model.Equipment] is safe
+09:09:07.818 [main] DEBUG org.hibernate.boot.internal.ClassLoaderAccessImpl - No temp ClassLoader provided; using live ClassLoader for loading potentially unsafe class : model.Equipment
+09:09:07.819 [main] DEBUG org.hibernate.boot.internal.ClassLoaderAccessImpl - Not known whether passed class name [model.Reservation] is safe
+09:09:07.819 [main] DEBUG org.hibernate.boot.internal.ClassLoaderAccessImpl - No temp ClassLoader provided; using live ClassLoader for loading potentially unsafe class : model.Reservation
+09:09:07.819 [main] DEBUG org.hibernate.boot.internal.ClassLoaderAccessImpl - Not known whether passed class name [model.Reservation] is safe
+09:09:07.819 [main] DEBUG org.hibernate.boot.internal.ClassLoaderAccessImpl - No temp ClassLoader provided; using live ClassLoader for loading potentially unsafe class : model.Reservation
+09:09:07.819 [main] DEBUG org.hibernate.persister.entity.AbstractEntityPersister - Static SQL for entity: model.Equipmenttype
+09:09:07.819 [main] DEBUG org.hibernate.persister.entity.AbstractEntityPersister -  Version select: select equipmentTypeId from Equipmenttype where equipmentTypeId =?
+09:09:07.819 [main] DEBUG org.hibernate.persister.entity.AbstractEntityPersister -  Snapshot select: select equipmentt_.equipmentTypeId, equipmentt_.typeCode as typeCode2_2_, equipmentt_.typeName as typeName3_2_ from Equipmenttype equipmentt_ where equipmentt_.equipmentTypeId=?
+09:09:07.819 [main] DEBUG org.hibernate.persister.entity.AbstractEntityPersister -  Insert 0: insert into Equipmenttype (typeCode, typeName, equipmentTypeId) values (?, ?, ?)
+09:09:07.819 [main] DEBUG org.hibernate.persister.entity.AbstractEntityPersister -  Update 0: update Equipmenttype set typeCode=?, typeName=? where equipmentTypeId=?
+09:09:07.819 [main] DEBUG org.hibernate.persister.entity.AbstractEntityPersister -  Delete 0: delete from Equipmenttype where equipmentTypeId=?
+09:09:07.819 [main] DEBUG org.hibernate.persister.entity.AbstractEntityPersister -  Identity insert: insert into Equipmenttype (typeCode, typeName) values (?, ?)
+09:09:07.819 [main] DEBUG org.hibernate.loader.plan.build.internal.spaces.QuerySpacesImpl - Adding QuerySpace : uid = <gen:0> -> org.hibernate.loader.plan.build.internal.spaces.EntityQuerySpaceImpl@79337aca]
+09:09:07.819 [main] DEBUG org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : typeCode
+09:09:07.819 [main] DEBUG org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : typeName
+09:09:07.819 [main] DEBUG org.hibernate.loader.plan.build.internal.FetchStyleLoadPlanBuildingAssociationVisitationStrategy - Building LoadPlan...
+09:09:07.819 [main] DEBUG org.hibernate.loader.plan.exec.internal.LoadQueryJoinAndFetchProcessor - processing queryspace <gen:0>
+09:09:07.819 [main] DEBUG org.hibernate.loader.plan.build.spi.LoadPlanTreePrinter - LoadPlan(entity=model.Equipmenttype)
+    - Returns
+       - EntityReturnImpl(entity=model.Equipmenttype, querySpaceUid=<gen:0>, path=model.Equipmenttype)
+    - QuerySpaces
+       - EntityQuerySpaceImpl(uid=<gen:0>, entity=model.Equipmenttype)
+          - SQL table alias mapping - equipmentt0_
+          - alias suffix - 0_
+          - suffixed key columns - {equipmen1_2_0_}
+
+09:09:07.819 [main] DEBUG org.hibernate.loader.entity.plan.EntityLoader - Static select for entity model.Equipmenttype [NONE]: select equipmentt0_.equipmentTypeId as equipmen1_2_0_, equipmentt0_.typeCode as typeCode2_2_0_, equipmentt0_.typeName as typeName3_2_0_ from Equipmenttype equipmentt0_ where equipmentt0_.equipmentTypeId=?
+09:09:07.819 [main] DEBUG org.hibernate.loader.plan.build.internal.spaces.QuerySpacesImpl - Adding QuerySpace : uid = <gen:0> -> org.hibernate.loader.plan.build.internal.spaces.EntityQuerySpaceImpl@78d16f6f]
+09:09:07.819 [main] DEBUG org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : typeCode
+09:09:07.819 [main] DEBUG org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : typeName
+09:09:07.819 [main] DEBUG org.hibernate.loader.plan.build.internal.FetchStyleLoadPlanBuildingAssociationVisitationStrategy - Building LoadPlan...
+09:09:07.819 [main] DEBUG org.hibernate.loader.plan.exec.internal.LoadQueryJoinAndFetchProcessor - processing queryspace <gen:0>
+09:09:07.819 [main] DEBUG org.hibernate.loader.plan.build.spi.LoadPlanTreePrinter - LoadPlan(entity=model.Equipmenttype)
+    - Returns
+       - EntityReturnImpl(entity=model.Equipmenttype, querySpaceUid=<gen:0>, path=model.Equipmenttype)
+    - QuerySpaces
+       - EntityQuerySpaceImpl(uid=<gen:0>, entity=model.Equipmenttype)
+          - SQL table alias mapping - equipmentt0_
+          - alias suffix - 0_
+          - suffixed key columns - {equipmen1_2_0_}
+
+09:09:07.819 [main] DEBUG org.hibernate.loader.entity.plan.EntityLoader - Static select for entity model.Equipmenttype [READ]: select equipmentt0_.equipmentTypeId as equipmen1_2_0_, equipmentt0_.typeCode as typeCode2_2_0_, equipmentt0_.typeName as typeName3_2_0_ from Equipmenttype equipmentt0_ where equipmentt0_.equipmentTypeId=?
+09:09:07.819 [main] DEBUG org.hibernate.loader.plan.build.internal.spaces.QuerySpacesImpl - Adding QuerySpace : uid = <gen:0> -> org.hibernate.loader.plan.build.internal.spaces.EntityQuerySpaceImpl@54857bd0]
+09:09:07.819 [main] DEBUG org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : typeCode
+09:09:07.819 [main] DEBUG org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : typeName
+09:09:07.819 [main] DEBUG org.hibernate.loader.plan.build.internal.FetchStyleLoadPlanBuildingAssociationVisitationStrategy - Building LoadPlan...
+09:09:07.819 [main] DEBUG org.hibernate.loader.plan.exec.internal.LoadQueryJoinAndFetchProcessor - processing queryspace <gen:0>
+09:09:07.819 [main] DEBUG org.hibernate.loader.plan.build.spi.LoadPlanTreePrinter - LoadPlan(entity=model.Equipmenttype)
+    - Returns
+       - EntityReturnImpl(entity=model.Equipmenttype, querySpaceUid=<gen:0>, path=model.Equipmenttype)
+    - QuerySpaces
+       - EntityQuerySpaceImpl(uid=<gen:0>, entity=model.Equipmenttype)
+          - SQL table alias mapping - equipmentt0_
+          - alias suffix - 0_
+          - suffixed key columns - {equipmen1_2_0_}
+
+09:09:07.819 [main] DEBUG org.hibernate.loader.entity.plan.EntityLoader - Static select for entity model.Equipmenttype [UPGRADE]: select equipmentt0_.equipmentTypeId as equipmen1_2_0_, equipmentt0_.typeCode as typeCode2_2_0_, equipmentt0_.typeName as typeName3_2_0_ from Equipmenttype equipmentt0_ where equipmentt0_.equipmentTypeId=? for update
+09:09:07.819 [main] DEBUG org.hibernate.loader.plan.build.internal.spaces.QuerySpacesImpl - Adding QuerySpace : uid = <gen:0> -> org.hibernate.loader.plan.build.internal.spaces.EntityQuerySpaceImpl@4de56ecc]
+09:09:07.819 [main] DEBUG org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : typeCode
+09:09:07.819 [main] DEBUG org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : typeName
+09:09:07.819 [main] DEBUG org.hibernate.loader.plan.build.internal.FetchStyleLoadPlanBuildingAssociationVisitationStrategy - Building LoadPlan...
+09:09:07.819 [main] DEBUG org.hibernate.loader.plan.exec.internal.LoadQueryJoinAndFetchProcessor - processing queryspace <gen:0>
+09:09:07.819 [main] DEBUG org.hibernate.loader.plan.build.spi.LoadPlanTreePrinter - LoadPlan(entity=model.Equipmenttype)
+    - Returns
+       - EntityReturnImpl(entity=model.Equipmenttype, querySpaceUid=<gen:0>, path=model.Equipmenttype)
+    - QuerySpaces
+       - EntityQuerySpaceImpl(uid=<gen:0>, entity=model.Equipmenttype)
+          - SQL table alias mapping - equipmentt0_
+          - alias suffix - 0_
+          - suffixed key columns - {equipmen1_2_0_}
+
+09:09:07.819 [main] DEBUG org.hibernate.loader.entity.plan.EntityLoader - Static select for entity model.Equipmenttype [UPGRADE_NOWAIT]: select equipmentt0_.equipmentTypeId as equipmen1_2_0_, equipmentt0_.typeCode as typeCode2_2_0_, equipmentt0_.typeName as typeName3_2_0_ from Equipmenttype equipmentt0_ where equipmentt0_.equipmentTypeId=? for update
+09:09:07.819 [main] DEBUG org.hibernate.loader.plan.build.internal.spaces.QuerySpacesImpl - Adding QuerySpace : uid = <gen:0> -> org.hibernate.loader.plan.build.internal.spaces.EntityQuerySpaceImpl@11f7ed43]
+09:09:07.819 [main] DEBUG org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : typeCode
+09:09:07.819 [main] DEBUG org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : typeName
+09:09:07.819 [main] DEBUG org.hibernate.loader.plan.build.internal.FetchStyleLoadPlanBuildingAssociationVisitationStrategy - Building LoadPlan...
+09:09:07.819 [main] DEBUG org.hibernate.loader.plan.exec.internal.LoadQueryJoinAndFetchProcessor - processing queryspace <gen:0>
+09:09:07.819 [main] DEBUG org.hibernate.loader.plan.build.spi.LoadPlanTreePrinter - LoadPlan(entity=model.Equipmenttype)
+    - Returns
+       - EntityReturnImpl(entity=model.Equipmenttype, querySpaceUid=<gen:0>, path=model.Equipmenttype)
+    - QuerySpaces
+       - EntityQuerySpaceImpl(uid=<gen:0>, entity=model.Equipmenttype)
+          - SQL table alias mapping - equipmentt0_
+          - alias suffix - 0_
+          - suffixed key columns - {equipmen1_2_0_}
+
+09:09:07.819 [main] DEBUG org.hibernate.loader.entity.plan.EntityLoader - Static select for entity model.Equipmenttype [UPGRADE_SKIPLOCKED]: select equipmentt0_.equipmentTypeId as equipmen1_2_0_, equipmentt0_.typeCode as typeCode2_2_0_, equipmentt0_.typeName as typeName3_2_0_ from Equipmenttype equipmentt0_ where equipmentt0_.equipmentTypeId=? for update
+09:09:07.819 [main] DEBUG org.hibernate.loader.plan.build.internal.spaces.QuerySpacesImpl - Adding QuerySpace : uid = <gen:0> -> org.hibernate.loader.plan.build.internal.spaces.EntityQuerySpaceImpl@2f45b8b6]
+09:09:07.819 [main] DEBUG org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : typeCode
+09:09:07.819 [main] DEBUG org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : typeName
+09:09:07.819 [main] DEBUG org.hibernate.loader.plan.build.internal.FetchStyleLoadPlanBuildingAssociationVisitationStrategy - Building LoadPlan...
+09:09:07.819 [main] DEBUG org.hibernate.loader.plan.exec.internal.LoadQueryJoinAndFetchProcessor - processing queryspace <gen:0>
+09:09:07.819 [main] DEBUG org.hibernate.loader.plan.build.spi.LoadPlanTreePrinter - LoadPlan(entity=model.Equipmenttype)
+    - Returns
+       - EntityReturnImpl(entity=model.Equipmenttype, querySpaceUid=<gen:0>, path=model.Equipmenttype)
+    - QuerySpaces
+       - EntityQuerySpaceImpl(uid=<gen:0>, entity=model.Equipmenttype)
+          - SQL table alias mapping - equipmentt0_
+          - alias suffix - 0_
+          - suffixed key columns - {equipmen1_2_0_}
+
+09:09:07.819 [main] DEBUG org.hibernate.loader.entity.plan.EntityLoader - Static select for entity model.Equipmenttype [FORCE]: select equipmentt0_.equipmentTypeId as equipmen1_2_0_, equipmentt0_.typeCode as typeCode2_2_0_, equipmentt0_.typeName as typeName3_2_0_ from Equipmenttype equipmentt0_ where equipmentt0_.equipmentTypeId=? for update
+09:09:07.819 [main] DEBUG org.hibernate.loader.plan.build.internal.spaces.QuerySpacesImpl - Adding QuerySpace : uid = <gen:0> -> org.hibernate.loader.plan.build.internal.spaces.EntityQuerySpaceImpl@75d44876]
+09:09:07.819 [main] DEBUG org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : typeCode
+09:09:07.819 [main] DEBUG org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : typeName
+09:09:07.819 [main] DEBUG org.hibernate.loader.plan.build.internal.FetchStyleLoadPlanBuildingAssociationVisitationStrategy - Building LoadPlan...
+09:09:07.819 [main] DEBUG org.hibernate.loader.plan.exec.internal.LoadQueryJoinAndFetchProcessor - processing queryspace <gen:0>
+09:09:07.819 [main] DEBUG org.hibernate.loader.plan.build.spi.LoadPlanTreePrinter - LoadPlan(entity=model.Equipmenttype)
+    - Returns
+       - EntityReturnImpl(entity=model.Equipmenttype, querySpaceUid=<gen:0>, path=model.Equipmenttype)
+    - QuerySpaces
+       - EntityQuerySpaceImpl(uid=<gen:0>, entity=model.Equipmenttype)
+          - SQL table alias mapping - equipmentt0_
+          - alias suffix - 0_
+          - suffixed key columns - {equipmen1_2_0_}
+
+09:09:07.820 [main] DEBUG org.hibernate.loader.entity.plan.EntityLoader - Static select for entity model.Equipmenttype [PESSIMISTIC_READ]: select equipmentt0_.equipmentTypeId as equipmen1_2_0_, equipmentt0_.typeCode as typeCode2_2_0_, equipmentt0_.typeName as typeName3_2_0_ from Equipmenttype equipmentt0_ where equipmentt0_.equipmentTypeId=? lock in share mode
+09:09:07.820 [main] DEBUG org.hibernate.loader.plan.build.internal.spaces.QuerySpacesImpl - Adding QuerySpace : uid = <gen:0> -> org.hibernate.loader.plan.build.internal.spaces.EntityQuerySpaceImpl@3fccb7a5]
+09:09:07.820 [main] DEBUG org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : typeCode
+09:09:07.820 [main] DEBUG org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : typeName
+09:09:07.820 [main] DEBUG org.hibernate.loader.plan.build.internal.FetchStyleLoadPlanBuildingAssociationVisitationStrategy - Building LoadPlan...
+09:09:07.820 [main] DEBUG org.hibernate.loader.plan.exec.internal.LoadQueryJoinAndFetchProcessor - processing queryspace <gen:0>
+09:09:07.820 [main] DEBUG org.hibernate.loader.plan.build.spi.LoadPlanTreePrinter - LoadPlan(entity=model.Equipmenttype)
+    - Returns
+       - EntityReturnImpl(entity=model.Equipmenttype, querySpaceUid=<gen:0>, path=model.Equipmenttype)
+    - QuerySpaces
+       - EntityQuerySpaceImpl(uid=<gen:0>, entity=model.Equipmenttype)
+          - SQL table alias mapping - equipmentt0_
+          - alias suffix - 0_
+          - suffixed key columns - {equipmen1_2_0_}
+
+09:09:07.820 [main] DEBUG org.hibernate.loader.entity.plan.EntityLoader - Static select for entity model.Equipmenttype [PESSIMISTIC_WRITE]: select equipmentt0_.equipmentTypeId as equipmen1_2_0_, equipmentt0_.typeCode as typeCode2_2_0_, equipmentt0_.typeName as typeName3_2_0_ from Equipmenttype equipmentt0_ where equipmentt0_.equipmentTypeId=? for update
+09:09:07.820 [main] DEBUG org.hibernate.loader.plan.build.internal.spaces.QuerySpacesImpl - Adding QuerySpace : uid = <gen:0> -> org.hibernate.loader.plan.build.internal.spaces.EntityQuerySpaceImpl@a542517]
+09:09:07.820 [main] DEBUG org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : typeCode
+09:09:07.820 [main] DEBUG org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : typeName
+09:09:07.820 [main] DEBUG org.hibernate.loader.plan.build.internal.FetchStyleLoadPlanBuildingAssociationVisitationStrategy - Building LoadPlan...
+09:09:07.820 [main] DEBUG org.hibernate.loader.plan.exec.internal.LoadQueryJoinAndFetchProcessor - processing queryspace <gen:0>
+09:09:07.820 [main] DEBUG org.hibernate.loader.plan.build.spi.LoadPlanTreePrinter - LoadPlan(entity=model.Equipmenttype)
+    - Returns
+       - EntityReturnImpl(entity=model.Equipmenttype, querySpaceUid=<gen:0>, path=model.Equipmenttype)
+    - QuerySpaces
+       - EntityQuerySpaceImpl(uid=<gen:0>, entity=model.Equipmenttype)
+          - SQL table alias mapping - equipmentt0_
+          - alias suffix - 0_
+          - suffixed key columns - {equipmen1_2_0_}
+
+09:09:07.820 [main] DEBUG org.hibernate.loader.entity.plan.EntityLoader - Static select for entity model.Equipmenttype [PESSIMISTIC_FORCE_INCREMENT]: select equipmentt0_.equipmentTypeId as equipmen1_2_0_, equipmentt0_.typeCode as typeCode2_2_0_, equipmentt0_.typeName as typeName3_2_0_ from Equipmenttype equipmentt0_ where equipmentt0_.equipmentTypeId=? for update
+09:09:07.820 [main] DEBUG org.hibernate.loader.plan.build.internal.spaces.QuerySpacesImpl - Adding QuerySpace : uid = <gen:0> -> org.hibernate.loader.plan.build.internal.spaces.EntityQuerySpaceImpl@1cb8e12f]
+09:09:07.820 [main] DEBUG org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : typeCode
+09:09:07.820 [main] DEBUG org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : typeName
+09:09:07.820 [main] DEBUG org.hibernate.loader.plan.build.internal.FetchStyleLoadPlanBuildingAssociationVisitationStrategy - Building LoadPlan...
+09:09:07.820 [main] DEBUG org.hibernate.loader.plan.exec.internal.LoadQueryJoinAndFetchProcessor - processing queryspace <gen:0>
+09:09:07.820 [main] DEBUG org.hibernate.loader.plan.build.spi.LoadPlanTreePrinter - LoadPlan(entity=model.Equipmenttype)
+    - Returns
+       - EntityReturnImpl(entity=model.Equipmenttype, querySpaceUid=<gen:0>, path=model.Equipmenttype)
+    - QuerySpaces
+       - EntityQuerySpaceImpl(uid=<gen:0>, entity=model.Equipmenttype)
+          - SQL table alias mapping - equipmentt0_
+          - alias suffix - 0_
+          - suffixed key columns - {equipmen1_2_0_}
+
+09:09:07.820 [main] DEBUG org.hibernate.loader.entity.plan.EntityLoader - Static select for entity model.Equipmenttype [OPTIMISTIC]: select equipmentt0_.equipmentTypeId as equipmen1_2_0_, equipmentt0_.typeCode as typeCode2_2_0_, equipmentt0_.typeName as typeName3_2_0_ from Equipmenttype equipmentt0_ where equipmentt0_.equipmentTypeId=?
+09:09:07.820 [main] DEBUG org.hibernate.loader.plan.build.internal.spaces.QuerySpacesImpl - Adding QuerySpace : uid = <gen:0> -> org.hibernate.loader.plan.build.internal.spaces.EntityQuerySpaceImpl@480d9bfb]
+09:09:07.820 [main] DEBUG org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : typeCode
+09:09:07.820 [main] DEBUG org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : typeName
+09:09:07.820 [main] DEBUG org.hibernate.loader.plan.build.internal.FetchStyleLoadPlanBuildingAssociationVisitationStrategy - Building LoadPlan...
+09:09:07.820 [main] DEBUG org.hibernate.loader.plan.exec.internal.LoadQueryJoinAndFetchProcessor - processing queryspace <gen:0>
+09:09:07.820 [main] DEBUG org.hibernate.loader.plan.build.spi.LoadPlanTreePrinter - LoadPlan(entity=model.Equipmenttype)
+    - Returns
+       - EntityReturnImpl(entity=model.Equipmenttype, querySpaceUid=<gen:0>, path=model.Equipmenttype)
+    - QuerySpaces
+       - EntityQuerySpaceImpl(uid=<gen:0>, entity=model.Equipmenttype)
+          - SQL table alias mapping - equipmentt0_
+          - alias suffix - 0_
+          - suffixed key columns - {equipmen1_2_0_}
+
+09:09:07.820 [main] DEBUG org.hibernate.loader.entity.plan.EntityLoader - Static select for entity model.Equipmenttype [OPTIMISTIC_FORCE_INCREMENT]: select equipmentt0_.equipmentTypeId as equipmen1_2_0_, equipmentt0_.typeCode as typeCode2_2_0_, equipmentt0_.typeName as typeName3_2_0_ from Equipmenttype equipmentt0_ where equipmentt0_.equipmentTypeId=?
+09:09:07.820 [main] DEBUG org.hibernate.loader.Loader - Static select for action ACTION_MERGE on entity model.Equipmenttype: select equipmentt0_.equipmentTypeId as equipmen1_2_0_, equipmentt0_.typeCode as typeCode2_2_0_, equipmentt0_.typeName as typeName3_2_0_ from Equipmenttype equipmentt0_ where equipmentt0_.equipmentTypeId=?
+09:09:07.820 [main] DEBUG org.hibernate.loader.Loader - Static select for action ACTION_REFRESH on entity model.Equipmenttype: select equipmentt0_.equipmentTypeId as equipmen1_2_0_, equipmentt0_.typeCode as typeCode2_2_0_, equipmentt0_.typeName as typeName3_2_0_ from Equipmenttype equipmentt0_ where equipmentt0_.equipmentTypeId=?
+09:09:07.820 [main] DEBUG org.hibernate.persister.entity.AbstractEntityPersister - Static SQL for entity: model.Employee
+09:09:07.820 [main] DEBUG org.hibernate.persister.entity.AbstractEntityPersister -  Version select: select employeeKey from employee where employeeKey =?
+09:09:07.820 [main] DEBUG org.hibernate.persister.entity.AbstractEntityPersister -  Snapshot select: select employee_.employeeKey, employee_.employeeId as employee2_0_, employee_.name as name3_0_ from employee employee_ where employee_.employeeKey=?
+09:09:07.820 [main] DEBUG org.hibernate.persister.entity.AbstractEntityPersister -  Insert 0: insert into employee (employeeId, name, employeeKey) values (?, ?, ?)
+09:09:07.820 [main] DEBUG org.hibernate.persister.entity.AbstractEntityPersister -  Update 0: update employee set employeeId=?, name=? where employeeKey=?
+09:09:07.820 [main] DEBUG org.hibernate.persister.entity.AbstractEntityPersister -  Delete 0: delete from employee where employeeKey=?
+09:09:07.820 [main] DEBUG org.hibernate.persister.entity.AbstractEntityPersister -  Identity insert: insert into employee (employeeId, name) values (?, ?)
+09:09:07.820 [main] DEBUG org.hibernate.loader.plan.build.internal.spaces.QuerySpacesImpl - Adding QuerySpace : uid = <gen:0> -> org.hibernate.loader.plan.build.internal.spaces.EntityQuerySpaceImpl@4d94baeb]
+09:09:07.820 [main] DEBUG org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : employeeId
+09:09:07.820 [main] DEBUG org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : name
+09:09:07.820 [main] DEBUG org.hibernate.loader.plan.build.internal.FetchStyleLoadPlanBuildingAssociationVisitationStrategy - Building LoadPlan...
+09:09:07.820 [main] DEBUG org.hibernate.loader.plan.exec.internal.LoadQueryJoinAndFetchProcessor - processing queryspace <gen:0>
+09:09:07.820 [main] DEBUG org.hibernate.loader.plan.build.spi.LoadPlanTreePrinter - LoadPlan(entity=model.Employee)
+    - Returns
+       - EntityReturnImpl(entity=model.Employee, querySpaceUid=<gen:0>, path=model.Employee)
+    - QuerySpaces
+       - EntityQuerySpaceImpl(uid=<gen:0>, entity=model.Employee)
+          - SQL table alias mapping - employee0_
+          - alias suffix - 0_
+          - suffixed key columns - {employee1_0_0_}
+
+09:09:07.820 [main] DEBUG org.hibernate.loader.entity.plan.EntityLoader - Static select for entity model.Employee [NONE]: select employee0_.employeeKey as employee1_0_0_, employee0_.employeeId as employee2_0_0_, employee0_.name as name3_0_0_ from employee employee0_ where employee0_.employeeKey=?
+09:09:07.820 [main] DEBUG org.hibernate.loader.plan.build.internal.spaces.QuerySpacesImpl - Adding QuerySpace : uid = <gen:0> -> org.hibernate.loader.plan.build.internal.spaces.EntityQuerySpaceImpl@59b8f1f4]
+09:09:07.820 [main] DEBUG org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : employeeId
+09:09:07.820 [main] DEBUG org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : name
+09:09:07.820 [main] DEBUG org.hibernate.loader.plan.build.internal.FetchStyleLoadPlanBuildingAssociationVisitationStrategy - Building LoadPlan...
+09:09:07.820 [main] DEBUG org.hibernate.loader.plan.exec.internal.LoadQueryJoinAndFetchProcessor - processing queryspace <gen:0>
+09:09:07.820 [main] DEBUG org.hibernate.loader.plan.build.spi.LoadPlanTreePrinter - LoadPlan(entity=model.Employee)
+    - Returns
+       - EntityReturnImpl(entity=model.Employee, querySpaceUid=<gen:0>, path=model.Employee)
+    - QuerySpaces
+       - EntityQuerySpaceImpl(uid=<gen:0>, entity=model.Employee)
+          - SQL table alias mapping - employee0_
+          - alias suffix - 0_
+          - suffixed key columns - {employee1_0_0_}
+
+09:09:07.820 [main] DEBUG org.hibernate.loader.entity.plan.EntityLoader - Static select for entity model.Employee [READ]: select employee0_.employeeKey as employee1_0_0_, employee0_.employeeId as employee2_0_0_, employee0_.name as name3_0_0_ from employee employee0_ where employee0_.employeeKey=?
+09:09:07.820 [main] DEBUG org.hibernate.loader.plan.build.internal.spaces.QuerySpacesImpl - Adding QuerySpace : uid = <gen:0> -> org.hibernate.loader.plan.build.internal.spaces.EntityQuerySpaceImpl@538b36bc]
+09:09:07.820 [main] DEBUG org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : employeeId
+09:09:07.820 [main] DEBUG org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : name
+09:09:07.820 [main] DEBUG org.hibernate.loader.plan.build.internal.FetchStyleLoadPlanBuildingAssociationVisitationStrategy - Building LoadPlan...
+09:09:07.820 [main] DEBUG org.hibernate.loader.plan.exec.internal.LoadQueryJoinAndFetchProcessor - processing queryspace <gen:0>
+09:09:07.820 [main] DEBUG org.hibernate.loader.plan.build.spi.LoadPlanTreePrinter - LoadPlan(entity=model.Employee)
+    - Returns
+       - EntityReturnImpl(entity=model.Employee, querySpaceUid=<gen:0>, path=model.Employee)
+    - QuerySpaces
+       - EntityQuerySpaceImpl(uid=<gen:0>, entity=model.Employee)
+          - SQL table alias mapping - employee0_
+          - alias suffix - 0_
+          - suffixed key columns - {employee1_0_0_}
+
+09:09:07.820 [main] DEBUG org.hibernate.loader.entity.plan.EntityLoader - Static select for entity model.Employee [UPGRADE]: select employee0_.employeeKey as employee1_0_0_, employee0_.employeeId as employee2_0_0_, employee0_.name as name3_0_0_ from employee employee0_ where employee0_.employeeKey=? for update
+09:09:07.820 [main] DEBUG org.hibernate.loader.plan.build.internal.spaces.QuerySpacesImpl - Adding QuerySpace : uid = <gen:0> -> org.hibernate.loader.plan.build.internal.spaces.EntityQuerySpaceImpl@431d27fc]
+09:09:07.820 [main] DEBUG org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : employeeId
+09:09:07.820 [main] DEBUG org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : name
+09:09:07.820 [main] DEBUG org.hibernate.loader.plan.build.internal.FetchStyleLoadPlanBuildingAssociationVisitationStrategy - Building LoadPlan...
+09:09:07.820 [main] DEBUG org.hibernate.loader.plan.exec.internal.LoadQueryJoinAndFetchProcessor - processing queryspace <gen:0>
+09:09:07.820 [main] DEBUG org.hibernate.loader.plan.build.spi.LoadPlanTreePrinter - LoadPlan(entity=model.Employee)
+    - Returns
+       - EntityReturnImpl(entity=model.Employee, querySpaceUid=<gen:0>, path=model.Employee)
+    - QuerySpaces
+       - EntityQuerySpaceImpl(uid=<gen:0>, entity=model.Employee)
+          - SQL table alias mapping - employee0_
+          - alias suffix - 0_
+          - suffixed key columns - {employee1_0_0_}
+
+09:09:07.820 [main] DEBUG org.hibernate.loader.entity.plan.EntityLoader - Static select for entity model.Employee [UPGRADE_NOWAIT]: select employee0_.employeeKey as employee1_0_0_, employee0_.employeeId as employee2_0_0_, employee0_.name as name3_0_0_ from employee employee0_ where employee0_.employeeKey=? for update
+09:09:07.820 [main] DEBUG org.hibernate.loader.plan.build.internal.spaces.QuerySpacesImpl - Adding QuerySpace : uid = <gen:0> -> org.hibernate.loader.plan.build.internal.spaces.EntityQuerySpaceImpl@76b0f6bc]
+09:09:07.820 [main] DEBUG org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : employeeId
+09:09:07.820 [main] DEBUG org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : name
+09:09:07.820 [main] DEBUG org.hibernate.loader.plan.build.internal.FetchStyleLoadPlanBuildingAssociationVisitationStrategy - Building LoadPlan...
+09:09:07.820 [main] DEBUG org.hibernate.loader.plan.exec.internal.LoadQueryJoinAndFetchProcessor - processing queryspace <gen:0>
+09:09:07.820 [main] DEBUG org.hibernate.loader.plan.build.spi.LoadPlanTreePrinter - LoadPlan(entity=model.Employee)
+    - Returns
+       - EntityReturnImpl(entity=model.Employee, querySpaceUid=<gen:0>, path=model.Employee)
+    - QuerySpaces
+       - EntityQuerySpaceImpl(uid=<gen:0>, entity=model.Employee)
+          - SQL table alias mapping - employee0_
+          - alias suffix - 0_
+          - suffixed key columns - {employee1_0_0_}
+
+09:09:07.820 [main] DEBUG org.hibernate.loader.entity.plan.EntityLoader - Static select for entity model.Employee [UPGRADE_SKIPLOCKED]: select employee0_.employeeKey as employee1_0_0_, employee0_.employeeId as employee2_0_0_, employee0_.name as name3_0_0_ from employee employee0_ where employee0_.employeeKey=? for update
+09:09:07.820 [main] DEBUG org.hibernate.loader.plan.build.internal.spaces.QuerySpacesImpl - Adding QuerySpace : uid = <gen:0> -> org.hibernate.loader.plan.build.internal.spaces.EntityQuerySpaceImpl@23a4dd39]
+09:09:07.820 [main] DEBUG org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : employeeId
+09:09:07.820 [main] DEBUG org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : name
+09:09:07.820 [main] DEBUG org.hibernate.loader.plan.build.internal.FetchStyleLoadPlanBuildingAssociationVisitationStrategy - Building LoadPlan...
+09:09:07.820 [main] DEBUG org.hibernate.loader.plan.exec.internal.LoadQueryJoinAndFetchProcessor - processing queryspace <gen:0>
+09:09:07.820 [main] DEBUG org.hibernate.loader.plan.build.spi.LoadPlanTreePrinter - LoadPlan(entity=model.Employee)
+    - Returns
+       - EntityReturnImpl(entity=model.Employee, querySpaceUid=<gen:0>, path=model.Employee)
+    - QuerySpaces
+       - EntityQuerySpaceImpl(uid=<gen:0>, entity=model.Employee)
+          - SQL table alias mapping - employee0_
+          - alias suffix - 0_
+          - suffixed key columns - {employee1_0_0_}
+
+09:09:07.820 [main] DEBUG org.hibernate.loader.entity.plan.EntityLoader - Static select for entity model.Employee [FORCE]: select employee0_.employeeKey as employee1_0_0_, employee0_.employeeId as employee2_0_0_, employee0_.name as name3_0_0_ from employee employee0_ where employee0_.employeeKey=? for update
+09:09:07.820 [main] DEBUG org.hibernate.loader.plan.build.internal.spaces.QuerySpacesImpl - Adding QuerySpace : uid = <gen:0> -> org.hibernate.loader.plan.build.internal.spaces.EntityQuerySpaceImpl@e826a6e]
+09:09:07.820 [main] DEBUG org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : employeeId
+09:09:07.820 [main] DEBUG org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : name
+09:09:07.820 [main] DEBUG org.hibernate.loader.plan.build.internal.FetchStyleLoadPlanBuildingAssociationVisitationStrategy - Building LoadPlan...
+09:09:07.820 [main] DEBUG org.hibernate.loader.plan.exec.internal.LoadQueryJoinAndFetchProcessor - processing queryspace <gen:0>
+09:09:07.820 [main] DEBUG org.hibernate.loader.plan.build.spi.LoadPlanTreePrinter - LoadPlan(entity=model.Employee)
+    - Returns
+       - EntityReturnImpl(entity=model.Employee, querySpaceUid=<gen:0>, path=model.Employee)
+    - QuerySpaces
+       - EntityQuerySpaceImpl(uid=<gen:0>, entity=model.Employee)
+          - SQL table alias mapping - employee0_
+          - alias suffix - 0_
+          - suffixed key columns - {employee1_0_0_}
+
+09:09:07.820 [main] DEBUG org.hibernate.loader.entity.plan.EntityLoader - Static select for entity model.Employee [PESSIMISTIC_READ]: select employee0_.employeeKey as employee1_0_0_, employee0_.employeeId as employee2_0_0_, employee0_.name as name3_0_0_ from employee employee0_ where employee0_.employeeKey=? lock in share mode
+09:09:07.820 [main] DEBUG org.hibernate.loader.plan.build.internal.spaces.QuerySpacesImpl - Adding QuerySpace : uid = <gen:0> -> org.hibernate.loader.plan.build.internal.spaces.EntityQuerySpaceImpl@63c7db75]
+09:09:07.820 [main] DEBUG org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : employeeId
+09:09:07.820 [main] DEBUG org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : name
+09:09:07.820 [main] DEBUG org.hibernate.loader.plan.build.internal.FetchStyleLoadPlanBuildingAssociationVisitationStrategy - Building LoadPlan...
+09:09:07.820 [main] DEBUG org.hibernate.loader.plan.exec.internal.LoadQueryJoinAndFetchProcessor - processing queryspace <gen:0>
+09:09:07.820 [main] DEBUG org.hibernate.loader.plan.build.spi.LoadPlanTreePrinter - LoadPlan(entity=model.Employee)
+    - Returns
+       - EntityReturnImpl(entity=model.Employee, querySpaceUid=<gen:0>, path=model.Employee)
+    - QuerySpaces
+       - EntityQuerySpaceImpl(uid=<gen:0>, entity=model.Employee)
+          - SQL table alias mapping - employee0_
+          - alias suffix - 0_
+          - suffixed key columns - {employee1_0_0_}
+
+09:09:07.820 [main] DEBUG org.hibernate.loader.entity.plan.EntityLoader - Static select for entity model.Employee [PESSIMISTIC_WRITE]: select employee0_.employeeKey as employee1_0_0_, employee0_.employeeId as employee2_0_0_, employee0_.name as name3_0_0_ from employee employee0_ where employee0_.employeeKey=? for update
+09:09:07.820 [main] DEBUG org.hibernate.loader.plan.build.internal.spaces.QuerySpacesImpl - Adding QuerySpace : uid = <gen:0> -> org.hibernate.loader.plan.build.internal.spaces.EntityQuerySpaceImpl@3280e80c]
+09:09:07.820 [main] DEBUG org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : employeeId
+09:09:07.820 [main] DEBUG org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : name
+09:09:07.820 [main] DEBUG org.hibernate.loader.plan.build.internal.FetchStyleLoadPlanBuildingAssociationVisitationStrategy - Building LoadPlan...
+09:09:07.820 [main] DEBUG org.hibernate.loader.plan.exec.internal.LoadQueryJoinAndFetchProcessor - processing queryspace <gen:0>
+09:09:07.821 [main] DEBUG org.hibernate.loader.plan.build.spi.LoadPlanTreePrinter - LoadPlan(entity=model.Employee)
+    - Returns
+       - EntityReturnImpl(entity=model.Employee, querySpaceUid=<gen:0>, path=model.Employee)
+    - QuerySpaces
+       - EntityQuerySpaceImpl(uid=<gen:0>, entity=model.Employee)
+          - SQL table alias mapping - employee0_
+          - alias suffix - 0_
+          - suffixed key columns - {employee1_0_0_}
+
+09:09:07.821 [main] DEBUG org.hibernate.loader.entity.plan.EntityLoader - Static select for entity model.Employee [PESSIMISTIC_FORCE_INCREMENT]: select employee0_.employeeKey as employee1_0_0_, employee0_.employeeId as employee2_0_0_, employee0_.name as name3_0_0_ from employee employee0_ where employee0_.employeeKey=? for update
+09:09:07.821 [main] DEBUG org.hibernate.loader.plan.build.internal.spaces.QuerySpacesImpl - Adding QuerySpace : uid = <gen:0> -> org.hibernate.loader.plan.build.internal.spaces.EntityQuerySpaceImpl@7528b890]
+09:09:07.821 [main] DEBUG org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : employeeId
+09:09:07.821 [main] DEBUG org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : name
+09:09:07.821 [main] DEBUG org.hibernate.loader.plan.build.internal.FetchStyleLoadPlanBuildingAssociationVisitationStrategy - Building LoadPlan...
+09:09:07.821 [main] DEBUG org.hibernate.loader.plan.exec.internal.LoadQueryJoinAndFetchProcessor - processing queryspace <gen:0>
+09:09:07.821 [main] DEBUG org.hibernate.loader.plan.build.spi.LoadPlanTreePrinter - LoadPlan(entity=model.Employee)
+    - Returns
+       - EntityReturnImpl(entity=model.Employee, querySpaceUid=<gen:0>, path=model.Employee)
+    - QuerySpaces
+       - EntityQuerySpaceImpl(uid=<gen:0>, entity=model.Employee)
+          - SQL table alias mapping - employee0_
+          - alias suffix - 0_
+          - suffixed key columns - {employee1_0_0_}
+
+09:09:07.821 [main] DEBUG org.hibernate.loader.entity.plan.EntityLoader - Static select for entity model.Employee [OPTIMISTIC]: select employee0_.employeeKey as employee1_0_0_, employee0_.employeeId as employee2_0_0_, employee0_.name as name3_0_0_ from employee employee0_ where employee0_.employeeKey=?
+09:09:07.821 [main] DEBUG org.hibernate.loader.plan.build.internal.spaces.QuerySpacesImpl - Adding QuerySpace : uid = <gen:0> -> org.hibernate.loader.plan.build.internal.spaces.EntityQuerySpaceImpl@eeb2fed]
+09:09:07.821 [main] DEBUG org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : employeeId
+09:09:07.821 [main] DEBUG org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : name
+09:09:07.821 [main] DEBUG org.hibernate.loader.plan.build.internal.FetchStyleLoadPlanBuildingAssociationVisitationStrategy - Building LoadPlan...
+09:09:07.821 [main] DEBUG org.hibernate.loader.plan.exec.internal.LoadQueryJoinAndFetchProcessor - processing queryspace <gen:0>
+09:09:07.821 [main] DEBUG org.hibernate.loader.plan.build.spi.LoadPlanTreePrinter - LoadPlan(entity=model.Employee)
+    - Returns
+       - EntityReturnImpl(entity=model.Employee, querySpaceUid=<gen:0>, path=model.Employee)
+    - QuerySpaces
+       - EntityQuerySpaceImpl(uid=<gen:0>, entity=model.Employee)
+          - SQL table alias mapping - employee0_
+          - alias suffix - 0_
+          - suffixed key columns - {employee1_0_0_}
+
+09:09:07.821 [main] DEBUG org.hibernate.loader.entity.plan.EntityLoader - Static select for entity model.Employee [OPTIMISTIC_FORCE_INCREMENT]: select employee0_.employeeKey as employee1_0_0_, employee0_.employeeId as employee2_0_0_, employee0_.name as name3_0_0_ from employee employee0_ where employee0_.employeeKey=?
+09:09:07.821 [main] DEBUG org.hibernate.loader.Loader - Static select for action ACTION_MERGE on entity model.Employee: select employee0_.employeeKey as employee1_0_0_, employee0_.employeeId as employee2_0_0_, employee0_.name as name3_0_0_ from employee employee0_ where employee0_.employeeKey=?
+09:09:07.821 [main] DEBUG org.hibernate.loader.Loader - Static select for action ACTION_REFRESH on entity model.Employee: select employee0_.employeeKey as employee1_0_0_, employee0_.employeeId as employee2_0_0_, employee0_.name as name3_0_0_ from employee employee0_ where employee0_.employeeKey=?
+09:09:07.821 [main] DEBUG org.hibernate.persister.entity.AbstractEntityPersister - Static SQL for entity: model.Equipment
+09:09:07.821 [main] DEBUG org.hibernate.persister.entity.AbstractEntityPersister -  Version select: select equipmentId from Equipment where equipmentId =?
+09:09:07.821 [main] DEBUG org.hibernate.persister.entity.AbstractEntityPersister -  Snapshot select: select equipment_.equipmentId, equipment_.equipmentTypeId as equipmen5_1_, equipment_.name as name2_1_, equipment_.serial as serial3_1_, equipment_.status as status4_1_ from Equipment equipment_ where equipment_.equipmentId=?
+09:09:07.821 [main] DEBUG org.hibernate.persister.entity.AbstractEntityPersister -  Insert 0: insert into Equipment (equipmentTypeId, name, serial, status, equipmentId) values (?, ?, ?, ?, ?)
+09:09:07.821 [main] DEBUG org.hibernate.persister.entity.AbstractEntityPersister -  Update 0: update Equipment set equipmentTypeId=?, name=?, serial=?, status=? where equipmentId=?
+09:09:07.821 [main] DEBUG org.hibernate.persister.entity.AbstractEntityPersister -  Delete 0: delete from Equipment where equipmentId=?
+09:09:07.821 [main] DEBUG org.hibernate.persister.entity.AbstractEntityPersister -  Identity insert: insert into Equipment (equipmentTypeId, name, serial, status) values (?, ?, ?, ?)
+09:09:07.821 [main] DEBUG org.hibernate.loader.plan.build.internal.spaces.QuerySpacesImpl - Adding QuerySpace : uid = <gen:0> -> org.hibernate.loader.plan.build.internal.spaces.EntityQuerySpaceImpl@58ac0087]
+09:09:07.821 [main] DEBUG org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : equipmenttype
+09:09:07.821 [main] DEBUG org.hibernate.loader.plan.build.internal.spaces.QuerySpacesImpl - Adding QuerySpace : uid = <gen:1> -> org.hibernate.loader.plan.build.internal.spaces.EntityQuerySpaceImpl@4739641d]
+09:09:07.821 [main] DEBUG org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : equipmenttype.typeCode
+09:09:07.821 [main] DEBUG org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : equipmenttype.typeName
+09:09:07.821 [main] DEBUG org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : name
+09:09:07.821 [main] DEBUG org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : serial
+09:09:07.821 [main] DEBUG org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : status
+09:09:07.821 [main] DEBUG org.hibernate.loader.plan.build.internal.FetchStyleLoadPlanBuildingAssociationVisitationStrategy - Building LoadPlan...
+09:09:07.821 [main] DEBUG org.hibernate.loader.plan.exec.internal.LoadQueryJoinAndFetchProcessor - processing queryspace <gen:0>
+09:09:07.821 [main] DEBUG org.hibernate.loader.plan.build.spi.LoadPlanTreePrinter - LoadPlan(entity=model.Equipment)
+    - Returns
+       - EntityReturnImpl(entity=model.Equipment, querySpaceUid=<gen:0>, path=model.Equipment)
+          - EntityAttributeFetchImpl(entity=model.Equipmenttype, querySpaceUid=<gen:1>, path=model.Equipment.equipmenttype)
+    - QuerySpaces
+       - EntityQuerySpaceImpl(uid=<gen:0>, entity=model.Equipment)
+          - SQL table alias mapping - equipment0_
+          - alias suffix - 0_
+          - suffixed key columns - {equipmen1_1_0_}
+          - JOIN (JoinDefinedByMetadata(equipmenttype)) : <gen:0> -> <gen:1>
+             - EntityQuerySpaceImpl(uid=<gen:1>, entity=model.Equipmenttype)
+                - SQL table alias mapping - equipmentt1_
+                - alias suffix - 1_
+                - suffixed key columns - {equipmen1_2_1_}
+
+09:09:07.821 [main] DEBUG org.hibernate.loader.entity.plan.EntityLoader - Static select for entity model.Equipment [NONE]: select equipment0_.equipmentId as equipmen1_1_0_, equipment0_.equipmentTypeId as equipmen5_1_0_, equipment0_.name as name2_1_0_, equipment0_.serial as serial3_1_0_, equipment0_.status as status4_1_0_, equipmentt1_.equipmentTypeId as equipmen1_2_1_, equipmentt1_.typeCode as typeCode2_2_1_, equipmentt1_.typeName as typeName3_2_1_ from Equipment equipment0_ left outer join Equipmenttype equipmentt1_ on equipment0_.equipmentTypeId=equipmentt1_.equipmentTypeId where equipment0_.equipmentId=?
+09:09:07.821 [main] DEBUG org.hibernate.loader.plan.build.internal.spaces.QuerySpacesImpl - Adding QuerySpace : uid = <gen:0> -> org.hibernate.loader.plan.build.internal.spaces.EntityQuerySpaceImpl@117e0108]
+09:09:07.821 [main] DEBUG org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : equipmenttype
+09:09:07.821 [main] DEBUG org.hibernate.loader.plan.build.internal.spaces.QuerySpacesImpl - Adding QuerySpace : uid = <gen:1> -> org.hibernate.loader.plan.build.internal.spaces.EntityQuerySpaceImpl@58792ef6]
+09:09:07.821 [main] DEBUG org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : equipmenttype.typeCode
+09:09:07.821 [main] DEBUG org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : equipmenttype.typeName
+09:09:07.821 [main] DEBUG org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : name
+09:09:07.821 [main] DEBUG org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : serial
+09:09:07.821 [main] DEBUG org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : status
+09:09:07.821 [main] DEBUG org.hibernate.loader.plan.build.internal.FetchStyleLoadPlanBuildingAssociationVisitationStrategy - Building LoadPlan...
+09:09:07.821 [main] DEBUG org.hibernate.loader.plan.exec.internal.LoadQueryJoinAndFetchProcessor - processing queryspace <gen:0>
+09:09:07.821 [main] DEBUG org.hibernate.loader.plan.build.spi.LoadPlanTreePrinter - LoadPlan(entity=model.Equipment)
+    - Returns
+       - EntityReturnImpl(entity=model.Equipment, querySpaceUid=<gen:0>, path=model.Equipment)
+          - EntityAttributeFetchImpl(entity=model.Equipmenttype, querySpaceUid=<gen:1>, path=model.Equipment.equipmenttype)
+    - QuerySpaces
+       - EntityQuerySpaceImpl(uid=<gen:0>, entity=model.Equipment)
+          - SQL table alias mapping - equipment0_
+          - alias suffix - 0_
+          - suffixed key columns - {equipmen1_1_0_}
+          - JOIN (JoinDefinedByMetadata(equipmenttype)) : <gen:0> -> <gen:1>
+             - EntityQuerySpaceImpl(uid=<gen:1>, entity=model.Equipmenttype)
+                - SQL table alias mapping - equipmentt1_
+                - alias suffix - 1_
+                - suffixed key columns - {equipmen1_2_1_}
+
+09:09:07.821 [main] DEBUG org.hibernate.loader.entity.plan.EntityLoader - Static select for entity model.Equipment [READ]: select equipment0_.equipmentId as equipmen1_1_0_, equipment0_.equipmentTypeId as equipmen5_1_0_, equipment0_.name as name2_1_0_, equipment0_.serial as serial3_1_0_, equipment0_.status as status4_1_0_, equipmentt1_.equipmentTypeId as equipmen1_2_1_, equipmentt1_.typeCode as typeCode2_2_1_, equipmentt1_.typeName as typeName3_2_1_ from Equipment equipment0_ left outer join Equipmenttype equipmentt1_ on equipment0_.equipmentTypeId=equipmentt1_.equipmentTypeId where equipment0_.equipmentId=?
+09:09:07.821 [main] DEBUG org.hibernate.loader.plan.build.internal.spaces.QuerySpacesImpl - Adding QuerySpace : uid = <gen:0> -> org.hibernate.loader.plan.build.internal.spaces.EntityQuerySpaceImpl@64791c43]
+09:09:07.821 [main] DEBUG org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : equipmenttype
+09:09:07.821 [main] DEBUG org.hibernate.loader.plan.build.internal.spaces.QuerySpacesImpl - Adding QuerySpace : uid = <gen:1> -> org.hibernate.loader.plan.build.internal.spaces.EntityQuerySpaceImpl@4434881a]
+09:09:07.821 [main] DEBUG org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : name
+09:09:07.821 [main] DEBUG org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : serial
+09:09:07.821 [main] DEBUG org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : status
+09:09:07.821 [main] DEBUG org.hibernate.loader.plan.build.internal.FetchStyleLoadPlanBuildingAssociationVisitationStrategy - Building LoadPlan...
+09:09:07.821 [main] DEBUG org.hibernate.loader.plan.exec.internal.LoadQueryJoinAndFetchProcessor - processing queryspace <gen:0>
+09:09:07.821 [main] DEBUG org.hibernate.loader.plan.build.spi.LoadPlanTreePrinter - LoadPlan(entity=model.Equipment)
+    - Returns
+       - EntityReturnImpl(entity=model.Equipment, querySpaceUid=<gen:0>, path=model.Equipment)
+          - EntityAttributeFetchImpl(entity=model.Equipmenttype, querySpaceUid=<gen:1>, path=model.Equipment.equipmenttype)
+    - QuerySpaces
+       - EntityQuerySpaceImpl(uid=<gen:0>, entity=model.Equipment)
+          - SQL table alias mapping - equipment0_
+          - alias suffix - 0_
+          - suffixed key columns - {equipmen1_1_0_}
+
+09:09:07.821 [main] DEBUG org.hibernate.loader.entity.plan.EntityLoader - Static select for entity model.Equipment [UPGRADE]: select equipment0_.equipmentId as equipmen1_1_0_, equipment0_.equipmentTypeId as equipmen5_1_0_, equipment0_.name as name2_1_0_, equipment0_.serial as serial3_1_0_, equipment0_.status as status4_1_0_ from Equipment equipment0_ where equipment0_.equipmentId=? for update
+09:09:07.821 [main] DEBUG org.hibernate.loader.plan.build.internal.spaces.QuerySpacesImpl - Adding QuerySpace : uid = <gen:0> -> org.hibernate.loader.plan.build.internal.spaces.EntityQuerySpaceImpl@30733038]
+09:09:07.821 [main] DEBUG org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : equipmenttype
+09:09:07.821 [main] DEBUG org.hibernate.loader.plan.build.internal.spaces.QuerySpacesImpl - Adding QuerySpace : uid = <gen:1> -> org.hibernate.loader.plan.build.internal.spaces.EntityQuerySpaceImpl@11f42d14]
+09:09:07.821 [main] DEBUG org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : name
+09:09:07.821 [main] DEBUG org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : serial
+09:09:07.821 [main] DEBUG org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : status
+09:09:07.821 [main] DEBUG org.hibernate.loader.plan.build.internal.FetchStyleLoadPlanBuildingAssociationVisitationStrategy - Building LoadPlan...
+09:09:07.821 [main] DEBUG org.hibernate.loader.plan.exec.internal.LoadQueryJoinAndFetchProcessor - processing queryspace <gen:0>
+09:09:07.821 [main] DEBUG org.hibernate.loader.plan.build.spi.LoadPlanTreePrinter - LoadPlan(entity=model.Equipment)
+    - Returns
+       - EntityReturnImpl(entity=model.Equipment, querySpaceUid=<gen:0>, path=model.Equipment)
+          - EntityAttributeFetchImpl(entity=model.Equipmenttype, querySpaceUid=<gen:1>, path=model.Equipment.equipmenttype)
+    - QuerySpaces
+       - EntityQuerySpaceImpl(uid=<gen:0>, entity=model.Equipment)
+          - SQL table alias mapping - equipment0_
+          - alias suffix - 0_
+          - suffixed key columns - {equipmen1_1_0_}
+
+09:09:07.821 [main] DEBUG org.hibernate.loader.entity.plan.EntityLoader - Static select for entity model.Equipment [UPGRADE_NOWAIT]: select equipment0_.equipmentId as equipmen1_1_0_, equipment0_.equipmentTypeId as equipmen5_1_0_, equipment0_.name as name2_1_0_, equipment0_.serial as serial3_1_0_, equipment0_.status as status4_1_0_ from Equipment equipment0_ where equipment0_.equipmentId=? for update
+09:09:07.821 [main] DEBUG org.hibernate.loader.plan.build.internal.spaces.QuerySpacesImpl - Adding QuerySpace : uid = <gen:0> -> org.hibernate.loader.plan.build.internal.spaces.EntityQuerySpaceImpl@71600368]
+09:09:07.821 [main] DEBUG org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : equipmenttype
+09:09:07.821 [main] DEBUG org.hibernate.loader.plan.build.internal.spaces.QuerySpacesImpl - Adding QuerySpace : uid = <gen:1> -> org.hibernate.loader.plan.build.internal.spaces.EntityQuerySpaceImpl@610d3adb]
+09:09:07.821 [main] DEBUG org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : name
+09:09:07.821 [main] DEBUG org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : serial
+09:09:07.821 [main] DEBUG org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : status
+09:09:07.821 [main] DEBUG org.hibernate.loader.plan.build.internal.FetchStyleLoadPlanBuildingAssociationVisitationStrategy - Building LoadPlan...
+09:09:07.821 [main] DEBUG org.hibernate.loader.plan.exec.internal.LoadQueryJoinAndFetchProcessor - processing queryspace <gen:0>
+09:09:07.821 [main] DEBUG org.hibernate.loader.plan.build.spi.LoadPlanTreePrinter - LoadPlan(entity=model.Equipment)
+    - Returns
+       - EntityReturnImpl(entity=model.Equipment, querySpaceUid=<gen:0>, path=model.Equipment)
+          - EntityAttributeFetchImpl(entity=model.Equipmenttype, querySpaceUid=<gen:1>, path=model.Equipment.equipmenttype)
+    - QuerySpaces
+       - EntityQuerySpaceImpl(uid=<gen:0>, entity=model.Equipment)
+          - SQL table alias mapping - equipment0_
+          - alias suffix - 0_
+          - suffixed key columns - {equipmen1_1_0_}
+
+09:09:07.821 [main] DEBUG org.hibernate.loader.entity.plan.EntityLoader - Static select for entity model.Equipment [UPGRADE_SKIPLOCKED]: select equipment0_.equipmentId as equipmen1_1_0_, equipment0_.equipmentTypeId as equipmen5_1_0_, equipment0_.name as name2_1_0_, equipment0_.serial as serial3_1_0_, equipment0_.status as status4_1_0_ from Equipment equipment0_ where equipment0_.equipmentId=? for update
+09:09:07.821 [main] DEBUG org.hibernate.loader.plan.build.internal.spaces.QuerySpacesImpl - Adding QuerySpace : uid = <gen:0> -> org.hibernate.loader.plan.build.internal.spaces.EntityQuerySpaceImpl@51212763]
+09:09:07.821 [main] DEBUG org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : equipmenttype
+09:09:07.821 [main] DEBUG org.hibernate.loader.plan.build.internal.spaces.QuerySpacesImpl - Adding QuerySpace : uid = <gen:1> -> org.hibernate.loader.plan.build.internal.spaces.EntityQuerySpaceImpl@20ec398a]
+09:09:07.821 [main] DEBUG org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : name
+09:09:07.821 [main] DEBUG org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : serial
+09:09:07.821 [main] DEBUG org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : status
+09:09:07.821 [main] DEBUG org.hibernate.loader.plan.build.internal.FetchStyleLoadPlanBuildingAssociationVisitationStrategy - Building LoadPlan...
+09:09:07.821 [main] DEBUG org.hibernate.loader.plan.exec.internal.LoadQueryJoinAndFetchProcessor - processing queryspace <gen:0>
+09:09:07.821 [main] DEBUG org.hibernate.loader.plan.build.spi.LoadPlanTreePrinter - LoadPlan(entity=model.Equipment)
+    - Returns
+       - EntityReturnImpl(entity=model.Equipment, querySpaceUid=<gen:0>, path=model.Equipment)
+          - EntityAttributeFetchImpl(entity=model.Equipmenttype, querySpaceUid=<gen:1>, path=model.Equipment.equipmenttype)
+    - QuerySpaces
+       - EntityQuerySpaceImpl(uid=<gen:0>, entity=model.Equipment)
+          - SQL table alias mapping - equipment0_
+          - alias suffix - 0_
+          - suffixed key columns - {equipmen1_1_0_}
+
+09:09:07.821 [main] DEBUG org.hibernate.loader.entity.plan.EntityLoader - Static select for entity model.Equipment [FORCE]: select equipment0_.equipmentId as equipmen1_1_0_, equipment0_.equipmentTypeId as equipmen5_1_0_, equipment0_.name as name2_1_0_, equipment0_.serial as serial3_1_0_, equipment0_.status as status4_1_0_ from Equipment equipment0_ where equipment0_.equipmentId=? for update
+09:09:07.821 [main] DEBUG org.hibernate.loader.plan.build.internal.spaces.QuerySpacesImpl - Adding QuerySpace : uid = <gen:0> -> org.hibernate.loader.plan.build.internal.spaces.EntityQuerySpaceImpl@283f04ae]
+09:09:07.821 [main] DEBUG org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : equipmenttype
+09:09:07.821 [main] DEBUG org.hibernate.loader.plan.build.internal.spaces.QuerySpacesImpl - Adding QuerySpace : uid = <gen:1> -> org.hibernate.loader.plan.build.internal.spaces.EntityQuerySpaceImpl@805dfe3]
+09:09:07.821 [main] DEBUG org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : name
+09:09:07.821 [main] DEBUG org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : serial
+09:09:07.821 [main] DEBUG org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : status
+09:09:07.821 [main] DEBUG org.hibernate.loader.plan.build.internal.FetchStyleLoadPlanBuildingAssociationVisitationStrategy - Building LoadPlan...
+09:09:07.821 [main] DEBUG org.hibernate.loader.plan.exec.internal.LoadQueryJoinAndFetchProcessor - processing queryspace <gen:0>
+09:09:07.822 [main] DEBUG org.hibernate.loader.plan.build.spi.LoadPlanTreePrinter - LoadPlan(entity=model.Equipment)
+    - Returns
+       - EntityReturnImpl(entity=model.Equipment, querySpaceUid=<gen:0>, path=model.Equipment)
+          - EntityAttributeFetchImpl(entity=model.Equipmenttype, querySpaceUid=<gen:1>, path=model.Equipment.equipmenttype)
+    - QuerySpaces
+       - EntityQuerySpaceImpl(uid=<gen:0>, entity=model.Equipment)
+          - SQL table alias mapping - equipment0_
+          - alias suffix - 0_
+          - suffixed key columns - {equipmen1_1_0_}
+
+09:09:07.822 [main] DEBUG org.hibernate.loader.entity.plan.EntityLoader - Static select for entity model.Equipment [PESSIMISTIC_READ]: select equipment0_.equipmentId as equipmen1_1_0_, equipment0_.equipmentTypeId as equipmen5_1_0_, equipment0_.name as name2_1_0_, equipment0_.serial as serial3_1_0_, equipment0_.status as status4_1_0_ from Equipment equipment0_ where equipment0_.equipmentId=? lock in share mode
+09:09:07.822 [main] DEBUG org.hibernate.loader.plan.build.internal.spaces.QuerySpacesImpl - Adding QuerySpace : uid = <gen:0> -> org.hibernate.loader.plan.build.internal.spaces.EntityQuerySpaceImpl@49648700]
+09:09:07.822 [main] DEBUG org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : equipmenttype
+09:09:07.822 [main] DEBUG org.hibernate.loader.plan.build.internal.spaces.QuerySpacesImpl - Adding QuerySpace : uid = <gen:1> -> org.hibernate.loader.plan.build.internal.spaces.EntityQuerySpaceImpl@6da5ba]
+09:09:07.822 [main] DEBUG org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : name
+09:09:07.822 [main] DEBUG org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : serial
+09:09:07.822 [main] DEBUG org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : status
+09:09:07.822 [main] DEBUG org.hibernate.loader.plan.build.internal.FetchStyleLoadPlanBuildingAssociationVisitationStrategy - Building LoadPlan...
+09:09:07.822 [main] DEBUG org.hibernate.loader.plan.exec.internal.LoadQueryJoinAndFetchProcessor - processing queryspace <gen:0>
+09:09:07.822 [main] DEBUG org.hibernate.loader.plan.build.spi.LoadPlanTreePrinter - LoadPlan(entity=model.Equipment)
+    - Returns
+       - EntityReturnImpl(entity=model.Equipment, querySpaceUid=<gen:0>, path=model.Equipment)
+          - EntityAttributeFetchImpl(entity=model.Equipmenttype, querySpaceUid=<gen:1>, path=model.Equipment.equipmenttype)
+    - QuerySpaces
+       - EntityQuerySpaceImpl(uid=<gen:0>, entity=model.Equipment)
+          - SQL table alias mapping - equipment0_
+          - alias suffix - 0_
+          - suffixed key columns - {equipmen1_1_0_}
+
+09:09:07.822 [main] DEBUG org.hibernate.loader.entity.plan.EntityLoader - Static select for entity model.Equipment [PESSIMISTIC_WRITE]: select equipment0_.equipmentId as equipmen1_1_0_, equipment0_.equipmentTypeId as equipmen5_1_0_, equipment0_.name as name2_1_0_, equipment0_.serial as serial3_1_0_, equipment0_.status as status4_1_0_ from Equipment equipment0_ where equipment0_.equipmentId=? for update
+09:09:07.822 [main] DEBUG org.hibernate.loader.plan.build.internal.spaces.QuerySpacesImpl - Adding QuerySpace : uid = <gen:0> -> org.hibernate.loader.plan.build.internal.spaces.EntityQuerySpaceImpl@26319893]
+09:09:07.822 [main] DEBUG org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : equipmenttype
+09:09:07.822 [main] DEBUG org.hibernate.loader.plan.build.internal.spaces.QuerySpacesImpl - Adding QuerySpace : uid = <gen:1> -> org.hibernate.loader.plan.build.internal.spaces.EntityQuerySpaceImpl@25c73714]
+09:09:07.822 [main] DEBUG org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : name
+09:09:07.822 [main] DEBUG org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : serial
+09:09:07.822 [main] DEBUG org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : status
+09:09:07.822 [main] DEBUG org.hibernate.loader.plan.build.internal.FetchStyleLoadPlanBuildingAssociationVisitationStrategy - Building LoadPlan...
+09:09:07.822 [main] DEBUG org.hibernate.loader.plan.exec.internal.LoadQueryJoinAndFetchProcessor - processing queryspace <gen:0>
+09:09:07.822 [main] DEBUG org.hibernate.loader.plan.build.spi.LoadPlanTreePrinter - LoadPlan(entity=model.Equipment)
+    - Returns
+       - EntityReturnImpl(entity=model.Equipment, querySpaceUid=<gen:0>, path=model.Equipment)
+          - EntityAttributeFetchImpl(entity=model.Equipmenttype, querySpaceUid=<gen:1>, path=model.Equipment.equipmenttype)
+    - QuerySpaces
+       - EntityQuerySpaceImpl(uid=<gen:0>, entity=model.Equipment)
+          - SQL table alias mapping - equipment0_
+          - alias suffix - 0_
+          - suffixed key columns - {equipmen1_1_0_}
+
+09:09:07.822 [main] DEBUG org.hibernate.loader.entity.plan.EntityLoader - Static select for entity model.Equipment [PESSIMISTIC_FORCE_INCREMENT]: select equipment0_.equipmentId as equipmen1_1_0_, equipment0_.equipmentTypeId as equipmen5_1_0_, equipment0_.name as name2_1_0_, equipment0_.serial as serial3_1_0_, equipment0_.status as status4_1_0_ from Equipment equipment0_ where equipment0_.equipmentId=? for update
+09:09:07.822 [main] DEBUG org.hibernate.loader.plan.build.internal.spaces.QuerySpacesImpl - Adding QuerySpace : uid = <gen:0> -> org.hibernate.loader.plan.build.internal.spaces.EntityQuerySpaceImpl@48ea0663]
+09:09:07.822 [main] DEBUG org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : equipmenttype
+09:09:07.822 [main] DEBUG org.hibernate.loader.plan.build.internal.spaces.QuerySpacesImpl - Adding QuerySpace : uid = <gen:1> -> org.hibernate.loader.plan.build.internal.spaces.EntityQuerySpaceImpl@2b420fbe]
+09:09:07.822 [main] DEBUG org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : name
+09:09:07.822 [main] DEBUG org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : serial
+09:09:07.822 [main] DEBUG org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : status
+09:09:07.822 [main] DEBUG org.hibernate.loader.plan.build.internal.FetchStyleLoadPlanBuildingAssociationVisitationStrategy - Building LoadPlan...
+09:09:07.822 [main] DEBUG org.hibernate.loader.plan.exec.internal.LoadQueryJoinAndFetchProcessor - processing queryspace <gen:0>
+09:09:07.822 [main] DEBUG org.hibernate.loader.plan.build.spi.LoadPlanTreePrinter - LoadPlan(entity=model.Equipment)
+    - Returns
+       - EntityReturnImpl(entity=model.Equipment, querySpaceUid=<gen:0>, path=model.Equipment)
+          - EntityAttributeFetchImpl(entity=model.Equipmenttype, querySpaceUid=<gen:1>, path=model.Equipment.equipmenttype)
+    - QuerySpaces
+       - EntityQuerySpaceImpl(uid=<gen:0>, entity=model.Equipment)
+          - SQL table alias mapping - equipment0_
+          - alias suffix - 0_
+          - suffixed key columns - {equipmen1_1_0_}
+
+09:09:07.822 [main] DEBUG org.hibernate.loader.entity.plan.EntityLoader - Static select for entity model.Equipment [OPTIMISTIC]: select equipment0_.equipmentId as equipmen1_1_0_, equipment0_.equipmentTypeId as equipmen5_1_0_, equipment0_.name as name2_1_0_, equipment0_.serial as serial3_1_0_, equipment0_.status as status4_1_0_ from Equipment equipment0_ where equipment0_.equipmentId=?
+09:09:07.822 [main] DEBUG org.hibernate.loader.plan.build.internal.spaces.QuerySpacesImpl - Adding QuerySpace : uid = <gen:0> -> org.hibernate.loader.plan.build.internal.spaces.EntityQuerySpaceImpl@3721e255]
+09:09:07.822 [main] DEBUG org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : equipmenttype
+09:09:07.822 [main] DEBUG org.hibernate.loader.plan.build.internal.spaces.QuerySpacesImpl - Adding QuerySpace : uid = <gen:1> -> org.hibernate.loader.plan.build.internal.spaces.EntityQuerySpaceImpl@62cf564f]
+09:09:07.822 [main] DEBUG org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : name
+09:09:07.822 [main] DEBUG org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : serial
+09:09:07.822 [main] DEBUG org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : status
+09:09:07.822 [main] DEBUG org.hibernate.loader.plan.build.internal.FetchStyleLoadPlanBuildingAssociationVisitationStrategy - Building LoadPlan...
+09:09:07.822 [main] DEBUG org.hibernate.loader.plan.exec.internal.LoadQueryJoinAndFetchProcessor - processing queryspace <gen:0>
+09:09:07.822 [main] DEBUG org.hibernate.loader.plan.build.spi.LoadPlanTreePrinter - LoadPlan(entity=model.Equipment)
+    - Returns
+       - EntityReturnImpl(entity=model.Equipment, querySpaceUid=<gen:0>, path=model.Equipment)
+          - EntityAttributeFetchImpl(entity=model.Equipmenttype, querySpaceUid=<gen:1>, path=model.Equipment.equipmenttype)
+    - QuerySpaces
+       - EntityQuerySpaceImpl(uid=<gen:0>, entity=model.Equipment)
+          - SQL table alias mapping - equipment0_
+          - alias suffix - 0_
+          - suffixed key columns - {equipmen1_1_0_}
+
+09:09:07.822 [main] DEBUG org.hibernate.loader.entity.plan.EntityLoader - Static select for entity model.Equipment [OPTIMISTIC_FORCE_INCREMENT]: select equipment0_.equipmentId as equipmen1_1_0_, equipment0_.equipmentTypeId as equipmen5_1_0_, equipment0_.name as name2_1_0_, equipment0_.serial as serial3_1_0_, equipment0_.status as status4_1_0_ from Equipment equipment0_ where equipment0_.equipmentId=?
+09:09:07.822 [main] DEBUG org.hibernate.loader.Loader - Static select for action ACTION_MERGE on entity model.Equipment: select equipment0_.equipmentId as equipmen1_1_0_, equipment0_.equipmentTypeId as equipmen5_1_0_, equipment0_.name as name2_1_0_, equipment0_.serial as serial3_1_0_, equipment0_.status as status4_1_0_ from Equipment equipment0_ where equipment0_.equipmentId=?
+09:09:07.822 [main] DEBUG org.hibernate.loader.Loader - Static select for action ACTION_REFRESH on entity model.Equipment: select equipment0_.equipmentId as equipmen1_1_0_, equipment0_.equipmentTypeId as equipmen5_1_0_, equipment0_.name as name2_1_0_, equipment0_.serial as serial3_1_0_, equipment0_.status as status4_1_0_ from Equipment equipment0_ where equipment0_.equipmentId=?
+09:09:07.822 [main] DEBUG org.hibernate.persister.entity.AbstractEntityPersister - Static SQL for entity: model.Reservation
+09:09:07.822 [main] DEBUG org.hibernate.persister.entity.AbstractEntityPersister -  Version select: select reservationId from Reservation where reservationId =?
+09:09:07.822 [main] DEBUG org.hibernate.persister.entity.AbstractEntityPersister -  Snapshot select: select reservatio_.reservationId, reservatio_.date_return as date_ret2_3_, reservatio_.date_take as date_tak3_3_, reservatio_.employeeKey as employee5_3_, reservatio_.equipmentId as equipmen6_3_, reservatio_.reservationType as reservat4_3_ from Reservation reservatio_ where reservatio_.reservationId=?
+09:09:07.822 [main] DEBUG org.hibernate.persister.entity.AbstractEntityPersister -  Insert 0: insert into Reservation (date_return, date_take, employeeKey, equipmentId, reservationType, reservationId) values (?, ?, ?, ?, ?, ?)
+09:09:07.822 [main] DEBUG org.hibernate.persister.entity.AbstractEntityPersister -  Update 0: update Reservation set date_return=?, date_take=?, employeeKey=?, equipmentId=?, reservationType=? where reservationId=?
+09:09:07.822 [main] DEBUG org.hibernate.persister.entity.AbstractEntityPersister -  Delete 0: delete from Reservation where reservationId=?
+09:09:07.822 [main] DEBUG org.hibernate.persister.entity.AbstractEntityPersister -  Identity insert: insert into Reservation (date_return, date_take, employeeKey, equipmentId, reservationType) values (?, ?, ?, ?, ?)
+09:09:07.822 [main] DEBUG org.hibernate.loader.plan.build.internal.spaces.QuerySpacesImpl - Adding QuerySpace : uid = <gen:0> -> org.hibernate.loader.plan.build.internal.spaces.EntityQuerySpaceImpl@59cb8a57]
+09:09:07.822 [main] DEBUG org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : dateReturn
+09:09:07.822 [main] DEBUG org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : dateTake
+09:09:07.822 [main] DEBUG org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : employee
+09:09:07.822 [main] DEBUG org.hibernate.loader.plan.build.internal.spaces.QuerySpacesImpl - Adding QuerySpace : uid = <gen:1> -> org.hibernate.loader.plan.build.internal.spaces.EntityQuerySpaceImpl@4f1049c6]
+09:09:07.822 [main] DEBUG org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : employee.employeeId
+09:09:07.822 [main] DEBUG org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : employee.name
+09:09:07.822 [main] DEBUG org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : equipment
+09:09:07.822 [main] DEBUG org.hibernate.loader.plan.build.internal.spaces.QuerySpacesImpl - Adding QuerySpace : uid = <gen:2> -> org.hibernate.loader.plan.build.internal.spaces.EntityQuerySpaceImpl@52e9a2de]
+09:09:07.822 [main] DEBUG org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : equipment.equipmenttype
+09:09:07.822 [main] DEBUG org.hibernate.loader.plan.build.internal.spaces.QuerySpacesImpl - Adding QuerySpace : uid = <gen:3> -> org.hibernate.loader.plan.build.internal.spaces.EntityQuerySpaceImpl@799f7abc]
+09:09:07.822 [main] DEBUG org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : equipment.equipmenttype.typeCode
+09:09:07.822 [main] DEBUG org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : equipment.equipmenttype.typeName
+09:09:07.822 [main] DEBUG org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : equipment.name
+09:09:07.822 [main] DEBUG org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : equipment.serial
+09:09:07.822 [main] DEBUG org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : equipment.status
+09:09:07.822 [main] DEBUG org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : reservationType
+09:09:07.822 [main] DEBUG org.hibernate.loader.plan.build.internal.FetchStyleLoadPlanBuildingAssociationVisitationStrategy - Building LoadPlan...
+09:09:07.822 [main] DEBUG org.hibernate.loader.plan.exec.internal.LoadQueryJoinAndFetchProcessor - processing queryspace <gen:0>
+09:09:07.822 [main] DEBUG org.hibernate.loader.plan.build.spi.LoadPlanTreePrinter - LoadPlan(entity=model.Reservation)
+    - Returns
+       - EntityReturnImpl(entity=model.Reservation, querySpaceUid=<gen:0>, path=model.Reservation)
+          - EntityAttributeFetchImpl(entity=model.Employee, querySpaceUid=<gen:1>, path=model.Reservation.employee)
+          - EntityAttributeFetchImpl(entity=model.Equipment, querySpaceUid=<gen:2>, path=model.Reservation.equipment)
+             - EntityAttributeFetchImpl(entity=model.Equipmenttype, querySpaceUid=<gen:3>, path=model.Reservation.equipment.equipmenttype)
+    - QuerySpaces
+       - EntityQuerySpaceImpl(uid=<gen:0>, entity=model.Reservation)
+          - SQL table alias mapping - reservatio0_
+          - alias suffix - 0_
+          - suffixed key columns - {reservat1_3_0_}
+          - JOIN (JoinDefinedByMetadata(employee)) : <gen:0> -> <gen:1>
+             - EntityQuerySpaceImpl(uid=<gen:1>, entity=model.Employee)
+                - SQL table alias mapping - employee1_
+                - alias suffix - 1_
+                - suffixed key columns - {employee1_0_1_}
+          - JOIN (JoinDefinedByMetadata(equipment)) : <gen:0> -> <gen:2>
+             - EntityQuerySpaceImpl(uid=<gen:2>, entity=model.Equipment)
+                - SQL table alias mapping - equipment2_
+                - alias suffix - 2_
+                - suffixed key columns - {equipmen1_1_2_}
+                - JOIN (JoinDefinedByMetadata(equipmenttype)) : <gen:2> -> <gen:3>
+                   - EntityQuerySpaceImpl(uid=<gen:3>, entity=model.Equipmenttype)
+                      - SQL table alias mapping - equipmentt3_
+                      - alias suffix - 3_
+                      - suffixed key columns - {equipmen1_2_3_}
+
+09:09:07.822 [main] DEBUG org.hibernate.loader.entity.plan.EntityLoader - Static select for entity model.Reservation [NONE]: select reservatio0_.reservationId as reservat1_3_0_, reservatio0_.date_return as date_ret2_3_0_, reservatio0_.date_take as date_tak3_3_0_, reservatio0_.employeeKey as employee5_3_0_, reservatio0_.equipmentId as equipmen6_3_0_, reservatio0_.reservationType as reservat4_3_0_, employee1_.employeeKey as employee1_0_1_, employee1_.employeeId as employee2_0_1_, employee1_.name as name3_0_1_, equipment2_.equipmentId as equipmen1_1_2_, equipment2_.equipmentTypeId as equipmen5_1_2_, equipment2_.name as name2_1_2_, equipment2_.serial as serial3_1_2_, equipment2_.status as status4_1_2_, equipmentt3_.equipmentTypeId as equipmen1_2_3_, equipmentt3_.typeCode as typeCode2_2_3_, equipmentt3_.typeName as typeName3_2_3_ from Reservation reservatio0_ left outer join employee employee1_ on reservatio0_.employeeKey=employee1_.employeeKey left outer join Equipment equipment2_ on reservatio0_.equipmentId=equipment2_.equipmentId left outer join Equipmenttype equipmentt3_ on equipment2_.equipmentTypeId=equipmentt3_.equipmentTypeId where reservatio0_.reservationId=?
+09:09:07.822 [main] DEBUG org.hibernate.loader.plan.build.internal.spaces.QuerySpacesImpl - Adding QuerySpace : uid = <gen:0> -> org.hibernate.loader.plan.build.internal.spaces.EntityQuerySpaceImpl@19ef0cbc]
+09:09:07.822 [main] DEBUG org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : dateReturn
+09:09:07.822 [main] DEBUG org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : dateTake
+09:09:07.822 [main] DEBUG org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : employee
+09:09:07.822 [main] DEBUG org.hibernate.loader.plan.build.internal.spaces.QuerySpacesImpl - Adding QuerySpace : uid = <gen:1> -> org.hibernate.loader.plan.build.internal.spaces.EntityQuerySpaceImpl@4d214d03]
+09:09:07.822 [main] DEBUG org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : employee.employeeId
+09:09:07.822 [main] DEBUG org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : employee.name
+09:09:07.822 [main] DEBUG org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : equipment
+09:09:07.822 [main] DEBUG org.hibernate.loader.plan.build.internal.spaces.QuerySpacesImpl - Adding QuerySpace : uid = <gen:2> -> org.hibernate.loader.plan.build.internal.spaces.EntityQuerySpaceImpl@57318d74]
+09:09:07.822 [main] DEBUG org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : equipment.equipmenttype
+09:09:07.822 [main] DEBUG org.hibernate.loader.plan.build.internal.spaces.QuerySpacesImpl - Adding QuerySpace : uid = <gen:3> -> org.hibernate.loader.plan.build.internal.spaces.EntityQuerySpaceImpl@13f38ac7]
+09:09:07.822 [main] DEBUG org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : equipment.equipmenttype.typeCode
+09:09:07.822 [main] DEBUG org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : equipment.equipmenttype.typeName
+09:09:07.822 [main] DEBUG org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : equipment.name
+09:09:07.822 [main] DEBUG org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : equipment.serial
+09:09:07.822 [main] DEBUG org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : equipment.status
+09:09:07.822 [main] DEBUG org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : reservationType
+09:09:07.822 [main] DEBUG org.hibernate.loader.plan.build.internal.FetchStyleLoadPlanBuildingAssociationVisitationStrategy - Building LoadPlan...
+09:09:07.822 [main] DEBUG org.hibernate.loader.plan.exec.internal.LoadQueryJoinAndFetchProcessor - processing queryspace <gen:0>
+09:09:07.822 [main] DEBUG org.hibernate.loader.plan.build.spi.LoadPlanTreePrinter - LoadPlan(entity=model.Reservation)
+    - Returns
+       - EntityReturnImpl(entity=model.Reservation, querySpaceUid=<gen:0>, path=model.Reservation)
+          - EntityAttributeFetchImpl(entity=model.Employee, querySpaceUid=<gen:1>, path=model.Reservation.employee)
+          - EntityAttributeFetchImpl(entity=model.Equipment, querySpaceUid=<gen:2>, path=model.Reservation.equipment)
+             - EntityAttributeFetchImpl(entity=model.Equipmenttype, querySpaceUid=<gen:3>, path=model.Reservation.equipment.equipmenttype)
+    - QuerySpaces
+       - EntityQuerySpaceImpl(uid=<gen:0>, entity=model.Reservation)
+          - SQL table alias mapping - reservatio0_
+          - alias suffix - 0_
+          - suffixed key columns - {reservat1_3_0_}
+          - JOIN (JoinDefinedByMetadata(employee)) : <gen:0> -> <gen:1>
+             - EntityQuerySpaceImpl(uid=<gen:1>, entity=model.Employee)
+                - SQL table alias mapping - employee1_
+                - alias suffix - 1_
+                - suffixed key columns - {employee1_0_1_}
+          - JOIN (JoinDefinedByMetadata(equipment)) : <gen:0> -> <gen:2>
+             - EntityQuerySpaceImpl(uid=<gen:2>, entity=model.Equipment)
+                - SQL table alias mapping - equipment2_
+                - alias suffix - 2_
+                - suffixed key columns - {equipmen1_1_2_}
+                - JOIN (JoinDefinedByMetadata(equipmenttype)) : <gen:2> -> <gen:3>
+                   - EntityQuerySpaceImpl(uid=<gen:3>, entity=model.Equipmenttype)
+                      - SQL table alias mapping - equipmentt3_
+                      - alias suffix - 3_
+                      - suffixed key columns - {equipmen1_2_3_}
+
+09:09:07.823 [main] DEBUG org.hibernate.loader.entity.plan.EntityLoader - Static select for entity model.Reservation [READ]: select reservatio0_.reservationId as reservat1_3_0_, reservatio0_.date_return as date_ret2_3_0_, reservatio0_.date_take as date_tak3_3_0_, reservatio0_.employeeKey as employee5_3_0_, reservatio0_.equipmentId as equipmen6_3_0_, reservatio0_.reservationType as reservat4_3_0_, employee1_.employeeKey as employee1_0_1_, employee1_.employeeId as employee2_0_1_, employee1_.name as name3_0_1_, equipment2_.equipmentId as equipmen1_1_2_, equipment2_.equipmentTypeId as equipmen5_1_2_, equipment2_.name as name2_1_2_, equipment2_.serial as serial3_1_2_, equipment2_.status as status4_1_2_, equipmentt3_.equipmentTypeId as equipmen1_2_3_, equipmentt3_.typeCode as typeCode2_2_3_, equipmentt3_.typeName as typeName3_2_3_ from Reservation reservatio0_ left outer join employee employee1_ on reservatio0_.employeeKey=employee1_.employeeKey left outer join Equipment equipment2_ on reservatio0_.equipmentId=equipment2_.equipmentId left outer join Equipmenttype equipmentt3_ on equipment2_.equipmentTypeId=equipmentt3_.equipmentTypeId where reservatio0_.reservationId=?
+09:09:07.823 [main] DEBUG org.hibernate.loader.plan.build.internal.spaces.QuerySpacesImpl - Adding QuerySpace : uid = <gen:0> -> org.hibernate.loader.plan.build.internal.spaces.EntityQuerySpaceImpl@2926415e]
+09:09:07.823 [main] DEBUG org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : dateReturn
+09:09:07.823 [main] DEBUG org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : dateTake
+09:09:07.823 [main] DEBUG org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : employee
+09:09:07.823 [main] DEBUG org.hibernate.loader.plan.build.internal.spaces.QuerySpacesImpl - Adding QuerySpace : uid = <gen:1> -> org.hibernate.loader.plan.build.internal.spaces.EntityQuerySpaceImpl@1ea9b05d]
+09:09:07.823 [main] DEBUG org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : equipment
+09:09:07.823 [main] DEBUG org.hibernate.loader.plan.build.internal.spaces.QuerySpacesImpl - Adding QuerySpace : uid = <gen:2> -> org.hibernate.loader.plan.build.internal.spaces.EntityQuerySpaceImpl@5587767b]
+09:09:07.823 [main] DEBUG org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : reservationType
+09:09:07.823 [main] DEBUG org.hibernate.loader.plan.build.internal.FetchStyleLoadPlanBuildingAssociationVisitationStrategy - Building LoadPlan...
+09:09:07.823 [main] DEBUG org.hibernate.loader.plan.exec.internal.LoadQueryJoinAndFetchProcessor - processing queryspace <gen:0>
+09:09:07.823 [main] DEBUG org.hibernate.loader.plan.build.spi.LoadPlanTreePrinter - LoadPlan(entity=model.Reservation)
+    - Returns
+       - EntityReturnImpl(entity=model.Reservation, querySpaceUid=<gen:0>, path=model.Reservation)
+          - EntityAttributeFetchImpl(entity=model.Employee, querySpaceUid=<gen:1>, path=model.Reservation.employee)
+          - EntityAttributeFetchImpl(entity=model.Equipment, querySpaceUid=<gen:2>, path=model.Reservation.equipment)
+    - QuerySpaces
+       - EntityQuerySpaceImpl(uid=<gen:0>, entity=model.Reservation)
+          - SQL table alias mapping - reservatio0_
+          - alias suffix - 0_
+          - suffixed key columns - {reservat1_3_0_}
+
+09:09:07.823 [main] DEBUG org.hibernate.loader.entity.plan.EntityLoader - Static select for entity model.Reservation [UPGRADE]: select reservatio0_.reservationId as reservat1_3_0_, reservatio0_.date_return as date_ret2_3_0_, reservatio0_.date_take as date_tak3_3_0_, reservatio0_.employeeKey as employee5_3_0_, reservatio0_.equipmentId as equipmen6_3_0_, reservatio0_.reservationType as reservat4_3_0_ from Reservation reservatio0_ where reservatio0_.reservationId=? for update
+09:09:07.823 [main] DEBUG org.hibernate.loader.plan.build.internal.spaces.QuerySpacesImpl - Adding QuerySpace : uid = <gen:0> -> org.hibernate.loader.plan.build.internal.spaces.EntityQuerySpaceImpl@4e30e124]
+09:09:07.823 [main] DEBUG org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : dateReturn
+09:09:07.823 [main] DEBUG org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : dateTake
+09:09:07.823 [main] DEBUG org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : employee
+09:09:07.823 [main] DEBUG org.hibernate.loader.plan.build.internal.spaces.QuerySpacesImpl - Adding QuerySpace : uid = <gen:1> -> org.hibernate.loader.plan.build.internal.spaces.EntityQuerySpaceImpl@116f5d48]
+09:09:07.823 [main] DEBUG org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : equipment
+09:09:07.823 [main] DEBUG org.hibernate.loader.plan.build.internal.spaces.QuerySpacesImpl - Adding QuerySpace : uid = <gen:2> -> org.hibernate.loader.plan.build.internal.spaces.EntityQuerySpaceImpl@7f35d5b0]
+09:09:07.823 [main] DEBUG org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : reservationType
+09:09:07.823 [main] DEBUG org.hibernate.loader.plan.build.internal.FetchStyleLoadPlanBuildingAssociationVisitationStrategy - Building LoadPlan...
+09:09:07.823 [main] DEBUG org.hibernate.loader.plan.exec.internal.LoadQueryJoinAndFetchProcessor - processing queryspace <gen:0>
+09:09:07.823 [main] DEBUG org.hibernate.loader.plan.build.spi.LoadPlanTreePrinter - LoadPlan(entity=model.Reservation)
+    - Returns
+       - EntityReturnImpl(entity=model.Reservation, querySpaceUid=<gen:0>, path=model.Reservation)
+          - EntityAttributeFetchImpl(entity=model.Employee, querySpaceUid=<gen:1>, path=model.Reservation.employee)
+          - EntityAttributeFetchImpl(entity=model.Equipment, querySpaceUid=<gen:2>, path=model.Reservation.equipment)
+    - QuerySpaces
+       - EntityQuerySpaceImpl(uid=<gen:0>, entity=model.Reservation)
+          - SQL table alias mapping - reservatio0_
+          - alias suffix - 0_
+          - suffixed key columns - {reservat1_3_0_}
+
+09:09:07.823 [main] DEBUG org.hibernate.loader.entity.plan.EntityLoader - Static select for entity model.Reservation [UPGRADE_NOWAIT]: select reservatio0_.reservationId as reservat1_3_0_, reservatio0_.date_return as date_ret2_3_0_, reservatio0_.date_take as date_tak3_3_0_, reservatio0_.employeeKey as employee5_3_0_, reservatio0_.equipmentId as equipmen6_3_0_, reservatio0_.reservationType as reservat4_3_0_ from Reservation reservatio0_ where reservatio0_.reservationId=? for update
+09:09:07.823 [main] DEBUG org.hibernate.loader.plan.build.internal.spaces.QuerySpacesImpl - Adding QuerySpace : uid = <gen:0> -> org.hibernate.loader.plan.build.internal.spaces.EntityQuerySpaceImpl@364532b3]
+09:09:07.823 [main] DEBUG org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : dateReturn
+09:09:07.823 [main] DEBUG org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : dateTake
+09:09:07.823 [main] DEBUG org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : employee
+09:09:07.823 [main] DEBUG org.hibernate.loader.plan.build.internal.spaces.QuerySpacesImpl - Adding QuerySpace : uid = <gen:1> -> org.hibernate.loader.plan.build.internal.spaces.EntityQuerySpaceImpl@26f74cdc]
+09:09:07.823 [main] DEBUG org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : equipment
+09:09:07.823 [main] DEBUG org.hibernate.loader.plan.build.internal.spaces.QuerySpacesImpl - Adding QuerySpace : uid = <gen:2> -> org.hibernate.loader.plan.build.internal.spaces.EntityQuerySpaceImpl@773e85e7]
+09:09:07.823 [main] DEBUG org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : reservationType
+09:09:07.823 [main] DEBUG org.hibernate.loader.plan.build.internal.FetchStyleLoadPlanBuildingAssociationVisitationStrategy - Building LoadPlan...
+09:09:07.823 [main] DEBUG org.hibernate.loader.plan.exec.internal.LoadQueryJoinAndFetchProcessor - processing queryspace <gen:0>
+09:09:07.823 [main] DEBUG org.hibernate.loader.plan.build.spi.LoadPlanTreePrinter - LoadPlan(entity=model.Reservation)
+    - Returns
+       - EntityReturnImpl(entity=model.Reservation, querySpaceUid=<gen:0>, path=model.Reservation)
+          - EntityAttributeFetchImpl(entity=model.Employee, querySpaceUid=<gen:1>, path=model.Reservation.employee)
+          - EntityAttributeFetchImpl(entity=model.Equipment, querySpaceUid=<gen:2>, path=model.Reservation.equipment)
+    - QuerySpaces
+       - EntityQuerySpaceImpl(uid=<gen:0>, entity=model.Reservation)
+          - SQL table alias mapping - reservatio0_
+          - alias suffix - 0_
+          - suffixed key columns - {reservat1_3_0_}
+
+09:09:07.823 [main] DEBUG org.hibernate.loader.entity.plan.EntityLoader - Static select for entity model.Reservation [UPGRADE_SKIPLOCKED]: select reservatio0_.reservationId as reservat1_3_0_, reservatio0_.date_return as date_ret2_3_0_, reservatio0_.date_take as date_tak3_3_0_, reservatio0_.employeeKey as employee5_3_0_, reservatio0_.equipmentId as equipmen6_3_0_, reservatio0_.reservationType as reservat4_3_0_ from Reservation reservatio0_ where reservatio0_.reservationId=? for update
+09:09:07.823 [main] DEBUG org.hibernate.loader.plan.build.internal.spaces.QuerySpacesImpl - Adding QuerySpace : uid = <gen:0> -> org.hibernate.loader.plan.build.internal.spaces.EntityQuerySpaceImpl@6871f119]
+09:09:07.823 [main] DEBUG org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : dateReturn
+09:09:07.823 [main] DEBUG org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : dateTake
+09:09:07.823 [main] DEBUG org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : employee
+09:09:07.823 [main] DEBUG org.hibernate.loader.plan.build.internal.spaces.QuerySpacesImpl - Adding QuerySpace : uid = <gen:1> -> org.hibernate.loader.plan.build.internal.spaces.EntityQuerySpaceImpl@778f2130]
+09:09:07.823 [main] DEBUG org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : equipment
+09:09:07.823 [main] DEBUG org.hibernate.loader.plan.build.internal.spaces.QuerySpacesImpl - Adding QuerySpace : uid = <gen:2> -> org.hibernate.loader.plan.build.internal.spaces.EntityQuerySpaceImpl@741d839b]
+09:09:07.823 [main] DEBUG org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : reservationType
+09:09:07.823 [main] DEBUG org.hibernate.loader.plan.build.internal.FetchStyleLoadPlanBuildingAssociationVisitationStrategy - Building LoadPlan...
+09:09:07.823 [main] DEBUG org.hibernate.loader.plan.exec.internal.LoadQueryJoinAndFetchProcessor - processing queryspace <gen:0>
+09:09:07.823 [main] DEBUG org.hibernate.loader.plan.build.spi.LoadPlanTreePrinter - LoadPlan(entity=model.Reservation)
+    - Returns
+       - EntityReturnImpl(entity=model.Reservation, querySpaceUid=<gen:0>, path=model.Reservation)
+          - EntityAttributeFetchImpl(entity=model.Employee, querySpaceUid=<gen:1>, path=model.Reservation.employee)
+          - EntityAttributeFetchImpl(entity=model.Equipment, querySpaceUid=<gen:2>, path=model.Reservation.equipment)
+    - QuerySpaces
+       - EntityQuerySpaceImpl(uid=<gen:0>, entity=model.Reservation)
+          - SQL table alias mapping - reservatio0_
+          - alias suffix - 0_
+          - suffixed key columns - {reservat1_3_0_}
+
+09:09:07.823 [main] DEBUG org.hibernate.loader.entity.plan.EntityLoader - Static select for entity model.Reservation [FORCE]: select reservatio0_.reservationId as reservat1_3_0_, reservatio0_.date_return as date_ret2_3_0_, reservatio0_.date_take as date_tak3_3_0_, reservatio0_.employeeKey as employee5_3_0_, reservatio0_.equipmentId as equipmen6_3_0_, reservatio0_.reservationType as reservat4_3_0_ from Reservation reservatio0_ where reservatio0_.reservationId=? for update
+09:09:07.823 [main] DEBUG org.hibernate.loader.plan.build.internal.spaces.QuerySpacesImpl - Adding QuerySpace : uid = <gen:0> -> org.hibernate.loader.plan.build.internal.spaces.EntityQuerySpaceImpl@13835d38]
+09:09:07.823 [main] DEBUG org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : dateReturn
+09:09:07.823 [main] DEBUG org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : dateTake
+09:09:07.823 [main] DEBUG org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : employee
+09:09:07.823 [main] DEBUG org.hibernate.loader.plan.build.internal.spaces.QuerySpacesImpl - Adding QuerySpace : uid = <gen:1> -> org.hibernate.loader.plan.build.internal.spaces.EntityQuerySpaceImpl@667b6f76]
+09:09:07.823 [main] DEBUG org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : equipment
+09:09:07.823 [main] DEBUG org.hibernate.loader.plan.build.internal.spaces.QuerySpacesImpl - Adding QuerySpace : uid = <gen:2> -> org.hibernate.loader.plan.build.internal.spaces.EntityQuerySpaceImpl@7e623979]
+09:09:07.823 [main] DEBUG org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : reservationType
+09:09:07.823 [main] DEBUG org.hibernate.loader.plan.build.internal.FetchStyleLoadPlanBuildingAssociationVisitationStrategy - Building LoadPlan...
+09:09:07.823 [main] DEBUG org.hibernate.loader.plan.exec.internal.LoadQueryJoinAndFetchProcessor - processing queryspace <gen:0>
+09:09:07.823 [main] DEBUG org.hibernate.loader.plan.build.spi.LoadPlanTreePrinter - LoadPlan(entity=model.Reservation)
+    - Returns
+       - EntityReturnImpl(entity=model.Reservation, querySpaceUid=<gen:0>, path=model.Reservation)
+          - EntityAttributeFetchImpl(entity=model.Employee, querySpaceUid=<gen:1>, path=model.Reservation.employee)
+          - EntityAttributeFetchImpl(entity=model.Equipment, querySpaceUid=<gen:2>, path=model.Reservation.equipment)
+    - QuerySpaces
+       - EntityQuerySpaceImpl(uid=<gen:0>, entity=model.Reservation)
+          - SQL table alias mapping - reservatio0_
+          - alias suffix - 0_
+          - suffixed key columns - {reservat1_3_0_}
+
+09:09:07.823 [main] DEBUG org.hibernate.loader.entity.plan.EntityLoader - Static select for entity model.Reservation [PESSIMISTIC_READ]: select reservatio0_.reservationId as reservat1_3_0_, reservatio0_.date_return as date_ret2_3_0_, reservatio0_.date_take as date_tak3_3_0_, reservatio0_.employeeKey as employee5_3_0_, reservatio0_.equipmentId as equipmen6_3_0_, reservatio0_.reservationType as reservat4_3_0_ from Reservation reservatio0_ where reservatio0_.reservationId=? lock in share mode
+09:09:07.823 [main] DEBUG org.hibernate.loader.plan.build.internal.spaces.QuerySpacesImpl - Adding QuerySpace : uid = <gen:0> -> org.hibernate.loader.plan.build.internal.spaces.EntityQuerySpaceImpl@7781c110]
+09:09:07.823 [main] DEBUG org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : dateReturn
+09:09:07.823 [main] DEBUG org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : dateTake
+09:09:07.823 [main] DEBUG org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : employee
+09:09:07.823 [main] DEBUG org.hibernate.loader.plan.build.internal.spaces.QuerySpacesImpl - Adding QuerySpace : uid = <gen:1> -> org.hibernate.loader.plan.build.internal.spaces.EntityQuerySpaceImpl@38125188]
+09:09:07.823 [main] DEBUG org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : equipment
+09:09:07.823 [main] DEBUG org.hibernate.loader.plan.build.internal.spaces.QuerySpacesImpl - Adding QuerySpace : uid = <gen:2> -> org.hibernate.loader.plan.build.internal.spaces.EntityQuerySpaceImpl@57d41e02]
+09:09:07.823 [main] DEBUG org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : reservationType
+09:09:07.823 [main] DEBUG org.hibernate.loader.plan.build.internal.FetchStyleLoadPlanBuildingAssociationVisitationStrategy - Building LoadPlan...
+09:09:07.823 [main] DEBUG org.hibernate.loader.plan.exec.internal.LoadQueryJoinAndFetchProcessor - processing queryspace <gen:0>
+09:09:07.823 [main] DEBUG org.hibernate.loader.plan.build.spi.LoadPlanTreePrinter - LoadPlan(entity=model.Reservation)
+    - Returns
+       - EntityReturnImpl(entity=model.Reservation, querySpaceUid=<gen:0>, path=model.Reservation)
+          - EntityAttributeFetchImpl(entity=model.Employee, querySpaceUid=<gen:1>, path=model.Reservation.employee)
+          - EntityAttributeFetchImpl(entity=model.Equipment, querySpaceUid=<gen:2>, path=model.Reservation.equipment)
+    - QuerySpaces
+       - EntityQuerySpaceImpl(uid=<gen:0>, entity=model.Reservation)
+          - SQL table alias mapping - reservatio0_
+          - alias suffix - 0_
+          - suffixed key columns - {reservat1_3_0_}
+
+09:09:07.823 [main] DEBUG org.hibernate.loader.entity.plan.EntityLoader - Static select for entity model.Reservation [PESSIMISTIC_WRITE]: select reservatio0_.reservationId as reservat1_3_0_, reservatio0_.date_return as date_ret2_3_0_, reservatio0_.date_take as date_tak3_3_0_, reservatio0_.employeeKey as employee5_3_0_, reservatio0_.equipmentId as equipmen6_3_0_, reservatio0_.reservationType as reservat4_3_0_ from Reservation reservatio0_ where reservatio0_.reservationId=? for update
+09:09:07.823 [main] DEBUG org.hibernate.loader.plan.build.internal.spaces.QuerySpacesImpl - Adding QuerySpace : uid = <gen:0> -> org.hibernate.loader.plan.build.internal.spaces.EntityQuerySpaceImpl@2ea4cca9]
+09:09:07.823 [main] DEBUG org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : dateReturn
+09:09:07.823 [main] DEBUG org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : dateTake
+09:09:07.823 [main] DEBUG org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : employee
+09:09:07.823 [main] DEBUG org.hibernate.loader.plan.build.internal.spaces.QuerySpacesImpl - Adding QuerySpace : uid = <gen:1> -> org.hibernate.loader.plan.build.internal.spaces.EntityQuerySpaceImpl@7db2b9be]
+09:09:07.823 [main] DEBUG org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : equipment
+09:09:07.823 [main] DEBUG org.hibernate.loader.plan.build.internal.spaces.QuerySpacesImpl - Adding QuerySpace : uid = <gen:2> -> org.hibernate.loader.plan.build.internal.spaces.EntityQuerySpaceImpl@ae19c04]
+09:09:07.823 [main] DEBUG org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : reservationType
+09:09:07.823 [main] DEBUG org.hibernate.loader.plan.build.internal.FetchStyleLoadPlanBuildingAssociationVisitationStrategy - Building LoadPlan...
+09:09:07.823 [main] DEBUG org.hibernate.loader.plan.exec.internal.LoadQueryJoinAndFetchProcessor - processing queryspace <gen:0>
+09:09:07.823 [main] DEBUG org.hibernate.loader.plan.build.spi.LoadPlanTreePrinter - LoadPlan(entity=model.Reservation)
+    - Returns
+       - EntityReturnImpl(entity=model.Reservation, querySpaceUid=<gen:0>, path=model.Reservation)
+          - EntityAttributeFetchImpl(entity=model.Employee, querySpaceUid=<gen:1>, path=model.Reservation.employee)
+          - EntityAttributeFetchImpl(entity=model.Equipment, querySpaceUid=<gen:2>, path=model.Reservation.equipment)
+    - QuerySpaces
+       - EntityQuerySpaceImpl(uid=<gen:0>, entity=model.Reservation)
+          - SQL table alias mapping - reservatio0_
+          - alias suffix - 0_
+          - suffixed key columns - {reservat1_3_0_}
+
+09:09:07.823 [main] DEBUG org.hibernate.loader.entity.plan.EntityLoader - Static select for entity model.Reservation [PESSIMISTIC_FORCE_INCREMENT]: select reservatio0_.reservationId as reservat1_3_0_, reservatio0_.date_return as date_ret2_3_0_, reservatio0_.date_take as date_tak3_3_0_, reservatio0_.employeeKey as employee5_3_0_, reservatio0_.equipmentId as equipmen6_3_0_, reservatio0_.reservationType as reservat4_3_0_ from Reservation reservatio0_ where reservatio0_.reservationId=? for update
+09:09:07.823 [main] DEBUG org.hibernate.loader.plan.build.internal.spaces.QuerySpacesImpl - Adding QuerySpace : uid = <gen:0> -> org.hibernate.loader.plan.build.internal.spaces.EntityQuerySpaceImpl@228d875]
+09:09:07.823 [main] DEBUG org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : dateReturn
+09:09:07.823 [main] DEBUG org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : dateTake
+09:09:07.823 [main] DEBUG org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : employee
+09:09:07.823 [main] DEBUG org.hibernate.loader.plan.build.internal.spaces.QuerySpacesImpl - Adding QuerySpace : uid = <gen:1> -> org.hibernate.loader.plan.build.internal.spaces.EntityQuerySpaceImpl@c390691]
+09:09:07.823 [main] DEBUG org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : equipment
+09:09:07.823 [main] DEBUG org.hibernate.loader.plan.build.internal.spaces.QuerySpacesImpl - Adding QuerySpace : uid = <gen:2> -> org.hibernate.loader.plan.build.internal.spaces.EntityQuerySpaceImpl@a3eaaae]
+09:09:07.823 [main] DEBUG org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : reservationType
+09:09:07.823 [main] DEBUG org.hibernate.loader.plan.build.internal.FetchStyleLoadPlanBuildingAssociationVisitationStrategy - Building LoadPlan...
+09:09:07.823 [main] DEBUG org.hibernate.loader.plan.exec.internal.LoadQueryJoinAndFetchProcessor - processing queryspace <gen:0>
+09:09:07.823 [main] DEBUG org.hibernate.loader.plan.build.spi.LoadPlanTreePrinter - LoadPlan(entity=model.Reservation)
+    - Returns
+       - EntityReturnImpl(entity=model.Reservation, querySpaceUid=<gen:0>, path=model.Reservation)
+          - EntityAttributeFetchImpl(entity=model.Employee, querySpaceUid=<gen:1>, path=model.Reservation.employee)
+          - EntityAttributeFetchImpl(entity=model.Equipment, querySpaceUid=<gen:2>, path=model.Reservation.equipment)
+    - QuerySpaces
+       - EntityQuerySpaceImpl(uid=<gen:0>, entity=model.Reservation)
+          - SQL table alias mapping - reservatio0_
+          - alias suffix - 0_
+          - suffixed key columns - {reservat1_3_0_}
+
+09:09:07.823 [main] DEBUG org.hibernate.loader.entity.plan.EntityLoader - Static select for entity model.Reservation [OPTIMISTIC]: select reservatio0_.reservationId as reservat1_3_0_, reservatio0_.date_return as date_ret2_3_0_, reservatio0_.date_take as date_tak3_3_0_, reservatio0_.employeeKey as employee5_3_0_, reservatio0_.equipmentId as equipmen6_3_0_, reservatio0_.reservationType as reservat4_3_0_ from Reservation reservatio0_ where reservatio0_.reservationId=?
+09:09:07.823 [main] DEBUG org.hibernate.loader.plan.build.internal.spaces.QuerySpacesImpl - Adding QuerySpace : uid = <gen:0> -> org.hibernate.loader.plan.build.internal.spaces.EntityQuerySpaceImpl@4e9120ec]
+09:09:07.823 [main] DEBUG org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : dateReturn
+09:09:07.823 [main] DEBUG org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : dateTake
+09:09:07.823 [main] DEBUG org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : employee
+09:09:07.823 [main] DEBUG org.hibernate.loader.plan.build.internal.spaces.QuerySpacesImpl - Adding QuerySpace : uid = <gen:1> -> org.hibernate.loader.plan.build.internal.spaces.EntityQuerySpaceImpl@1f844c0f]
+09:09:07.823 [main] DEBUG org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : equipment
+09:09:07.823 [main] DEBUG org.hibernate.loader.plan.build.internal.spaces.QuerySpacesImpl - Adding QuerySpace : uid = <gen:2> -> org.hibernate.loader.plan.build.internal.spaces.EntityQuerySpaceImpl@6090ee8b]
+09:09:07.823 [main] DEBUG org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : reservationType
+09:09:07.823 [main] DEBUG org.hibernate.loader.plan.build.internal.FetchStyleLoadPlanBuildingAssociationVisitationStrategy - Building LoadPlan...
+09:09:07.823 [main] DEBUG org.hibernate.loader.plan.exec.internal.LoadQueryJoinAndFetchProcessor - processing queryspace <gen:0>
+09:09:07.823 [main] DEBUG org.hibernate.loader.plan.build.spi.LoadPlanTreePrinter - LoadPlan(entity=model.Reservation)
+    - Returns
+       - EntityReturnImpl(entity=model.Reservation, querySpaceUid=<gen:0>, path=model.Reservation)
+          - EntityAttributeFetchImpl(entity=model.Employee, querySpaceUid=<gen:1>, path=model.Reservation.employee)
+          - EntityAttributeFetchImpl(entity=model.Equipment, querySpaceUid=<gen:2>, path=model.Reservation.equipment)
+    - QuerySpaces
+       - EntityQuerySpaceImpl(uid=<gen:0>, entity=model.Reservation)
+          - SQL table alias mapping - reservatio0_
+          - alias suffix - 0_
+          - suffixed key columns - {reservat1_3_0_}
+
+09:09:07.823 [main] DEBUG org.hibernate.loader.entity.plan.EntityLoader - Static select for entity model.Reservation [OPTIMISTIC_FORCE_INCREMENT]: select reservatio0_.reservationId as reservat1_3_0_, reservatio0_.date_return as date_ret2_3_0_, reservatio0_.date_take as date_tak3_3_0_, reservatio0_.employeeKey as employee5_3_0_, reservatio0_.equipmentId as equipmen6_3_0_, reservatio0_.reservationType as reservat4_3_0_ from Reservation reservatio0_ where reservatio0_.reservationId=?
+09:09:07.824 [main] DEBUG org.hibernate.loader.Loader - Static select for action ACTION_MERGE on entity model.Reservation: select reservatio0_.reservationId as reservat1_3_0_, reservatio0_.date_return as date_ret2_3_0_, reservatio0_.date_take as date_tak3_3_0_, reservatio0_.employeeKey as employee5_3_0_, reservatio0_.equipmentId as equipmen6_3_0_, reservatio0_.reservationType as reservat4_3_0_ from Reservation reservatio0_ where reservatio0_.reservationId=?
+09:09:07.824 [main] DEBUG org.hibernate.loader.Loader - Static select for action ACTION_REFRESH on entity model.Reservation: select reservatio0_.reservationId as reservat1_3_0_, reservatio0_.date_return as date_ret2_3_0_, reservatio0_.date_take as date_tak3_3_0_, reservatio0_.employeeKey as employee5_3_0_, reservatio0_.equipmentId as equipmen6_3_0_, reservatio0_.reservationType as reservat4_3_0_ from Reservation reservatio0_ where reservatio0_.reservationId=?
+09:09:07.824 [main] DEBUG org.hibernate.internal.SessionFactoryImpl - Instantiated session factory
+09:09:07.824 [main] DEBUG org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator - No JtaPlatform was specified, checking resolver
+09:09:07.824 [main] DEBUG org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformResolverInitiator - No JtaPlatformResolver was specified, using default [org.hibernate.engine.transaction.jta.platform.internal.StandardJtaPlatformResolver]
+09:09:07.825 [main] DEBUG org.hibernate.engine.transaction.jta.platform.internal.StandardJtaPlatformResolver - Could not resolve JtaPlatform, using default [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+09:09:07.825 [main] DEBUG org.hibernate.internal.NamedQueryRepository - Checking 0 named HQL queries
+09:09:07.825 [main] DEBUG org.hibernate.internal.NamedQueryRepository - Checking 18 named SQL queries
+09:09:07.825 [main] DEBUG org.hibernate.internal.NamedQueryRepository - Checking named SQL query: Employee.findByEmployeeId
+09:09:07.825 [main] DEBUG org.hibernate.internal.NamedQueryRepository - Checking named SQL query: Equipment.findEnabledByType
+09:09:07.825 [main] DEBUG org.hibernate.internal.NamedQueryRepository - Checking named SQL query: Reservation.findBySerial
+09:09:07.825 [main] DEBUG org.hibernate.internal.NamedQueryRepository - Checking named SQL query: Equipment.findByType
+09:09:07.825 [main] DEBUG org.hibernate.internal.NamedQueryRepository - Checking named SQL query: Reservation.findOpenBySerial
+09:09:07.825 [main] DEBUG org.hibernate.internal.NamedQueryRepository - Checking named SQL query: Equipment.findAll
+09:09:07.825 [main] DEBUG org.hibernate.internal.NamedQueryRepository - Checking named SQL query: Equipment.findAllOrderedByTypeName
+09:09:07.825 [main] DEBUG org.hibernate.internal.NamedQueryRepository - Checking named SQL query: Reservation.findByEquipmentId
+09:09:07.825 [main] DEBUG org.hibernate.internal.NamedQueryRepository - Checking named SQL query: Reservation.findBySerialAndDate
+09:09:07.825 [main] DEBUG org.hibernate.internal.NamedQueryRepository - Checking named SQL query: Reservation.findByType
+09:09:07.825 [main] DEBUG org.hibernate.internal.NamedQueryRepository - Checking named SQL query: Employee.findAll
+09:09:07.825 [main] DEBUG org.hibernate.internal.NamedQueryRepository - Checking named SQL query: Equipment.findBySerial
+09:09:07.825 [main] DEBUG org.hibernate.internal.NamedQueryRepository - Checking named SQL query: Equipmenttype.findAll
+09:09:07.825 [main] DEBUG org.hibernate.internal.NamedQueryRepository - Checking named SQL query: Equipmenttype.findByTypeCode
+09:09:07.825 [main] DEBUG org.hibernate.internal.NamedQueryRepository - Checking named SQL query: Reservation.findOpen
+09:09:07.825 [main] DEBUG org.hibernate.internal.NamedQueryRepository - Checking named SQL query: Equipmenttype.findEquipmenttypesWithEquipment
+09:09:07.825 [main] DEBUG org.hibernate.internal.NamedQueryRepository - Checking named SQL query: Reservation.findOpenByEmployeeId
+09:09:07.825 [main] DEBUG org.hibernate.internal.NamedQueryRepository - Checking named SQL query: Reservation.findAll
+09:09:07.825 [main] DEBUG org.hibernate.internal.SessionFactoryRegistry - Registering SessionFactory: ab351491-c7fc-4e2c-ad01-fdee66383cd7 (<unnamed>)
+09:09:07.825 [main] DEBUG org.hibernate.internal.SessionFactoryRegistry - Not binding SessionFactory to JNDI, no JNDI name configured
+09:09:07.825 [main] DEBUG org.hibernate.jpa.internal.schemagen.JpaSchemaGenerator - No actions specified; doing nothing
+09:09:07.826 [main] DEBUG org.hibernate.jpa.internal.EntityManagerFactoryRegistry - Registering EntityManagerFactory: EquipmentManager 
+09:09:07.826 [main] WARN org.hibernate.jpa.internal.EntityManagerFactoryRegistry - HHH000436: Entity manager factory name (EquipmentManager) is already registered.  If entity manager will be clustered or passivated, specify a unique value for property 'hibernate.ejb.entitymanager_factory_name'
+09:09:07.826 [main] DEBUG org.hibernate.internal.SessionFactoryImpl - HHH000031: Closing
+09:09:07.826 [main] DEBUG org.hibernate.service.internal.AbstractServiceRegistryImpl - Implicitly destroying ServiceRegistry on de-registration of all child ServiceRegistries
+09:09:07.826 [main] INFO org.hibernate.orm.connections - HHH10001008: Cleaning up connection pool [jdbc:mysql://localhost:3306/emanager_testdb]
+09:09:07.826 [main] DEBUG org.hibernate.boot.registry.internal.BootstrapServiceRegistryImpl - Implicitly destroying Boot-strap registry on de-registration of all child ServiceRegistries
+09:09:07.826 [main] DEBUG org.hibernate.jpa.internal.EntityManagerFactoryRegistry - Remove: name=EquipmentManager
+]]></system-out>
+    <system-err><![CDATA[Thu Apr 05 09:09:07 EEST 2018 WARN: Establishing SSL connection without server's identity verification is not recommended. According to MySQL 5.5.45+, 5.6.26+ and 5.7.6+ requirements SSL connection must be established by default if explicit option isn't set. For compliance with existing applications not using SSL the verifyServerCertificate property is set to 'false'. You need either to explicitly disable SSL by setting useSSL=false, or set useSSL=true and provide truststore for server certificate verification.
+]]></system-err>
   </testcase>
   <testcase name="findVesaLaisi" classname="db.ADHandlerTest" time="0">
     <skipped/>

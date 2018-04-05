@@ -24,6 +24,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.google.gson.Gson;
 
+import db.DatabaseUtil;
 import model.Employee;
 import model.EmployeeDao;
 import model.Equipment;
@@ -81,6 +82,7 @@ public class ReservationControllerTest {
         edao.destroy();
         etdao.destroy();
         rdao.destroy();
+        DatabaseUtil.shutdown();
     }
     
 	@Before

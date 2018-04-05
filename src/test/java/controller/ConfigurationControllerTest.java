@@ -27,11 +27,14 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.web.multipart.MultipartFile;
 
+import db.DatabaseUtil;
+import model.Employee;
 import model.EmployeeDao;
 import model.Equipment;
 import model.EquipmentDao;
 import model.Equipmenttype;
 import model.EquipmenttypeDao;
+import model.Reservation;
 import model.ReservationDao;
 import utils.PropertyUtils;
 
@@ -49,10 +52,8 @@ public class ConfigurationControllerTest {
 	private static String testDBuser;
 	private static String testDBpassword;
 	private static String testDBdriver;
-	private static EmployeeDao empdao;
 	private static EquipmentDao edao;
 	private static EquipmenttypeDao etdao;
-	private static ReservationDao rdao;
 	private static ConfigurationController controller;
 	
     @BeforeClass
@@ -62,20 +63,14 @@ public class ConfigurationControllerTest {
     	testDBpassword = properties.getProperty("testDBpassword");
     	testDBdriver = properties.getProperty("testDBdriver");
     	
-    	empdao = new EmployeeDao();
     	edao = new EquipmentDao();
     	etdao = new EquipmenttypeDao();
-    	rdao = new ReservationDao();
     	
-    	empdao.setProperties(testDBurl, testDBuser, testDBpassword, testDBdriver);
     	edao.setProperties(testDBurl, testDBuser, testDBpassword, testDBdriver);
     	etdao.setProperties(testDBurl, testDBuser, testDBpassword, testDBdriver);
-    	rdao.setProperties(testDBurl, testDBuser, testDBpassword, testDBdriver);
         
-    	empdao.init();
         edao.init();
         etdao.init();
-        rdao.init();
         
 		controller = new ConfigurationController();
 		controller.setProperties(testDBurl, testDBuser, testDBpassword, testDBdriver);
@@ -83,20 +78,20 @@ public class ConfigurationControllerTest {
 	
     @AfterClass
     public static void destroy() {
-    	empdao.destroy();
-        edao.destroy();
+    	edao.destroy();
         etdao.destroy();
-        rdao.destroy();
+        DatabaseUtil.shutdown();
     }
     
 	@Before
 	public void initTest() {
-
+		emptyTables();
 		deleteTestFiles();
 	}
 	
     @After
     public void endTest() {
+    	emptyTables();
     	deleteTestFiles();
     }
 	
@@ -248,4 +243,21 @@ public class ConfigurationControllerTest {
 			}  
     	}
 	}
+	
+    public void emptyTables() {
+    	edao.refresh();
+    	etdao.refresh();
+    	
+    	List<Equipment> equipments = edao.getAll();
+    	for (Equipment currentEquipment : equipments) {
+    		edao.initialize(currentEquipment.getEquipmentId());
+    		edao.delete();
+    	}
+    	
+    	List<Equipmenttype> equpmentTypes = etdao.getAll();
+    	for (Equipmenttype currentEquipmentType : equpmentTypes) {
+    		etdao.initialize(currentEquipmentType.getEquipmentTypeId());
+    		etdao.delete();
+    	}
+    }
 }
