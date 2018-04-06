@@ -17,8 +17,6 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.annotation.Rollback;
-import org.springframework.transaction.annotation.Transactional;
 
 import db.DatabaseUtil;
 import utils.PropertyUtils;
@@ -79,8 +77,6 @@ public class ReservationDaoTest {
 	}
     
     @Test
-    @Transactional
-    @Rollback(true)
     public void testAddReservation() {
     	int equipmentStatusEnabled = 1;
     	int equipmentTypeCode = 1111;
@@ -122,8 +118,6 @@ public class ReservationDaoTest {
     }
     
     @Test
-    @Transactional
-    @Rollback(true)
     public void testGetBySerial() {
     	int equipmentStatusEnabled = 1;
     	int equipmentTypeCode1 = 1111;
@@ -213,8 +207,6 @@ public class ReservationDaoTest {
     }
     
     @Test
-    @Transactional
-    @Rollback(true)
     public void testGetOpenByEmployeeId() {
     	int equipmentStatusEnabled = 1;
     	int equipmentTypeCode1 = 1111;
@@ -282,8 +274,6 @@ public class ReservationDaoTest {
     }
     
     @Test
-    @Transactional
-    @Rollback(true)
     public void testGetBySerialAndDate_NoReservations() {
     	LocalDateTime currentDateTime =  LocalDateTime.now();
     	Date start = Date.from(currentDateTime.minusMonths(6).atZone(ZoneId.systemDefault()).toInstant()); 
@@ -295,8 +285,6 @@ public class ReservationDaoTest {
     }
     
     @Test
-    @Transactional
-    @Rollback(true)
     public void testGetBySerialAndDate_BeforeRange() {
     	int equipmentStatusEnabled = 1;
     	int equipmentTypeCode1 = 1111;
@@ -322,8 +310,6 @@ public class ReservationDaoTest {
     }
     
     @Test
-    @Transactional
-    @Rollback(true)
     public void testGetBySerialAndDate_EndInRange() {
     	int equipmentStatusEnabled = 1;
     	int equipmentTypeCode1 = 1111;
@@ -373,8 +359,6 @@ public class ReservationDaoTest {
     }
     
     @Test
-    @Transactional
-    @Rollback(true)
     public void testGetBySerialAndDate_EndInRangeOpen() {
     	int equipmentStatusEnabled = 1;
     	int equipmentTypeCode1 = 1111;
@@ -413,8 +397,6 @@ public class ReservationDaoTest {
     }
     
     @Test
-    @Transactional
-    @Rollback(true)
     public void testGetBySerialAndDate_CompletelyInRange() {
     	int equipmentStatusEnabled = 1;
     	int equipmentTypeCode1 = 1111;
@@ -463,8 +445,6 @@ public class ReservationDaoTest {
     }
     
     @Test
-    @Transactional
-    @Rollback(true)
     public void testGetBySerialAndDate_StartInRangeOpen() {
     	int equipmentStatusEnabled = 1;
     	int equipmentTypeCode1 = 1111;
@@ -504,8 +484,6 @@ public class ReservationDaoTest {
     }
     
     @Test
-    @Transactional
-    @Rollback(true)
     public void testGetBySerialAndDate_StartInRange() {
     	int equipmentStatusEnabled = 1;
     	int equipmentTypeCode1 = 1111;
@@ -554,8 +532,6 @@ public class ReservationDaoTest {
     }
     
     @Test
-    @Transactional
-    @Rollback(true)
     public void testGetBySerialAndDate_AfterRange() {
     	int equipmentStatusEnabled = 1;
     	int equipmentTypeCode1 = 1111;
@@ -581,8 +557,6 @@ public class ReservationDaoTest {
     }
     
     @Test
-    @Transactional
-    @Rollback(true)
     public void testSerialHasOpenReservation() {
     	int equipmentStatusEnabled = 1;
     	int equipmentTypeCode1 = 1111;
@@ -608,8 +582,6 @@ public class ReservationDaoTest {
     }
     
     @Test
-    @Transactional
-    @Rollback(true)
     public void testGetOpenReservationIdBySerial() {
     	int equipmentStatusEnabled = 1;
     	int equipmentTypeCode1 = 1111;
@@ -702,8 +674,8 @@ public class ReservationDaoTest {
     		edao.delete();
     	}
     	
-    	List<Equipmenttype> equpmentTypes = etdao.getAll();
-    	for (Equipmenttype currentEquipmentType : equpmentTypes) {
+    	List<Equipmenttype> equipmentTypes = etdao.getAll();
+    	for (Equipmenttype currentEquipmentType : equipmentTypes) {
     		etdao.initialize(currentEquipmentType.getEquipmentTypeId());
     		etdao.delete();
     	}

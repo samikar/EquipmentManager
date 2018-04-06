@@ -14,8 +14,6 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.annotation.Rollback;
-import org.springframework.transaction.annotation.Transactional;
 
 import db.DatabaseUtil;
 import utils.PropertyUtils;
@@ -66,29 +64,25 @@ public class EquipmenttypeDaoTest {
 	}
 
 	@Test
-	@Transactional
-	@Rollback(true)
 	public void testAddequipmentType() {
 		int equipmentTypeTypeCode = 1111;
-		String equipmentTypeName = "TestType1";
+		String equipmentTypeTypeName = "TestType1";
 		
-		Equipmenttype testEquipmenttype = new Equipmenttype(equipmentTypeTypeCode, equipmentTypeName);
+		Equipmenttype testEquipmenttype = new Equipmenttype(equipmentTypeTypeCode, equipmentTypeTypeName);
 		etdao.persist(testEquipmenttype);
 		etdao.initialize(testEquipmenttype.getEquipmentTypeId());
 		Equipmenttype DBequipmenttype = etdao.getDao();
 		
-		assertEquals(equipmentTypeName, DBequipmenttype.getTypeName());
+		assertEquals(equipmentTypeTypeName, DBequipmenttype.getTypeName());
 		assertEquals(equipmentTypeTypeCode, DBequipmenttype.getTypeCode());
 	}
 
 	@Test
-	@Transactional
-	@Rollback(true)
 	public void testAddAndDeleteequipmentTypeTest() {
 		int equipmentTypeTypeCode = 2222;
-		String equipmentTypeName = "TestType2";
+		String equipmentTypeTypeName = "TestType2";
 		
-		Equipmenttype testEquipmenttype = new Equipmenttype(equipmentTypeTypeCode, equipmentTypeName);
+		Equipmenttype testEquipmenttype = new Equipmenttype(equipmentTypeTypeCode, equipmentTypeTypeName);
 		etdao.persist(testEquipmenttype);
 		List<Equipmenttype> equipmentTypes = etdao.getAll();
 
@@ -105,55 +99,47 @@ public class EquipmenttypeDaoTest {
 	}
 
 	@Test
-	@Transactional
-	@Rollback(true)
 	public void testGetEquipmenttypeIdByTypeCode_Found() {
 		int equipmentTypeTypeCode = 3333;
-		String equipmentTypeName = "TestType3";
+		String equipmentTypeTypeName = "TestType3";
 		
-		Equipmenttype testEquipmenttype = new Equipmenttype(equipmentTypeTypeCode, equipmentTypeName);
+		Equipmenttype testEquipmenttype = new Equipmenttype(equipmentTypeTypeCode, equipmentTypeTypeName);
 		etdao.persist(testEquipmenttype);
 		etdao.initialize(etdao.getEquipmentTypeIdByTypeCode(equipmentTypeTypeCode));
 		Equipmenttype DBequipmenttype = etdao.getDao();
 
-		assertEquals(equipmentTypeName, DBequipmenttype.getTypeName());
+		assertEquals(equipmentTypeTypeName, DBequipmenttype.getTypeName());
 		assertEquals(equipmentTypeTypeCode, DBequipmenttype.getTypeCode());
 	}
 
 	@Test
-	@Transactional
-	@Rollback(true)
 	public void testGetEquipmenttypeIdByTypeCode_NotFound() {
 		int equipmentTypeTypeCode = 4444;
 		int nonExistentTypeCode = 4455;
-		String equipmentTypeName = "TestType3";
+		String equipmentTypeTypeName = "TestType3";
 		
-		Equipmenttype testEquipmenttype = new Equipmenttype(equipmentTypeTypeCode, equipmentTypeName);	
+		Equipmenttype testEquipmenttype = new Equipmenttype(equipmentTypeTypeCode, equipmentTypeTypeName);	
 		etdao.persist(testEquipmenttype);
 	
 		assertEquals(0, etdao.getEquipmentTypeIdByTypeCode(nonExistentTypeCode));
 	}
 
 	@Test
-	@Transactional
-	@Rollback(true)
 	public void testGetByTypeCode_Found() {
 		int equipmentTypeTypeCode = 1111;
-		String equipmentTypeName = "TestType3";
+		String equipmentTypeTypeName = "TestType3";
 		Equipmenttype DBequipmenttype = null;
 		Equipmenttype testEquipmenttype = null;
 		
-		testEquipmenttype= new Equipmenttype(equipmentTypeTypeCode, equipmentTypeName);	
+		testEquipmenttype= new Equipmenttype(equipmentTypeTypeCode, equipmentTypeTypeName);	
 		etdao.persist(testEquipmenttype);
 		DBequipmenttype = etdao.getByTypeCode(equipmentTypeTypeCode);
 		
 		assertEquals(equipmentTypeTypeCode, DBequipmenttype.getTypeCode());
-		assertEquals(equipmentTypeName, DBequipmenttype.getTypeName());
+		assertEquals(equipmentTypeTypeName, DBequipmenttype.getTypeName());
 	}
 	
 	@Test
-	@Transactional
-	@Rollback(true)
 	public void testGetByTypeCode_NotFound() {
 		int equipmentTypeTypeCode = 1111;
 		Equipmenttype DBequipmenttype = null;
@@ -164,27 +150,21 @@ public class EquipmenttypeDaoTest {
 	}
 	
 	@Test
-	@Transactional
-	@Rollback(true)
 	public void testTypeCodeExists_True() {
 		int equipmentTypeTypeCode = 5555;
-		String equipmentTypeName = "TestType5";
+		String equipmentTypeTypeName = "TestType5";
 		
-		Equipmenttype testEquipmenttype = new Equipmenttype(equipmentTypeTypeCode, equipmentTypeName);	
+		Equipmenttype testEquipmenttype = new Equipmenttype(equipmentTypeTypeCode, equipmentTypeTypeName);	
 		etdao.persist(testEquipmenttype);
 		assertTrue(etdao.typeCodeExists(testEquipmenttype.getTypeCode()));
 	}
 
 	@Test
-	@Transactional
-	@Rollback(true)
 	public void testTypeCodeExists_False() {
 		assertFalse(etdao.typeCodeExists(0));
 	}
 
 	@Test
-	@Transactional
-	@Rollback(true)
 	public void testGetEquipmentTypesWithEquipment() {
 		int equipmentStatusEnabled = 1;
 		int equipmentTypeTypeCode = 1111;
@@ -192,11 +172,11 @@ public class EquipmenttypeDaoTest {
 		int equipmentTypeCount = 4; 
 		String equipmentName = "TestEquipment6";
 		String equipmentSerial = "TestSerial6";
-		String equipmentTypeName = "TestType6_";
+		String equipmentTypeTypeName = "TestType6_";
 		
 		// Insert 4 Equipmenttypes
 		for (int i = 1; i <= equipmentTypeCount; i++) {
-			Equipmenttype testEquipmenttype = new Equipmenttype(equipmentTypeTypeCode * i, equipmentTypeName + i);
+			Equipmenttype testEquipmenttype = new Equipmenttype(equipmentTypeTypeCode * i, equipmentTypeTypeName + i);
 			etdao.persist(testEquipmenttype);
 		}
 

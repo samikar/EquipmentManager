@@ -162,4 +162,14 @@ public class EquipmentDao {
 		else
 			return false;
 	}
+	
+	public boolean equipmentIdExists(String equipmentId) {
+		List<Equipment> equipment = entityManager.createNamedQuery("Equipment.findByEquipmentId", Equipment.class)
+				.setParameter(1, equipmentId)
+				.getResultList();
+		if (equipment.size() > 0)
+			return true;
+		else
+			return false;
+	}
 }

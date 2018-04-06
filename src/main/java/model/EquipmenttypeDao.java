@@ -144,6 +144,17 @@ public class EquipmenttypeDao {
 			return false;
 	}
 	
+	public boolean equipmentTypeIdExists(int equipmentTypeId) {
+		List<Equipmenttype> equipmentTypeList = entityManager
+				.createNamedQuery("Equipmenttype.findByEquipmentTypeId", Equipmenttype.class)
+				.setParameter(1, equipmentTypeId).getResultList();
+		if (equipmentTypeList.size() > 0) {
+			return true;
+		}
+		else
+			return false;
+	}
+	
 	public List<Equipmenttype> getEquipmentTypesWithEquipment() {
 		List<Equipmenttype> result = entityManager.createNamedQuery("Equipmenttype.findEquipmenttypesWithEquipment", Equipmenttype.class)
 				.getResultList();

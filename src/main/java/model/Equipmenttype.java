@@ -28,6 +28,13 @@ import javax.persistence.NamedNativeQuery;
 						"FROM equipmenttype " +
 						"WHERE equipmenttype.TypeCode = ?",
 						resultClass=Equipmenttype.class
+	),
+	@NamedNativeQuery(
+			name	=	"Equipmenttype.findByEquipmentTypeId", 
+			query	=	"SELECT * "+
+						"FROM equipmenttype " +
+						"WHERE equipmenttype.equipmentTypeId = ?",
+						resultClass=Equipmenttype.class					
 	),@NamedNativeQuery(
 			name	=	"Equipmenttype.findEquipmenttypesWithEquipment", 
 			query	=	"SELECT DISTINCT equipmenttype.equipmentTypeId, equipmenttype.typeCode, equipmenttype.typeName " +
@@ -86,24 +93,4 @@ public class Equipmenttype implements Serializable {
 	public void setTypeName(String typeName) {
 		this.typeName = typeName;
 	}
-
-	/*
-	public List<Equipment> getEquipments() {
-		return this.equipments;
-	}
-	public void setEquipments(List<Equipment> equipments) {
-		this.equipments = equipments;
-	}
-	
-	public Equipment addEquipment(Equipment equipment) {
-		getEquipments().add(equipment);
-		equipment.setEquipmenttype(this);
-		return equipment;
-	}
-	public Equipment removeEquipment(Equipment equipment) {
-		getEquipments().remove(equipment);
-		equipment.setEquipmenttype(null);
-		return equipment;
-	}
-*/
 }

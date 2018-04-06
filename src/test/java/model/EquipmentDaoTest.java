@@ -11,14 +11,14 @@ import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.annotation.Rollback;
-import org.springframework.transaction.annotation.Transactional;
 
 import db.DatabaseUtil;
 import utils.PropertyUtils;
 
+@Ignore
 public class EquipmentDaoTest {
 	private static Properties properties = PropertyUtils.loadProperties();
 	
@@ -65,16 +65,14 @@ public class EquipmentDaoTest {
 	}
 	
 	@Test
-	@Transactional
-	@Rollback(true)
 	public void testAddEquipment() {
 		int equipmentStatusEnabled = 1;
 		int equipmentTypeTypeCode = 1111;
 		String equipmentName = "TestEquipment1";
 		String equipmentSerial = "TestSerial1";
-		String equipmentTypeName = "TestType1";
+		String equipmentTypeTypeName = "TestType1";
 		
-		Equipmenttype testEquipmenttype = new Equipmenttype(equipmentTypeTypeCode, equipmentTypeName);
+		Equipmenttype testEquipmenttype = new Equipmenttype(equipmentTypeTypeCode, equipmentTypeTypeName);
 		Equipment testEquipment = new Equipment(equipmentName, equipmentSerial, equipmentStatusEnabled, testEquipmenttype);
 		etdao.persist(testEquipmenttype);
 		edao.persist(testEquipment);
@@ -83,20 +81,18 @@ public class EquipmentDaoTest {
 	}
 	
 	@Test
-	@Transactional
-	@Rollback(true)
 	public void testGetAll() {
 		int equipmentStatusEnabled = 1;
 		int equipmentTypeTypeCode = 2222;
 		int equipmentCount = 5;
 		String equipmentName = "TestEquipment2_";
 		String equipmentSerial = "TestSerial2_";
-		String equipmentTypeName = "TestType2";
+		String equipmentTypeTypeName = "TestType2";
 		
 		List<Equipment> equipments = edao.getAll();
 		assertEquals(0, equipments.size());
 		
-		Equipmenttype testEquipmenttype = new Equipmenttype(equipmentTypeTypeCode, equipmentTypeName);
+		Equipmenttype testEquipmenttype = new Equipmenttype(equipmentTypeTypeCode, equipmentTypeTypeName);
 		etdao.persist(testEquipmenttype);
 		for (int i=0; i<equipmentCount; i++) {
 			Equipment testEquipment = new Equipment(equipmentName + i, equipmentSerial + i, equipmentStatusEnabled, testEquipmenttype);
@@ -107,16 +103,14 @@ public class EquipmentDaoTest {
 	}
 	
 	@Test
-	@Transactional
-	@Rollback(true)
 	public void testGetEquipmentIdBySerial_Found() {
 		int equipmentStatusEnabled = 1;
 		int equipmentTypeTypeCode = 3333;
 		String equipmentName = "TestEquipment3";
 		String equipmentSerial = "TestSerial3";
-		String equipmentTypeName = "TestType3";
+		String equipmentTypeTypeName = "TestType3";
 		
-		Equipmenttype testEquipmenttype = new Equipmenttype(equipmentTypeTypeCode, equipmentTypeName);
+		Equipmenttype testEquipmenttype = new Equipmenttype(equipmentTypeTypeCode, equipmentTypeTypeName);
 		etdao.persist(testEquipmenttype);
 		Equipment testEquipment = new Equipment(equipmentName, equipmentSerial, equipmentStatusEnabled, testEquipmenttype);
 		int equipmentId = edao.persist(testEquipment);
@@ -125,24 +119,20 @@ public class EquipmentDaoTest {
 	}
 	
 	@Test
-	@Transactional
-	@Rollback(true)
 	public void testGetEquipmentIdBySerialNotFound() {
 		String equipmentSerial = "TestSerial4";
 		assertEquals(0, edao.getEquipmentIdBySerial(equipmentSerial));
 	}
 	
 	@Test
-	@Transactional
-	@Rollback(true)
 	public void testGetBySerial() {
 		int equipmentStatusEnabled = 1;
 		int equipmentTypeTypeCode = 5555;
 		String equipmentName = "TestEquipment5";
 		String equipmentSerial = "TestSerial5";
-		String equipmentTypeName = "TestType5";
+		String equipmentTypeTypeName = "TestType5";
 		
-		Equipmenttype testEquipmenttype = new Equipmenttype(equipmentTypeTypeCode, equipmentTypeName);
+		Equipmenttype testEquipmenttype = new Equipmenttype(equipmentTypeTypeCode, equipmentTypeTypeName);
 		etdao.persist(testEquipmenttype);
 		
 		Equipment testEquipment = new Equipment(equipmentName, equipmentSerial, equipmentStatusEnabled, testEquipmenttype);
@@ -158,8 +148,6 @@ public class EquipmentDaoTest {
 	}
 	
 	@Test
-	@Transactional
-	@Rollback(true)
 	public void testGetByType() {
 		int equipmentStatusEnabled = 1;
 		int equipmentTypeTypeCode1 = 6666;
@@ -170,11 +158,11 @@ public class EquipmentDaoTest {
 		String equipmentName2 = "TestEquipment6_";
 		String equipmentSerial1 = "TestSerial5_";
 		String equipmentSerial2 = "TestSerial6_";
-		String equipmentTypeName1 = "TestType6";
-		String equipmentTypeName2 = "TestType7";
+		String equipmentTypeTypeName1 = "TestType6";
+		String equipmentTypeTypeName2 = "TestType7";
 		
-		Equipmenttype testEquipmenttype1 = new Equipmenttype(equipmentTypeTypeCode1, equipmentTypeName1);
-		Equipmenttype testEquipmenttype2 = new Equipmenttype(equipmentTypeTypeCode2, equipmentTypeName2);
+		Equipmenttype testEquipmenttype1 = new Equipmenttype(equipmentTypeTypeCode1, equipmentTypeTypeName1);
+		Equipmenttype testEquipmenttype2 = new Equipmenttype(equipmentTypeTypeCode2, equipmentTypeTypeName2);
 		etdao.persist(testEquipmenttype1);
 		etdao.persist(testEquipmenttype2);
 		
@@ -204,8 +192,6 @@ public class EquipmentDaoTest {
 	}
 	
 	@Test
-	@Transactional
-	@Rollback(true)
 	public void testGetEnabledByType() {
 		int equipmentStatusDisabled = 0;
 		int equipmentStatusEnabled = 1;
@@ -216,9 +202,9 @@ public class EquipmentDaoTest {
 		String equipmentSerial1 = "TestSerial5";
 		String equipmentSerial2 = "TestSerial6";
 		String equipmentSerial3 = "TestSerial7";
-		String equipmentTypeName = "TestType6";
+		String equipmentTypeTypeName = "TestType6";
 
-		Equipmenttype testEquipmenttype = new Equipmenttype(equipmentTypeTypeCode, equipmentTypeName);
+		Equipmenttype testEquipmenttype = new Equipmenttype(equipmentTypeTypeCode, equipmentTypeTypeName);
 		etdao.persist(testEquipmenttype);
 
 		// No equipment of type
@@ -248,8 +234,6 @@ public class EquipmentDaoTest {
 	}
 	
 	@Test
-	@Transactional
-	@Rollback(true)
 	public void testGetOrderedByTypeName() {
 		int equipmentStatusEnabled = 1;
 		int equipmentTypeTypeCode1 = 1111;
@@ -261,13 +245,13 @@ public class EquipmentDaoTest {
 		String equipmentSerial1 = "TestSerial5";
 		String equipmentSerial2 = "TestSerial6";
 		String equipmentSerial3 = "TestSerial7";
-		String equipmentTypeName1 = "CTestType";
-		String equipmentTypeName2 = "BTestType";
-		String equipmentTypeName3 = "ATestType";
+		String equipmentTypeTypeName1 = "CTestType";
+		String equipmentTypeTypeName2 = "BTestType";
+		String equipmentTypeTypeName3 = "ATestType";
 
-		Equipmenttype testEquipmenttype1 = new Equipmenttype(equipmentTypeTypeCode1, equipmentTypeName1);
-		Equipmenttype testEquipmenttype2 = new Equipmenttype(equipmentTypeTypeCode2, equipmentTypeName2);
-		Equipmenttype testEquipmenttype3 = new Equipmenttype(equipmentTypeTypeCode3, equipmentTypeName3);
+		Equipmenttype testEquipmenttype1 = new Equipmenttype(equipmentTypeTypeCode1, equipmentTypeTypeName1);
+		Equipmenttype testEquipmenttype2 = new Equipmenttype(equipmentTypeTypeCode2, equipmentTypeTypeName2);
+		Equipmenttype testEquipmenttype3 = new Equipmenttype(equipmentTypeTypeCode3, equipmentTypeTypeName3);
 		Equipment testEquipment1 = new Equipment(equipmentName1, equipmentSerial1, equipmentStatusEnabled, testEquipmenttype1);
 		Equipment testEquipment2 = new Equipment(equipmentName2, equipmentSerial2, equipmentStatusEnabled, testEquipmenttype2);
 		Equipment testEquipment3 = new Equipment(equipmentName3, equipmentSerial3, equipmentStatusEnabled, testEquipmenttype3);
@@ -287,16 +271,14 @@ public class EquipmentDaoTest {
 	}
 	
 	@Test
-	@Transactional
-	@Rollback(true)
 	public void testSerialExists_true() {
 		int equipmentStatusEnabled = 1;
 		int equipmentTypeTypeCode = 1111;
 		String equipmentName = "TestEquipment1";
 		String equipmentSerial = "TestSerial1";
-		String equipmentTypeName = "TestType!";
+		String equipmentTypeTypeName = "TestType!";
 		
-		Equipmenttype testEquipmenttype = new Equipmenttype(equipmentTypeTypeCode, equipmentTypeName);
+		Equipmenttype testEquipmenttype = new Equipmenttype(equipmentTypeTypeCode, equipmentTypeTypeName);
 		Equipment testEquipment = new Equipment(equipmentName, equipmentSerial, equipmentStatusEnabled, testEquipmenttype);
 		
 		etdao.persist(testEquipmenttype);
@@ -306,8 +288,6 @@ public class EquipmentDaoTest {
 	}
 	
 	@Test
-	@Transactional
-	@Rollback(true)
 	public void testSerialExists_false() {
 		String noSuchSerial = "foobar";
 		assertFalse(edao.serialExists(noSuchSerial));

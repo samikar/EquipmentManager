@@ -31,6 +31,13 @@ import javax.persistence.NamedNativeQuery;
 						resultClass=Equipment.class
 	),
 	@NamedNativeQuery(
+			name	=	"Equipment.findByEquipmentId", 
+			query	=	"SELECT * "+
+						"FROM equipment " +
+						"WHERE equipment.equipmentId = ?",
+						resultClass=Equipment.class
+	),
+	@NamedNativeQuery(
 			name	=	"Equipment.findByType", 
 			query	=	"SELECT * "+
 						"FROM equipment " +
@@ -38,6 +45,7 @@ import javax.persistence.NamedNativeQuery;
 						"WHERE equipmentType.typeCode = ?" ,
 						resultClass=Equipment.class
 	),
+
 	@NamedNativeQuery(
 			name	=	"Equipment.findEnabledByType", 
 			query	=	"SELECT * "+

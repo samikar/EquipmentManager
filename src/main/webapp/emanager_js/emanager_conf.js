@@ -437,7 +437,7 @@ function getTypes() {
   });
 }
 
-function addEquipmentBtnAction() {
+function addEquipmentBtnAction() { 
   if (!$("#txt_equipmentName_add").val() || !$("#txt_serial_add").val() || !$("#hid_equipmentTypeId_add").val()) {
     if($("#status_add").hasClass("hidden")) {$("#status").removeClass("hidden");}
     if($("#status_add").hasClass("alert-info")) {$("#status").removeClass("alert-info");}
@@ -455,7 +455,7 @@ function addEquipmentBtnAction() {
     if(!$("#hid_equipmentTypeId_add").val()) {
      $("#msg_text_add").append("Type"); 
     }
-  else {
+  else if ($("#txt_equipmentName_add").val() && $("#txt_serial_add").val() && $("#hid_equipmentTypeId_add").val()) {
     var name = $("#txt_equipmentName_add").val();
     var serial = $("#txt_serial_add").val();
     var equipmentTypeId = $("#hid_equipmentTypeId_add").val();

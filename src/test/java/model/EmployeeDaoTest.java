@@ -14,8 +14,6 @@ import org.junit.BeforeClass;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.annotation.Rollback;
-import org.springframework.transaction.annotation.Transactional;
 
 import db.DatabaseUtil;
 import utils.PropertyUtils;
@@ -61,8 +59,6 @@ public class EmployeeDaoTest {
 	}
 	
     @Test
-    @Transactional
-    @Rollback(true)
 	public void testAddEmployee() {
     	String employeeId = "000000001";
     	String employeeName = "Unit Test1";
@@ -78,8 +74,6 @@ public class EmployeeDaoTest {
 	}
     
     @Test
-    @Transactional
-    @Rollback(true)
 	public void testAddAndDeleteEmployeeTest() {
 		String employeeName = "Unit Test2";
 		String employeeId = "000000002";
@@ -101,8 +95,6 @@ public class EmployeeDaoTest {
     }
     
     @Test
-    @Transactional
-    @Rollback(true)
 	public void testGetEmployeeByEmployeeId() {
 		String employeeName = "Unit Test3";
 		String employeeId = "000000003";
@@ -115,8 +107,6 @@ public class EmployeeDaoTest {
     }
     
     @Test
-    @Transactional
-    @Rollback(true)
 	public void testGetEmployeeKeyByEmployeeId() {
 		String employeeName = "Unit Test4";
 		String employeeId = "000000004";
@@ -130,8 +120,6 @@ public class EmployeeDaoTest {
     
     @Ignore
     @Test
-    @Transactional
-    @Rollback(true)
 	public void employeeExistsTrue() {
     	String vesaLaisiID = "00186763";
 		assertTrue(empdao.employeeExists(vesaLaisiID));
@@ -139,16 +127,12 @@ public class EmployeeDaoTest {
     
     @Ignore
     @Test
-    @Transactional
-    @Rollback(true)
 	public void employeeExistsFalse() {
 		assertFalse(empdao.employeeExists("foobar"));
     }
     
     @Ignore
     @Test
-    @Transactional
-    @Rollback(true)
 	public void employeeInDBTrue() {
 		String employeeName = "Unit Test5";
 		String employeeId = "000000005";
@@ -161,16 +145,12 @@ public class EmployeeDaoTest {
     
     @Ignore
     @Test
-    @Transactional
-    @Rollback(true)
 	public void employeeInDBFalse() {				
 		assertFalse(empdao.employeeInDB("foobar"));
     }
     
     @Ignore
     @Test
-    @Transactional
-    @Rollback(true)
 	public void employeeInADTrue() {				
     	String vesaLaisiID = "00186763";
     	assertFalse(empdao.employeeInDB(vesaLaisiID));
@@ -180,8 +160,6 @@ public class EmployeeDaoTest {
 
     @Ignore
     @Test
-    @Transactional
-    @Rollback(true)
 	public void employeeInADFalse() {				
     	assertFalse(empdao.employeeInDB("foobar"));		
     }

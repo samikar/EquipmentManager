@@ -16,12 +16,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
-import model.EmployeeDao;
 import model.Equipment;
 import model.EquipmentDao;
 import model.Equipmenttype;
 import model.EquipmenttypeDao;
-import model.ReservationDao;
 import utils.EquipmentDataReader;
 import utils.PropertyUtils;
 
@@ -102,20 +100,31 @@ public class ConfigurationController {
 									 @RequestParam(value = "serial") String serial,
 									 @RequestParam(value = "equipmentTypeId") String equipmentTypeId) {
 		edao = new EquipmentDao();
-		etdao = new EquipmenttypeDao();
 		edao.setProperties(DBurl, DBuser, DBpassword, DBdriver);
-		etdao.setProperties(DBurl, DBuser, DBpassword, DBdriver);
-		Equipment newEquipment = new Equipment();
 		edao.init();
-		etdao.init();
 		
-		if (edao.serialExists(serial)) {
+		if (name.length() == 0) {
 			edao.destroy();
-			etdao.destroy();
-			throw new IllegalArgumentException("Equipment with serial number " + serial + " already exists.");
+			throw new IllegalArgumentException("Field \"name\" must not be empty!");
+		}
+		else if (serial.length() == 0) {
+			edao.destroy();
+			throw new IllegalArgumentException("Field \"serial\" must not be empty!");
+		}
+		else if (equipmentTypeId.length() == 0) {
+			edao.destroy();
+			throw new IllegalArgumentException("Field \"Equipment type\" must not be empty!");
+		}
+		else if (edao.serialExists(serial)) {
+			edao.destroy();
+			throw new IllegalArgumentException("Equipment with serial number " + serial + " already exists!");
 		}
 		else {
+			etdao = new EquipmenttypeDao();
+			etdao.setProperties(DBurl, DBuser, DBpassword, DBdriver);
+			etdao.init();
 			etdao.initialize(Integer.parseInt(equipmentTypeId));
+			Equipment newEquipment = new Equipment();
 			Equipmenttype etype = etdao.getDao();
 			
 			newEquipment.setName(name);
@@ -140,11 +149,15 @@ public class ConfigurationController {
 		
 		if (!typeCode.matches("\\d+")) {
 			etdao.destroy();
-			throw new IllegalArgumentException("Typecode must be an integer value.");	
+			throw new IllegalArgumentException("Typecode must be an integer value!");	
+		}
+		else if (typeName.length() == 0) {
+			etdao.destroy();
+			throw new IllegalArgumentException("Field \"Type Name\" must not be empty!");
 		}
 		else if (etdao.typeCodeExists(Integer.parseInt(typeCode))) {
 			etdao.destroy();
-			throw new IllegalArgumentException("Equipment type with Typecode " + typeCode + " already exists.");
+			throw new IllegalArgumentException("Equipment type with Typecode " + typeCode + " already exists!");
 		}
 		else {
 
@@ -167,10 +180,21 @@ public class ConfigurationController {
 		edao.setProperties(DBurl, DBuser, DBpassword, DBdriver);
 		edao.init();
 
-		
-		if (edao.serialExists(serial) && Integer.parseInt(equipmentId) != (edao.getBySerial(serial).getEquipmentId())) {
+		if (name.length() == 0) {
+			edao.destroy();
+			throw new IllegalArgumentException("Field \"name\" must not be empty!");
+		}
+		else if (serial.length() == 0) {
+			edao.destroy();
+			throw new IllegalArgumentException("Field \"serial\" must not be empty!");
+		}
+		else if (equipmentTypeId.length() == 0) {
+			edao.destroy();
+			throw new IllegalArgumentException("Field \"Equipment type\" must not be empty!");
+		}
+		else if (edao.serialExists(serial) && Integer.parseInt(equipmentId) != (edao.getBySerial(serial).getEquipmentId())) {
 				edao.destroy();
-				throw new IllegalArgumentException("Equipment with serial number " + serial + " already exists.");
+				throw new IllegalArgumentException("Equipment with serial number " + serial + " already exists!");
 		} else {
 			edao.initialize(Integer.parseInt(equipmentId));
 			Equipment eq = edao.getDao();
@@ -202,9 +226,17 @@ public class ConfigurationController {
 		etdao.setProperties(DBurl, DBuser, DBpassword, DBdriver);
 		etdao.init();
 		
-		if (etdao.typeCodeExists(Integer.parseInt(typeCode)) && Integer.parseInt(typeCode) != etdao.getByTypeCode(Integer.parseInt(typeCode)).getTypeCode()) {
+		if (!typeCode.matches("\\d+")) {
 			etdao.destroy();
-			throw new IllegalArgumentException("Equipment type with Type Code " + typeCode + " already exists.");
+			throw new IllegalArgumentException("Typecode must be an integer value!");	
+		}
+		else if (typeName.length() == 0) {
+			etdao.destroy();
+			throw new IllegalArgumentException("Field \"Type Name\" must not be empty!");
+		}
+		else if (etdao.typeCodeExists(Integer.parseInt(typeCode)) && Integer.parseInt(equipmentTypeId) != etdao.getByTypeCode(Integer.parseInt(typeCode)).getEquipmentTypeId()) {
+			etdao.destroy();
+			throw new IllegalArgumentException("Equipment type with Type Code " + typeCode + " already exists!");
 		}
 		else {
 			etdao.initialize(Integer.parseInt(equipmentTypeId));
@@ -222,9 +254,20 @@ public class ConfigurationController {
 	
 	@RequestMapping("/rest/deleteEquipment")
 	public Equipment deleteEquipment(@RequestParam(value = "equipmentId") String equipmentId) {
+		if (!equipmentId.matches("\\d+")) {
+			throw new IllegalArgumentException("EquipmentId must be an integer value!");	
+		}
+		else if (equipmentId.length() == 0) {
+			throw new IllegalArgumentException("Field \"EquipmentId\" must not be empty!");
+		}
+		
 		edao = new EquipmentDao();
 		edao.setProperties(DBurl, DBuser, DBpassword, DBdriver);
 		edao.init();
+		if (!edao.equipmentIdExists(equipmentId)) {
+			edao.destroy();
+			throw new IllegalArgumentException("Equipment with \"EquipmentId\" not found!");
+		}
 		edao.initialize(Integer.parseInt(equipmentId));
 		Equipment eq = edao.getDao();
 		edao.delete();
@@ -234,19 +277,32 @@ public class ConfigurationController {
 	
 	@RequestMapping("/rest/deleteType")
 	public Equipmenttype deleteType(@RequestParam(value = "equipmentTypeId") String equipmentTypeId) {
-		edao = new EquipmentDao();
+		if (!equipmentTypeId.matches("\\d+")) {
+			throw new IllegalArgumentException("EquipmentTypeId must be an integer value!");	
+		}
+		else if (equipmentTypeId.length() == 0) {
+			throw new IllegalArgumentException("Field \"EquipmentTypeId\" must not be empty!");
+		}
+		
 		etdao = new EquipmenttypeDao();
-		edao.setProperties(DBurl, DBuser, DBpassword, DBdriver);
 		etdao.setProperties(DBurl, DBuser, DBpassword, DBdriver);
-		edao.init();
 		etdao.init();
+		if (!etdao.equipmentTypeIdExists(Integer.parseInt(equipmentTypeId))) {
+			etdao.destroy();
+			throw new IllegalArgumentException("Equipment Type with EquipmentTypeId " + equipmentTypeId + " not found!");
+		}
+		
 		etdao.initialize(Integer.parseInt(equipmentTypeId));
 		Equipmenttype etype = etdao.getDao();
+		
+		edao = new EquipmentDao();
+		edao.setProperties(DBurl, DBuser, DBpassword, DBdriver);
+		edao.init();
 		List<Equipment> equipmentList = edao.getByTypeCode(etype.getTypeCode());
 		if (equipmentList.size() > 0) {
 			edao.destroy();
 			etdao.destroy();
-			throw new IllegalArgumentException("Cannot delete Type while it has Equipment attached to it.");
+			throw new IllegalArgumentException("Cannot delete Type while it has Equipment attached to it!");
 		}
 		else {
 			etdao.delete();

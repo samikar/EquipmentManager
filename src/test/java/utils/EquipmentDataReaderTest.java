@@ -141,7 +141,7 @@ public class EquipmentDataReaderTest {
 		assertTrue(equipmentDataReader.writeFile(multipartFile, TESTFILEPATH).equals(file));
 	}
 	
-	@Ignore
+//	@Ignore
 	@Test
 	public void writeFileContentsEqual() {	
 		byte[] oldFileBytes = null;
@@ -182,7 +182,7 @@ public class EquipmentDataReaderTest {
 		
 	}
 	
-	@Ignore
+//	@Ignore
 	@Test
 	public void readEquipmentTypesFromFile() {		
 		equipmentDataReader.readEquipmentTypesFromFile(TESTFILEPATH + TESTTYPETFILE);
@@ -199,7 +199,7 @@ public class EquipmentDataReaderTest {
 		
 	}
 	
-	@Ignore
+//	@Ignore
 	@Test
 	public void readEquipmentFromFileTest() {
 		equipmentDataReader.readEquipmentTypesFromFile(TESTFILEPATH + TESTTYPETFILE);
@@ -251,8 +251,8 @@ public class EquipmentDataReaderTest {
     		edao.delete();
     	}
     	
-    	List<Equipmenttype> equpmentTypes = etdao.getAll();
-    	for (Equipmenttype currentEquipmentType : equpmentTypes) {
+    	List<Equipmenttype> equipmentTypes = etdao.getAll();
+    	for (Equipmenttype currentEquipmentType : equipmentTypes) {
     		etdao.initialize(currentEquipmentType.getEquipmentTypeId());
     		etdao.delete();
     	}
