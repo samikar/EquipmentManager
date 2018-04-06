@@ -97,7 +97,7 @@ public class ConfigurationControllerTest {
     }
 
 	@Test
-	public void uploadEquipmentFileTest_OK() {
+	public void testUploadEquipmentFile_OK() {
 		File testFile = createTestFile(TESTFILEPATH, EQUIPMENTFILE);
 		ResponseEntity<Object> response = null;
 		
@@ -114,7 +114,7 @@ public class ConfigurationControllerTest {
 	}
 
 	@Test
-	public void uploadEquipmentFileTest_WrongFileType() {
+	public void testUploadEquipmentFile_WrongFileType() {
 		File testFile = createTestFile(TESTFILEPATH, TESTFILENAME);
 		ResponseEntity<Object> response = null;
 		MultipartFile multipartFile = convertFileToMultipartFile(testFile);
@@ -130,7 +130,7 @@ public class ConfigurationControllerTest {
 	}
 
 	@Test
-	public void uploadTypeFileTest_OK() {
+	public void testUploadTypeFile_OK() {
 		File testFile = createTestFile(TESTFILEPATH, TYPETFILE);
 		ResponseEntity<Object> response = null;
 		MultipartFile multipartFile = convertFileToMultipartFile(testFile);
@@ -146,7 +146,7 @@ public class ConfigurationControllerTest {
 	}
 
 	@Test
-	public void uploadTypeFileTest_WrongFileType() {
+	public void testUploadTypeFile_WrongFileType() {
 		File testFile = createTestFile(TESTFILEPATH, TESTFILENAME);
 		ResponseEntity<Object> response = null;
 		MultipartFile multipartFile = convertFileToMultipartFile(testFile);
@@ -162,7 +162,7 @@ public class ConfigurationControllerTest {
 	}
 
 	@Test
-	public void getEquipmentTypesTest() {
+	public void testGetEquipmentTypes() {
 		int equipmentTypeTypeCode1 = 1111;
 		int equipmentTypeTypeCode2 = 2222;
 		String equipmentTypeTypeName1 = "TestType1";
@@ -183,7 +183,7 @@ public class ConfigurationControllerTest {
 	}
 
 	@Test
-	public void getEquipmentTest() {
+	public void testGetEquipment() {
 		int equipmentStatusEnabled = 1;
 		int equipmentTypeTypeCode1 = 1111;
 		String equipmentName1 = "TestEquipment1";
@@ -226,7 +226,7 @@ public class ConfigurationControllerTest {
 	}
 
 	@Test
-	public void disableEquipmentTest_Disable() {
+	public void testDisableEquipment() {
 		int equipmentStatusEnabled = 1;
 		int equipmentStatusDisabled = 0;
 		int equipmentTypeTypeCode1 = 1111;
@@ -249,7 +249,7 @@ public class ConfigurationControllerTest {
 	}
 
 	@Test
-	public void enableEquipmentTest_Enable() {
+	public void testEnableEquipmentTest() {
 		int equipmentStatusEnabled = 1;
 		int equipmentStatusDisabled = 0;
 		int equipmentTypeTypeCode1 = 1111;
@@ -271,7 +271,7 @@ public class ConfigurationControllerTest {
 	}
 
 	@Test
-	public void insertEquipmentTest_OK() {
+	public void testInsertEquipment_OK() {
 		int equipmentStatusEnabled = 1;
 		int equipmentTypeTypeCode1 = 1111;
 		int equipmentTypeId;
@@ -294,7 +294,7 @@ public class ConfigurationControllerTest {
 	}
 
 	@Test
-	public void insertEquipmentTest_SerialEmpty() {
+	public void testInsertEquipment_SerialEmpty() {
 		int equipmentTypeTypeCode1 = 1111;
 		int equipmentTypeId;
 		String equipmentName1 = "TestEquipment1";
@@ -308,7 +308,7 @@ public class ConfigurationControllerTest {
 	}
 	
 	@Test
-	public void insertEquipmentTest_NameEmpty() {
+	public void testInsertEquipment_NameEmpty() {
 		int equipmentTypeTypeCode1 = 1111;
 		int equipmentTypeId;
 		String equipmentName1 = "";
@@ -322,7 +322,7 @@ public class ConfigurationControllerTest {
 	}
 	
 	@Test
-	public void insertEquipmentTest_EquipmentTypeIdEmpty() {
+	public void testInsertEquipment_EquipmentTypeIdEmpty() {
 		String equipmentTypeTypeCode1 = "";
 		String equipmentName1 = "";
 		String equipmentSerial1 = "TestSerial1";
@@ -333,7 +333,7 @@ public class ConfigurationControllerTest {
 	
 
 	@Test
-	public void insertEquipmentTest_SerialDuplicate() {
+	public void testInsertEquipment_SerialDuplicate() {
 		int equipmentTypeTypeCode1 = 1111;
 		int equipmentTypeId;
 		String equipmentName1 = "TestEquipment1";
@@ -349,7 +349,7 @@ public class ConfigurationControllerTest {
 	}
 	
 	@Test
-	public void insertTypeTest_OK() {
+	public void testInsertType_OK() {
 		int equipmentTypeTypeCode1 = 1111;
 		String equipmentTypeTypeName1 = "TestType1";
 		Equipmenttype DBequipmenttype = null;
@@ -365,7 +365,7 @@ public class ConfigurationControllerTest {
 	}
 	
 	@Test
-	public void insertTypeTest_TypeNameEmpty() {
+	public void testInsertType_TypeNameEmpty() {
 		int equipmentTypeTypeCode1 = 1111;
 		String equipmentTypeTypeName1 = "";
 		
@@ -374,7 +374,7 @@ public class ConfigurationControllerTest {
 	}
 	
 	@Test
-	public void insertTypeTest_TypeCodeDuplicate() {
+	public void testInsertType_TypeCodeDuplicate() {
 		int equipmentTypeTypeCode1 = 1111;
 		String equipmentTypeTypeName1 = "TestType1";
 		String equipmentTypeTypeName2 = "TestType2";
@@ -385,7 +385,7 @@ public class ConfigurationControllerTest {
 	}
 	
 	@Test
-	public void insertTypeTest_TypeCodeString() {
+	public void testInsertType_TypeCodeString() {
 		String equipmentTypeTypeCode1 = "foobar";
 		String equipmentTypeTypeName1 = "TestType1";
 		
@@ -394,7 +394,7 @@ public class ConfigurationControllerTest {
 	}
 	
 	@Test
-	public void updateEquipmentTest_OK() {
+	public void testUpdateEquipment_OK() {
 		int equipmentId, equipmentTypeId2;
 		int equipmentStatusEnabled = 1;
 		int equipmentTypeTypeCode1 = 1111;
@@ -434,7 +434,7 @@ public class ConfigurationControllerTest {
 	}
 	
 	@Test
-	public void updateEquipmentTest_NameEmpty() {
+	public void testUpdateEquipment_NameEmpty() {
 		int equipmentId, equipmentTypeId1;
 		int equipmentStatusEnabled = 1;
 		int equipmentTypeTypeCode1 = 1111;
@@ -461,7 +461,7 @@ public class ConfigurationControllerTest {
 	}
 	
 	@Test
-	public void updateEquipmentTest_SerialEmpty() {
+	public void testUpdateEquipment_SerialEmpty() {
 		int equipmentId, equipmentTypeId1;
 		int equipmentStatusEnabled = 1;
 		int equipmentTypeTypeCode1 = 1111;
@@ -488,7 +488,7 @@ public class ConfigurationControllerTest {
 	}
 	
 	@Test
-	public void updateEquipmentTest_EquipmentTypeIdEmpty() {
+	public void testUpdateEquipment_EquipmentTypeIdEmpty() {
 		int equipmentId;
 		int equipmentStatusEnabled = 1;
 		int equipmentTypeTypeCode1 = 1111;
@@ -515,7 +515,7 @@ public class ConfigurationControllerTest {
 	}
 	
 	@Test
-	public void updateEquipmentTest_SerialDuplicate() {
+	public void testUpdateEquipment_SerialDuplicate() {
 		int equipmentId, equipmentTypeId1;
 		int equipmentStatusEnabled = 1;
 		int equipmentTypeTypeCode1 = 1111;
@@ -549,7 +549,7 @@ public class ConfigurationControllerTest {
 	}
 	
 	@Test
-	public void updateTypeTest_OK() {
+	public void testUpdateType_OK() {
 		int equipmentTypeId1;
 		int equipmentTypeTypeCode1 = 1111;
 		int equipmentTypeTypeCode2 = 2222;
@@ -571,7 +571,7 @@ public class ConfigurationControllerTest {
 	}
 	
 	@Test
-	public void updateTypeTest_TypeNameEmpty() {
+	public void testUpdateType_TypeNameEmpty() {
 		int equipmentTypeId1;
 		int equipmentTypeTypeCode1 = 1111;
 		String equipmentTypeTypeName1 = "TestType1";
@@ -584,7 +584,7 @@ public class ConfigurationControllerTest {
 	}
 	
 	@Test
-	public void updateTypeTest_TypeCodeEmpty() {
+	public void testUpdateType_TypeCodeEmpty() {
 		int equipmentTypeId1;
 		int equipmentTypeTypeCode1 = 1111;
 		String equipmentTypeTypeCode2 = "";
@@ -597,7 +597,7 @@ public class ConfigurationControllerTest {
 	}
 	
 	@Test
-	public void updateTypeTest_TypeCodeInvalid() {
+	public void testUpdateType_TypeCodeInvalid() {
 		int equipmentTypeId1;
 		int equipmentTypeTypeCode1 = 1111;
 		String equipmentTypeTypeCode2 = "foobar";
@@ -610,7 +610,7 @@ public class ConfigurationControllerTest {
 	}
 	
 	@Test
-	public void updateTypeTest_TypeCodeDuplicate() {
+	public void testUpdateType_TypeCodeDuplicate() {
 		int equipmentTypeId1;
 		int equipmentTypeTypeCode1 = 1111;
 		int equipmentTypeTypeCode2 = 2222;
@@ -626,7 +626,7 @@ public class ConfigurationControllerTest {
 	}
 	
 	@Test
-	public void deleteEquipmentTest_OK() {
+	public void testDeleteEquipment_OK() {
 		int equipmentId;
 		int equipmentStatusEnabled = 1;
 		int equipmentTypeTypeCode1 = 1111;
@@ -646,28 +646,28 @@ public class ConfigurationControllerTest {
 	}
 	
 	@Test
-	public void deleteEquipmentTest_EquipmentIdEmpty() {
+	public void testDeleteEquipment_EquipmentIdEmpty() {
 		String equipmentId = "";
 		exception.expect(IllegalArgumentException.class);
 		controller.deleteEquipment(equipmentId);
 	}
 	
 	@Test
-	public void deleteEquipmentTest_EquipmentIdInvalid() {
+	public void testDeleteEquipment_EquipmentIdInvalid() {
 		String equipmentId = "foobar";
 		exception.expect(IllegalArgumentException.class);
 		controller.deleteEquipment(equipmentId);
 	}
 	
 	@Test
-	public void deleteEquipmentTest_EquipmentIdNotFound() {
+	public void testDeleteEquipment_EquipmentIdNotFound() {
 		int equipmentId = 1;
 		exception.expect(IllegalArgumentException.class);
 		controller.deleteEquipment(Integer.toString(equipmentId));
 	}
 	
 	@Test
-	public void deleteTypeTest_OK() {
+	public void testDeleteType_OK() {
 		int equipmentTypeId;
 		int equipmentTypeTypeCode1 = 1111;
 		String equipmentTypeTypeName1 = "TestType1";
@@ -681,28 +681,28 @@ public class ConfigurationControllerTest {
 	}
 	
 	@Test
-	public void deleteTypeTest_EquipmentTypeIdEmpty() {
+	public void testDeleteType_EquipmentTypeIdEmpty() {
 		String equipmentTypeId = "";
 		exception.expect(IllegalArgumentException.class);
 		controller.deleteType(equipmentTypeId);
 	}
 	
 	@Test
-	public void deleteTypeTest_EquipmentTypeIdInvalid() {
+	public void testDeleteType_EquipmentTypeIdInvalid() {
 		String equipmentTypeId = "foobar";
 		exception.expect(IllegalArgumentException.class);
 		controller.deleteType(equipmentTypeId);
 	}
 
 	@Test
-	public void deleteTypeTest_EquipmentTypeIdNotFound() {
+	public void testDeleteType_EquipmentTypeIdNotFound() {
 		int equipmentTypeId = 1111;
 		exception.expect(IllegalArgumentException.class);
 		controller.deleteType(Integer.toString(equipmentTypeId));
 	}
 	
 	@Test
-	public void deleteTypeTest_EquipmentTypeHasEquipment() {
+	public void testDeleteType_EquipmentTypeHasEquipment() {
 		int equipmentTypeId;
 		int equipmentStatusEnabled = 1;
 		int equipmentTypeTypeCode1 = 1111;
