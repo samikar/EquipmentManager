@@ -734,7 +734,8 @@ public class ReservationControllerTest {
     	assertEquals(reservationTypeStrMaintenance, equipmentStatusList.get(3).getAvailability());
 	}
 	
-	
+	@Ignore
+	@Test
 	public void testGetEmployee_OK() {
 		String employeeId1 = "111111111";
 		String employeeName1 = "Test Employee1";
@@ -746,6 +747,8 @@ public class ReservationControllerTest {
 		assertEquals(employeeName1, DBEmployee.getName());
 	}
 	
+	@Ignore
+	@Test
 	public void testGetEmployee_noSuchEmployee() {
 		String employeeId1 = "111111111";
 		ReservationController controller = new ReservationController();

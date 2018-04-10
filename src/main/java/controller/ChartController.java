@@ -397,6 +397,13 @@ public class ChartController {
 		return workhours;
 	}
 	
+	public void setProperties(String DBurl, String DBuser, String DBpassword, String DBdriver) {
+		this.DBurl = DBurl;
+		this.DBuser = DBuser;
+		this.DBpassword = DBpassword;
+		this.DBdriver = DBdriver;
+	}
+	
 	@ExceptionHandler
 	void handleIllegalArgumentException(IllegalArgumentException e, HttpServletResponse response) throws IOException {
 		response.sendError(HttpStatus.BAD_REQUEST.value());
