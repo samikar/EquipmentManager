@@ -16,6 +16,7 @@ import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
@@ -35,7 +36,7 @@ import utils.PropertyUtils;
 
 public class ChartControllerTest {
 	private static Properties properties = PropertyUtils.loadProperties();
-	private final double WORKDAY = Double.parseDouble(properties.getProperty("WORKDAY"));
+	private final static double WORKDAY = Double.parseDouble(properties.getProperty("WORKDAY"));
 	private final int STARTHOUR = Integer.parseInt(properties.getProperty("STARTHOUR"));
 	private final int STARTMINUTE = Integer.parseInt(properties.getProperty("STARTMINUTE"));
 	private final int ENDHOUR = Integer.parseInt(properties.getProperty("ENDHOUR"));
@@ -136,49 +137,44 @@ public class ChartControllerTest {
     }
     
     @Test
-    public void testUsageByType_ReservationsInConstraints() {
+    public void testUsageBySerial_ReservationInConstraints() {
     	int equipmentStatusEnabled = 1;
     	int equipmentTypeCode1 = 1111;
-    	int equipmentTypeCode2 = 2222;
     	int reservationTypeInUse = 0;
-    	LocalDateTime currentDateTime =  LocalDate.now().atTime(12,0).truncatedTo(ChronoUnit.MINUTES);
-    	LocalDateTime endLdt = LocalDateTime.now().truncatedTo(ChronoUnit.MINUTES);
-    	LocalDateTime startLdt = endLdt.minusMonths(6);
-    	
-    	Date dateTake1 = Date.from(currentDateTime.minusMonths(5).atZone(ZoneId.systemDefault()).toInstant()); 
-    	Date dateReturn1 = Date.from(currentDateTime.minusMonths(1).atZone(ZoneId.systemDefault()).toInstant());
-    	Date dateTake2 = Date.from(currentDateTime.minusMonths(3).atZone(ZoneId.systemDefault()).toInstant()); 
-    	Date dateReturn2 = Date.from(currentDateTime.minusMonths(2).atZone(ZoneId.systemDefault()).toInstant());
-    	Date dateTake3 = Date.from(currentDateTime.minusMonths(3).atZone(ZoneId.systemDefault()).toInstant()); 
-    	Date dateReturn3 = Date.from(currentDateTime.minusMonths(2).atZone(ZoneId.systemDefault()).toInstant());
+
+    	LocalDateTime startConstraint = LocalDate.now().atTime(0,0).minusDays(15);
+    	LocalDateTime endConstraint = LocalDate.now().atTime(23,59).plusDays(15);
+    	Date dateTake1 = getMonday(LocalDate.now().atTime(STARTHOUR,STARTMINUTE));
+    	Date dateReturn1 = getFriday(LocalDate.now().atTime(ENDHOUR,ENDMINUTE));
     	ZoneId zoneId = ZoneId.systemDefault();
-    	String endStr = Long.toString(endLdt.atZone(zoneId).toEpochSecond());
-    	String startStr = Long.toString(startLdt.atZone(zoneId).toEpochSecond());
+    	
+    	String startConstraintStr = Long.toString(startConstraint.atZone(zoneId).toEpochSecond());
+    	String endConstraintStr = Long.toString(endConstraint.atZone(zoneId).toEpochSecond());
     	String employeeId1 = "111111111";
     	String employeeName1 = "Test Employee";
     	String equipmentName1 = "Test Equipment1";
-    	String equipmentName2 = "Test Equipment2";
-    	String equipmentName3 = "Test Equipment3";
     	String equipmentSerial1 = "TestSerial1";
-    	String equipmentSerial2 = "TestSerial2";
-    	String equipmentSerial3 = "TestSerial3";
     	String equipmentTypeName1 = "TestType1";
-    	String equipmentTypeName2 = "TestType2";
-    	
+
     	Employee testEmployee1 = addEmployee(employeeId1, employeeName1);
     	Equipmenttype testEquipmentType1 = addEquipmenttype(equipmentTypeCode1, equipmentTypeName1);
-    	Equipmenttype testEquipmentType2 = addEquipmenttype(equipmentTypeCode2, equipmentTypeName2);
     	Equipment testEquipment1 = addEquipment(equipmentName1, equipmentSerial1, equipmentStatusEnabled, testEquipmentType1);
-    	Equipment testEquipment2 = addEquipment(equipmentName2, equipmentSerial2, equipmentStatusEnabled, testEquipmentType1);
-    	Equipment testEquipment3 = addEquipment(equipmentName3, equipmentSerial3, equipmentStatusEnabled, testEquipmentType2);
-    	Reservation testReservation1 = addReservation(reservationTypeInUse, dateTake1, dateReturn1, testEmployee1, testEquipment1);
-    	Reservation testReservation2 = addReservation(reservationTypeInUse, dateTake2, dateReturn2, testEmployee1, testEquipment2);
-    	Reservation testReservation3 = addReservation(reservationTypeInUse, dateTake3, dateReturn3, testEmployee1, testEquipment3);
+    	addReservation(reservationTypeInUse, dateTake1, dateReturn1, testEmployee1, testEquipment1);
+
     	
-    	List<EquipmentUsage> usageList = controller.usageByType(Integer.toString(equipmentTypeCode1), startStr, endStr);
-    	
-    	assertEquals(2, usageList.size());
+    	EquipmentUsage usage = controller.usageBySerial(equipmentSerial1, startConstraintStr, endConstraintStr);
+    	double workHoursInConstraints = workHoursInConstraints(startConstraint, endConstraint);
+    	assertEquals(5*WORKDAY, usage.getInUse(), 0);
+    	assertEquals(workHoursInConstraints - usage.getInUse(), usage.getAvailable(), 0);
+    	assertEquals(0, usage.getCalibration(), 0);
+    	assertEquals(0, usage.getMaintenance(), 0);
+    	assertEquals(equipmentSerial1, usage.getSerial());
+    	assertEquals(equipmentName1, usage.getName());
+    	assertEquals(equipmentStatusEnabled, usage.getStatus());
+    	assertEquals(equipmentTypeCode1, usage.getEquipmenttype().getTypeCode());
+    	assertEquals(equipmentTypeName1, usage.getEquipmenttype().getTypeName());
     }
+    
     
     public Employee addEmployee(String employeeId, String employeeName) {
     	Employee testEmployee = new Employee(employeeId, employeeName);
@@ -197,7 +193,7 @@ public class ChartControllerTest {
     	edao.persist(testEquipment);
     	return testEquipment;
     }
-    
+        
     /**
      * 
      * Returns Reservation from DB
@@ -249,23 +245,76 @@ public class ChartControllerTest {
     	}
     }
     
-    public static void main(String[] args) {
-    	for (int i=0; i< 15; i++) {
-    		LocalDateTime monday;
-	    	LocalDateTime friday;
-	    	LocalDateTime now = LocalDateTime.now().plusDays(i);
-	    	if (now.getDayOfWeek().equals(DayOfWeek.SATURDAY) || now.getDayOfWeek().equals(DayOfWeek.SUNDAY)) {
-		    	monday = now.with(TemporalAdjusters.next(DayOfWeek.MONDAY));
-		    	friday = now.with(TemporalAdjusters.next(DayOfWeek.FRIDAY));
-	    	}
-	    	else {
-		    	monday = now.with(TemporalAdjusters.previousOrSame(DayOfWeek.MONDAY));
-		    	friday = now.with(TemporalAdjusters.nextOrSame(DayOfWeek.FRIDAY));
-	    	}
-	    	ZoneId zoneId = ZoneId.systemDefault();
-	    	String mondayStr = monday.getDayOfWeek() + "/" +  monday.getDayOfMonth() + "/" + monday.getMonthValue() + "-" + monday.getYear();
-	    	String fridayStr = friday.getDayOfWeek() + "/" +  friday.getDayOfMonth() + "/" + friday.getMonthValue() + "-" + friday.getYear();
-	    	System.out.println(mondayStr + " - " + fridayStr);
-    	}
+    public Date getMonday(LocalDateTime originDate) {
+    	LocalDateTime monday;
+    	monday = originDate.with(TemporalAdjusters.previousOrSame(DayOfWeek.MONDAY));
+    	return Date.from(monday.atZone(ZoneId.systemDefault()).toInstant());	
     }
+    
+    public Date getFriday(LocalDateTime originDate) {
+    	LocalDateTime friday;
+    	if (originDate.getDayOfWeek().equals(DayOfWeek.SATURDAY) || originDate.getDayOfWeek().equals(DayOfWeek.SUNDAY)) {
+	    	friday = originDate.with(TemporalAdjusters.previous(DayOfWeek.FRIDAY));
+    	}
+    	else {
+	    	friday = originDate.with(TemporalAdjusters.nextOrSame(DayOfWeek.FRIDAY));
+    	}
+    	return Date.from(friday.atZone(ZoneId.systemDefault()).toInstant());	
+    }
+    
+    public static double workHoursInConstraints(LocalDateTime start, LocalDateTime end) {
+    	int workDays = 0;
+    	while (start.isBefore(end)) {
+    		if (!start.getDayOfWeek().equals(DayOfWeek.SATURDAY) && !start.getDayOfWeek().equals(DayOfWeek.SUNDAY))
+    			workDays++;
+    		start = start.plusDays(1);
+    	}
+    	return workDays * WORKDAY;
+    }
+    
+    public static void main(String[] args) {
+    	controller = new ChartController();
+    	LocalDateTime startConstraint = LocalDate.now().atTime(0,0).minusDays(10);
+    	LocalDateTime endConstraint = LocalDate.now().atTime(23,59).plusDays(10);
+    	String startStr = startConstraint.getDayOfWeek() + "/" +  startConstraint.getDayOfMonth() + "/" + startConstraint.getMonthValue() + "-" + startConstraint.getYear();
+    	String endStr = endConstraint.getDayOfWeek() + "/" +  endConstraint.getDayOfMonth() + "/" + endConstraint.getMonthValue() + "-" + endConstraint.getYear();
+    	System.out.println(startStr + " - " + endStr);
+    	double hours = workHoursInConstraints(startConstraint, endConstraint);
+    	System.out.println("Hours: " + hours);
+    	
+    	
+    	System.out.println("Controller Hours: " + controller.workhoursInRange(Date.from(startConstraint.atZone(ZoneId.systemDefault()).toInstant()), Date.from(endConstraint.atZone(ZoneId.systemDefault()).toInstant())));
+    }
+    
+//    public static void main(String[] args) {
+//    	for (int i=0; i< 15; i++) {
+//    		LocalDateTime monday;
+//	    	LocalDateTime friday;
+//
+//	    	monday = LocalDateTime.ofInstant(getMonday(i).toInstant(), ZoneId.systemDefault());
+//	    	friday = LocalDateTime.ofInstant(getFriday(i).toInstant(), ZoneId.systemDefault());
+//	    	
+//	    	String mondayStr = monday.getDayOfWeek() + "/" +  monday.getDayOfMonth() + "/" + monday.getMonthValue() + "-" + monday.getYear();
+//	    	String fridayStr = friday.getDayOfWeek() + "/" +  friday.getDayOfMonth() + "/" + friday.getMonthValue() + "-" + friday.getYear();
+//	    	System.out.println(mondayStr + " - " + fridayStr);
+//    	}
+    	
+//    	for (int i=0; i< 15; i++) {
+//    		LocalDateTime monday;
+//	    	LocalDateTime friday;
+//	    	LocalDateTime now = LocalDateTime.now().plusDays(i);
+//	    	if (now.getDayOfWeek().equals(DayOfWeek.SATURDAY) || now.getDayOfWeek().equals(DayOfWeek.SUNDAY)) {
+//		    	monday = now.with(TemporalAdjusters.next(DayOfWeek.MONDAY));
+//		    	friday = now.with(TemporalAdjusters.next(DayOfWeek.FRIDAY));
+//	    	}
+//	    	else {
+//		    	monday = now.with(TemporalAdjusters.previousOrSame(DayOfWeek.MONDAY));
+//		    	friday = now.with(TemporalAdjusters.nextOrSame(DayOfWeek.FRIDAY));
+//	    	}
+//	    	ZoneId zoneId = ZoneId.systemDefault();
+//	    	String mondayStr = monday.getDayOfWeek() + "/" +  monday.getDayOfMonth() + "/" + monday.getMonthValue() + "-" + monday.getYear();
+//	    	String fridayStr = friday.getDayOfWeek() + "/" +  friday.getDayOfMonth() + "/" + friday.getMonthValue() + "-" + friday.getYear();
+//	    	System.out.println(mondayStr + " - " + fridayStr);
+//    	}
+//    }
 }

@@ -704,6 +704,7 @@ public class ReservationControllerTest {
 		Employee testEmployee1 = addEmployee(employeeId1, employeeName1);
 		Equipmenttype testEquipmenttype = addEquipmenttype(equipmentTypeCode, equipmentTypeName1);
 		addEquipment(equipmentName1, equipmentSerial1, equipmentStatusEnabled, testEquipmenttype);
+    	
     	Equipment testEquipment2 = addEquipment(equipmentName2, equipmentSerial2, equipmentStatusEnabled, testEquipmenttype);
     	Equipment testEquipment3 = addEquipment(equipmentName3, equipmentSerial3, equipmentStatusEnabled, testEquipmenttype);
     	Equipment testEquipment4 = addEquipment(equipmentName4, equipmentSerial4, equipmentStatusEnabled, testEquipmenttype);

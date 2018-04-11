@@ -37,7 +37,7 @@ public class EquipmentDao {
 		this.dao = dao;
 	}
 	
-	public void init() {
+	public void init(){
 		DatabaseUtil.setProperties(url, user, password, driver);
 		try {
 			entityManagerFactory = DatabaseUtil.getSessionFactory();
@@ -45,7 +45,9 @@ public class EquipmentDao {
 		catch (Exception e) {
 			// TODO: logger
 		}
-		entityManager = entityManagerFactory.createEntityManager();
+		if (entityManager == null || !entityManager.isOpen()) {
+			entityManager = entityManagerFactory.createEntityManager();
+		}
 	}
 	
 	public void setProperties(String url, String user, String password, String driver) {
@@ -107,6 +109,7 @@ public class EquipmentDao {
 	
 	public void destroy(){
 		entityManager.close();
+		DatabaseUtil.shutdown();
 	}
 	
 	public List<Equipment> getAll() {

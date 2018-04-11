@@ -42,7 +42,6 @@ public class ChartController {
 	String DBpassword = properties.getProperty("DBpassword");
 	String DBdriver = properties.getProperty("DBdriver");
 
-	// Length of one workday in hours
 	private final double WORKDAY = Double.parseDouble(properties.getProperty("WORKDAY"));
 	private final int STARTHOUR = Integer.parseInt(properties.getProperty("STARTHOUR"));
 	private final int STARTMINUTE = Integer.parseInt(properties.getProperty("STARTMINUTE"));
@@ -53,29 +52,6 @@ public class ChartController {
 	EmployeeDao empdao;
 	EquipmentDao edao;
 	EquipmenttypeDao etdao;
-
-	@RequestMapping("/rest/usageByType") 
-	public List<EquipmentUsage> usageByType(@RequestParam(value = "typeCode") String typeCode,
-			@RequestParam(value = "start") String startStr,
-			@RequestParam(value = "end") String endStr) {
-		if (typeCode == null || typeCode.isEmpty()) {
-    		throw new IllegalArgumentException("Equipment type must not be empty");
-    	}
-		else if (startStr == null || startStr.isEmpty()) {
-    		throw new IllegalArgumentException("Start date must not be empty");
-    	}
-		else if (endStr == null || endStr.isEmpty()) {
-    		throw new IllegalArgumentException("End date must not be empty");
-    	}		
-		else {
-			// Parse dates from epoch to Date
-			Date start = new Date(Long.parseLong(startStr) * 1000);
-			Date end = new Date(Long.parseLong(endStr) * 1000);
-			List<EquipmentUsage> result = getUsageByType(typeCode, start, end);
-			
-			return result;
-		}
-	}
 	
 	@RequestMapping("/rest/usageBySerial")
 	public EquipmentUsage usageBySerial(@RequestParam(value = "serial") String serial,
@@ -97,6 +73,29 @@ public class ChartController {
 			Date end = new Date(Long.parseLong(endStr) * 1000);
 			EquipmentUsage result = getUsageBySerial(serial, start, end);
 				
+			return result;
+		}
+	}
+
+	@RequestMapping("/rest/usageByType") 
+	public List<EquipmentUsage> usageByType(@RequestParam(value = "typeCode") String typeCode,
+			@RequestParam(value = "start") String startStr,
+			@RequestParam(value = "end") String endStr) {
+		if (typeCode == null || typeCode.isEmpty()) {
+    		throw new IllegalArgumentException("Equipment type must not be empty");
+    	}
+		else if (startStr == null || startStr.isEmpty()) {
+    		throw new IllegalArgumentException("Start date must not be empty");
+    	}
+		else if (endStr == null || endStr.isEmpty()) {
+    		throw new IllegalArgumentException("End date must not be empty");
+    	}		
+		else {
+			// Parse dates from epoch to Date
+			Date start = new Date(Long.parseLong(startStr) * 1000);
+			Date end = new Date(Long.parseLong(endStr) * 1000);
+			List<EquipmentUsage> result = getUsageByType(typeCode, start, end);
+			
 			return result;
 		}
 	}
@@ -352,7 +351,20 @@ public class ChartController {
 		workhours = (WORKDAY * 2) - ((double) (startMinutes + endMinutes) / 60);
 		return workhours;
 	}
+	
+	public double workhoursInRange(Date startDate, Date endDate) {
+    	int workDays = 0;
+    	LocalDateTime startLdt = LocalDateTime.ofInstant(startDate.toInstant(), ZoneId.systemDefault());
+    	LocalDateTime endLdt = LocalDateTime.ofInstant(endDate.toInstant(), ZoneId.systemDefault());
+    	while (startLdt.isBefore(endLdt)) {
+    		if (!startLdt.getDayOfWeek().equals(DayOfWeek.SATURDAY) && !startLdt.getDayOfWeek().equals(DayOfWeek.SUNDAY))
+    			workDays++;
+    		startLdt = startLdt.plusDays(1);
+    	}
+    	return workDays * WORKDAY;
+	}
 
+	/*
 	public double workhoursInRange(Date startDate, Date endDate) {
 		double workhours = 0;
 		//double workhoursBetween = 0;
@@ -396,6 +408,7 @@ public class ChartController {
 //		System.out.println("Total workhours: " + workhours);
 		return workhours;
 	}
+	*/
 	
 	public void setProperties(String DBurl, String DBuser, String DBpassword, String DBdriver) {
 		this.DBurl = DBurl;

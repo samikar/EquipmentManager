@@ -33,6 +33,7 @@ import model.EquipmentDao;
 import model.Equipmenttype;
 import model.EquipmenttypeDao;
 
+@Ignore
 public class EquipmentDataReaderTest {
 	private static Properties properties = PropertyUtils.loadProperties();
 	
