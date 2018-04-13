@@ -2,7 +2,6 @@ package controller;
 
 import java.io.IOException;
 import java.util.List;
-import java.util.Properties;
 
 import javax.servlet.http.HttpServletResponse;
 
@@ -21,38 +20,27 @@ import model.EquipmentDao;
 import model.Equipmenttype;
 import model.EquipmenttypeDao;
 import utils.EquipmentDataReader;
-import utils.PropertyUtils;
 
 @RestController
-public class ConfigurationController {
-	// Database properties
-	private static Properties properties = PropertyUtils.loadProperties();
-	private String DBurl = properties.getProperty("DBurl");
-	private String DBuser = properties.getProperty("DBuser");
-	private String DBpassword = properties.getProperty("DBpassword");
-	private String DBdriver = properties.getProperty("DBdriver");
-	
+public class ConfigurationController {	
 	private EquipmentDao edao;
 	private EquipmenttypeDao etdao;
 	
 	@RequestMapping(value = "/rest/uploadEquipmentFile", method = RequestMethod.POST, consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
 	public ResponseEntity<Object> uploadEquipmentFile(@RequestParam("file") MultipartFile file) throws IOException {
 		EquipmentDataReader equipmentDataReader = new EquipmentDataReader();
-		equipmentDataReader.setProperties(DBurl, DBuser, DBpassword, DBdriver);
 		return equipmentDataReader.verifyEquipmentFile(file);
 	}
 
 	@RequestMapping(value = "/rest/uploadTypeFile", method = RequestMethod.POST, consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
 	public ResponseEntity<Object> uploadTypeFile(@RequestParam("file") MultipartFile file) throws IOException {
 		EquipmentDataReader equipmentDataReader = new EquipmentDataReader();
-		equipmentDataReader.setProperties(DBurl, DBuser, DBpassword, DBdriver);
 		return equipmentDataReader.verifyEquipmentTypeFile(file);
 	}
 
 	@RequestMapping("/rest/getEquipment")
 	public List<Equipment> getEquipment() {
 		edao = new EquipmentDao();
-		edao.setProperties(DBurl, DBuser, DBpassword, DBdriver);
 		edao.init();
 		List<Equipment> result = edao.getAll();
 		edao.destroy();
@@ -62,7 +50,6 @@ public class ConfigurationController {
 	@RequestMapping("/rest/getEquipmentTypes")
 	public List<Equipmenttype> getEquipmentTypes() {
 		etdao = new EquipmenttypeDao();
-		etdao.setProperties(DBurl, DBuser, DBpassword, DBdriver);
 		etdao.init();
 		List<Equipmenttype> result = etdao.getAll();
 		etdao.destroy();
@@ -72,7 +59,6 @@ public class ConfigurationController {
 	@RequestMapping("/rest/enableEquipment")
 	public Equipment enableEquipment(@RequestParam(value = "equipmentId") String equipmentId) {
 		edao = new EquipmentDao();
-		edao.setProperties(DBurl, DBuser, DBpassword, DBdriver);
 		edao.init();
 		edao.initialize(Integer.parseInt(equipmentId));
 		Equipment eq = edao.getDao();
@@ -85,7 +71,6 @@ public class ConfigurationController {
 	@RequestMapping("/rest/disableEquipment")
 	public Equipment disableEquipment(@RequestParam(value = "equipmentId") String equipmentId) {
 		edao = new EquipmentDao();
-		edao.setProperties(DBurl, DBuser, DBpassword, DBdriver);
 		edao.init();
 		edao.initialize(Integer.parseInt(equipmentId));
 		Equipment eq = edao.getDao();
@@ -100,7 +85,6 @@ public class ConfigurationController {
 									 @RequestParam(value = "serial") String serial,
 									 @RequestParam(value = "equipmentTypeId") String equipmentTypeId) {
 		edao = new EquipmentDao();
-		edao.setProperties(DBurl, DBuser, DBpassword, DBdriver);
 		edao.init();
 		
 		if (name.length() == 0) {
@@ -121,7 +105,6 @@ public class ConfigurationController {
 		}
 		else {
 			etdao = new EquipmenttypeDao();
-			etdao.setProperties(DBurl, DBuser, DBpassword, DBdriver);
 			etdao.init();
 			etdao.initialize(Integer.parseInt(equipmentTypeId));
 			Equipment newEquipment = new Equipment();
@@ -144,7 +127,6 @@ public class ConfigurationController {
 	public Equipmenttype insertType(@RequestParam(value = "typeName") String typeName,						
 									@RequestParam(value = "typeCode") String typeCode) {
 		etdao = new EquipmenttypeDao();
-		etdao.setProperties(DBurl, DBuser, DBpassword, DBdriver);
 		etdao.init();
 		
 		if (!typeCode.matches("\\d+")) {
@@ -177,7 +159,6 @@ public class ConfigurationController {
 									 @RequestParam(value = "serial") String serial,
 									 @RequestParam(value = "equipmentTypeId") String equipmentTypeId) {
 		edao = new EquipmentDao();
-		edao.setProperties(DBurl, DBuser, DBpassword, DBdriver);
 		edao.init();
 
 		if (name.length() == 0) {
@@ -203,7 +184,6 @@ public class ConfigurationController {
 			eq.setSerial(serial);
 			if (Integer.parseInt(equipmentTypeId) > 0) {
 				etdao = new EquipmenttypeDao();
-				etdao.setProperties(DBurl, DBuser, DBpassword, DBdriver);
 				etdao.init();
 				etdao.initialize(Integer.parseInt(equipmentTypeId));
 				Equipmenttype etype = etdao.getDao();
@@ -223,7 +203,6 @@ public class ConfigurationController {
 									@RequestParam(value = "typeCode") String typeCode) {
 		
 		etdao = new EquipmenttypeDao();
-		etdao.setProperties(DBurl, DBuser, DBpassword, DBdriver);
 		etdao.init();
 		
 		if (!typeCode.matches("\\d+")) {
@@ -262,7 +241,6 @@ public class ConfigurationController {
 		}
 		
 		edao = new EquipmentDao();
-		edao.setProperties(DBurl, DBuser, DBpassword, DBdriver);
 		edao.init();
 		if (!edao.equipmentIdExists(equipmentId)) {
 			edao.destroy();
@@ -285,7 +263,6 @@ public class ConfigurationController {
 		}
 		
 		etdao = new EquipmenttypeDao();
-		etdao.setProperties(DBurl, DBuser, DBpassword, DBdriver);
 		etdao.init();
 		if (!etdao.equipmentTypeIdExists(Integer.parseInt(equipmentTypeId))) {
 			etdao.destroy();
@@ -296,7 +273,6 @@ public class ConfigurationController {
 		Equipmenttype etype = etdao.getDao();
 		
 		edao = new EquipmentDao();
-		edao.setProperties(DBurl, DBuser, DBpassword, DBdriver);
 		edao.init();
 		List<Equipment> equipmentList = edao.getByTypeCode(etype.getTypeCode());
 		if (equipmentList.size() > 0) {
@@ -309,13 +285,6 @@ public class ConfigurationController {
 			etdao.destroy();
 			return etype;
 		}
-	}
-
-	public void setProperties(String DBurl, String DBuser, String DBpassword, String DBdriver) {
-		this.DBurl = DBurl;
-		this.DBuser = DBuser;
-		this.DBpassword = DBpassword;
-		this.DBdriver = DBdriver;
 	}
 	
 	@ExceptionHandler

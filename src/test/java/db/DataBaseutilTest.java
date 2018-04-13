@@ -1,27 +1,28 @@
 package db;
 
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 
-import java.util.Properties;
+import javax.persistence.EntityManager;
 
 import org.junit.Test;
 
-import utils.PropertyUtils;
-
 public class DatabaseutilTest {
-	private static Properties properties = PropertyUtils.loadProperties();
-
+	
 	@Test
-	public void testEntityManagerFactory_TestDB() {
-		DatabaseUtil.setProperties(properties.getProperty("testDBurl"), properties.getProperty("testDBuser"), properties.getProperty("testDBpassword"), properties.getProperty("testDBdriver"));
-		assertNotNull(DatabaseUtil.getSessionFactory());
-		DatabaseUtil.shutdown();
+	public void testEntityManagerFactory_connection() {
+		EntityManager em = null;
+		em = DatabaseUtil.getEntityManager();
+		assertNotNull(em);
+		em.close();
 	}
 	
 	@Test
-	public void testEntityManagerFactory_ProdDB() {
-		DatabaseUtil.setProperties(properties.getProperty("DBurl"), properties.getProperty("DBuser"), properties.getProperty("DBpassword"), properties.getProperty("DBdriver"));
-		assertNotNull(DatabaseUtil.getSessionFactory());
-		DatabaseUtil.shutdown();
+	public void testEntityManagerFactory_closeConnection() {
+		EntityManager em = null;
+		em = DatabaseUtil.getEntityManager();
+		assertNotNull(em);
+		em.close();
+		assertFalse(em.isOpen());
 	}
 }

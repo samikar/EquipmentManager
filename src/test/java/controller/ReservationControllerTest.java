@@ -36,13 +36,7 @@ import model.ReservationDao;
 import utils.PropertyUtils;
 
 public class ReservationControllerTest {
-	private static Properties properties = PropertyUtils.loadProperties();
-	
 	@Autowired
-	private static String testDBurl;
-	private static String testDBuser;
-	private static String testDBpassword;
-	private static String testDBdriver;
 	private static EmployeeDao empdao;
 	private static EquipmentDao edao;
 	private static EquipmenttypeDao etdao;
@@ -50,29 +44,18 @@ public class ReservationControllerTest {
 	private static ReservationController controller;
 	
     @BeforeClass
-    public static void init() {
-    	testDBurl = properties.getProperty("testDBurl");
-    	testDBuser = properties.getProperty("testDBuser");
-    	testDBpassword = properties.getProperty("testDBpassword");
-    	testDBdriver = properties.getProperty("testDBdriver");
-    	
+    public static void init() {    	
     	empdao = new EmployeeDao();
     	edao = new EquipmentDao();
     	etdao = new EquipmenttypeDao();
     	rdao = new ReservationDao();
-    	
-    	empdao.setProperties(testDBurl, testDBuser, testDBpassword, testDBdriver);
-    	edao.setProperties(testDBurl, testDBuser, testDBpassword, testDBdriver);
-    	etdao.setProperties(testDBurl, testDBuser, testDBpassword, testDBdriver);
-    	rdao.setProperties(testDBurl, testDBuser, testDBpassword, testDBdriver);
-        
+ 
     	empdao.init();
         edao.init();
         etdao.init();
         rdao.init();
         
 		controller = new ReservationController();
-		controller.setProperties(testDBurl, testDBuser, testDBpassword, testDBdriver);
     }
 
     @AfterClass
@@ -81,7 +64,6 @@ public class ReservationControllerTest {
         edao.destroy();
         etdao.destroy();
         rdao.destroy();
-        DatabaseUtil.shutdown();
     }
     
 	@Before
@@ -703,36 +685,38 @@ public class ReservationControllerTest {
     	
 		Employee testEmployee1 = addEmployee(employeeId1, employeeName1);
 		Equipmenttype testEquipmenttype = addEquipmenttype(equipmentTypeCode, equipmentTypeName1);
-		addEquipment(equipmentName1, equipmentSerial1, equipmentStatusEnabled, testEquipmenttype);
-    	
+		
+		Equipment testEquipment1 = addEquipment(equipmentName1, equipmentSerial1, equipmentStatusEnabled, testEquipmenttype);
     	Equipment testEquipment2 = addEquipment(equipmentName2, equipmentSerial2, equipmentStatusEnabled, testEquipmenttype);
     	Equipment testEquipment3 = addEquipment(equipmentName3, equipmentSerial3, equipmentStatusEnabled, testEquipmenttype);
     	Equipment testEquipment4 = addEquipment(equipmentName4, equipmentSerial4, equipmentStatusEnabled, testEquipmenttype);
     	
-    	
-    	addReservation(reservationTypeInUse, dateTake, null, testEmployee1, testEquipment2);
-    	addReservation(reservationTypeCalibration, dateTake, null, testEmployee1, testEquipment3);
-    	addReservation(reservationTypeMaintentance, dateTake, null, testEmployee1, testEquipment4);
-    	
-    	List<EquipmentStatus> equipmentStatusList = controller.getEquipmentStatus();
-    	
-    	assertEquals(4, equipmentStatusList.size());
-    	
-    	assertEquals(equipmentSerial1, equipmentStatusList.get(0).getSerial());
-    	assertEquals(equipmentName1, equipmentStatusList.get(0).getName());
-    	assertEquals(reservationTypeStrAvailable, equipmentStatusList.get(0).getAvailability());
-    	
-    	assertEquals(equipmentSerial2, equipmentStatusList.get(1).getSerial());
-    	assertEquals(equipmentName2, equipmentStatusList.get(1).getName());
-    	assertEquals(reservationTypeStrInUse, equipmentStatusList.get(1).getAvailability());
-    	
-    	assertEquals(equipmentSerial3, equipmentStatusList.get(2).getSerial());
-    	assertEquals(equipmentName3, equipmentStatusList.get(2).getName());
-    	assertEquals(reservationTypeStrCalibration, equipmentStatusList.get(2).getAvailability());
-    	
-    	assertEquals(equipmentSerial4, equipmentStatusList.get(3).getSerial());
-    	assertEquals(equipmentName4, equipmentStatusList.get(3).getName());
-    	assertEquals(reservationTypeStrMaintenance, equipmentStatusList.get(3).getAvailability());
+		addReservation(reservationTypeInUse, dateTake, null, testEmployee1, testEquipment2);
+		addReservation(reservationTypeCalibration, dateTake, null, testEmployee1, testEquipment3);
+		addReservation(reservationTypeMaintentance, dateTake, null, testEmployee1, testEquipment4);
+
+		List<EquipmentStatus> equipmentStatusList = controller.getEquipmentStatus();
+
+		assertEquals(4, equipmentStatusList.size());
+		for (EquipmentStatus currentEquipmentStatus : equipmentStatusList) {
+			if (currentEquipmentStatus.getEquipmentId() == testEquipment1.getEquipmentId()) {
+				assertEquals(equipmentSerial1, equipmentStatusList.get(0).getSerial());
+				assertEquals(equipmentName1, equipmentStatusList.get(0).getName());
+				assertEquals(reservationTypeStrAvailable, equipmentStatusList.get(0).getAvailability());
+			} else if (currentEquipmentStatus.getEquipmentId() == testEquipment2.getEquipmentId()) {
+				assertEquals(equipmentSerial2, equipmentStatusList.get(1).getSerial());
+				assertEquals(equipmentName2, equipmentStatusList.get(1).getName());
+				assertEquals(reservationTypeStrInUse, equipmentStatusList.get(1).getAvailability());
+			} else if (currentEquipmentStatus.getEquipmentId() == testEquipment3.getEquipmentId()) {
+				assertEquals(equipmentSerial3, equipmentStatusList.get(2).getSerial());
+				assertEquals(equipmentName3, equipmentStatusList.get(2).getName());
+				assertEquals(reservationTypeStrCalibration, equipmentStatusList.get(2).getAvailability());
+			} else if (currentEquipmentStatus.getEquipmentId() == testEquipment4.getEquipmentId()) {
+				assertEquals(equipmentSerial4, equipmentStatusList.get(3).getSerial());
+				assertEquals(equipmentName4, equipmentStatusList.get(3).getName());
+				assertEquals(reservationTypeStrMaintenance, equipmentStatusList.get(3).getAvailability());
+			}
+		}
 	}
 	
 	@Ignore

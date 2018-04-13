@@ -2,46 +2,42 @@ package db;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Properties;
 
+import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
-public class DatabaseUtil {
+import utils.PropertyUtils;
 
-	private static EntityManagerFactory entityManagerFactory;
+public class DatabaseUtil {
+	static Properties properties = PropertyUtils.loadProperties();
+	private final static String url = properties.getProperty("DBurl");
+	private final static String user = properties.getProperty("DBuser");
+	private final static String password = properties.getProperty("DBpassword");
+	private final static String driver = properties.getProperty("DBdriver");
+
+	private static final EntityManagerFactory entityManagerFactory;
 	static Map<String, String> persistenceMap = new HashMap<String, String>();
 
-	private static EntityManagerFactory buildSessionFactory() {
-//		if (!entityManagerFactory.isOpen()) {
-			try {
-				entityManagerFactory = Persistence.createEntityManagerFactory("EquipmentManager", persistenceMap);
-				return entityManagerFactory;
-			} catch (Throwable ex) {
-				System.err.println("Initial EntityManagerFactory creation failed." + ex);
-				throw new ExceptionInInitializerError(ex);
-			}
-//		}
-//		return entityManagerFactory;
+	static {
+		setProperties();
+		entityManagerFactory = Persistence.createEntityManagerFactory("EquipmentManager", persistenceMap);
 	}
 
-	public static void setProperties(String url, String user, String password, String driver) {
+	public static EntityManager getEntityManager() {
+		return entityManagerFactory.createEntityManager();
+	}
+
+	public static void shutdown() {
+		entityManagerFactory.close();
+	}
+
+	private static void setProperties() {
 		persistenceMap.put("javax.persistence.jdbc.url", url);
 		persistenceMap.put("javax.persistence.jdbc.user", user);
 		persistenceMap.put("javax.persistence.jdbc.password", password);
 		persistenceMap.put("javax.persistence.jdbc.driver", driver);
 	}
 
-	public static EntityManagerFactory getSessionFactory() {
-		entityManagerFactory = buildSessionFactory();
-		return entityManagerFactory;
-	}
-
-	public static EntityManagerFactory getTestSessionFactory() {
-		entityManagerFactory = buildSessionFactory();
-		return entityManagerFactory;
-	}
-
-	public static void shutdown() {
-		getSessionFactory().close();
-	}
 }

@@ -3,7 +3,6 @@ package model;
 import java.util.List;
 
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
@@ -16,16 +15,12 @@ import db.DatabaseUtil;
 @Repository
 @Transactional
 public class EmployeeDao {
-	private String url;
-	private String user;
-	private String password;
-	private String driver;
-	
+
 	@PersistenceContext
 	private EntityManager entityManager;
-	private EntityManagerFactory entityManagerFactory;
+//	private EntityManagerFactory entityManagerFactory;
 	private Employee dao;
-	
+
 	public EmployeeDao() {
 	}
 
@@ -41,26 +36,10 @@ public class EmployeeDao {
 		this.dao = dao;
 	}
 
-	public void init(){
-		DatabaseUtil.setProperties(url, user, password, driver);
-		try {
-			entityManagerFactory = DatabaseUtil.getSessionFactory();
-		}
-		catch (Exception e) {
-			// TODO: logger
-		}
-		if (entityManager == null || !entityManager.isOpen()) {
-			entityManager = entityManagerFactory.createEntityManager();
-		}
+	public void init() {
+		entityManager = DatabaseUtil.getEntityManager();
 	}
-	
-	public void setProperties(String url, String user, String password, String driver) {
-		this.url = url;
-		this.user = user;
-		this.password = password;
-		this.driver = driver;
-	}
-	
+
 	public void refresh() {
 		this.destroy();
 		this.init();
@@ -110,36 +89,35 @@ public class EmployeeDao {
 
 	public void destroy() {
 		entityManager.close();
-		DatabaseUtil.shutdown();
 	}
 
 	public List<Employee> getAll() {
-		List<Employee> reservations = entityManager.createNamedQuery("Employee.findAll", Employee.class).getResultList();
-		
+		List<Employee> reservations = entityManager.createNamedQuery("Employee.findAll", Employee.class)
+				.getResultList();
+
 		return reservations;
 	}
 
 	public Employee getEmployeeByEmployeeId(String employeeId) {
 		List<Employee> employeeList = entityManager.createNamedQuery("Employee.findByEmployeeId", Employee.class)
 				.setParameter(1, employeeId).getResultList();
-		
-		if (employeeList.size() > 0) { 
+
+		if (employeeList.size() > 0) {
 			return employeeList.get(0);
-		}
-		else return null;
+		} else
+			return null;
 	}
-	
+
 	public int getEmployeeKeyByEmployeeId(String employeeId) {
 		List<Employee> employeeList = entityManager.createNamedQuery("Employee.findByEmployeeId", Employee.class)
 				.setParameter(1, employeeId).getResultList();
 		if (employeeList.size() > 0) {
 			Employee e = employeeList.get(0);
 			return e.getEmployeeKey();
-		}		
-		else
+		} else
 			return 0;
 	}
-	
+
 	public boolean employeeExists(String employeeId) {
 		if (employeeInDB(employeeId))
 			return true;
@@ -157,7 +135,7 @@ public class EmployeeDao {
 		else
 			return false;
 	}
-	
+
 	public boolean employeeInAD(String employeeId) {
 		ADHandler handler = new ADHandler();
 		handler.init();
@@ -170,8 +148,7 @@ public class EmployeeDao {
 			persist(dao);
 			System.out.println("Employee added to DB");
 			return true;
-		}
-		else
+		} else
 			return false;
 	}
 }

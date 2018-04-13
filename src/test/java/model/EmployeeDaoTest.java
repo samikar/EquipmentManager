@@ -5,7 +5,6 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import java.util.List;
-import java.util.Properties;
 
 import org.junit.After;
 import org.junit.AfterClass;
@@ -16,28 +15,16 @@ import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import db.DatabaseUtil;
-import utils.PropertyUtils;
 
 public class EmployeeDaoTest {
-	private static Properties properties = PropertyUtils.loadProperties();
 	
 	@Autowired
-	private static String testDBurl;
-	private static String testDBuser;
-	private static String testDBpassword;
-	private static String testDBdriver;
 	private static EmployeeDao empdao;
 	
     @BeforeClass
     public static void init() {
-    	testDBurl = properties.getProperty("testDBurl");
-    	testDBuser = properties.getProperty("testDBuser");
-    	testDBpassword = properties.getProperty("testDBpassword");
-    	testDBdriver = properties.getProperty("testDBdriver");
     	
     	empdao = new EmployeeDao();
-    	
-    	empdao.setProperties(testDBurl, testDBuser, testDBpassword, testDBdriver);
         
     	empdao.init();
     }
@@ -45,7 +32,6 @@ public class EmployeeDaoTest {
     @AfterClass
     public static void destroy() {
         empdao.destroy();
-        DatabaseUtil.shutdown();
     }
     
 	@Before

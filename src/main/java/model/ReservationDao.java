@@ -4,7 +4,6 @@ import java.util.Date;
 import java.util.List;
 
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
@@ -16,14 +15,10 @@ import db.DatabaseUtil;
 @Repository
 @Transactional
 public class ReservationDao {
-	private String url;
-	private String user;
-	private String password;
-	private String driver;
 	
 	@PersistenceContext
 	private EntityManager entityManager;
-	private EntityManagerFactory entityManagerFactory;
+//	private EntityManagerFactory entityManagerFactory;
 	private Reservation dao;
 	
 	
@@ -38,25 +33,11 @@ public class ReservationDao {
 		this.dao = dao;
 	}
 	
-	public void init(){
-		DatabaseUtil.setProperties(url, user, password, driver);
-		try {
-			entityManagerFactory = DatabaseUtil.getSessionFactory();
-		}
-		catch (Exception e) {
-			// TODO: logger
-		}
-		if (entityManager == null || !entityManager.isOpen()) {
-			entityManager = entityManagerFactory.createEntityManager();
-		}
+	public void init() {
+		entityManager = DatabaseUtil.getEntityManager();
 	}
 	
-	public void setProperties(String url, String user, String password, String driver) {
-		this.url = url;
-		this.user = user;
-		this.password = password;
-		this.driver = driver;
-	}
+
 	
 	public void refresh() {
 		this.destroy();
@@ -110,7 +91,6 @@ public class ReservationDao {
 	
 	public void destroy(){
 		entityManager.close();
-		DatabaseUtil.shutdown();
 	}
 	
 	public List<Reservation> getAll() {

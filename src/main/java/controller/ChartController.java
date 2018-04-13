@@ -34,14 +34,7 @@ import utils.PropertyUtils;
 
 @RestController
 public class ChartController {
-	
 	Properties properties = PropertyUtils.loadProperties();
-	// Database properties
-	String DBurl = properties.getProperty("DBurl");
-	String DBuser = properties.getProperty("DBuser");
-	String DBpassword = properties.getProperty("DBpassword");
-	String DBdriver = properties.getProperty("DBdriver");
-
 	private final double WORKDAY = Double.parseDouble(properties.getProperty("WORKDAY"));
 	private final int STARTHOUR = Integer.parseInt(properties.getProperty("STARTHOUR"));
 	private final int STARTMINUTE = Integer.parseInt(properties.getProperty("STARTMINUTE"));
@@ -149,7 +142,6 @@ public class ChartController {
 	@RequestMapping("/rest/getEquipmentTypesWithEquipment")
 	public List<Equipmenttype> getEquipmentTypesWithEquipment() {
 		etdao = new EquipmenttypeDao();
-		etdao.setProperties(DBurl, DBuser, DBpassword, DBdriver);
 		etdao.init();
 		List<Equipmenttype> result = etdao.getEquipmentTypesWithEquipment();
 		etdao.destroy();
@@ -159,7 +151,6 @@ public class ChartController {
 	public List<EquipmentUsage> getUsageByType(String typeCode, Date start, Date end) {
 		List<EquipmentUsage> usageList = new ArrayList<EquipmentUsage>();
 		edao = new EquipmentDao();
-		edao.setProperties(DBurl, DBuser, DBpassword, DBdriver);
 		edao.init();
 		List<Equipment> equipmentOfType = edao.getEnabledByTypeCode(Integer.parseInt(typeCode));
 		edao.destroy();
@@ -174,8 +165,6 @@ public class ChartController {
 	public EquipmentUsage getUsageBySerial(String serial, Date start, Date end) {
 		edao = new EquipmentDao();
 		rdao = new ReservationDao();
-		edao.setProperties(DBurl, DBuser, DBpassword, DBdriver);;
-		rdao.setProperties(DBurl, DBuser, DBpassword, DBdriver);
 		edao.init();
 		rdao.init();
 		
@@ -212,7 +201,6 @@ public class ChartController {
 	public List<MonthlyUsage> getMonthlyUsageByType(String typeCode, Date start, Date end) {
 		List<MonthlyUsage> usageByTypeMonthly = new ArrayList<MonthlyUsage>();
 		edao = new EquipmentDao();
-		edao.setProperties(DBurl, DBuser, DBpassword, DBdriver);
 		edao.init();
 		List<Equipment> equipmentOfType = edao.getEnabledByTypeCode(Integer.parseInt(typeCode));
 		edao.destroy();
@@ -409,13 +397,6 @@ public class ChartController {
 		return workhours;
 	}
 	*/
-	
-	public void setProperties(String DBurl, String DBuser, String DBpassword, String DBdriver) {
-		this.DBurl = DBurl;
-		this.DBuser = DBuser;
-		this.DBpassword = DBpassword;
-		this.DBdriver = DBdriver;
-	}
 	
 	@ExceptionHandler
 	void handleIllegalArgumentException(IllegalArgumentException e, HttpServletResponse response) throws IOException {

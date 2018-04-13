@@ -40,7 +40,6 @@ import utils.PropertyUtils;
 
 @Ignore
 public class ConfigurationControllerTest {
-	private static Properties properties = PropertyUtils.loadProperties();
 	
 	private final static String TESTFILEPATH = "test_files" + File.separator;
 	private final static String TESTFILENAME = "test_file.txt";
@@ -48,10 +47,6 @@ public class ConfigurationControllerTest {
 	private final static String TYPETFILE = "luokat.xlsx";
 	
 	@Autowired
-	private static String testDBurl;
-	private static String testDBuser;
-	private static String testDBpassword;
-	private static String testDBdriver;
 	private static EquipmentDao edao;
 	private static EquipmenttypeDao etdao;
 	private static ConfigurationController controller;
@@ -61,29 +56,19 @@ public class ConfigurationControllerTest {
 	
     @BeforeClass
     public static void init() {
-    	testDBurl = properties.getProperty("testDBurl");
-    	testDBuser = properties.getProperty("testDBuser");
-    	testDBpassword = properties.getProperty("testDBpassword");
-    	testDBdriver = properties.getProperty("testDBdriver");
-    	
     	edao = new EquipmentDao();
     	etdao = new EquipmenttypeDao();
-    	
-    	edao.setProperties(testDBurl, testDBuser, testDBpassword, testDBdriver);
-    	etdao.setProperties(testDBurl, testDBuser, testDBpassword, testDBdriver);
         
         edao.init();
         etdao.init();
         
 		controller = new ConfigurationController();
-		controller.setProperties(testDBurl, testDBuser, testDBpassword, testDBdriver);
     }
 	
     @AfterClass
     public static void destroy() {
     	edao.destroy();
         etdao.destroy();
-        DatabaseUtil.shutdown();
     }
     
 	@Before

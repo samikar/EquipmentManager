@@ -43,10 +43,6 @@ public class ChartControllerTest {
 	private final int ENDMINUTE = Integer.parseInt(properties.getProperty("ENDMINUTE"));
 	
 	@Autowired
-	private static String testDBurl;
-	private static String testDBuser;
-	private static String testDBpassword;
-	private static String testDBdriver;
 	private static EmployeeDao empdao;
 	private static EquipmentDao edao;
 	private static EquipmenttypeDao etdao;
@@ -58,20 +54,10 @@ public class ChartControllerTest {
 	
     @BeforeClass
     public static void init() {
-    	testDBurl = properties.getProperty("testDBurl");
-    	testDBuser = properties.getProperty("testDBuser");
-    	testDBpassword = properties.getProperty("testDBpassword");
-    	testDBdriver = properties.getProperty("testDBdriver");
-    	
     	empdao = new EmployeeDao();
     	edao = new EquipmentDao();
     	etdao = new EquipmenttypeDao();
     	rdao = new ReservationDao();
-    	
-    	empdao.setProperties(testDBurl, testDBuser, testDBpassword, testDBdriver);
-    	edao.setProperties(testDBurl, testDBuser, testDBpassword, testDBdriver);
-    	etdao.setProperties(testDBurl, testDBuser, testDBpassword, testDBdriver);
-    	rdao.setProperties(testDBurl, testDBuser, testDBpassword, testDBdriver);
         
     	empdao.init();
         edao.init();
@@ -79,7 +65,6 @@ public class ChartControllerTest {
         rdao.init();
         
 		controller = new ChartController();
-		controller.setProperties(testDBurl, testDBuser, testDBpassword, testDBdriver);
     }
 	
     @AfterClass
@@ -88,7 +73,6 @@ public class ChartControllerTest {
         edao.destroy();
         etdao.destroy();
         rdao.destroy();
-        DatabaseUtil.shutdown();
     }
     
 	@Before

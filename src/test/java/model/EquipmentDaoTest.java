@@ -23,25 +23,13 @@ public class EquipmentDaoTest {
 	private static Properties properties = PropertyUtils.loadProperties();
 	
 	@Autowired
-	private static String testDBurl;
-	private static String testDBuser;
-	private static String testDBpassword;
-	private static String testDBdriver;
 	private static EquipmentDao edao;
 	private static EquipmenttypeDao etdao;
 	
     @BeforeClass
-    public static void init() {
-    	testDBurl = properties.getProperty("testDBurl");
-    	testDBuser = properties.getProperty("testDBuser");
-    	testDBpassword = properties.getProperty("testDBpassword");
-    	testDBdriver = properties.getProperty("testDBdriver");
-    	
+    public static void init() {    	
     	edao = new EquipmentDao();
     	etdao = new EquipmenttypeDao();
-    	
-    	edao.setProperties(testDBurl, testDBuser, testDBpassword, testDBdriver);
-    	etdao.setProperties(testDBurl, testDBuser, testDBpassword, testDBdriver);
         
         edao.init();
         etdao.init();
@@ -51,7 +39,6 @@ public class EquipmentDaoTest {
 	public static void destroy() {
 		edao.destroy();
 		etdao.destroy();
-		DatabaseUtil.shutdown();
 	}
 	
 	@Before

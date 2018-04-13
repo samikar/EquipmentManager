@@ -21,21 +21,13 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.multipart.MultipartFile;
 
-import model.EmployeeDao;
 import model.Equipment;
 import model.EquipmentDao;
 import model.Equipmenttype;
 import model.EquipmenttypeDao;
-import model.ReservationDao;
 
 public class EquipmentDataReader {
-	// Database properties
 	private static Properties properties = PropertyUtils.loadProperties();
-	private String DBurl = properties.getProperty("DBurl");
-	private String DBuser = properties.getProperty("DBuser");
-	private String DBpassword = properties.getProperty("DBpassword");
-	private String DBdriver = properties.getProperty("DBdriver");
-	
 	private final static String dataFilePath = "DataFiles" + File.separator;
 	
 	EquipmentDao edao;
@@ -78,8 +70,6 @@ public class EquipmentDataReader {
 		
 		edao = new EquipmentDao();
 		etdao = new EquipmenttypeDao();
-		edao.setProperties(DBurl, DBuser, DBpassword, DBdriver);
-		etdao.setProperties(DBurl, DBuser, DBpassword, DBdriver);
 		edao.init();
 		etdao.init();
 		
@@ -202,7 +192,6 @@ public class EquipmentDataReader {
 
 		Sheet firstSheet = workbook.getSheetAt(0);
 		Iterator<Row> iterator = firstSheet.iterator();
-		etdao.setProperties(DBurl, DBuser, DBpassword, DBdriver);
 		etdao.init();
 		
 		for (int i=0; i<firstRow - 1; i++) {
@@ -288,12 +277,5 @@ public class EquipmentDataReader {
 			}
 		}
 		return result;
-	}
-	
-	public void setProperties(String DBurl, String DBuser, String DBpassword, String DBdriver) {
-		this.DBurl = DBurl;
-		this.DBuser = DBuser;
-		this.DBpassword = DBpassword;
-		this.DBdriver = DBdriver;
 	}
 }

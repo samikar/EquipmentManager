@@ -33,13 +33,7 @@ public class PropertyUtilsTest {
 		assertNotNull(properties.getProperty("DBuser"));
 		assertNotNull(properties.getProperty("DBpassword"));
 		assertNotNull(properties.getProperty("DBdriver"));
-		
-		// Test database
-		assertNotNull(properties.getProperty("testDBurl"));
-		assertNotNull(properties.getProperty("testDBuser"));
-		assertNotNull(properties.getProperty("testDBpassword"));
-		assertNotNull(properties.getProperty("testDBdriver"));
-		
+				
 		// Workday
 		assertNotNull(properties.getProperty("WORKDAY"));
 		assertNotNull(properties.getProperty("STARTHOUR"));
@@ -69,11 +63,6 @@ public class PropertyUtilsTest {
 		assertNotEquals(0, properties.getProperty("DBuser").length());
 		assertNotEquals(0, properties.getProperty("DBpassword").length());
 		assertNotEquals(0, properties.getProperty("DBdriver").length());
-		
-		assertNotEquals(0, properties.getProperty("testDBurl").length());
-		assertNotEquals(0, properties.getProperty("testDBuser").length());
-		assertNotEquals(0, properties.getProperty("testDBpassword").length());
-		assertNotEquals(0, properties.getProperty("testDBdriver").length());
 		
 		assertNotEquals(0, properties.getProperty("WORKDAY").length());
 		assertNotEquals(0, properties.getProperty("STARTHOUR").length());

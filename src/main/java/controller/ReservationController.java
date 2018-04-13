@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.Properties;
 
 import javax.servlet.http.HttpServletResponse;
 
@@ -24,16 +23,10 @@ import model.EquipmentStatus;
 import model.Equipmenttype;
 import model.Reservation;
 import model.ReservationDao;
-import utils.PropertyUtils;
 
 @RestController
 public class ReservationController {
 	// Database properties
-	private static Properties properties = PropertyUtils.loadProperties();
-	private String DBurl = properties.getProperty("DBurl");
-	private String DBuser = properties.getProperty("DBuser");
-	private String DBpassword = properties.getProperty("DBpassword");
-	private String DBdriver = properties.getProperty("DBdriver");
 	private ReservationDao rdao;
 	private EmployeeDao empdao;
 	private EquipmentDao edao;
@@ -46,7 +39,6 @@ public class ReservationController {
 	@RequestMapping("/rest/getallreservations")
 	public List<Reservation> getAllReservations() {
 		rdao = new ReservationDao();
-		rdao.setProperties(DBurl, DBuser, DBpassword, DBdriver);
 		rdao.init();
 		List<Reservation> result = rdao.getAll();
 		rdao.destroy();
@@ -61,9 +53,6 @@ public class ReservationController {
 		rdao = new ReservationDao();
 		empdao = new EmployeeDao();
 		edao = new EquipmentDao();
-		rdao.setProperties(DBurl, DBuser, DBpassword, DBdriver);
-		empdao.setProperties(DBurl, DBuser, DBpassword, DBdriver);
-		edao.setProperties(DBurl, DBuser, DBpassword, DBdriver);
 		rdao.init();
 		empdao.init();
 		edao.init();
@@ -116,8 +105,6 @@ public class ReservationController {
 	public Reservation returnSingle(@RequestParam(value = "serial") String serial) {
 		edao = new EquipmentDao();
 		rdao = new ReservationDao();
-		edao.setProperties(DBurl, DBuser, DBpassword, DBdriver);
-		rdao.setProperties(DBurl, DBuser, DBpassword, DBdriver);
 		edao.init();
 		rdao.init();
 		if (serial == null || serial.isEmpty()) {
@@ -159,7 +146,6 @@ public class ReservationController {
 			Date currentDate = new Date();
 			Reservation reservation = new Reservation();
 			rdao = new ReservationDao();
-			rdao.setProperties(DBurl, DBuser, DBpassword, DBdriver);
 			rdao.init();
 			rdao.initialize(idsInt[i]);
 
@@ -178,7 +164,6 @@ public class ReservationController {
 		}
 
 		rdao = new ReservationDao();
-		rdao.setProperties(DBurl, DBuser, DBpassword, DBdriver);
 		rdao.init();
 		List<Reservation> reservations = rdao.getOpenByEmployeeId(employeeId);
 		rdao.destroy();
@@ -192,8 +177,6 @@ public class ReservationController {
 	public List<EquipmentStatus> getEquipmentStatus() {
 		edao = new EquipmentDao();
 		rdao = new ReservationDao();
-		edao.setProperties(DBurl, DBuser, DBpassword, DBdriver);
-		rdao.setProperties(DBurl, DBuser, DBpassword, DBdriver);
 		edao.init();
 		rdao.init();
 
@@ -247,18 +230,10 @@ public class ReservationController {
 	@RequestMapping("rest/getEmployee")
 	public Employee getEmployee(@RequestParam(value = "employeeId") String employeeId) {
 		empdao = new EmployeeDao();
-		empdao.setProperties(DBurl, DBuser, DBpassword, DBdriver);
 		empdao.init();
 		Employee result = empdao.getEmployeeByEmployeeId(employeeId);
 		empdao.destroy();
 		return result;
-	}
-	
-	public void setProperties(String DBurl, String DBuser, String DBpassword, String DBdriver) {
-		this.DBurl = DBurl;
-		this.DBuser = DBuser;
-		this.DBpassword = DBpassword;
-		this.DBdriver = DBdriver;
 	}
 
 	@ExceptionHandler

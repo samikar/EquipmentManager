@@ -22,13 +22,8 @@ import db.DatabaseUtil;
 import utils.PropertyUtils;
 
 public class ReservationDaoTest {
-	private static Properties properties = PropertyUtils.loadProperties();
 	
 	@Autowired
-	private static String testDBurl;
-	private static String testDBuser;
-	private static String testDBpassword;
-	private static String testDBdriver;
 	private static EmployeeDao empdao;
 	private static EquipmentDao edao;
 	private static EquipmenttypeDao etdao;
@@ -36,21 +31,11 @@ public class ReservationDaoTest {
 	
     @BeforeClass
     public static void init() {
-    	testDBurl = properties.getProperty("testDBurl");
-    	testDBuser = properties.getProperty("testDBuser");
-    	testDBpassword = properties.getProperty("testDBpassword");
-    	testDBdriver = properties.getProperty("testDBdriver");
-    	
     	empdao = new EmployeeDao();
     	edao = new EquipmentDao();
     	etdao = new EquipmenttypeDao();
     	rdao = new ReservationDao();
     	
-    	empdao.setProperties(testDBurl, testDBuser, testDBpassword, testDBdriver);
-    	edao.setProperties(testDBurl, testDBuser, testDBpassword, testDBdriver);
-    	etdao.setProperties(testDBurl, testDBuser, testDBpassword, testDBdriver);
-    	rdao.setProperties(testDBurl, testDBuser, testDBpassword, testDBdriver);
-        
     	empdao.init();
         edao.init();
         etdao.init();
@@ -63,7 +48,6 @@ public class ReservationDaoTest {
         edao.destroy();
         etdao.destroy();
         rdao.destroy();
-        DatabaseUtil.shutdown();
     }
     
 	@Before
