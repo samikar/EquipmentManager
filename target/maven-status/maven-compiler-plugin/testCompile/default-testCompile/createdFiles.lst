@@ -1,8 +1,0 @@
-model\EquipmenttypeDaoTest.class
-utils\PropertyUtilsTest.class
-db\DatabaseutilTest.class
-model\EquipmentDaoTest.class
-utils\EquipmentDataReaderTest.class
-model\EmployeeDaoTest.class
-model\ReservationDaoTest.class
-db\ADHandlerTest.class
