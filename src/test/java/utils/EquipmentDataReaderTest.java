@@ -33,7 +33,7 @@ import model.EquipmentDao;
 import model.Equipmenttype;
 import model.EquipmenttypeDao;
 
-//@Ignore
+@Ignore
 public class EquipmentDataReaderTest {
 	
 	@Autowired

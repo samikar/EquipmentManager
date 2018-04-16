@@ -13,6 +13,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Properties;
 
+import org.apache.log4j.Logger;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -42,6 +43,8 @@ public class ReservationControllerTest {
 	private static EquipmenttypeDao etdao;
 	private static ReservationDao rdao;
 	private static ReservationController controller;
+	
+	final static Logger logger = Logger.getLogger(ReservationControllerTest.class);
 	
     @BeforeClass
     public static void init() {    	
@@ -696,7 +699,27 @@ public class ReservationControllerTest {
 		addReservation(reservationTypeMaintentance, dateTake, null, testEmployee1, testEquipment4);
 
 		List<EquipmentStatus> equipmentStatusList = controller.getEquipmentStatus();
+		
+		if(logger.isDebugEnabled()){
+			logger.debug("TestEquipment1: " + testEquipment1.getEquipmentId());
+			logger.debug("TestEquipment2: " + testEquipment2.getEquipmentId());
+			logger.debug("TestEquipment3: " + testEquipment3.getEquipmentId());
+			logger.debug("TestEquipment4: " + testEquipment4.getEquipmentId());
 
+			for (int i=0; i<equipmentStatusList.size(); i++) {
+				logger.debug("List id" + i + ": " + equipmentStatusList.get(0).getEquipmentId());
+			}
+		}
+		
+//		System.out.println("TestEquipment1: " + testEquipment1.getEquipmentId());
+//		System.out.println("TestEquipment2: " + testEquipment2.getEquipmentId());
+//		System.out.println("TestEquipment3: " + testEquipment3.getEquipmentId());
+//		System.out.println("TestEquipment4: " + testEquipment4.getEquipmentId());
+//		
+//		for (int i=0; i<equipmentStatusList.size(); i++) {
+//			System.out.println("List id" + i + ": " + equipmentStatusList.get(0).getEquipmentId());
+//		}
+		
 		assertEquals(4, equipmentStatusList.size());
 		for (EquipmentStatus currentEquipmentStatus : equipmentStatusList) {
 			if (currentEquipmentStatus.getEquipmentId() == testEquipment1.getEquipmentId()) {
