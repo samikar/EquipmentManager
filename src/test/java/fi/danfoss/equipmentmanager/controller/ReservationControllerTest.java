@@ -68,7 +68,6 @@ public class ReservationControllerTest {
     
 	@Before
 	public void initTest() {
-
 		emptyTables();
 	}
 	
@@ -696,25 +695,25 @@ public class ReservationControllerTest {
 		addReservation(reservationTypeMaintentance, dateTake, null, testEmployee1, testEquipment4);
 
 		List<EquipmentStatus> equipmentStatusList = controller.getEquipmentStatus();
-		
+			
 		assertEquals(4, equipmentStatusList.size());
 		for (EquipmentStatus currentEquipmentStatus : equipmentStatusList) {
 			if (currentEquipmentStatus.getEquipmentId() == testEquipment1.getEquipmentId()) {
-				assertEquals(equipmentSerial1, equipmentStatusList.get(0).getSerial());
-				assertEquals(equipmentName1, equipmentStatusList.get(0).getName());
-				assertEquals(reservationTypeStrAvailable, equipmentStatusList.get(0).getAvailability());
+				assertEquals(equipmentSerial1, currentEquipmentStatus.getSerial());
+				assertEquals(equipmentName1, currentEquipmentStatus.getName());
+				assertEquals(reservationTypeStrAvailable, currentEquipmentStatus.getAvailability());
 			} else if (currentEquipmentStatus.getEquipmentId() == testEquipment2.getEquipmentId()) {
-				assertEquals(equipmentSerial2, equipmentStatusList.get(1).getSerial());
-				assertEquals(equipmentName2, equipmentStatusList.get(1).getName());
-				assertEquals(reservationTypeStrInUse, equipmentStatusList.get(1).getAvailability());
+				assertEquals(equipmentSerial2, currentEquipmentStatus.getSerial());
+				assertEquals(equipmentName2, currentEquipmentStatus.getName());
+				assertEquals(reservationTypeStrInUse, currentEquipmentStatus.getAvailability());
 			} else if (currentEquipmentStatus.getEquipmentId() == testEquipment3.getEquipmentId()) {
-				assertEquals(equipmentSerial3, equipmentStatusList.get(2).getSerial());
-				assertEquals(equipmentName3, equipmentStatusList.get(2).getName());
-				assertEquals(reservationTypeStrCalibration, equipmentStatusList.get(2).getAvailability());
+				assertEquals(equipmentSerial3, currentEquipmentStatus.getSerial());
+				assertEquals(equipmentName3, currentEquipmentStatus.getName());
+				assertEquals(reservationTypeStrCalibration, currentEquipmentStatus.getAvailability());
 			} else if (currentEquipmentStatus.getEquipmentId() == testEquipment4.getEquipmentId()) {
-				assertEquals(equipmentSerial4, equipmentStatusList.get(3).getSerial());
-				assertEquals(equipmentName4, equipmentStatusList.get(3).getName());
-				assertEquals(reservationTypeStrMaintenance, equipmentStatusList.get(3).getAvailability());
+				assertEquals(equipmentSerial4, currentEquipmentStatus.getSerial());
+				assertEquals(equipmentName4, currentEquipmentStatus.getName());
+				assertEquals(reservationTypeStrMaintenance, currentEquipmentStatus.getAvailability());
 			}
 		}
 	}

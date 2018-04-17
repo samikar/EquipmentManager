@@ -24,6 +24,7 @@
    	    <logger name="fi.danfoss.equipmentmanager.utils" level="DEBUG">
     	<appender-ref ref="FILE" />
    	</logger>
+   	
     <!-- >root level="INFO">
         <appender-ref ref="FILE" />
     </root-->

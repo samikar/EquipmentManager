@@ -2,19 +2,18 @@ package fi.danfoss.equipmentmanager.controller;
 
 import java.io.IOException;
 import java.time.DayOfWeek;
-import java.time.LocalDate;
+import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Properties;
-import java.util.concurrent.TimeUnit;
 
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.log4j.Logger;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -46,6 +45,23 @@ public class ChartController {
 	EquipmentDao edao;
 	EquipmenttypeDao etdao;
 	
+	final static Logger logger = Logger.getLogger(ChartController.class);
+	
+	@RequestMapping("/rest/epochTest")
+	public String epochTest(@RequestParam(value = "start") String startStr,
+			@RequestParam(value = "end") String endStr) {
+		long startMillis = Long.parseLong(startStr);
+		long endMillis = Long.parseLong(endStr);
+		
+		LocalDateTime startLDT = epochToLocalDateTime(startMillis);
+		LocalDateTime endLDT = epochToLocalDateTime(endMillis);
+		String startResult = "Start: " + startLDT.getDayOfMonth() + "/" + startLDT.getMonthValue() + "/" + startLDT.getYear() + " " + startLDT.getHour() + ":" + startLDT.getMinute() + ":" + startLDT.getSecond();
+		String endResult = "end: " + endLDT.getDayOfMonth() + "/" + endLDT.getMonthValue() + "/" + endLDT.getYear() + " " + endLDT.getHour() + ":" + endLDT.getMinute() + ":" + endLDT.getSecond();
+		
+		double workHours = workHoursInRange(startLDT, endLDT);
+		return "Workhours in range: " + workHours + "\n" +startResult + "\n" + endResult;
+	}
+	
 	@RequestMapping("/rest/usageBySerial")
 	public EquipmentUsage usageBySerial(@RequestParam(value = "serial") String serial,
 			@RequestParam(value = "start") String startStr,
@@ -61,9 +77,13 @@ public class ChartController {
     		throw new IllegalArgumentException("End date must not be empty");
     	}		
 		else {
-			// Parse dates from epoch to Date
-			Date start = new Date(Long.parseLong(startStr) * 1000);
-			Date end = new Date(Long.parseLong(endStr) * 1000);
+			// Parse epoch strings to LocalDateTime
+			LocalDateTime start = epochToLocalDateTime(Long.parseLong(startStr));
+			LocalDateTime end = epochToLocalDateTime(Long.parseLong(endStr));
+//			long startMillis = Long.parseLong(startStr);
+//			long endMillis = Long.parseLong(endStr);
+//			Date start = new Date(Long.parseLong(startStr) * 1000);
+//			Date end = new Date(Long.parseLong(endStr) * 1000);
 			EquipmentUsage result = getUsageBySerial(serial, start, end);
 				
 			return result;
@@ -84,9 +104,11 @@ public class ChartController {
     		throw new IllegalArgumentException("End date must not be empty");
     	}		
 		else {
-			// Parse dates from epoch to Date
-			Date start = new Date(Long.parseLong(startStr) * 1000);
-			Date end = new Date(Long.parseLong(endStr) * 1000);
+//			// Parse dates from epoch to Date
+			LocalDateTime start = epochToLocalDateTime(Long.parseLong(startStr));
+			LocalDateTime end = epochToLocalDateTime(Long.parseLong(endStr));
+//			Date start = new Date(Long.parseLong(startStr) * 1000);
+//			Date end = new Date(Long.parseLong(endStr) * 1000);
 			List<EquipmentUsage> result = getUsageByType(typeCode, start, end);
 			
 			return result;
@@ -148,7 +170,7 @@ public class ChartController {
 		return result;
 	}
 	
-	public List<EquipmentUsage> getUsageByType(String typeCode, Date start, Date end) {
+	public List<EquipmentUsage> getUsageByType(String typeCode, LocalDateTime start, LocalDateTime end) {
 		List<EquipmentUsage> usageList = new ArrayList<EquipmentUsage>();
 		edao = new EquipmentDao();
 		edao.init();
@@ -162,7 +184,9 @@ public class ChartController {
 		return usageList;
 	}
 	
-	public EquipmentUsage getUsageBySerial(String serial, Date start, Date end) {
+	public EquipmentUsage getUsageBySerial(String serial, LocalDateTime start, LocalDateTime end) {
+		Date startDate = Date.from(start.atZone(ZoneId.systemDefault()).toInstant());
+		Date endDate = Date.from(end.atZone(ZoneId.systemDefault()).toInstant());
 		edao = new EquipmentDao();
 		rdao = new ReservationDao();
 		edao.init();
@@ -172,7 +196,7 @@ public class ChartController {
 		EquipmentUsage usage = new EquipmentUsage(equipment);
 		
 		List<Reservation> reservationsInRange = null;
-		reservationsInRange = rdao.getBySerialAndDate(serial, start, end);
+		reservationsInRange = rdao.getBySerialAndDate(serial, startDate, endDate);
 		edao.destroy();
 		rdao.destroy();
 		
@@ -192,7 +216,7 @@ public class ChartController {
 			}
 		}
 		
-		double available = workhoursInRange(start, end) - usage.getInUse() - usage.getCalibration() - usage.getMaintenance();			
+		double available = workHoursInRange(start, end) - usage.getInUse() - usage.getCalibration() - usage.getMaintenance();			
 		usage.setAvailable(available);
 
 		return usage;
@@ -252,9 +276,8 @@ public class ChartController {
 				endCurrent = endCurrent.plusHours(ENDHOUR).plusMinutes(ENDMINUTE);
 			}
 			
-			EquipmentUsage eUsage = getUsageBySerial(serial, 
-					Date.from(startCurrent.atZone(ZoneId.systemDefault()).toInstant()), 
-					Date.from(endCurrent.atZone(ZoneId.systemDefault()).toInstant()));
+//			EquipmentUsage eUsage = getUsageBySerial(serial, Date.from(startCurrent.atZone(ZoneId.systemDefault()).toInstant()), Date.from(endCurrent.atZone(ZoneId.systemDefault()).toInstant()));
+			EquipmentUsage eUsage = getUsageBySerial(serial, startCurrent, endCurrent);
 			 
 			MonthlyUsage mUsage = new MonthlyUsage();
 			// Create month name & year for chart label
@@ -279,124 +302,71 @@ public class ChartController {
 		return monthlyUsage;
 	}
 
-	public double hoursInReservation(Reservation reservation, Date start, Date end) {
-		double workhours = 0;
+	public double hoursInReservation(Reservation reservation, LocalDateTime start, LocalDateTime end) {
+		double workHours = 0;
+		Date startDate = Date.from(start.atZone(ZoneId.systemDefault()).toInstant());
+		Date endDate = Date.from(end.atZone(ZoneId.systemDefault()).toInstant());
 		
-		// If reservation has no return date, set return date to end date
+		// If reservation has no return date, set return date to constraint end date
 		if (reservation.getDateReturn() == null)
-			reservation.setDateReturn(end);
-		if (reservation.getDateTake().after(end) || reservation.getDateReturn().before(start))
+			reservation.setDateReturn(endDate);
+		if (reservation.getDateTake().after(endDate) || reservation.getDateReturn().before(startDate))
 			return 0;
 		else {
-			if (reservation.getDateTake().before(start))
-				reservation.setDateTake(start);
-			else if (reservation.getDateReturn().after(end))
-				reservation.setDateReturn(end);
+			if (reservation.getDateTake().before(startDate))
+				reservation.setDateTake(startDate);
+			else if (reservation.getDateReturn().after(endDate))
+				reservation.setDateReturn(endDate);
+			LocalDateTime takeLDT = LocalDateTime.ofInstant(reservation.getDateTake().toInstant(), ZoneId.systemDefault());
+			LocalDateTime returnLDT = LocalDateTime.ofInstant(reservation.getDateReturn().toInstant(), ZoneId.systemDefault());
 			
-			workhours = workhoursInRange(reservation.getDateTake(), reservation.getDateReturn());
+			workHours = workHoursInRange(takeLDT, returnLDT);
+			workHours -= workHoursNotAtStartAndEnd(takeLDT, returnLDT);
 			
-			return workhours;
+			return workHours;
 		}
-	}
-
-	public double workhoursNotAtStartAndEnd(Date startDate, Date endDate) {
-		double workhours = 0;
-		long startMinutes = 0;
-		long endMinutes = 0;
-		long resultMilliseconds;
-
-		LocalDate start = startDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-		LocalDate end = endDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-		Calendar cal = Calendar.getInstance();
-
-		long daysInBetween = ChronoUnit.DAYS.between(start, end);
-
-		if (daysInBetween > 0) {
-			// Set workday to end at 16:00 at startDate
-			cal.setTime(startDate);
-			cal.set(Calendar.HOUR_OF_DAY, ENDHOUR);
-			cal.set(Calendar.MINUTE, ENDMINUTE);
-			cal.set(Calendar.SECOND, 0);
-			cal.set(Calendar.MILLISECOND, 0);
-
-			resultMilliseconds = cal.getTime().getTime() - startDate.getTime();
-			startMinutes = TimeUnit.MILLISECONDS.toMinutes(resultMilliseconds);
-
-			// Set workday to start at 08:30 at endDate
-			cal.setTime(endDate);
-			cal.set(Calendar.HOUR_OF_DAY, STARTHOUR);
-			cal.set(Calendar.MINUTE, STARTMINUTE);
-			cal.set(Calendar.SECOND, 0);
-			cal.set(Calendar.MILLISECOND, 0);
-
-			resultMilliseconds = endDate.getTime() - cal.getTime().getTime();
-			endMinutes = TimeUnit.MILLISECONDS.toMinutes(resultMilliseconds);	
-		}
-		else {
-			resultMilliseconds = endDate.getTime() - startDate.getTime();
-			endMinutes = TimeUnit.MILLISECONDS.toMinutes(resultMilliseconds);
-		}
-		workhours = (WORKDAY * 2) - ((double) (startMinutes + endMinutes) / 60);
-		return workhours;
 	}
 	
-	public double workhoursInRange(Date startDate, Date endDate) {
+	public double workHoursNotAtStartAndEnd(LocalDateTime start, LocalDateTime end) {
+		double workHours = 0;
+		double startMinutes = 0;
+		double endMinutes = 0;
+		
+		LocalDateTime firstWorkDayStart = LocalDateTime.of(start.getYear(), start.getMonth(), start.getDayOfMonth(), STARTHOUR, STARTMINUTE);
+		LocalDateTime lastWorkDayEnd = LocalDateTime.of(end.getYear(), end.getMonth(), end.getDayOfMonth(), ENDHOUR, ENDMINUTE);
+		
+		if (start.isAfter(firstWorkDayStart)) {
+			startMinutes = firstWorkDayStart.until(start, ChronoUnit.MINUTES);
+		}
+		
+		if (end.isBefore(lastWorkDayEnd)) {
+			endMinutes = end.until(lastWorkDayEnd, ChronoUnit.MINUTES);
+		}
+
+		workHours = (startMinutes / 60) + (endMinutes / 60);
+		return workHours;
+	}
+
+	
+	public double workHoursInRange(LocalDateTime start, LocalDateTime end) {
     	int workDays = 0;
-    	LocalDateTime startLdt = LocalDateTime.ofInstant(startDate.toInstant(), ZoneId.systemDefault());
-    	LocalDateTime endLdt = LocalDateTime.ofInstant(endDate.toInstant(), ZoneId.systemDefault());
-    	while (startLdt.isBefore(endLdt)) {
-    		if (!startLdt.getDayOfWeek().equals(DayOfWeek.SATURDAY) && !startLdt.getDayOfWeek().equals(DayOfWeek.SUNDAY))
+    	while (start.isBefore(end)) {	
+    		if (!start.getDayOfWeek().equals(DayOfWeek.SATURDAY) && !start.getDayOfWeek().equals(DayOfWeek.SUNDAY)) {
     			workDays++;
-    		startLdt = startLdt.plusDays(1);
+    		}
+    			
+    		start = start.plusDays(1);
+    		
     	}
+    	logger.debug("WorkDays: " + workDays);
     	return workDays * WORKDAY;
 	}
-
-	/*
-	public double workhoursInRange(Date startDate, Date endDate) {
-		double workhours = 0;
-		//double workhoursBetween = 0;
-		double workhoursAtStartAndEnd = 0;
-		
-//		int workdays = 0; // FOR DEBUGGING
-		
-		LocalDate start = startDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-		LocalDate end = endDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-		
-		if (start.isEqual(end)) {
-			workhours = ((double) endDate.getTime() - (double) startDate.getTime()) / (60 * 60 * 1000);
-//			System.out.println("One day: " + workhours);
-			return workhours;
-		}
-//		System.out.println("Start: " + start.toString() + " End: " + end.toString());
-//		long daysInBetween = ChronoUnit.DAYS.between(start, end);
-//		System.out.println("Days between start & end: " + daysInBetween);
-
-		LocalDate date = start;
-		do {
-			DayOfWeek dayOfWeek = date.getDayOfWeek();
-			if (!dayOfWeek.equals(DayOfWeek.SATURDAY) && !dayOfWeek.equals(DayOfWeek.SUNDAY)) {
-				// System.out.println("Day: " + date.getDayOfWeek());
-				workhours += WORKDAY;
-//				workdays++;
-			}
-			date = date.plusDays(1);
-		// Loop until date has passed end date
-		} while (date.isBefore(end.plusDays(1)));
-
-		// Substract the work hours for start and end day
-		//workhoursBetween -= WORKDAY * 2;
-
-//		System.out.println("Workdays: " + workdays);
-//		System.out.println("Workhours between start and end: " + workhours);
-
-		workhoursAtStartAndEnd = workhoursNotAtStartAndEnd(startDate, endDate);
-//		System.out.println("Workhours not at start & end: " + workhoursAtStartAndEnd);
-		workhours -= workhoursAtStartAndEnd;
-//		System.out.println("Total workhours: " + workhours);
-		return workhours;
+	
+	public static LocalDateTime epochToLocalDateTime(long epoch) {
+		Instant instant = Instant.ofEpochSecond(epoch);
+		LocalDateTime date = instant.atZone(ZoneId.systemDefault()).toLocalDateTime();
+		return date;
 	}
-	*/
 	
 	@ExceptionHandler
 	void handleIllegalArgumentException(IllegalArgumentException e, HttpServletResponse response) throws IOException {

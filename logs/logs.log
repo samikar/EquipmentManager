@@ -1,4 +1,48 @@
-167  [main] INFO  f.d.e.db.DatabaseUtil - Setting DB connection properties...
-170  [main] INFO  f.d.e.db.DatabaseUtil - DB connection properties set!
-170  [main] INFO  f.d.e.db.DatabaseUtil - Connecting to database...
-1152 [main] INFO  f.d.e.db.DatabaseUtil - Connection complete!
+170  [main] INFO  f.d.e.db.DatabaseUtil - Setting DB connection properties...
+173  [main] INFO  f.d.e.db.DatabaseUtil - DB connection properties set!
+173  [main] INFO  f.d.e.db.DatabaseUtil - Connecting to database...
+1136 [main] INFO  f.d.e.db.DatabaseUtil - Connection complete!
+1317 [main] DEBUG f.d.e.controller.ChartController - WorkDays: 5
+1318 [main] DEBUG f.d.e.controller.ChartController - End time: 16:0:0
+1319 [main] DEBUG f.d.e.controller.ChartController - Start: 240.0
+1319 [main] DEBUG f.d.e.controller.ChartController - End: 0.0
+1319 [main] DEBUG f.d.e.controller.ChartController - Workhours out: 4.0
+1319 [main] DEBUG f.d.e.controller.ChartController - WorkDays: 23
+1516 [main] DEBUG f.d.e.c.ChartControllerTest - Start: 16/4/2018 8:30:0
+1517 [main] DEBUG f.d.e.c.ChartControllerTest - End: 20/4/2018 15:15:0
+1530 [main] DEBUG f.d.e.controller.ChartController - WorkDays: 5
+1531 [main] DEBUG f.d.e.controller.ChartController - End time: 15:15:0
+1531 [main] DEBUG f.d.e.controller.ChartController - Start: 0.0
+1531 [main] DEBUG f.d.e.controller.ChartController - End: 45.0
+1532 [main] DEBUG f.d.e.controller.ChartController - Workhours out: 0.75
+1532 [main] DEBUG f.d.e.controller.ChartController - WorkDays: 23
+1739 [main] DEBUG f.d.e.controller.ChartController - WorkDays: 3
+1740 [main] DEBUG f.d.e.controller.ChartController - End time: 16:0:0
+1740 [main] DEBUG f.d.e.controller.ChartController - Start: 0.0
+1740 [main] DEBUG f.d.e.controller.ChartController - End: 0.0
+1740 [main] DEBUG f.d.e.controller.ChartController - Workhours out: 0.0
+1740 [main] DEBUG f.d.e.controller.ChartController - WorkDays: 23
+1855 [main] DEBUG f.d.e.controller.ChartController - WorkDays: 5
+1855 [main] DEBUG f.d.e.controller.ChartController - End time: 16:0:0
+1856 [main] DEBUG f.d.e.controller.ChartController - Start: 0.0
+1856 [main] DEBUG f.d.e.controller.ChartController - End: 0.0
+1856 [main] DEBUG f.d.e.controller.ChartController - Workhours out: 0.0
+1856 [main] DEBUG f.d.e.controller.ChartController - WorkDays: 23
+2002 [main] DEBUG f.d.e.controller.ChartController - WorkDays: 7
+2002 [main] DEBUG f.d.e.controller.ChartController - End time: 16:0:0
+2003 [main] DEBUG f.d.e.controller.ChartController - Start: 0.0
+2003 [main] DEBUG f.d.e.controller.ChartController - End: 0.0
+2003 [main] DEBUG f.d.e.controller.ChartController - Workhours out: 0.0
+2004 [main] DEBUG f.d.e.controller.ChartController - WorkDays: 23
+2133 [main] DEBUG f.d.e.controller.ChartController - WorkDays: 5
+2134 [main] DEBUG f.d.e.controller.ChartController - End time: 13:0:0
+2134 [main] DEBUG f.d.e.controller.ChartController - Start: 0.0
+2134 [main] DEBUG f.d.e.controller.ChartController - End: 180.0
+2134 [main] DEBUG f.d.e.controller.ChartController - Workhours out: 3.0
+2134 [main] DEBUG f.d.e.controller.ChartController - WorkDays: 23
+2255 [main] DEBUG f.d.e.controller.ChartController - WorkDays: 5
+2255 [main] DEBUG f.d.e.controller.ChartController - End time: 16:0:0
+2255 [main] DEBUG f.d.e.controller.ChartController - Start: 15.0
+2256 [main] DEBUG f.d.e.controller.ChartController - End: 0.0
+2256 [main] DEBUG f.d.e.controller.ChartController - Workhours out: 0.25
+2256 [main] DEBUG f.d.e.controller.ChartController - WorkDays: 23
