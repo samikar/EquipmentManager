@@ -19,7 +19,6 @@ import fi.danfoss.equipmentmanager.utils.PropertyUtils;
 
 @Ignore
 public class EquipmentDaoTest {
-	private static Properties properties = PropertyUtils.loadProperties();
 	
 	@Autowired
 	private static EquipmentDao edao;

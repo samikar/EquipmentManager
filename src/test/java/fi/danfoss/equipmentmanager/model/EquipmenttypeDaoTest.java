@@ -18,7 +18,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import fi.danfoss.equipmentmanager.utils.PropertyUtils;
 
 public class EquipmenttypeDaoTest {
-	private static Properties properties = PropertyUtils.loadProperties();
 	
 	@Autowired
 	private static EquipmentDao edao;

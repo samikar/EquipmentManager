@@ -79,11 +79,7 @@ public class ChartController {
 		else {
 			// Parse epoch strings to LocalDateTime
 			LocalDateTime start = epochToLocalDateTime(Long.parseLong(startStr));
-			LocalDateTime end = epochToLocalDateTime(Long.parseLong(endStr));
-//			long startMillis = Long.parseLong(startStr);
-//			long endMillis = Long.parseLong(endStr);
-//			Date start = new Date(Long.parseLong(startStr) * 1000);
-//			Date end = new Date(Long.parseLong(endStr) * 1000);
+			LocalDateTime end = epochToLocalDateTime(Long.parseLong(endStr));			
 			EquipmentUsage result = getUsageBySerial(serial, start, end);
 				
 			return result;
@@ -104,11 +100,9 @@ public class ChartController {
     		throw new IllegalArgumentException("End date must not be empty");
     	}		
 		else {
-//			// Parse dates from epoch to Date
+			// Parse dates from epoch to Date
 			LocalDateTime start = epochToLocalDateTime(Long.parseLong(startStr));
 			LocalDateTime end = epochToLocalDateTime(Long.parseLong(endStr));
-//			Date start = new Date(Long.parseLong(startStr) * 1000);
-//			Date end = new Date(Long.parseLong(endStr) * 1000);
 			List<EquipmentUsage> result = getUsageByType(typeCode, start, end);
 			
 			return result;
@@ -116,7 +110,7 @@ public class ChartController {
 	}
 	
 	@RequestMapping("/rest/monthlyUsageByType")
-	public List<MonthlyUsage> getMonthlyUsageByType(@RequestParam(value = "typeCode") String typeCode,
+	public List<MonthlyUsage> monthlyUsageByType(@RequestParam(value = "typeCode") String typeCode,
 			@RequestParam(value = "start") String startStr,
 			@RequestParam(value = "end") String endStr) {
 		if (typeCode == null || typeCode.isEmpty()) {
@@ -138,8 +132,9 @@ public class ChartController {
 		}
 	}
 	
-	@RequestMapping("/rest/monthlyUsage")
-	public List<MonthlyUsage> getMonthlyUsage(@RequestParam(value = "serial") String serial,
+	/*
+	@RequestMapping("/rest/monthlyUsageBySerial")
+	public List<MonthlyUsage> monthlyUsageBySerial(@RequestParam(value = "serial") String serial,
 			@RequestParam(value = "start") String startStr,
 			@RequestParam(value = "end") String endStr) {
 		if (serial == null || serial.isEmpty()) {
@@ -160,6 +155,7 @@ public class ChartController {
 			return result;
 		}
 	}
+	*/
 	
 	@RequestMapping("/rest/getEquipmentTypesWithEquipment")
 	public List<Equipmenttype> getEquipmentTypesWithEquipment() {
@@ -203,19 +199,19 @@ public class ChartController {
 		for (Reservation currentReservation : reservationsInRange) {
 			double hours = 0;
 			hours = hoursInReservation(currentReservation, start, end);
+			
 			switch (currentReservation.getReservationType()) {
 				case 0:
-					usage.setInUse(hours);
+					usage.setInUse(usage.getInUse() + hours);
 					break;
 				case 1:
-					usage.setCalibration(hours);
+					usage.setCalibration(usage.getCalibration() + hours);
 					break;
 				case 2:
-					usage.setMaintenance(hours);
+					usage.setMaintenance(usage.getMaintenance() + hours);
 					break;
 			}
 		}
-		
 		double available = workHoursInRange(start, end) - usage.getInUse() - usage.getCalibration() - usage.getMaintenance();			
 		usage.setAvailable(available);
 
@@ -307,9 +303,12 @@ public class ChartController {
 		Date startDate = Date.from(start.atZone(ZoneId.systemDefault()).toInstant());
 		Date endDate = Date.from(end.atZone(ZoneId.systemDefault()).toInstant());
 		
+		logger.debug("Return date: " + reservation.getDateReturn());
 		// If reservation has no return date, set return date to constraint end date
-		if (reservation.getDateReturn() == null)
+		if (reservation.getDateReturn() == null) {
+			logger.debug("Return = null");
 			reservation.setDateReturn(endDate);
+		}
 		if (reservation.getDateTake().after(endDate) || reservation.getDateReturn().before(startDate))
 			return 0;
 		else {
@@ -321,6 +320,8 @@ public class ChartController {
 			LocalDateTime returnLDT = LocalDateTime.ofInstant(reservation.getDateReturn().toInstant(), ZoneId.systemDefault());
 			
 			workHours = workHoursInRange(takeLDT, returnLDT);
+			logger.debug("************ Workhours: " + workHours);
+			logger.debug("************ workHoursNotAtStartAndEnd: " + workHoursNotAtStartAndEnd(takeLDT, returnLDT));
 			workHours -= workHoursNotAtStartAndEnd(takeLDT, returnLDT);
 			
 			return workHours;
@@ -339,7 +340,7 @@ public class ChartController {
 			startMinutes = firstWorkDayStart.until(start, ChronoUnit.MINUTES);
 		}
 		
-		if (end.isBefore(lastWorkDayEnd)) {
+		if (lastWorkDayEnd.isAfter(end)) {
 			endMinutes = end.until(lastWorkDayEnd, ChronoUnit.MINUTES);
 		}
 
@@ -349,6 +350,7 @@ public class ChartController {
 
 	
 	public double workHoursInRange(LocalDateTime start, LocalDateTime end) {
+//		logger.debug("************ Start: " + start + " End: " + end);
     	int workDays = 0;
     	while (start.isBefore(end)) {	
     		if (!start.getDayOfWeek().equals(DayOfWeek.SATURDAY) && !start.getDayOfWeek().equals(DayOfWeek.SUNDAY)) {
@@ -358,7 +360,7 @@ public class ChartController {
     		start = start.plusDays(1);
     		
     	}
-    	logger.debug("WorkDays: " + workDays);
+//    	logger.debug("**************** WorkDays: " + workDays);
     	return workDays * WORKDAY;
 	}
 	

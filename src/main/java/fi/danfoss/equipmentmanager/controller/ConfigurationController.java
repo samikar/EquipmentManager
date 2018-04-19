@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.log4j.Logger;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -25,16 +26,19 @@ import fi.danfoss.equipmentmanager.utils.EquipmentDataReader;
 public class ConfigurationController {	
 	private EquipmentDao edao;
 	private EquipmenttypeDao etdao;
+	final static Logger logger = Logger.getLogger(ChartController.class);
 	
 	@RequestMapping(value = "/rest/uploadEquipmentFile", method = RequestMethod.POST, consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
 	public ResponseEntity<Object> uploadEquipmentFile(@RequestParam("file") MultipartFile file) throws IOException {
 		EquipmentDataReader equipmentDataReader = new EquipmentDataReader();
+		logger.info("Equipment file uploaded.");
 		return equipmentDataReader.verifyEquipmentFile(file);
 	}
 
 	@RequestMapping(value = "/rest/uploadTypeFile", method = RequestMethod.POST, consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
 	public ResponseEntity<Object> uploadTypeFile(@RequestParam("file") MultipartFile file) throws IOException {
 		EquipmentDataReader equipmentDataReader = new EquipmentDataReader();
+		logger.info("Equipment type file uploaded.");
 		return equipmentDataReader.verifyEquipmentTypeFile(file);
 	}
 
@@ -65,6 +69,7 @@ public class ConfigurationController {
 		eq.setStatus(1);
 		edao.persist(eq);
 		edao.destroy();
+		logger.info("Equipment " + eq.getName() + "/" + eq.getSerial() + " enabled.");
 		return eq;
 	}
 
@@ -77,6 +82,7 @@ public class ConfigurationController {
 		eq.setStatus(0);
 		edao.persist(eq);
 		edao.destroy();
+		logger.info("Equipment " + eq.getName() + "/" + eq.getSerial() + " disabled.");
 		return eq;
 	}
 	
@@ -119,6 +125,8 @@ public class ConfigurationController {
 			edao.destroy();
 			etdao.destroy();
 					
+			logger.info("Equipment " + newEquipment.getName() + "/" + newEquipment.getSerial() + " inserted.");
+			
 			return newEquipment;
 		}
 	}
@@ -148,7 +156,9 @@ public class ConfigurationController {
 			newType.setTypeCode(Integer.parseInt(typeCode));
 			etdao.persist(newType);
 			etdao.destroy();
-					
+
+			logger.info("Equipment type " + newType.getTypeName() + "/" + newType.getTypeCode() + " inserted.");
+			
 			return newType;
 		}
 	}
@@ -175,6 +185,7 @@ public class ConfigurationController {
 		}
 		else if (edao.serialExists(serial) && Integer.parseInt(equipmentId) != (edao.getBySerial(serial).getEquipmentId())) {
 				edao.destroy();
+				logger.error("Attempted to change equipment's serial to existing equipment's serial.");
 				throw new IllegalArgumentException("Equipment with serial number " + serial + " already exists!");
 		} else {
 			edao.initialize(Integer.parseInt(equipmentId));
@@ -193,6 +204,8 @@ public class ConfigurationController {
 			edao.update(eq);
 			edao.destroy();
 
+			logger.info("Equipment " + eq.getName() + "/" + eq.getSerial() + " updated.");
+			
 			return eq;
 		}
 	}
@@ -215,6 +228,7 @@ public class ConfigurationController {
 		}
 		else if (etdao.typeCodeExists(Integer.parseInt(typeCode)) && Integer.parseInt(equipmentTypeId) != etdao.getByTypeCode(Integer.parseInt(typeCode)).getEquipmentTypeId()) {
 			etdao.destroy();
+			logger.error("Attempted to change equipment type's typeCode to existing equipment type's typeCode.");
 			throw new IllegalArgumentException("Equipment type with Type Code " + typeCode + " already exists!");
 		}
 		else {
@@ -226,6 +240,8 @@ public class ConfigurationController {
 			
 			etdao.update(etype);
 			etdao.destroy();
+			
+			logger.info("Equipment type " + etype.getTypeName() + "/" + etype.getTypeCode() + " updated.");
 			
 			return etype;
 		}
@@ -250,6 +266,9 @@ public class ConfigurationController {
 		Equipment eq = edao.getDao();
 		edao.delete();
 		edao.destroy();
+		
+		logger.info("Equipment " + eq.getName() + "/" + eq.getSerial() + " deleted.");
+		
 		return eq;
 	}
 	
@@ -278,11 +297,13 @@ public class ConfigurationController {
 		if (equipmentList.size() > 0) {
 			edao.destroy();
 			etdao.destroy();
+			logger.error("Attempted to delete equipment type with equipment attached to it.");
 			throw new IllegalArgumentException("Cannot delete Type while it has Equipment attached to it!");
 		}
 		else {
 			etdao.delete();
 			etdao.destroy();
+			logger.info("Equipment type " + etype.getTypeName() + "/" + etype.getTypeCode() + " deleted.");
 			return etype;
 		}
 	}

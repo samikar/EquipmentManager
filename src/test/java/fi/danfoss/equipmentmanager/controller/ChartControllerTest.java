@@ -87,7 +87,42 @@ public class ChartControllerTest {
     }
     
     @Test
-    public void testUsageByType_TypeCodeEmpty() {
+    public void testUsageBySerial_serialEmpty() {
+    	String serial = "";
+    	LocalDateTime endLdt = LocalDateTime.now().truncatedTo(ChronoUnit.MINUTES);
+    	LocalDateTime startLdt = endLdt.minusMonths(6);
+    	ZoneId zoneId = ZoneId.systemDefault();
+    	String endStr = Long.toString(endLdt.atZone(zoneId).toEpochSecond());
+    	String startStr = Long.toString(startLdt.atZone(zoneId).toEpochSecond());
+    	exception.expect(IllegalArgumentException.class);
+    	controller.usageBySerial(serial, startStr, endStr);
+    }
+    
+    @Test
+    public void testUsageBySerial_startEmpty() {
+    	String serial = "foobar";
+    	LocalDateTime endLdt = LocalDateTime.now().truncatedTo(ChronoUnit.MINUTES);
+    	ZoneId zoneId = ZoneId.systemDefault();
+    	String endStr = Long.toString(endLdt.atZone(zoneId).toEpochSecond());
+    	String startStr = "";
+    	exception.expect(IllegalArgumentException.class);
+    	controller.usageBySerial(serial, startStr, endStr);
+    }
+    
+    @Test
+    public void testUsageBySerial_endEmpty() {
+    	String serial = "foobar";
+    	LocalDateTime endLdt = LocalDateTime.now().truncatedTo(ChronoUnit.MINUTES);
+    	LocalDateTime startLdt = endLdt.minusMonths(6);
+    	ZoneId zoneId = ZoneId.systemDefault();
+    	String endStr = "";
+    	String startStr = Long.toString(startLdt.atZone(zoneId).toEpochSecond());
+    	exception.expect(IllegalArgumentException.class);
+    	controller.usageBySerial(serial, startStr, endStr);
+    }
+    
+    @Test
+    public void testUsageByType_typeCodeEmpty() {
     	String typeCode = "";
     	LocalDateTime endLdt = LocalDateTime.now().truncatedTo(ChronoUnit.MINUTES);
     	LocalDateTime startLdt = endLdt.minusMonths(6);
@@ -122,6 +157,143 @@ public class ChartControllerTest {
     }
     
     @Test
+    public void testMonthlyUsageByType_typeCodeEmpty() {
+    	String typeCode = "";
+    	LocalDateTime endLdt = LocalDateTime.now().truncatedTo(ChronoUnit.MINUTES);
+    	LocalDateTime startLdt = endLdt.minusMonths(6);
+    	ZoneId zoneId = ZoneId.systemDefault();
+    	String endStr = Long.toString(endLdt.atZone(zoneId).toEpochSecond());
+    	String startStr = Long.toString(startLdt.atZone(zoneId).toEpochSecond());
+    	exception.expect(IllegalArgumentException.class);
+    	controller.usageBySerial(typeCode, startStr, endStr);
+    }
+    
+    @Test
+    public void testMonthlyUsageByType_startEmpty() {
+    	String typeCode = "foobar";
+    	LocalDateTime endLdt = LocalDateTime.now().truncatedTo(ChronoUnit.MINUTES);
+    	ZoneId zoneId = ZoneId.systemDefault();
+    	String endStr = Long.toString(endLdt.atZone(zoneId).toEpochSecond());
+    	String startStr = "";
+    	exception.expect(IllegalArgumentException.class);
+    	controller.usageBySerial(typeCode, startStr, endStr);
+    }
+    
+    @Test
+    public void testMonthlyUsageByType_endEmpty() {
+    	String typeCode = "foobar";
+    	LocalDateTime endLdt = LocalDateTime.now().truncatedTo(ChronoUnit.MINUTES);
+    	LocalDateTime startLdt = endLdt.minusMonths(6);
+    	ZoneId zoneId = ZoneId.systemDefault();
+    	String endStr = "";
+    	String startStr = Long.toString(startLdt.atZone(zoneId).toEpochSecond());
+    	exception.expect(IllegalArgumentException.class);
+    	controller.usageBySerial(typeCode, startStr, endStr);
+    }
+    
+    @Test
+    public void testGetEquipmentTypesWithEquipment_noTypes() {
+    	List<Equipmenttype> equipmentTypes = controller.getEquipmentTypesWithEquipment();
+    	assertEquals(0, equipmentTypes.size());
+    }
+    
+    @Test
+    public void testGetEquipmentTypesWithEquipment_noTypesWithEquipment() {
+    	int equipmentTypeCode1 = 1111;
+    	String equipmentTypeName1 = "TestType1";
+    	addEquipmenttype(equipmentTypeCode1, equipmentTypeName1);
+    	List<Equipmenttype> equipmentTypes = controller.getEquipmentTypesWithEquipment();
+    	assertEquals(0, equipmentTypes.size());
+    }
+    
+    @Test
+    public void testGetEquipmentTypesWithEquipment_oneTypeWithEnabledEquipment() {
+    	int equipmentTypeCode1 = 1111;
+    	int equipmentStatusEnabled = 1;
+    	String equipmentName1 = "Test Equipment1";
+    	String equipmentSerial1 = "TestSerial1";
+    	String equipmentTypeName1 = "TestType1";
+    	
+    	Equipmenttype testEquipmentType1 = addEquipmenttype(equipmentTypeCode1, equipmentTypeName1);
+    	addEquipment(equipmentName1, equipmentSerial1, equipmentStatusEnabled, testEquipmentType1);
+    	List<Equipmenttype> equipmentTypes = controller.getEquipmentTypesWithEquipment();
+    	assertEquals(1, equipmentTypes.size());
+    	Equipmenttype DBequipmenttype = equipmentTypes.get(0);
+    	assertEquals(equipmentTypeCode1, DBequipmenttype.getTypeCode());
+    	assertEquals(equipmentTypeName1, DBequipmenttype.getTypeName());
+    }
+    
+    @Test
+    public void testGetEquipmentTypesWithEquipment_twoTypesWithEnabledEquipment() {
+    	int equipmentTypeCode1 = 1111;
+    	int equipmentTypeCode2 = 2222;
+    	int equipmentStatusEnabled = 1;
+    	String equipmentName1 = "Test Equipment1";
+    	String equipmentName2 = "Test Equipment1";
+    	String equipmentSerial1 = "TestSerial1";
+    	String equipmentSerial2 = "TestSerial2";
+    	String equipmentTypeName1 = "TestType1";
+    	String equipmentTypeName2 = "TestType2";
+    	
+    	Equipmenttype testEquipmentType1 = addEquipmenttype(equipmentTypeCode1, equipmentTypeName1);
+    	Equipmenttype testEquipmentType2 = addEquipmenttype(equipmentTypeCode2, equipmentTypeName2);
+    	addEquipment(equipmentName1, equipmentSerial1, equipmentStatusEnabled, testEquipmentType1);
+    	addEquipment(equipmentName2, equipmentSerial2, equipmentStatusEnabled, testEquipmentType2);
+    	List<Equipmenttype> equipmentTypes = controller.getEquipmentTypesWithEquipment();
+    	assertEquals(2, equipmentTypes.size());
+    	
+    	for (Equipmenttype currentEquipmenttype : equipmentTypes) {
+    		if (currentEquipmenttype.getTypeCode() == equipmentTypeCode1) {
+    			assertEquals(equipmentTypeCode1, currentEquipmenttype.getTypeCode());
+    			assertEquals(equipmentTypeName1, currentEquipmenttype.getTypeName());
+    		}
+    		else if (currentEquipmenttype.getTypeCode() == equipmentTypeCode2) {
+    			assertEquals(equipmentTypeCode2, currentEquipmenttype.getTypeCode());
+    			assertEquals(equipmentTypeName2, currentEquipmenttype.getTypeName());
+    		}
+    	}
+    }
+    
+    @Test
+    public void testGetEquipmentTypesWithEquipment_oneTypeWithDisabledEquipment() {
+    	int equipmentTypeCode1 = 1111;
+    	int equipmentStatusDisabled = 0;
+    	String equipmentName1 = "Test Equipment1";
+    	String equipmentSerial1 = "TestSerial1";
+    	String equipmentTypeName1 = "TestType1";
+    	
+    	Equipmenttype testEquipmentType1 = addEquipmenttype(equipmentTypeCode1, equipmentTypeName1);
+    	addEquipment(equipmentName1, equipmentSerial1, equipmentStatusDisabled, testEquipmentType1);
+    	List<Equipmenttype> equipmentTypes = controller.getEquipmentTypesWithEquipment();
+    	assertEquals(0, equipmentTypes.size());
+    }
+    
+    @Test
+    public void testGetEquipmentTypesWithEquipment_twoTypesWithEnabledAndDisabledEquipment() {
+    	int equipmentTypeCode1 = 1111;
+    	int equipmentTypeCode2 = 2222;
+    	int equipmentStatusDisabled = 0;
+    	int equipmentStatusEnabled = 1;
+    	String equipmentName1 = "Test Equipment1";
+    	String equipmentName2 = "Test Equipment1";
+    	String equipmentSerial1 = "TestSerial1";
+    	String equipmentSerial2 = "TestSerial2";
+    	String equipmentTypeName1 = "TestType1";
+    	String equipmentTypeName2 = "TestType2";
+    	
+    	Equipmenttype testEquipmentType1 = addEquipmenttype(equipmentTypeCode1, equipmentTypeName1);
+    	Equipmenttype testEquipmentType2 = addEquipmenttype(equipmentTypeCode2, equipmentTypeName2);
+    	addEquipment(equipmentName1, equipmentSerial1, equipmentStatusDisabled, testEquipmentType1);
+    	addEquipment(equipmentName2, equipmentSerial2, equipmentStatusEnabled, testEquipmentType2);
+    	List<Equipmenttype> equipmentTypes = controller.getEquipmentTypesWithEquipment();
+    	assertEquals(1, equipmentTypes.size());
+    	
+    	Equipmenttype DBequipmenttype = equipmentTypes.get(0);
+    	assertEquals(equipmentTypeCode2, DBequipmenttype.getTypeCode());
+    	assertEquals(equipmentTypeName2, DBequipmenttype.getTypeName());
+    }
+        
+    @Test
     public void testUsageBySerial_fullWeek() {
     	int equipmentStatusEnabled = 1;
     	int equipmentTypeCode1 = 1111;
@@ -149,7 +321,7 @@ public class ChartControllerTest {
     	EquipmentUsage usage = controller.usageBySerial(equipmentSerial1, startConstraintStr, endConstraintStr);
     	double workHoursInConstraints = workHoursInConstraints(startConstraint, endConstraint);
     	assertEquals(5*WORKDAY, usage.getInUse(), 0);
-    	assertEquals(workHoursInConstraints - usage.getInUse(), usage.getAvailable(), 0);
+    	assertEquals(workHoursInConstraints - usage.getInUse() - usage.getCalibration() - usage.getMaintenance(), usage.getAvailable(), 0);
     	assertEquals(0, usage.getCalibration(), 0);
     	assertEquals(0, usage.getMaintenance(), 0);
     	assertEquals(equipmentSerial1, usage.getSerial());
@@ -187,7 +359,7 @@ public class ChartControllerTest {
     	EquipmentUsage usage = controller.usageBySerial(equipmentSerial1, startConstraintStr, endConstraintStr);
     	double workHoursInConstraints = workHoursInConstraints(startConstraint, endConstraint);
     	assertEquals(7*WORKDAY, usage.getInUse(), 0);
-    	assertEquals(workHoursInConstraints - usage.getInUse(), usage.getAvailable(), 0);
+    	assertEquals(workHoursInConstraints - usage.getInUse() - usage.getCalibration() - usage.getMaintenance(), usage.getAvailable(), 0);
     	assertEquals(0, usage.getCalibration(), 0);
     	assertEquals(0, usage.getMaintenance(), 0);
     	assertEquals(equipmentSerial1, usage.getSerial());
@@ -225,7 +397,7 @@ public class ChartControllerTest {
     	EquipmentUsage usage = controller.usageBySerial(equipmentSerial1, startConstraintStr, endConstraintStr);
     	double workHoursInConstraints = workHoursInConstraints(startConstraint, endConstraint);
     	assertEquals(3*WORKDAY, usage.getInUse(), 0);
-    	assertEquals(workHoursInConstraints - usage.getInUse(), usage.getAvailable(), 0);
+    	assertEquals(workHoursInConstraints - usage.getInUse() - usage.getCalibration() - usage.getMaintenance(), usage.getAvailable(), 0);
     	assertEquals(0, usage.getCalibration(), 0);
     	assertEquals(0, usage.getMaintenance(), 0);
     	assertEquals(equipmentSerial1, usage.getSerial());
@@ -263,7 +435,7 @@ public class ChartControllerTest {
     	EquipmentUsage usage = controller.usageBySerial(equipmentSerial1, startConstraintStr, endConstraintStr);
     	double workHoursInConstraints = workHoursInConstraints(startConstraint, endConstraint);
     	assertEquals(5*WORKDAY - 4, usage.getInUse(), 0);
-    	assertEquals(workHoursInConstraints - usage.getInUse(), usage.getAvailable(), 0);
+    	assertEquals(workHoursInConstraints - usage.getInUse() - usage.getCalibration() - usage.getMaintenance(), usage.getAvailable(), 0);
     	assertEquals(0, usage.getCalibration(), 0);
     	assertEquals(0, usage.getMaintenance(), 0);
     	assertEquals(equipmentSerial1, usage.getSerial());
@@ -301,7 +473,7 @@ public class ChartControllerTest {
     	EquipmentUsage usage = controller.usageBySerial(equipmentSerial1, startConstraintStr, endConstraintStr);
     	double workHoursInConstraints = workHoursInConstraints(startConstraint, endConstraint);
     	assertEquals((5*WORKDAY) - 0.25, usage.getInUse(), 0);
-    	assertEquals(workHoursInConstraints - usage.getInUse(), usage.getAvailable(), 0);
+    	assertEquals(workHoursInConstraints - usage.getInUse() - usage.getCalibration() - usage.getMaintenance(), usage.getAvailable(), 0);
     	assertEquals(0, usage.getCalibration(), 0);
     	assertEquals(0, usage.getMaintenance(), 0);
     	assertEquals(equipmentSerial1, usage.getSerial());
@@ -311,7 +483,6 @@ public class ChartControllerTest {
     	assertEquals(equipmentTypeName1, usage.getEquipmenttype().getTypeName());
     }
     
-//    @Ignore
     @Test
     public void testUsageBySerial_notFullHoursAtReturn() {
     	int equipmentStatusEnabled = 1;
@@ -340,7 +511,7 @@ public class ChartControllerTest {
     	EquipmentUsage usage = controller.usageBySerial(equipmentSerial1, startConstraintStr, endConstraintStr);
     	double workHoursInConstraints = workHoursInConstraints(startConstraint, endConstraint);
     	assertEquals(5*WORKDAY - 3, usage.getInUse(), 0);
-    	assertEquals(workHoursInConstraints - usage.getInUse(), usage.getAvailable(), 0);
+    	assertEquals(workHoursInConstraints - usage.getInUse() - usage.getCalibration() - usage.getMaintenance(), usage.getAvailable(), 0);
     	assertEquals(0, usage.getCalibration(), 0);
     	assertEquals(0, usage.getMaintenance(), 0);
     	assertEquals(equipmentSerial1, usage.getSerial());
@@ -350,7 +521,6 @@ public class ChartControllerTest {
     	assertEquals(equipmentTypeName1, usage.getEquipmenttype().getTypeName());
     }
     
-//    @Ignore
     @Test
     public void testUsageBySerial_notFullMinutesAtReturn() {
     	int equipmentStatusEnabled = 1;
@@ -375,16 +545,11 @@ public class ChartControllerTest {
     	Equipmenttype testEquipmentType1 = addEquipmenttype(equipmentTypeCode1, equipmentTypeName1);
     	Equipment testEquipment1 = addEquipment(equipmentName1, equipmentSerial1, equipmentStatusEnabled, testEquipmentType1);
     	addReservation(reservationTypeInUse, dateTake1, dateReturn1, testEmployee1, testEquipment1);
-
-    	LocalDateTime startLDT = LocalDateTime.ofInstant(dateTake1.toInstant(), ZoneId.systemDefault());
-    	LocalDateTime endLDT = LocalDateTime.ofInstant(dateReturn1.toInstant(), ZoneId.systemDefault());
-    	logger.debug("Start: " + startLDT.getDayOfMonth() + "/" + startLDT.getMonthValue() + "/" + startLDT.getYear() + " " + startLDT.getHour() + ":" + startLDT.getMinute() + ":" + startLDT.getSecond());
-    	logger.debug("End: " + endLDT.getDayOfMonth() + "/" + endLDT.getMonthValue() + "/" + endLDT.getYear() + " " + endLDT.getHour() + ":" + endLDT.getMinute() + ":" + endLDT.getSecond());
-    	
+   	
     	EquipmentUsage usage = controller.usageBySerial(equipmentSerial1, startConstraintStr, endConstraintStr);
     	double workHoursInConstraints = workHoursInConstraints(startConstraint, endConstraint);
     	assertEquals((5*WORKDAY) - 0.75, usage.getInUse(), 0);
-    	assertEquals(workHoursInConstraints - usage.getInUse(), usage.getAvailable(), 0);
+    	assertEquals(workHoursInConstraints - usage.getInUse() - usage.getCalibration() - usage.getMaintenance(), usage.getAvailable(), 0);
     	assertEquals(0, usage.getCalibration(), 0);
     	assertEquals(0, usage.getMaintenance(), 0);
     	assertEquals(equipmentSerial1, usage.getSerial());
@@ -394,6 +559,159 @@ public class ChartControllerTest {
     	assertEquals(equipmentTypeName1, usage.getEquipmenttype().getTypeName());
     }
     
+    @Test
+    public void testUsageBySerial_noReturn() {
+    	int equipmentStatusEnabled = 1;
+    	int equipmentTypeCode1 = 1111;
+    	int reservationTypeInUse = 0;
+    	LocalDateTime startConstraint = LocalDate.now().atTime(0,0).minusDays(15);
+    	LocalDateTime endConstraint = getFriday(LocalDate.now().atTime(23,59));
+    	Date dateTake1 = Date.from(getMonday(LocalDate.now().atTime(STARTHOUR,STARTMINUTE)).atZone(ZoneId.systemDefault()).toInstant());
+    	
+    	ZoneId zoneId = ZoneId.systemDefault();
+    	
+    	String startConstraintStr = Long.toString(startConstraint.atZone(zoneId).toEpochSecond());
+    	String endConstraintStr = Long.toString(endConstraint.atZone(zoneId).toEpochSecond());
+    	String employeeId1 = "111111111";
+    	String employeeName1 = "Test Employee";
+    	String equipmentName1 = "Test Equipment1";
+    	String equipmentSerial1 = "TestSerial1";
+    	String equipmentTypeName1 = "TestType1";
+
+    	Employee testEmployee1 = addEmployee(employeeId1, employeeName1);
+    	Equipmenttype testEquipmentType1 = addEquipmenttype(equipmentTypeCode1, equipmentTypeName1);
+    	Equipment testEquipment1 = addEquipment(equipmentName1, equipmentSerial1, equipmentStatusEnabled, testEquipmentType1);
+    	addReservation(reservationTypeInUse, dateTake1, null, testEmployee1, testEquipment1);
+   	
+    	EquipmentUsage usage = controller.usageBySerial(equipmentSerial1, startConstraintStr, endConstraintStr);
+    	double workHoursInConstraints = workHoursInConstraints(startConstraint, endConstraint);
+    	assertEquals(5*WORKDAY, usage.getInUse(), 0);
+    	assertEquals(workHoursInConstraints - usage.getInUse() - usage.getCalibration() - usage.getMaintenance(), usage.getAvailable(), 0);
+    	assertEquals(0, usage.getCalibration(), 0);
+    	assertEquals(0, usage.getMaintenance(), 0);
+    	assertEquals(equipmentSerial1, usage.getSerial());
+    	assertEquals(equipmentName1, usage.getName());
+    	assertEquals(equipmentStatusEnabled, usage.getStatus());
+    	assertEquals(equipmentTypeCode1, usage.getEquipmenttype().getTypeCode());
+    	assertEquals(equipmentTypeName1, usage.getEquipmenttype().getTypeName());
+    }
+    
+    @Test
+    public void testUsageBySerial_twoReservations() {
+    	int equipmentStatusEnabled = 1;
+    	int equipmentTypeCode1 = 1111;
+    	int reservationTypeInUse = 0;
+    	
+    	LocalDateTime startConstraint = LocalDate.now().atTime(0,0).minusDays(30);
+    	LocalDateTime endConstraint = LocalDate.now().atTime(23,59).plusDays(30);
+    	Date dateTake1 = Date.from(getMonday(LocalDate.now().minusDays(7).atTime(STARTHOUR,STARTMINUTE)).atZone(ZoneId.systemDefault()).toInstant());
+    	Date dateTake2 = Date.from(getMonday(LocalDate.now().atTime(STARTHOUR,STARTMINUTE)).atZone(ZoneId.systemDefault()).toInstant());
+    	Date dateReturn1 = Date.from(getFriday(LocalDate.now().minusDays(7).atTime(ENDHOUR,ENDMINUTE)).atZone(ZoneId.systemDefault()).toInstant());    
+    	Date dateReturn2 = Date.from(getFriday(LocalDate.now().atTime(ENDHOUR,ENDMINUTE)).atZone(ZoneId.systemDefault()).toInstant());
+    	ZoneId zoneId = ZoneId.systemDefault();
+    	    	
+    	String startConstraintStr = Long.toString(startConstraint.atZone(zoneId).toEpochSecond());
+    	String endConstraintStr = Long.toString(endConstraint.atZone(zoneId).toEpochSecond());
+    	String employeeId1 = "111111111";
+    	String employeeName1 = "Test Employee";
+    	String equipmentName1 = "Test Equipment1";
+    	String equipmentSerial1 = "TestSerial1";
+    	String equipmentTypeName1 = "TestType1";
+
+    	Employee testEmployee1 = addEmployee(employeeId1, employeeName1);
+    	Equipmenttype testEquipmentType1 = addEquipmenttype(equipmentTypeCode1, equipmentTypeName1);
+    	Equipment testEquipment1 = addEquipment(equipmentName1, equipmentSerial1, equipmentStatusEnabled, testEquipmentType1);
+    	addReservation(reservationTypeInUse, dateTake1, dateReturn1, testEmployee1, testEquipment1);
+    	addReservation(reservationTypeInUse, dateTake2, dateReturn2, testEmployee1, testEquipment1);
+   	
+    	EquipmentUsage usage = controller.usageBySerial(equipmentSerial1, startConstraintStr, endConstraintStr);
+    	double workHoursInConstraints = workHoursInConstraints(startConstraint, endConstraint);
+    	assertEquals((10*WORKDAY), usage.getInUse(), 0);
+    	assertEquals(workHoursInConstraints - usage.getInUse() - usage.getCalibration() - usage.getMaintenance(), usage.getAvailable(), 0);
+    	assertEquals(0, usage.getCalibration(), 0);
+    	assertEquals(0, usage.getMaintenance(), 0);
+    	assertEquals(equipmentSerial1, usage.getSerial());
+    	assertEquals(equipmentName1, usage.getName());
+    	assertEquals(equipmentStatusEnabled, usage.getStatus());
+    	assertEquals(equipmentTypeCode1, usage.getEquipmenttype().getTypeCode());
+    	assertEquals(equipmentTypeName1, usage.getEquipmenttype().getTypeName());
+    }
+    
+    @Test
+    public void testUsageBySerial_calibration() {
+    	int equipmentStatusEnabled = 1;
+    	int equipmentTypeCode1 = 1111;
+    	int reservationTypeCalibration = 1;
+
+    	LocalDateTime startConstraint = LocalDate.now().atTime(0,0).minusDays(15);
+    	LocalDateTime endConstraint = LocalDate.now().atTime(23,59).plusDays(15);
+    	Date dateTake1 = Date.from(getMonday(LocalDate.now().atTime(STARTHOUR,STARTMINUTE)).atZone(ZoneId.systemDefault()).toInstant());
+    	Date dateReturn1 = Date.from(getFriday(LocalDate.now().atTime(ENDHOUR,ENDMINUTE)).atZone(ZoneId.systemDefault()).toInstant()); 
+    	ZoneId zoneId = ZoneId.systemDefault();
+    	
+    	String startConstraintStr = Long.toString(startConstraint.atZone(zoneId).toEpochSecond());
+    	String endConstraintStr = Long.toString(endConstraint.atZone(zoneId).toEpochSecond());
+    	String employeeId1 = "111111111";
+    	String employeeName1 = "Test Employee";
+    	String equipmentName1 = "Test Equipment1";
+    	String equipmentSerial1 = "TestSerial1";
+    	String equipmentTypeName1 = "TestType1";
+
+    	Employee testEmployee1 = addEmployee(employeeId1, employeeName1);
+    	Equipmenttype testEquipmentType1 = addEquipmenttype(equipmentTypeCode1, equipmentTypeName1);
+    	Equipment testEquipment1 = addEquipment(equipmentName1, equipmentSerial1, equipmentStatusEnabled, testEquipmentType1);
+    	addReservation(reservationTypeCalibration, dateTake1, dateReturn1, testEmployee1, testEquipment1);
+    	
+    	EquipmentUsage usage = controller.usageBySerial(equipmentSerial1, startConstraintStr, endConstraintStr);
+    	double workHoursInConstraints = workHoursInConstraints(startConstraint, endConstraint);
+    	assertEquals(0, usage.getInUse(), 0);
+    	assertEquals(workHoursInConstraints - usage.getInUse() - usage.getCalibration() - usage.getMaintenance(), usage.getAvailable(), 0);
+    	assertEquals(5*WORKDAY, usage.getCalibration(), 0);
+    	assertEquals(0, usage.getMaintenance(), 0);
+    	assertEquals(equipmentSerial1, usage.getSerial());
+    	assertEquals(equipmentName1, usage.getName());
+    	assertEquals(equipmentStatusEnabled, usage.getStatus());
+    	assertEquals(equipmentTypeCode1, usage.getEquipmenttype().getTypeCode());
+    	assertEquals(equipmentTypeName1, usage.getEquipmenttype().getTypeName());
+    }
+    
+    @Test
+    public void testUsageBySerial_maintenance() {
+    	int equipmentStatusEnabled = 1;
+    	int equipmentTypeCode1 = 1111;
+    	int reservationTypeMaintenance = 2;
+
+    	LocalDateTime startConstraint = LocalDate.now().atTime(0,0).minusDays(15);
+    	LocalDateTime endConstraint = LocalDate.now().atTime(23,59).plusDays(15);
+    	Date dateTake1 = Date.from(getMonday(LocalDate.now().atTime(STARTHOUR,STARTMINUTE)).atZone(ZoneId.systemDefault()).toInstant());
+    	Date dateReturn1 = Date.from(getFriday(LocalDate.now().atTime(ENDHOUR,ENDMINUTE)).atZone(ZoneId.systemDefault()).toInstant()); 
+    	ZoneId zoneId = ZoneId.systemDefault();
+    	
+    	String startConstraintStr = Long.toString(startConstraint.atZone(zoneId).toEpochSecond());
+    	String endConstraintStr = Long.toString(endConstraint.atZone(zoneId).toEpochSecond());
+    	String employeeId1 = "111111111";
+    	String employeeName1 = "Test Employee";
+    	String equipmentName1 = "Test Equipment1";
+    	String equipmentSerial1 = "TestSerial1";
+    	String equipmentTypeName1 = "TestType1";
+
+    	Employee testEmployee1 = addEmployee(employeeId1, employeeName1);
+    	Equipmenttype testEquipmentType1 = addEquipmenttype(equipmentTypeCode1, equipmentTypeName1);
+    	Equipment testEquipment1 = addEquipment(equipmentName1, equipmentSerial1, equipmentStatusEnabled, testEquipmentType1);
+    	addReservation(reservationTypeMaintenance, dateTake1, dateReturn1, testEmployee1, testEquipment1);
+    	
+    	EquipmentUsage usage = controller.usageBySerial(equipmentSerial1, startConstraintStr, endConstraintStr);
+    	double workHoursInConstraints = workHoursInConstraints(startConstraint, endConstraint);
+    	assertEquals(0, usage.getInUse(), 0);
+    	assertEquals(workHoursInConstraints - usage.getInUse() - usage.getCalibration() - usage.getMaintenance(), usage.getAvailable(), 0);
+    	assertEquals(0, usage.getCalibration(), 0);
+    	assertEquals(5*WORKDAY, usage.getMaintenance(), 0);
+    	assertEquals(equipmentSerial1, usage.getSerial());
+    	assertEquals(equipmentName1, usage.getName());
+    	assertEquals(equipmentStatusEnabled, usage.getStatus());
+    	assertEquals(equipmentTypeCode1, usage.getEquipmenttype().getTypeCode());
+    	assertEquals(equipmentTypeName1, usage.getEquipmenttype().getTypeName());
+    }
 
     
     public Employee addEmployee(String employeeId, String employeeName) {
@@ -504,35 +822,4 @@ public class ChartControllerTest {
     	System.out.println("Controller Hours: " + controller.workHoursInRange(startConstraint, endConstraint));
     }
     
-//    public static void main(String[] args) {
-//    	for (int i=0; i< 15; i++) {
-//    		LocalDateTime monday;
-//	    	LocalDateTime friday;
-//
-//	    	monday = LocalDateTime.ofInstant(getMonday(i).toInstant(), ZoneId.systemDefault());
-//	    	friday = LocalDateTime.ofInstant(getFriday(i).toInstant(), ZoneId.systemDefault());
-//	    	
-//	    	String mondayStr = monday.getDayOfWeek() + "/" +  monday.getDayOfMonth() + "/" + monday.getMonthValue() + "-" + monday.getYear();
-//	    	String fridayStr = friday.getDayOfWeek() + "/" +  friday.getDayOfMonth() + "/" + friday.getMonthValue() + "-" + friday.getYear();
-//	    	System.out.println(mondayStr + " - " + fridayStr);
-//    	}
-    	
-//    	for (int i=0; i< 15; i++) {
-//    		LocalDateTime monday;
-//	    	LocalDateTime friday;
-//	    	LocalDateTime now = LocalDateTime.now().plusDays(i);
-//	    	if (now.getDayOfWeek().equals(DayOfWeek.SATURDAY) || now.getDayOfWeek().equals(DayOfWeek.SUNDAY)) {
-//		    	monday = now.with(TemporalAdjusters.next(DayOfWeek.MONDAY));
-//		    	friday = now.with(TemporalAdjusters.next(DayOfWeek.FRIDAY));
-//	    	}
-//	    	else {
-//		    	monday = now.with(TemporalAdjusters.previousOrSame(DayOfWeek.MONDAY));
-//		    	friday = now.with(TemporalAdjusters.nextOrSame(DayOfWeek.FRIDAY));
-//	    	}
-//	    	ZoneId zoneId = ZoneId.systemDefault();
-//	    	String mondayStr = monday.getDayOfWeek() + "/" +  monday.getDayOfMonth() + "/" + monday.getMonthValue() + "-" + monday.getYear();
-//	    	String fridayStr = friday.getDayOfWeek() + "/" +  friday.getDayOfMonth() + "/" + friday.getMonthValue() + "-" + friday.getYear();
-//	    	System.out.println(mondayStr + " - " + fridayStr);
-//    	}
-//    }
 }

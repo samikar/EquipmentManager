@@ -1,48 +1,43 @@
-170  [main] INFO  f.d.e.db.DatabaseUtil - Setting DB connection properties...
-173  [main] INFO  f.d.e.db.DatabaseUtil - DB connection properties set!
-173  [main] INFO  f.d.e.db.DatabaseUtil - Connecting to database...
-1136 [main] INFO  f.d.e.db.DatabaseUtil - Connection complete!
-1317 [main] DEBUG f.d.e.controller.ChartController - WorkDays: 5
-1318 [main] DEBUG f.d.e.controller.ChartController - End time: 16:0:0
-1319 [main] DEBUG f.d.e.controller.ChartController - Start: 240.0
-1319 [main] DEBUG f.d.e.controller.ChartController - End: 0.0
-1319 [main] DEBUG f.d.e.controller.ChartController - Workhours out: 4.0
-1319 [main] DEBUG f.d.e.controller.ChartController - WorkDays: 23
-1516 [main] DEBUG f.d.e.c.ChartControllerTest - Start: 16/4/2018 8:30:0
-1517 [main] DEBUG f.d.e.c.ChartControllerTest - End: 20/4/2018 15:15:0
-1530 [main] DEBUG f.d.e.controller.ChartController - WorkDays: 5
-1531 [main] DEBUG f.d.e.controller.ChartController - End time: 15:15:0
-1531 [main] DEBUG f.d.e.controller.ChartController - Start: 0.0
-1531 [main] DEBUG f.d.e.controller.ChartController - End: 45.0
-1532 [main] DEBUG f.d.e.controller.ChartController - Workhours out: 0.75
-1532 [main] DEBUG f.d.e.controller.ChartController - WorkDays: 23
-1739 [main] DEBUG f.d.e.controller.ChartController - WorkDays: 3
-1740 [main] DEBUG f.d.e.controller.ChartController - End time: 16:0:0
-1740 [main] DEBUG f.d.e.controller.ChartController - Start: 0.0
-1740 [main] DEBUG f.d.e.controller.ChartController - End: 0.0
-1740 [main] DEBUG f.d.e.controller.ChartController - Workhours out: 0.0
-1740 [main] DEBUG f.d.e.controller.ChartController - WorkDays: 23
-1855 [main] DEBUG f.d.e.controller.ChartController - WorkDays: 5
-1855 [main] DEBUG f.d.e.controller.ChartController - End time: 16:0:0
-1856 [main] DEBUG f.d.e.controller.ChartController - Start: 0.0
-1856 [main] DEBUG f.d.e.controller.ChartController - End: 0.0
-1856 [main] DEBUG f.d.e.controller.ChartController - Workhours out: 0.0
-1856 [main] DEBUG f.d.e.controller.ChartController - WorkDays: 23
-2002 [main] DEBUG f.d.e.controller.ChartController - WorkDays: 7
-2002 [main] DEBUG f.d.e.controller.ChartController - End time: 16:0:0
-2003 [main] DEBUG f.d.e.controller.ChartController - Start: 0.0
-2003 [main] DEBUG f.d.e.controller.ChartController - End: 0.0
-2003 [main] DEBUG f.d.e.controller.ChartController - Workhours out: 0.0
-2004 [main] DEBUG f.d.e.controller.ChartController - WorkDays: 23
-2133 [main] DEBUG f.d.e.controller.ChartController - WorkDays: 5
-2134 [main] DEBUG f.d.e.controller.ChartController - End time: 13:0:0
-2134 [main] DEBUG f.d.e.controller.ChartController - Start: 0.0
-2134 [main] DEBUG f.d.e.controller.ChartController - End: 180.0
-2134 [main] DEBUG f.d.e.controller.ChartController - Workhours out: 3.0
-2134 [main] DEBUG f.d.e.controller.ChartController - WorkDays: 23
-2255 [main] DEBUG f.d.e.controller.ChartController - WorkDays: 5
-2255 [main] DEBUG f.d.e.controller.ChartController - End time: 16:0:0
-2255 [main] DEBUG f.d.e.controller.ChartController - Start: 15.0
-2256 [main] DEBUG f.d.e.controller.ChartController - End: 0.0
-2256 [main] DEBUG f.d.e.controller.ChartController - Workhours out: 0.25
-2256 [main] DEBUG f.d.e.controller.ChartController - WorkDays: 23
+6963 [http-nio-8080-exec-2] INFO  f.d.e.db.DatabaseUtil - Setting DB connection properties...
+6963 [http-nio-8080-exec-2] INFO  f.d.e.db.DatabaseUtil - DB connection properties set!
+6963 [http-nio-8080-exec-2] INFO  f.d.e.db.DatabaseUtil - Connecting to database...
+7457 [http-nio-8080-exec-2] INFO  f.d.e.db.DatabaseUtil - Connection complete!
+13430 [http-nio-8080-exec-1] INFO  f.d.e.db.DatabaseUtil - Setting DB connection properties...
+13432 [http-nio-8080-exec-1] INFO  f.d.e.db.DatabaseUtil - DB connection properties set!
+13432 [http-nio-8080-exec-1] INFO  f.d.e.db.DatabaseUtil - Connecting to database...
+13912 [http-nio-8080-exec-1] INFO  f.d.e.db.DatabaseUtil - Connection complete!
+22255 [http-nio-8080-exec-1] INFO  f.d.e.db.DatabaseUtil - Setting DB connection properties...
+22257 [http-nio-8080-exec-1] INFO  f.d.e.db.DatabaseUtil - DB connection properties set!
+22257 [http-nio-8080-exec-1] INFO  f.d.e.db.DatabaseUtil - Connecting to database...
+22688 [http-nio-8080-exec-1] INFO  f.d.e.db.DatabaseUtil - Connection complete!
+22757 [http-nio-8080-exec-1] INFO  f.d.e.controller.ChartController - Equipment list retrieved.
+26191 [http-nio-8080-exec-2] INFO  f.d.e.controller.ChartController - Equipment MetraHit Base Yleismittari/MI_TD1842 disabled.
+26225 [http-nio-8080-exec-3] INFO  f.d.e.controller.ChartController - Equipment list retrieved.
+32007 [http-nio-8080-exec-4] INFO  f.d.e.controller.ChartController - Equipment MetraHit Base Yleismittari/MI_TD1842 enabled.
+32030 [http-nio-8080-exec-5] INFO  f.d.e.controller.ChartController - Equipment list retrieved.
+34198 [http-nio-8080-exec-6] INFO  f.d.e.controller.ChartController - Equipment MetraHit Base Yleismittari/MI_TD1812 disabled.
+34218 [http-nio-8080-exec-7] INFO  f.d.e.controller.ChartController - Equipment list retrieved.
+36096 [http-nio-8080-exec-8] INFO  f.d.e.controller.ChartController - Equipment MetraHit Base Yleismittari/MI_TD1812 enabled.
+36117 [http-nio-8080-exec-9] INFO  f.d.e.controller.ChartController - Equipment list retrieved.
+39162 [http-nio-8080-exec-10] INFO  f.d.e.controller.ChartController - Equipment type list retrieved.
+39197 [http-nio-8080-exec-1] INFO  f.d.e.controller.ChartController - Equipment list retrieved.
+43190 [http-nio-8080-exec-2] INFO  f.d.e.controller.ChartController - Equipment MetraHit Base Yleismittari2/MI_TD1842 updated.
+43211 [http-nio-8080-exec-3] INFO  f.d.e.controller.ChartController - Equipment list retrieved.
+49819 [http-nio-8080-exec-4] INFO  f.d.e.controller.ChartController - Equipment MetraHit Base Yleismittari2/MI_TD1842 deleted.
+49838 [http-nio-8080-exec-5] INFO  f.d.e.controller.ChartController - Equipment list retrieved.
+54145 [http-nio-8080-exec-6] INFO  f.d.e.controller.ChartController - Equipment type list retrieved.
+54174 [http-nio-8080-exec-7] INFO  f.d.e.controller.ChartController - Equipment list retrieved.
+64690 [http-nio-8080-exec-8] INFO  f.d.e.controller.ChartController - Equipment asfasf/asfasf inserted.
+64708 [http-nio-8080-exec-9] INFO  f.d.e.controller.ChartController - Equipment list retrieved.
+78199 [http-nio-8080-exec-10] INFO  f.d.e.controller.ChartController - Equipment asfasf/asfasf deleted.
+78214 [http-nio-8080-exec-1] INFO  f.d.e.controller.ChartController - Equipment list retrieved.
+83929 [http-nio-8080-exec-2] INFO  f.d.e.controller.ChartController - Equipment type list retrieved.
+88957 [http-nio-8080-exec-3] INFO  f.d.e.controller.ChartController - Attempted to delete equipment type with equipment attached to it.
+88977 [http-nio-8080-exec-4] INFO  f.d.e.controller.ChartController - Equipment type list retrieved.
+164583 [http-nio-8080-exec-6] INFO  f.d.e.controller.ChartController - Equipment type OSKILLOSKOOPPIx/1361 updated.
+164590 [http-nio-8080-exec-7] INFO  f.d.e.controller.ChartController - Equipment type list retrieved.
+184538 [http-nio-8080-exec-8] INFO  f.d.e.controller.ChartController - Equipment type OSKILLOSKOOPPI/1361 updated.
+184544 [http-nio-8080-exec-9] INFO  f.d.e.controller.ChartController - Equipment type list retrieved.
+190421 [http-nio-8080-exec-10] INFO  f.d.e.controller.ChartController - Equipment type OSKILLOSKOOPPI/136111 updated.
+190426 [http-nio-8080-exec-1] INFO  f.d.e.controller.ChartController - Equipment type list retrieved.
+196075 [http-nio-8080-exec-3] INFO  f.d.e.controller.ChartController - Equipment type list retrieved.

@@ -58,7 +58,7 @@ public class EquipmentDataReader {
 			readEquipmentTypesFromFile(convertFile.getPath());
 			deleteFile(convertFile);
 		}
-		return new ResponseEntity<>("Equipment data read succesfully!", HttpStatus.OK);
+		return new ResponseEntity<>("Type data read succesfully!", HttpStatus.OK);
 	}
 	
 	public String readEquipmentFromFile(String filePath) {

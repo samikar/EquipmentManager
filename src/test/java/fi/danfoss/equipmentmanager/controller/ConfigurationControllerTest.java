@@ -315,7 +315,6 @@ public class ConfigurationControllerTest {
 		controller.insertEquipment(equipmentName1, equipmentSerial1, equipmentTypeTypeCode1);
 	}
 	
-
 	@Test
 	public void testInsertEquipment_SerialDuplicate() {
 		int equipmentTypeTypeCode1 = 1111;
