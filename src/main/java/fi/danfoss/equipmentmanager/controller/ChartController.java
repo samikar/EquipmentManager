@@ -124,8 +124,8 @@ public class ChartController {
     	}		
 		else {
 			// Parse dates from epoch to Date
-			Date start = new Date(Long.parseLong(startStr) * 1000);
-			Date end = new Date(Long.parseLong(endStr) * 1000);
+			LocalDateTime start = epochToLocalDateTime(Long.parseLong(startStr));
+			LocalDateTime end = epochToLocalDateTime(Long.parseLong(endStr));
 			List<MonthlyUsage> result = getMonthlyUsageByType(typeCode, start, end);
 
 			return result;
@@ -218,7 +218,7 @@ public class ChartController {
 		return usage;
 	}
 	
-	public List<MonthlyUsage> getMonthlyUsageByType(String typeCode, Date start, Date end) {
+	public List<MonthlyUsage> getMonthlyUsageByType(String typeCode, LocalDateTime startConstraint, LocalDateTime endConstraint) {		
 		List<MonthlyUsage> usageByTypeMonthly = new ArrayList<MonthlyUsage>();
 		edao = new EquipmentDao();
 		edao.init();
@@ -226,7 +226,7 @@ public class ChartController {
 		edao.destroy();
 		
 		for (Equipment eq : equipmentOfType) {
-			List<MonthlyUsage> currentEquipmentMonthlyUsage = getMonthlyUsage(eq.getSerial(), start, end);
+			List<MonthlyUsage> currentEquipmentMonthlyUsage = getMonthlyUsage(eq.getSerial(), startConstraint, endConstraint);
 			if (usageByTypeMonthly.size() == 0) {
 				usageByTypeMonthly = currentEquipmentMonthlyUsage;
 			}
@@ -246,16 +246,11 @@ public class ChartController {
 		return usageByTypeMonthly;
 	}
 	
-	public List<MonthlyUsage> getMonthlyUsage(String serial, Date start, Date end) {
+	public List<MonthlyUsage> getMonthlyUsage(String serial, LocalDateTime startConstraint, LocalDateTime endConstraint) {		
 		List<MonthlyUsage> monthlyUsage = new ArrayList<MonthlyUsage>();
-		
-		// Convert Dates to LocalDateTime
-		LocalDateTime startConstraint = LocalDateTime.ofInstant(start.toInstant(), ZoneId.systemDefault()); 
-		LocalDateTime endConstraint = LocalDateTime.ofInstant(end.toInstant(), ZoneId.systemDefault());
 		
 		// Set start constraint time to start at defined starting time of workday
 		LocalDateTime startCurrent = startConstraint.plusHours(STARTHOUR).plusMinutes(STARTMINUTE);
-		
 		LocalDateTime endCurrent = startConstraint.with(startConstraint.plusMonths(1).withDayOfMonth(1).minusDays(1));
 		
 		do {
@@ -272,7 +267,6 @@ public class ChartController {
 				endCurrent = endCurrent.plusHours(ENDHOUR).plusMinutes(ENDMINUTE);
 			}
 			
-//			EquipmentUsage eUsage = getUsageBySerial(serial, Date.from(startCurrent.atZone(ZoneId.systemDefault()).toInstant()), Date.from(endCurrent.atZone(ZoneId.systemDefault()).toInstant()));
 			EquipmentUsage eUsage = getUsageBySerial(serial, startCurrent, endCurrent);
 			 
 			MonthlyUsage mUsage = new MonthlyUsage();
@@ -303,10 +297,8 @@ public class ChartController {
 		Date startDate = Date.from(start.atZone(ZoneId.systemDefault()).toInstant());
 		Date endDate = Date.from(end.atZone(ZoneId.systemDefault()).toInstant());
 		
-		logger.debug("Return date: " + reservation.getDateReturn());
 		// If reservation has no return date, set return date to constraint end date
 		if (reservation.getDateReturn() == null) {
-			logger.debug("Return = null");
 			reservation.setDateReturn(endDate);
 		}
 		if (reservation.getDateTake().after(endDate) || reservation.getDateReturn().before(startDate))
@@ -320,8 +312,6 @@ public class ChartController {
 			LocalDateTime returnLDT = LocalDateTime.ofInstant(reservation.getDateReturn().toInstant(), ZoneId.systemDefault());
 			
 			workHours = workHoursInRange(takeLDT, returnLDT);
-			logger.debug("************ Workhours: " + workHours);
-			logger.debug("************ workHoursNotAtStartAndEnd: " + workHoursNotAtStartAndEnd(takeLDT, returnLDT));
 			workHours -= workHoursNotAtStartAndEnd(takeLDT, returnLDT);
 			
 			return workHours;

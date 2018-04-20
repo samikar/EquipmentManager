@@ -1,43 +1,114 @@
-6963 [http-nio-8080-exec-2] INFO  f.d.e.db.DatabaseUtil - Setting DB connection properties...
-6963 [http-nio-8080-exec-2] INFO  f.d.e.db.DatabaseUtil - DB connection properties set!
-6963 [http-nio-8080-exec-2] INFO  f.d.e.db.DatabaseUtil - Connecting to database...
-7457 [http-nio-8080-exec-2] INFO  f.d.e.db.DatabaseUtil - Connection complete!
-13430 [http-nio-8080-exec-1] INFO  f.d.e.db.DatabaseUtil - Setting DB connection properties...
-13432 [http-nio-8080-exec-1] INFO  f.d.e.db.DatabaseUtil - DB connection properties set!
-13432 [http-nio-8080-exec-1] INFO  f.d.e.db.DatabaseUtil - Connecting to database...
-13912 [http-nio-8080-exec-1] INFO  f.d.e.db.DatabaseUtil - Connection complete!
-22255 [http-nio-8080-exec-1] INFO  f.d.e.db.DatabaseUtil - Setting DB connection properties...
-22257 [http-nio-8080-exec-1] INFO  f.d.e.db.DatabaseUtil - DB connection properties set!
-22257 [http-nio-8080-exec-1] INFO  f.d.e.db.DatabaseUtil - Connecting to database...
-22688 [http-nio-8080-exec-1] INFO  f.d.e.db.DatabaseUtil - Connection complete!
-22757 [http-nio-8080-exec-1] INFO  f.d.e.controller.ChartController - Equipment list retrieved.
-26191 [http-nio-8080-exec-2] INFO  f.d.e.controller.ChartController - Equipment MetraHit Base Yleismittari/MI_TD1842 disabled.
-26225 [http-nio-8080-exec-3] INFO  f.d.e.controller.ChartController - Equipment list retrieved.
-32007 [http-nio-8080-exec-4] INFO  f.d.e.controller.ChartController - Equipment MetraHit Base Yleismittari/MI_TD1842 enabled.
-32030 [http-nio-8080-exec-5] INFO  f.d.e.controller.ChartController - Equipment list retrieved.
-34198 [http-nio-8080-exec-6] INFO  f.d.e.controller.ChartController - Equipment MetraHit Base Yleismittari/MI_TD1812 disabled.
-34218 [http-nio-8080-exec-7] INFO  f.d.e.controller.ChartController - Equipment list retrieved.
-36096 [http-nio-8080-exec-8] INFO  f.d.e.controller.ChartController - Equipment MetraHit Base Yleismittari/MI_TD1812 enabled.
-36117 [http-nio-8080-exec-9] INFO  f.d.e.controller.ChartController - Equipment list retrieved.
-39162 [http-nio-8080-exec-10] INFO  f.d.e.controller.ChartController - Equipment type list retrieved.
-39197 [http-nio-8080-exec-1] INFO  f.d.e.controller.ChartController - Equipment list retrieved.
-43190 [http-nio-8080-exec-2] INFO  f.d.e.controller.ChartController - Equipment MetraHit Base Yleismittari2/MI_TD1842 updated.
-43211 [http-nio-8080-exec-3] INFO  f.d.e.controller.ChartController - Equipment list retrieved.
-49819 [http-nio-8080-exec-4] INFO  f.d.e.controller.ChartController - Equipment MetraHit Base Yleismittari2/MI_TD1842 deleted.
-49838 [http-nio-8080-exec-5] INFO  f.d.e.controller.ChartController - Equipment list retrieved.
-54145 [http-nio-8080-exec-6] INFO  f.d.e.controller.ChartController - Equipment type list retrieved.
-54174 [http-nio-8080-exec-7] INFO  f.d.e.controller.ChartController - Equipment list retrieved.
-64690 [http-nio-8080-exec-8] INFO  f.d.e.controller.ChartController - Equipment asfasf/asfasf inserted.
-64708 [http-nio-8080-exec-9] INFO  f.d.e.controller.ChartController - Equipment list retrieved.
-78199 [http-nio-8080-exec-10] INFO  f.d.e.controller.ChartController - Equipment asfasf/asfasf deleted.
-78214 [http-nio-8080-exec-1] INFO  f.d.e.controller.ChartController - Equipment list retrieved.
-83929 [http-nio-8080-exec-2] INFO  f.d.e.controller.ChartController - Equipment type list retrieved.
-88957 [http-nio-8080-exec-3] INFO  f.d.e.controller.ChartController - Attempted to delete equipment type with equipment attached to it.
-88977 [http-nio-8080-exec-4] INFO  f.d.e.controller.ChartController - Equipment type list retrieved.
-164583 [http-nio-8080-exec-6] INFO  f.d.e.controller.ChartController - Equipment type OSKILLOSKOOPPIx/1361 updated.
-164590 [http-nio-8080-exec-7] INFO  f.d.e.controller.ChartController - Equipment type list retrieved.
-184538 [http-nio-8080-exec-8] INFO  f.d.e.controller.ChartController - Equipment type OSKILLOSKOOPPI/1361 updated.
-184544 [http-nio-8080-exec-9] INFO  f.d.e.controller.ChartController - Equipment type list retrieved.
-190421 [http-nio-8080-exec-10] INFO  f.d.e.controller.ChartController - Equipment type OSKILLOSKOOPPI/136111 updated.
-190426 [http-nio-8080-exec-1] INFO  f.d.e.controller.ChartController - Equipment type list retrieved.
-196075 [http-nio-8080-exec-3] INFO  f.d.e.controller.ChartController - Equipment type list retrieved.
+160  [main] INFO  f.d.e.db.DatabaseUtil - Setting DB connection properties...
+163  [main] INFO  f.d.e.db.DatabaseUtil - DB connection properties set!
+163  [main] INFO  f.d.e.db.DatabaseUtil - Connecting to database...
+1106 [main] INFO  f.d.e.db.DatabaseUtil - Connection complete!
+2117 [main] DEBUG f.d.e.c.ChartControllerTest - StartC:2018-01-01T00:00 - EndC:2018-06-29T23:59
+165  [main] INFO  f.d.e.db.DatabaseUtil - Setting DB connection properties...
+168  [main] INFO  f.d.e.db.DatabaseUtil - DB connection properties set!
+168  [main] INFO  f.d.e.db.DatabaseUtil - Connecting to database...
+1099 [main] INFO  f.d.e.db.DatabaseUtil - Connection complete!
+2168 [main] DEBUG f.d.e.c.ChartControllerTest - StartC:2018-01-01T00:00 - EndC:2018-07-31T23:59
+158  [main] INFO  f.d.e.db.DatabaseUtil - Setting DB connection properties...
+160  [main] INFO  f.d.e.db.DatabaseUtil - DB connection properties set!
+161  [main] INFO  f.d.e.db.DatabaseUtil - Connecting to database...
+1105 [main] INFO  f.d.e.db.DatabaseUtil - Connection complete!
+2117 [main] DEBUG f.d.e.c.ChartControllerTest - StartC:2018-01-01T00:00 - EndC:2018-06-30T23:59
+167  [main] INFO  f.d.e.db.DatabaseUtil - Setting DB connection properties...
+171  [main] INFO  f.d.e.db.DatabaseUtil - DB connection properties set!
+171  [main] INFO  f.d.e.db.DatabaseUtil - Connecting to database...
+1106 [main] INFO  f.d.e.db.DatabaseUtil - Connection complete!
+2305 [main] DEBUG f.d.e.c.ChartControllerTest - *******************2018-JANUARY
+2306 [main] DEBUG f.d.e.c.ChartControllerTest - *******************2018-JANUARY
+2306 [main] DEBUG f.d.e.c.ChartControllerTest - *******************2018-JANUARY
+2306 [main] DEBUG f.d.e.c.ChartControllerTest - *******************2018-JANUARY
+2306 [main] DEBUG f.d.e.c.ChartControllerTest - *******************2018-JANUARY
+2307 [main] DEBUG f.d.e.c.ChartControllerTest - *******************2018-JANUARY
+163  [main] INFO  f.d.e.db.DatabaseUtil - Setting DB connection properties...
+166  [main] INFO  f.d.e.db.DatabaseUtil - DB connection properties set!
+166  [main] INFO  f.d.e.db.DatabaseUtil - Connecting to database...
+1108 [main] INFO  f.d.e.db.DatabaseUtil - Connection complete!
+2234 [main] DEBUG f.d.e.c.ChartControllerTest - *******************2018-JANUARY
+164  [main] INFO  f.d.e.db.DatabaseUtil - Setting DB connection properties...
+166  [main] INFO  f.d.e.db.DatabaseUtil - DB connection properties set!
+167  [main] INFO  f.d.e.db.DatabaseUtil - Connecting to database...
+1116 [main] INFO  f.d.e.db.DatabaseUtil - Connection complete!
+160  [main] INFO  f.d.e.db.DatabaseUtil - Setting DB connection properties...
+163  [main] INFO  f.d.e.db.DatabaseUtil - DB connection properties set!
+163  [main] INFO  f.d.e.db.DatabaseUtil - Connecting to database...
+1109 [main] INFO  f.d.e.db.DatabaseUtil - Connection complete!
+1295 [main] DEBUG f.d.e.c.ChartControllerTest - Current: JANUARY, 2018 CurrentReservation: 1
+1295 [main] DEBUG f.d.e.c.ChartControllerTest - Current: FEBRUARY, 2018 CurrentReservation: 2
+167  [main] INFO  f.d.e.db.DatabaseUtil - Setting DB connection properties...
+170  [main] INFO  f.d.e.db.DatabaseUtil - DB connection properties set!
+170  [main] INFO  f.d.e.db.DatabaseUtil - Connecting to database...
+1126 [main] INFO  f.d.e.db.DatabaseUtil - Connection complete!
+1312 [main] DEBUG f.d.e.c.ChartControllerTest - Current: JANUARY, 2018 CurrentReservation: 1
+1313 [main] DEBUG f.d.e.c.ChartControllerTest - Current: FEBRUARY, 2018 CurrentReservation: 2
+1313 [main] DEBUG f.d.e.c.ChartControllerTest - Current: MARCH, 2018 CurrentReservation: 3
+1313 [main] DEBUG f.d.e.c.ChartControllerTest - Current: APRIL, 2018 CurrentReservation: 4
+1313 [main] DEBUG f.d.e.c.ChartControllerTest - Current: MAY, 2018 CurrentReservation: 5
+1314 [main] DEBUG f.d.e.c.ChartControllerTest - Current: JUNE, 2018 CurrentReservation: 6
+158  [main] INFO  f.d.e.db.DatabaseUtil - Setting DB connection properties...
+161  [main] INFO  f.d.e.db.DatabaseUtil - DB connection properties set!
+161  [main] INFO  f.d.e.db.DatabaseUtil - Connecting to database...
+1097 [main] INFO  f.d.e.db.DatabaseUtil - Connection complete!
+158  [main] INFO  f.d.e.db.DatabaseUtil - Setting DB connection properties...
+162  [main] INFO  f.d.e.db.DatabaseUtil - DB connection properties set!
+163  [main] INFO  f.d.e.db.DatabaseUtil - Connecting to database...
+1109 [main] INFO  f.d.e.db.DatabaseUtil - Connection complete!
+160  [main] INFO  f.d.e.db.DatabaseUtil - Setting DB connection properties...
+162  [main] INFO  f.d.e.db.DatabaseUtil - DB connection properties set!
+162  [main] INFO  f.d.e.db.DatabaseUtil - Connecting to database...
+1094 [main] INFO  f.d.e.db.DatabaseUtil - Connection complete!
+161  [main] INFO  f.d.e.db.DatabaseUtil - Setting DB connection properties...
+163  [main] INFO  f.d.e.db.DatabaseUtil - DB connection properties set!
+163  [main] INFO  f.d.e.db.DatabaseUtil - Connecting to database...
+1110 [main] INFO  f.d.e.db.DatabaseUtil - Connection complete!
+161  [main] INFO  f.d.e.db.DatabaseUtil - Setting DB connection properties...
+164  [main] INFO  f.d.e.db.DatabaseUtil - DB connection properties set!
+164  [main] INFO  f.d.e.db.DatabaseUtil - Connecting to database...
+1093 [main] INFO  f.d.e.db.DatabaseUtil - Connection complete!
+158  [main] INFO  f.d.e.db.DatabaseUtil - Setting DB connection properties...
+160  [main] INFO  f.d.e.db.DatabaseUtil - DB connection properties set!
+161  [main] INFO  f.d.e.db.DatabaseUtil - Connecting to database...
+1085 [main] INFO  f.d.e.db.DatabaseUtil - Connection complete!
+3314 [main] DEBUG f.d.e.c.ChartControllerTest - *****JANUARY, 2018
+161  [main] INFO  f.d.e.db.DatabaseUtil - Setting DB connection properties...
+164  [main] INFO  f.d.e.db.DatabaseUtil - DB connection properties set!
+164  [main] INFO  f.d.e.db.DatabaseUtil - Connecting to database...
+1113 [main] INFO  f.d.e.db.DatabaseUtil - Connection complete!
+3329 [main] DEBUG f.d.e.c.ChartControllerTest - 1: Mon Jan 01 08:30:00 EET 2018-Fri Jan 05 16:00:00 EET 2018
+3330 [main] DEBUG f.d.e.c.ChartControllerTest - 2: Mon Jan 29 08:30:00 EET 2018-Fri Feb 02 16:00:00 EET 2018
+3330 [main] DEBUG f.d.e.c.ChartControllerTest - 3: Mon Feb 26 08:30:00 EET 2018-Fri Mar 02 16:00:00 EET 2018
+3330 [main] DEBUG f.d.e.c.ChartControllerTest - 4: Mon Mar 26 08:30:00 EEST 2018-Fri Mar 30 16:00:00 EEST 2018
+3331 [main] DEBUG f.d.e.c.ChartControllerTest - 5: Mon Apr 30 08:30:00 EEST 2018-Fri May 04 16:00:00 EEST 2018
+3331 [main] DEBUG f.d.e.c.ChartControllerTest - 6: Mon May 28 08:30:00 EEST 2018-Fri Jun 01 16:00:00 EEST 2018
+3371 [main] DEBUG f.d.e.c.ChartControllerTest - *****JANUARY, 2018
+159  [main] INFO  f.d.e.db.DatabaseUtil - Setting DB connection properties...
+162  [main] INFO  f.d.e.db.DatabaseUtil - DB connection properties set!
+162  [main] INFO  f.d.e.db.DatabaseUtil - Connecting to database...
+1082 [main] INFO  f.d.e.db.DatabaseUtil - Connection complete!
+3254 [main] DEBUG f.d.e.c.ChartControllerTest - 1: Mon Jan 01 08:30:00 EET 2018-Fri Jan 05 16:00:00 EET 2018
+3256 [main] DEBUG f.d.e.c.ChartControllerTest - 2: Mon Feb 05 08:30:00 EET 2018-Fri Feb 09 16:00:00 EET 2018
+3256 [main] DEBUG f.d.e.c.ChartControllerTest - 3: Mon Mar 05 08:30:00 EET 2018-Fri Mar 09 16:00:00 EET 2018
+3257 [main] DEBUG f.d.e.c.ChartControllerTest - 4: Mon Apr 02 08:30:00 EEST 2018-Fri Apr 06 16:00:00 EEST 2018
+3258 [main] DEBUG f.d.e.c.ChartControllerTest - 5: Mon May 07 08:30:00 EEST 2018-Fri May 11 16:00:00 EEST 2018
+3259 [main] DEBUG f.d.e.c.ChartControllerTest - 6: Mon Jun 04 08:30:00 EEST 2018-Fri Jun 08 16:00:00 EEST 2018
+3313 [main] DEBUG f.d.e.c.ChartControllerTest - *****JANUARY, 2018
+3313 [main] DEBUG f.d.e.c.ChartControllerTest - *****FEBRUARY, 2018
+156  [main] INFO  f.d.e.db.DatabaseUtil - Setting DB connection properties...
+159  [main] INFO  f.d.e.db.DatabaseUtil - DB connection properties set!
+159  [main] INFO  f.d.e.db.DatabaseUtil - Connecting to database...
+1089 [main] INFO  f.d.e.db.DatabaseUtil - Connection complete!
+3242 [main] DEBUG f.d.e.c.ChartControllerTest - 1: Mon Jan 01 08:30:00 EET 2018-Fri Jan 05 16:00:00 EET 2018
+3243 [main] DEBUG f.d.e.c.ChartControllerTest - 2: Mon Feb 05 08:30:00 EET 2018-Fri Feb 09 16:00:00 EET 2018
+3244 [main] DEBUG f.d.e.c.ChartControllerTest - 3: Mon Mar 05 08:30:00 EET 2018-Fri Mar 09 16:00:00 EET 2018
+3244 [main] DEBUG f.d.e.c.ChartControllerTest - 4: Mon Apr 02 08:30:00 EEST 2018-Fri Apr 06 16:00:00 EEST 2018
+3245 [main] DEBUG f.d.e.c.ChartControllerTest - 5: Mon May 07 08:30:00 EEST 2018-Fri May 11 16:00:00 EEST 2018
+3246 [main] DEBUG f.d.e.c.ChartControllerTest - 6: Mon Jun 04 08:30:00 EEST 2018-Fri Jun 08 16:00:00 EEST 2018
+3288 [main] DEBUG f.d.e.c.ChartControllerTest - *****JANUARY, 2018
+3288 [main] DEBUG f.d.e.c.ChartControllerTest - *****FEBRUARY, 2018
+3288 [main] DEBUG f.d.e.c.ChartControllerTest - *****MARCH, 2018
+3288 [main] DEBUG f.d.e.c.ChartControllerTest - *****APRIL, 2018
+3289 [main] DEBUG f.d.e.c.ChartControllerTest - *****MAY, 2018
+3289 [main] DEBUG f.d.e.c.ChartControllerTest - *****JUNE, 2018
