@@ -103,7 +103,7 @@ public class ChartController {
 			// Parse dates from epoch to Date
 			LocalDateTime start = epochToLocalDateTime(Long.parseLong(startStr));
 			LocalDateTime end = epochToLocalDateTime(Long.parseLong(endStr));
-			List<EquipmentUsage> result = getUsageByType(typeCode, start, end);
+			List<EquipmentUsage> result = getUsageByType(Integer.parseInt(typeCode), start, end);
 			
 			return result;
 		}
@@ -166,27 +166,20 @@ public class ChartController {
 		return result;
 	}
 	
-	public List<EquipmentUsage> getUsageByType(String typeCode, LocalDateTime start, LocalDateTime end) {
-		List<EquipmentUsage> usageList = new ArrayList<EquipmentUsage>();
-		edao = new EquipmentDao();
-		edao.init();
-		List<Equipment> equipmentOfType = edao.getEnabledByTypeCode(Integer.parseInt(typeCode));
-		edao.destroy();
-		
-		for (Equipment eq : equipmentOfType) {
-			EquipmentUsage currentUsage = getUsageBySerial(eq.getSerial(), start, end);
-			usageList.add(currentUsage);
-		}
-		return usageList;
-	}
-	
 	public EquipmentUsage getUsageBySerial(String serial, LocalDateTime start, LocalDateTime end) {
 		Date startDate = Date.from(start.atZone(ZoneId.systemDefault()).toInstant());
 		Date endDate = Date.from(end.atZone(ZoneId.systemDefault()).toInstant());
+		
 		edao = new EquipmentDao();
 		rdao = new ReservationDao();
 		edao.init();
 		rdao.init();
+		
+		if (!edao.serialExists(serial)) {
+			edao.destroy();
+			rdao.destroy();
+			return null;
+		}
 		
 		Equipment equipment = edao.getBySerial(serial);
 		EquipmentUsage usage = new EquipmentUsage(equipment);
@@ -218,35 +211,21 @@ public class ChartController {
 		return usage;
 	}
 	
-	public List<MonthlyUsage> getMonthlyUsageByType(String typeCode, LocalDateTime startConstraint, LocalDateTime endConstraint) {		
-		List<MonthlyUsage> usageByTypeMonthly = new ArrayList<MonthlyUsage>();
+	public List<EquipmentUsage> getUsageByType(int typeCode, LocalDateTime start, LocalDateTime end) {
+		List<EquipmentUsage> usageList = new ArrayList<EquipmentUsage>();
 		edao = new EquipmentDao();
 		edao.init();
-		List<Equipment> equipmentOfType = edao.getEnabledByTypeCode(Integer.parseInt(typeCode));
+		List<Equipment> equipmentOfType = edao.getEnabledByTypeCode(typeCode);
 		edao.destroy();
 		
 		for (Equipment eq : equipmentOfType) {
-			List<MonthlyUsage> currentEquipmentMonthlyUsage = getMonthlyUsage(eq.getSerial(), startConstraint, endConstraint);
-			if (usageByTypeMonthly.size() == 0) {
-				usageByTypeMonthly = currentEquipmentMonthlyUsage;
-			}
-				
-			else {
-				for (int i=0; i < currentEquipmentMonthlyUsage.size(); i++) {
-					MonthlyUsage currentUsage = currentEquipmentMonthlyUsage.get(i);
-					MonthlyUsage totalUsage = usageByTypeMonthly.get(i);
-					totalUsage.setAvailable(totalUsage.getAvailable() + currentUsage.getAvailable());
-					totalUsage.setInUse(totalUsage.getInUse() + currentUsage.getInUse());
-					totalUsage.setCalibration(totalUsage.getCalibration() + currentUsage.getCalibration());
-					totalUsage.setMaintenance(totalUsage.getMaintenance() + currentUsage.getMaintenance());
-					usageByTypeMonthly.set(i, totalUsage);
-				}
-			}
+			EquipmentUsage currentUsage = getUsageBySerial(eq.getSerial(), start, end);
+			usageList.add(currentUsage);
 		}
-		return usageByTypeMonthly;
+		return usageList;
 	}
-	
-	public List<MonthlyUsage> getMonthlyUsage(String serial, LocalDateTime startConstraint, LocalDateTime endConstraint) {		
+		
+	public List<MonthlyUsage> getMonthlyUsageBySerial(String serial, LocalDateTime startConstraint, LocalDateTime endConstraint) {		
 		List<MonthlyUsage> monthlyUsage = new ArrayList<MonthlyUsage>();
 		
 		// Set start constraint time to start at defined starting time of workday
@@ -267,6 +246,13 @@ public class ChartController {
 				endCurrent = endCurrent.plusHours(ENDHOUR).plusMinutes(ENDMINUTE);
 			}
 			
+			edao.init();
+			if (!edao.serialExists(serial)) {
+				edao.destroy();
+				return null;
+			}
+			edao.destroy();
+			
 			EquipmentUsage eUsage = getUsageBySerial(serial, startCurrent, endCurrent);
 			 
 			MonthlyUsage mUsage = new MonthlyUsage();
@@ -280,7 +266,6 @@ public class ChartController {
 			mUsage.setInUse(eUsage.getInUse());
 			mUsage.setMaintenance(eUsage.getMaintenance());
 			
-			
 			monthlyUsage.add(mUsage);
 			// Moves start date to first the day of the month
 			startCurrent = startCurrent.minusDays(startCurrent.getDayOfMonth() - 1);
@@ -290,6 +275,34 @@ public class ChartController {
 		} while (startCurrent.isBefore(endConstraint));
 
 		return monthlyUsage;
+	}
+	
+	public List<MonthlyUsage> getMonthlyUsageByType(String typeCode, LocalDateTime startConstraint, LocalDateTime endConstraint) {		
+		List<MonthlyUsage> usageByTypeMonthly = new ArrayList<MonthlyUsage>();
+		edao = new EquipmentDao();
+		edao.init();
+		List<Equipment> equipmentOfType = edao.getEnabledByTypeCode(Integer.parseInt(typeCode));
+		edao.destroy();
+		
+		for (Equipment eq : equipmentOfType) {
+			List<MonthlyUsage> currentEquipmentMonthlyUsage = getMonthlyUsageBySerial(eq.getSerial(), startConstraint, endConstraint);
+			if (usageByTypeMonthly.size() == 0) {
+				usageByTypeMonthly = currentEquipmentMonthlyUsage;
+			}
+				
+			else {
+				for (int i=0; i < currentEquipmentMonthlyUsage.size(); i++) {
+					MonthlyUsage currentUsage = currentEquipmentMonthlyUsage.get(i);
+					MonthlyUsage totalUsage = usageByTypeMonthly.get(i);
+					totalUsage.setAvailable(totalUsage.getAvailable() + currentUsage.getAvailable());
+					totalUsage.setInUse(totalUsage.getInUse() + currentUsage.getInUse());
+					totalUsage.setCalibration(totalUsage.getCalibration() + currentUsage.getCalibration());
+					totalUsage.setMaintenance(totalUsage.getMaintenance() + currentUsage.getMaintenance());
+					usageByTypeMonthly.set(i, totalUsage);
+				}
+			}
+		}
+		return usageByTypeMonthly;
 	}
 
 	public double hoursInReservation(Reservation reservation, LocalDateTime start, LocalDateTime end) {
