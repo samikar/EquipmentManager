@@ -31,7 +31,7 @@ import fi.danfoss.equipmentmanager.model.EquipmentDao;
 import fi.danfoss.equipmentmanager.model.Equipmenttype;
 import fi.danfoss.equipmentmanager.model.EquipmenttypeDao;
 
-@Ignore
+//@Ignore
 public class EquipmentDataReaderTest {
 	
 	@Autowired

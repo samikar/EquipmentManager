@@ -15,6 +15,7 @@ import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.List;
 
+import org.apache.log4j.Logger;
 import org.apache.poi.util.IOUtils;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -30,18 +31,21 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.web.multipart.MultipartFile;
 
+import fi.danfoss.equipmentmanager.db.ADHandler;
 import fi.danfoss.equipmentmanager.model.Equipment;
 import fi.danfoss.equipmentmanager.model.EquipmentDao;
 import fi.danfoss.equipmentmanager.model.Equipmenttype;
 import fi.danfoss.equipmentmanager.model.EquipmenttypeDao;
 
-@Ignore
+//@Ignore
 public class ConfigurationControllerTest {
 	
 	private final static String TESTFILEPATH = "test_files" + File.separator;
 	private final static String TESTFILENAME = "test_file.txt";
 	private final static String EQUIPMENTFILE = "laitteet.xlsx";
 	private final static String TYPETFILE = "luokat.xlsx";
+	
+	final static Logger logger = Logger.getLogger(ADHandler.class);
 	
 	@Autowired
 	private static EquipmentDao edao;
@@ -542,15 +546,20 @@ public class ConfigurationControllerTest {
 		Equipmenttype DBequipmentType = null;
 		
 		equipmentTypeId1 = etdao.persist(testEquipmentType1);
-		DBequipmentType = etdao.getByTypeCode(equipmentTypeTypeCode1);
+		List<Equipmenttype> typeList = etdao.getAll();
+		assertEquals(1, typeList.size());
+		DBequipmentType = typeList.get(0);
+		assertEquals(equipmentTypeTypeName1, DBequipmentType.getTypeName());
+		assertEquals(equipmentTypeTypeCode1, DBequipmentType.getTypeCode());
 		
-		assertEquals(equipmentTypeTypeName1, DBequipmentType.getTypeName());
-		assertEquals(equipmentTypeTypeCode1, DBequipmentType.getTypeCode());
 		controller.updateType(Integer.toString(equipmentTypeId1), equipmentTypeTypeName2, Integer.toString(equipmentTypeTypeCode2));
-		edao.refresh();
-		DBequipmentType = etdao.getByTypeCode(equipmentTypeTypeCode1);
-		assertEquals(equipmentTypeTypeName1, DBequipmentType.getTypeName());
-		assertEquals(equipmentTypeTypeCode1, DBequipmentType.getTypeCode());
+		etdao.refresh();
+		typeList = etdao.getAll();
+		assertEquals(1, typeList.size());
+		DBequipmentType = typeList.get(0);
+		assertEquals(equipmentTypeTypeName2, DBequipmentType.getTypeName());
+		assertEquals(equipmentTypeTypeCode2, DBequipmentType.getTypeCode());
+	
 	}
 	
 	@Test
@@ -708,7 +717,7 @@ public class ConfigurationControllerTest {
 			try {
 				Files.write(file, fileContents, Charset.forName("UTF-8"));
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
+				logger.error("File could not be written: " + e.toString());
 				e.printStackTrace();
 			}	
 		}
@@ -722,7 +731,7 @@ public class ConfigurationControllerTest {
 		try {
 			input = new FileInputStream(file);
 		} catch (FileNotFoundException e1) {
-			// TODO Auto-generated catch block
+			logger.error("File not found: " + e1.toString());
 			e1.printStackTrace();
 		}
 		
@@ -730,8 +739,7 @@ public class ConfigurationControllerTest {
 			multipartFile = new MockMultipartFile("file", file.getName(), "text/plain", IOUtils.toByteArray(input));
 			input.close();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			logger.error("Converting file to MultiPartFile failed: " + e.toString());
 		}
 		
 		return multipartFile;
@@ -743,8 +751,7 @@ public class ConfigurationControllerTest {
 	    	try {
 				Files.delete(testFile);
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				logger.info("Attempt to delete test file failed, because file already deleted. (This is normal)");
 			}  
     	}
 	}

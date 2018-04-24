@@ -17,7 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import fi.danfoss.equipmentmanager.utils.PropertyUtils;
 
-@Ignore
+//@Ignore
 public class EquipmentDaoTest {
 	
 	@Autowired

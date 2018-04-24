@@ -124,7 +124,17 @@
 		    <version>5.2.16.Final</version>
 		</dependency>
 		<!-- End Hibernate connection pooling -->
-					
+		
+		<!-- MS SQL server JDBC -->
+		<!-- https://mvnrepository.com/artifact/com.microsoft.sqlserver/mssql-jdbc -->
+		<dependency>
+		    <groupId>com.microsoft.sqlserver</groupId>
+		    <artifactId>mssql-jdbc</artifactId>
+		    <version>6.4.0.jre8</version>
+		    <scope>test</scope>
+		</dependency>
+		<!-- End MS SQL server JDBC -->		
+							
 		
 		<!-- For LDAP -->
 		<!-- >dependency>

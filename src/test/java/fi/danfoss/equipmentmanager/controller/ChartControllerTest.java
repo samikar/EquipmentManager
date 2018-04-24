@@ -18,6 +18,7 @@ import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
@@ -35,6 +36,7 @@ import fi.danfoss.equipmentmanager.model.Reservation;
 import fi.danfoss.equipmentmanager.model.ReservationDao;
 import fi.danfoss.equipmentmanager.utils.PropertyUtils;
 
+//@Ignore
 public class ChartControllerTest {
 	private static Properties properties = PropertyUtils.loadProperties();
 	private final static double WORKDAY = Double.parseDouble(properties.getProperty("WORKDAY"));

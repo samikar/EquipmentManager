@@ -8,8 +8,10 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Properties;
 
+import org.junit.Ignore;
 import org.junit.Test;
 
+//@Ignore
 public class PropertyUtilsTest {
 	
 	@Test

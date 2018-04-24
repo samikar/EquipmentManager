@@ -6,18 +6,21 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
+import org.apache.log4j.Logger;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import fi.danfoss.equipmentmanager.controller.ChartController;
 import fi.danfoss.equipmentmanager.db.DatabaseUtil;
 
 @Repository
 @Transactional
 public class EquipmenttypeDao {
+	final static Logger logger = Logger.getLogger(ChartController.class);
 	
 	@PersistenceContext
 	private EntityManager entityManager;
-//	private EntityManagerFactory entityManagerFactory;
+	
 	private Equipmenttype dao;
 	
 	public EquipmenttypeDao() {

@@ -10,13 +10,15 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedNativeQueries;
 import javax.persistence.NamedNativeQuery;
+import javax.persistence.Table;
 
 
 /**
  * Persistence class for the equipment database table.
  * 
  */
-@Entity
+@Entity(name="Equipment")
+@Table (name="equipment")
 @NamedNativeQueries({
 	@NamedNativeQuery(
 			name	=	"Equipment.findAll", 

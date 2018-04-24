@@ -33,6 +33,7 @@ import fi.danfoss.equipmentmanager.model.EquipmenttypeDao;
 import fi.danfoss.equipmentmanager.model.Reservation;
 import fi.danfoss.equipmentmanager.model.ReservationDao;
 
+//@Ignore
 public class ReservationControllerTest {
 	@Autowired
 	private static EmployeeDao empdao;

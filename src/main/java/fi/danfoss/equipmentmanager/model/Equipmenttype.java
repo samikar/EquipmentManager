@@ -8,25 +8,27 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedNativeQueries;
 import javax.persistence.NamedNativeQuery;
+import javax.persistence.Table;
 
 
 /**
  * Persistence class for the equipmenttype database table.
  * 
  */
-@Entity
+@Entity(name="Equipmenttype")
+@Table (name="equipmenttype")
 @NamedNativeQueries({
 	@NamedNativeQuery(
 			name	=	"Equipmenttype.findAll", 
 			query	=	"SELECT * FROM Equipmenttype " +
-						"ORDER BY TypeName ASC",
+						"ORDER BY typeName ASC",
 						resultClass=Equipmenttype.class
 	),
 	@NamedNativeQuery(
 			name	=	"Equipmenttype.findByTypeCode", 
 			query	=	"SELECT * "+
 						"FROM equipmenttype " +
-						"WHERE equipmenttype.TypeCode = ?",
+						"WHERE equipmenttype.typeCode = ?",
 						resultClass=Equipmenttype.class
 	),
 	@NamedNativeQuery(
