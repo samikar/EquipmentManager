@@ -1,0 +1,11 @@
+fi\danfoss\equipmentmanager\db\ADHandlerTest.class
+fi\danfoss\equipmentmanager\model\EquipmentDaoTest.class
+fi\danfoss\equipmentmanager\model\ReservationDaoTest.class
+fi\danfoss\equipmentmanager\controller\ReservationControllerTest.class
+fi\danfoss\equipmentmanager\model\EquipmenttypeDaoTest.class
+fi\danfoss\equipmentmanager\controller\ChartControllerTest.class
+fi\danfoss\equipmentmanager\controller\ConfigurationControllerTest.class
+fi\danfoss\equipmentmanager\db\DatabaseutilTest.class
+fi\danfoss\equipmentmanager\utils\EquipmentDataReaderTest.class
+fi\danfoss\equipmentmanager\model\EmployeeDaoTest.class
+fi\danfoss\equipmentmanager\utils\PropertyUtilsTest.class

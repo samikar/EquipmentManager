@@ -133,6 +133,15 @@
 		    <version>6.4.0.jre8</version>
 		    <scope>test</scope>
 		</dependency>
+
+		
+		<!-- https://mvnrepository.com/artifact/com.microsoft.azure/adal4j -->
+		<dependency>
+		    <groupId>com.microsoft.azure</groupId>
+		    <artifactId>adal4j</artifactId>
+		    <version>1.5.0</version>
+		</dependency>
+
 		<!-- End MS SQL server JDBC -->		
 							
 		
