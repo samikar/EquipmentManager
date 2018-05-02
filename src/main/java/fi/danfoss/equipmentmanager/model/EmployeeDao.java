@@ -6,6 +6,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
+import org.apache.log4j.Logger;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -16,6 +17,8 @@ import fi.danfoss.equipmentmanager.db.DatabaseUtil;
 @Transactional
 public class EmployeeDao {
 
+	final static Logger logger = Logger.getLogger(EmployeeDao.class);
+	
 	@PersistenceContext
 	private EntityManager entityManager;
 //	private EntityManagerFactory entityManagerFactory;
@@ -141,6 +144,7 @@ public class EmployeeDao {
 		handler.init();
 		String name = handler.findEmployeeName(employeeId);
 		handler.close();
+		dao = new Employee();
 		if (name.length() > 0) {
 			// Adds found employee to DB
 			dao.setEmployeeId(employeeId);

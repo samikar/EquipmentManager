@@ -7,6 +7,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.log4j.Logger;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.google.gson.Gson;
 
+import fi.danfoss.equipmentmanager.db.DatabaseUtil;
 import fi.danfoss.equipmentmanager.model.Employee;
 import fi.danfoss.equipmentmanager.model.EmployeeDao;
 import fi.danfoss.equipmentmanager.model.Equipment;
@@ -30,6 +32,7 @@ public class ReservationController {
 	private ReservationDao rdao;
 	private EmployeeDao empdao;
 	private EquipmentDao edao;
+	final static Logger logger = Logger.getLogger(ReservationController.class);
 	
 	@RequestMapping("/rest/test")
 	public String hello(@RequestParam(value = "name", defaultValue = "World") String name) {
@@ -73,6 +76,7 @@ public class ReservationController {
 			throw new IllegalArgumentException("Open reservation for serial number " + serial + " already found");
 		} 
 		else if (!empdao.employeeExists(employeeId)) {
+			logger.debug("****************** ReservationController employeeId: " + employeeId);
 			throw new IllegalArgumentException("No employee found for employeeId: " + employeeId);
 		} 
 		else {

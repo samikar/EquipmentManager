@@ -32,6 +32,7 @@ public class ADHandler {
 		LDAPproperties.put(Context.SECURITY_CREDENTIALS, appProperties.getProperty("ADpassword"));
 		
 		try {
+			logger.info("Connecting to AD.");
 			statcontext = new InitialDirContext(LDAPproperties);
 
 		} catch (NamingException e) {
@@ -57,8 +58,8 @@ public class ADHandler {
 			searchCtrls.setReturningAttributes(returnedAtts);
 			searchCtrls.setSearchScope(SearchControls.SUBTREE_SCOPE);
 			String filter = "(EmployeeId=" + employeeId + ")";
-			
-			System.out.println("Searching...");
+			logger.info("Searching AD for employeeId " + employeeId + "...");
+			System.out.println("Searching AD for employeeId " + employeeId + "...");
 			// This search takes a long time...
 			NamingEnumeration values = statcontext.search("ou=Internal Accounts, ou=P35 Accounts, ou=Users, ou=Accounts", filter, searchCtrls);
 

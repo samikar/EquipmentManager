@@ -42,8 +42,8 @@ public class DatabaseUtil {
 
 	private static void setProperties() {
 		persistenceMap.put("javax.persistence.jdbc.url", url);
-//		persistenceMap.put("javax.persistence.jdbc.user", user);
-//		persistenceMap.put("javax.persistence.jdbc.password", password);
+		persistenceMap.put("javax.persistence.jdbc.user", user);
+		persistenceMap.put("javax.persistence.jdbc.password", password);
 		persistenceMap.put("javax.persistence.jdbc.driver", driver);
 	}
 
