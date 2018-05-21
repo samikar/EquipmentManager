@@ -47,6 +47,7 @@ public class ChartController {
 	
 	final static Logger logger = Logger.getLogger(ChartController.class);
 	
+	/*
 	@RequestMapping("/rest/epochTest")
 	public String epochTest(@RequestParam(value = "start") String startStr,
 			@RequestParam(value = "end") String endStr) {
@@ -60,7 +61,7 @@ public class ChartController {
 		
 		double workHours = workHoursInRange(startLDT, endLDT);
 		return "Workhours in range: " + workHours + "\n" +startResult + "\n" + endResult;
-	}
+	}	*/
 	
 	@RequestMapping("/rest/usageBySerial")
 	public EquipmentUsage usageBySerial(@RequestParam(value = "serial") String serial,

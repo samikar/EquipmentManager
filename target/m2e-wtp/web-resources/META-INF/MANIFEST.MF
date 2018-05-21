@@ -1,9 +1,9 @@
 Manifest-Version: 1.0
 Implementation-Title: EquipmentManager
 Implementation-Version: 0.0.1-SNAPSHOT
-Built-By: U319994
+Built-By: S
 Implementation-Vendor-Id: com.danfoss
-Build-Jdk: 1.8.0_152
+Build-Jdk: 1.8.0_151
 Implementation-URL: http://projects.spring.io/spring-boot/EquipmentMan
  ager/
 Created-By: Maven Integration for Eclipse

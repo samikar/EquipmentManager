@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class-diagram version="1.2.2" icons="true" always-add-relationships="false" generalizations="true" realizations="true" 
+  associations="true" dependencies="false" nesting-relationships="true" router="FAN">  
+  <class id="1" language="java" name="fi.danfoss.equipmentmanager.controller.ConfigurationControllerTest" 
+    project="EquipmentManager" 
+    file="/EquipmentManager/src/test/java/fi/danfoss/equipmentmanager/controller/ConfigurationControllerTest.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="1035" width="274" x="53" y="-355"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="2" language="java" name="fi.danfoss.equipmentmanager.controller.ReservationControllerTest" 
+    project="EquipmentManager" 
+    file="/EquipmentManager/src/test/java/fi/danfoss/equipmentmanager/controller/ReservationControllerTest.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="747" width="333" x="367" y="-355"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="3" language="java" name="fi.danfoss.equipmentmanager.controller.ChartControllerTest" 
+    project="EquipmentManager" 
+    file="/EquipmentManager/src/test/java/fi/danfoss/equipmentmanager/controller/ChartControllerTest.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="1683" width="475" x="740" y="-355"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+    sort-features="false" accessors="true" visibility="true">    
+    <attributes public="true" package="true" protected="true" private="true" static="true"/>    
+    <operations public="true" package="true" protected="true" private="true" static="true"/>  
+  </classifier-display>  
+  <association-display labels="true" multiplicity="true"/>
+</class-diagram>
