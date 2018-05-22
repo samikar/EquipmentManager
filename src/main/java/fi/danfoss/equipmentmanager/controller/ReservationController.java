@@ -76,7 +76,6 @@ public class ReservationController {
 			throw new IllegalArgumentException("Open reservation for serial number " + serial + " already found");
 		} 
 		else if (!empdao.employeeExists(employeeId)) {
-			logger.debug("****************** ReservationController employeeId: " + employeeId);
 			throw new IllegalArgumentException("No employee found for employeeId: " + employeeId);
 		} 
 		else {
@@ -105,6 +104,13 @@ public class ReservationController {
 		}
 	}
 	
+	/**
+	 * Returns a single piece of equipment. I.e. updates an open
+	 * reservation with a return date.
+	 * 
+	 * @param serial 		Serial number of the equipment to return
+	 * @return 				Returns updated Reservation
+	 */
 	@RequestMapping("/rest/returnSingle")
 	public Reservation returnSingle(@RequestParam(value = "serial") String serial) {
 		edao = new EquipmentDao();
@@ -112,16 +118,21 @@ public class ReservationController {
 		edao.init();
 		rdao.init();
 		if (serial == null || serial.isEmpty()) {
+			edao.destroy();
 			rdao.destroy();
 			throw new IllegalArgumentException("Serial number must not be empty");
 		}
 		else if (edao.getEquipmentIdBySerial(serial) == 0) {
+			edao.destroy();
+			rdao.destroy();
 			throw new IllegalArgumentException("No equipment found for serial number: " + serial); 
 		}
 		else if (!rdao.serialHasOpenReservation(serial)) {
+			edao.destroy();
 			rdao.destroy();
 			throw new IllegalArgumentException("No open reservation found for serial number " + serial);
 		} else {
+			edao.destroy();
 			rdao.initialize(rdao.getOpenReservationIdBySerial(serial));
 			Reservation reservation = rdao.getDao();
 			Date currentDate = new Date();

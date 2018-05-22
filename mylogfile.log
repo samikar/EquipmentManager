@@ -1,0 +1,14 @@
+2018-05-21 12:21:26.360  INFO 15728 --- [http-nio-8080-exec-3] f.d.equipmentmanager.db.DatabaseUtil     : Setting DB connection properties...
+2018-05-21 12:21:26.362  INFO 15728 --- [http-nio-8080-exec-3] f.d.equipmentmanager.db.DatabaseUtil     : DB connection properties set!
+2018-05-21 12:21:26.362  INFO 15728 --- [http-nio-8080-exec-3] f.d.equipmentmanager.db.DatabaseUtil     : Connecting to database...
+2018-05-21 12:21:26.452  WARN 15728 --- [http-nio-8080-exec-3] org.hibernate.orm.connections            : HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+2018-05-21 12:21:26.696  WARN 15728 --- [http-nio-8080-exec-3] o.h.e.j.d.i.StandardDialectResolver      : HHH000385: Unknown Microsoft SQL Server major version [14] using SQL Server 2000 dialect
+2018-05-21 12:21:26.993  INFO 15728 --- [http-nio-8080-exec-3] f.d.equipmentmanager.db.DatabaseUtil     : Connection complete!
+2018-05-21 12:23:07.873  INFO 15728 --- [http-nio-8080-exec-3] f.d.e.controller.ChartController         : Equipment type file uploaded.
+2018-05-21 12:23:10.911  INFO 15728 --- [http-nio-8080-exec-2] f.d.e.controller.ChartController         : Equipment file uploaded.
+2018-05-22 11:10:43.696  INFO 9880 --- [http-nio-8080-exec-1] f.d.equipmentmanager.db.DatabaseUtil     : Setting DB connection properties...
+2018-05-22 11:10:43.698  INFO 9880 --- [http-nio-8080-exec-1] f.d.equipmentmanager.db.DatabaseUtil     : DB connection properties set!
+2018-05-22 11:10:43.698  INFO 9880 --- [http-nio-8080-exec-1] f.d.equipmentmanager.db.DatabaseUtil     : Connecting to database...
+2018-05-22 11:10:43.787  WARN 9880 --- [http-nio-8080-exec-1] org.hibernate.orm.connections            : HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+2018-05-22 11:10:44.015  WARN 9880 --- [http-nio-8080-exec-1] o.h.e.j.d.i.StandardDialectResolver      : HHH000385: Unknown Microsoft SQL Server major version [14] using SQL Server 2000 dialect
+2018-05-22 11:10:44.298  INFO 9880 --- [http-nio-8080-exec-1] f.d.equipmentmanager.db.DatabaseUtil     : Connection complete!
