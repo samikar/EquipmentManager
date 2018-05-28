@@ -1,22 +1,20 @@
 package fi.danfoss.equipmentmanager.utils;
 
-import java.io.FileInputStream;
+import java.io.InputStream;
 import java.util.Properties;
 
 import org.apache.log4j.Logger;
 
-import fi.danfoss.equipmentmanager.db.ADHandler;
-
 public class PropertyUtils {
-	final static String PROPERTIES_PATH = "C:\\EquipmentManager\\ConfigFile\\";
-	final static String PROPERTIES_FILENAME = "app.properties";
+	final static String PROPERTIES_FILENAME = "emanager.properties";
 	final static Logger logger = Logger.getLogger(PropertyUtils.class);
+	final static ClassLoader loader = Thread.currentThread().getContextClassLoader();
 
 	public static Properties loadProperties() {
-		String appConfigPath = PROPERTIES_PATH + PROPERTIES_FILENAME;
 		Properties appProperties = new Properties();
-		try {
-			appProperties.load(new FileInputStream(appConfigPath));
+		try (InputStream resourceStream = loader.getResourceAsStream(PROPERTIES_FILENAME)){
+			//appProperties.load(new FileInputStream(appConfigPath));
+			appProperties.load(resourceStream);
 
 		} catch (Exception e) {
 			logger.error("Error loading properties file: " + e.toString());

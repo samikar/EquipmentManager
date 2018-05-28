@@ -4,20 +4,19 @@ import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
-import java.nio.file.Path;
-import java.nio.file.Paths;
+import java.io.File;
 import java.util.Properties;
 
-import org.junit.Ignore;
 import org.junit.Test;
 
 //@Ignore
 public class PropertyUtilsTest {
 	
 	@Test
-	public void propertyFileFound() {
-		Path file = Paths.get(PropertyUtils.PROPERTIES_PATH + PropertyUtils.PROPERTIES_FILENAME);
-		assertTrue(file.toFile().exists());
+	public void propertyFileFound() {	
+		ClassLoader classLoader = this.getClass().getClassLoader();
+        File propertiesFile = new File(classLoader.getResource(PropertyUtils.PROPERTIES_FILENAME).getFile());
+        assertTrue(propertiesFile.exists());
 	}
 	
 	@Test
