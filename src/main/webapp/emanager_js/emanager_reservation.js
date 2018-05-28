@@ -47,7 +47,6 @@ function takeEquipment() {
     
   })
   .done(function() {
-  //alert( "second success" );
   })
   .fail(function(jqXHR, textStatus) {
     $('#txt_serial').val("");
@@ -60,7 +59,6 @@ function takeEquipment() {
     $("#msg_text").text(jqXHR["responseJSON"]["message"]);
   })
   .always(function() {
-    //alert( "finished" );
     $("#txt_serial").attr("disabled", false);
     $("#txt_employeeId").attr("disabled", false);
   });
@@ -98,7 +96,6 @@ function returnSingle() {
       $('#msg_text').text("Equipment with serial number " + serial + " returned");
     })
     .done(function() {
-      //alert( "second success" );
     })
     .fail(function(jqXHR, textStatus) {
       $("#status").removeClass('alert-success');
@@ -108,7 +105,6 @@ function returnSingle() {
       $('#msg_text').text(jqXHR["responseJSON"]["message"]); 
     })
     .always(function() {
-      //alert( "finished" );
   });
 }
 

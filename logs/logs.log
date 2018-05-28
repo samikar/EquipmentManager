@@ -8,3 +8,28 @@
 14617 [http-nio-8080-exec-1] INFO  f.d.e.db.DatabaseUtil - DB connection properties set!
 14617 [http-nio-8080-exec-1] INFO  f.d.e.db.DatabaseUtil - Connecting to database...
 15217 [http-nio-8080-exec-1] INFO  f.d.e.db.DatabaseUtil - Connection complete!
+53799 [http-nio-8080-exec-2] INFO  f.d.e.db.DatabaseUtil - Setting DB connection properties...
+53801 [http-nio-8080-exec-2] INFO  f.d.e.db.DatabaseUtil - DB connection properties set!
+53801 [http-nio-8080-exec-2] INFO  f.d.e.db.DatabaseUtil - Connecting to database...
+54409 [http-nio-8080-exec-2] INFO  f.d.e.db.DatabaseUtil - Connection complete!
+200  [main] INFO  f.d.e.db.DatabaseUtil - Setting DB connection properties...
+203  [main] INFO  f.d.e.db.DatabaseUtil - DB connection properties set!
+203  [main] INFO  f.d.e.db.DatabaseUtil - Connecting to database...
+1509 [main] INFO  f.d.e.db.DatabaseUtil - Connection complete!
+2922 [main] INFO  f.d.e.controller.ChartController - Equipment file uploaded.
+4048 [main] INFO  f.d.e.controller.ChartController - Equipment type file uploaded.
+4354 [main] INFO  f.d.e.controller.ChartController - Equipment TestEquipment1/TestSerial1 enabled.
+4372 [main] INFO  f.d.e.controller.ChartController - Equipment type TestType2/2222 updated.
+4379 [main] INFO  f.d.e.controller.ChartController - Equipment TestEquipment1/TestSerial1 inserted.
+4385 [main] INFO  f.d.e.controller.ChartController - Equipment type file uploaded.
+4394 [main] ERROR f.d.e.controller.ChartController - Attempted to change equipment's serial to existing equipment's serial.
+4403 [main] INFO  f.d.e.controller.ChartController - Equipment file uploaded.
+4406 [main] INFO  f.d.e.controller.ChartController - Equipment type TestType1/1111 inserted.
+4416 [main] INFO  f.d.e.controller.ChartController - Equipment type TestType1/1111 inserted.
+4422 [main] INFO  f.d.e.controller.ChartController - Equipment TestEquipment1/TestSerial1 deleted.
+4429 [main] INFO  f.d.e.controller.ChartController - Equipment type TestType1/1111 deleted.
+4436 [main] INFO  f.d.e.controller.ChartController - Equipment TestEquipment1/TestSerial1 inserted.
+4443 [main] INFO  f.d.e.controller.ChartController - Equipment TestEquipment2/TestSerial2 updated.
+4455 [main] ERROR f.d.e.controller.ChartController - Attempted to delete equipment type with equipment attached to it.
+4462 [main] ERROR f.d.e.controller.ChartController - Attempted to change equipment type's typeCode to existing equipment type's typeCode.
+4469 [main] INFO  f.d.e.controller.ChartController - Equipment TestEquipment1/TestSerial1 disabled.

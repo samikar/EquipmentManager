@@ -39,7 +39,7 @@ public class ReservationController {
 		return "{\"id\":\"hello\"}";
 	}
 
-	@RequestMapping("/rest/getallreservations")
+	@RequestMapping("/rest/getAllReservations")
 	public List<Reservation> getAllReservations() {
 		rdao = new ReservationDao();
 		rdao.init();

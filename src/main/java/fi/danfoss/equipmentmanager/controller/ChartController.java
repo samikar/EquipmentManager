@@ -46,23 +46,7 @@ public class ChartController {
 	EquipmenttypeDao etdao;
 	
 	final static Logger logger = Logger.getLogger(ChartController.class);
-	
-	/*
-	@RequestMapping("/rest/epochTest")
-	public String epochTest(@RequestParam(value = "start") String startStr,
-			@RequestParam(value = "end") String endStr) {
-		long startMillis = Long.parseLong(startStr);
-		long endMillis = Long.parseLong(endStr);
 		
-		LocalDateTime startLDT = epochToLocalDateTime(startMillis);
-		LocalDateTime endLDT = epochToLocalDateTime(endMillis);
-		String startResult = "Start: " + startLDT.getDayOfMonth() + "/" + startLDT.getMonthValue() + "/" + startLDT.getYear() + " " + startLDT.getHour() + ":" + startLDT.getMinute() + ":" + startLDT.getSecond();
-		String endResult = "end: " + endLDT.getDayOfMonth() + "/" + endLDT.getMonthValue() + "/" + endLDT.getYear() + " " + endLDT.getHour() + ":" + endLDT.getMinute() + ":" + endLDT.getSecond();
-		
-		double workHours = workHoursInRange(startLDT, endLDT);
-		return "Workhours in range: " + workHours + "\n" +startResult + "\n" + endResult;
-	}	*/
-	
 	@RequestMapping("/rest/usageBySerial")
 	public EquipmentUsage usageBySerial(@RequestParam(value = "serial") String serial,
 			@RequestParam(value = "start") String startStr,
