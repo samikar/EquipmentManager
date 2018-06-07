@@ -466,3 +466,55 @@
 3742 [main] ERROR f.d.e.controller.ChartController - Attempted to delete equipment type with equipment attached to it.
 3749 [main] ERROR f.d.e.controller.ChartController - Attempted to change equipment type's typeCode to existing equipment type's typeCode.
 3756 [main] INFO  f.d.e.controller.ChartController - Equipment TestEquipment1/TestSerial1 disabled.
+173  [main] INFO  f.d.e.db.DatabaseUtil - Setting DB connection properties...
+175  [main] INFO  f.d.e.db.DatabaseUtil - DB connection properties set!
+176  [main] INFO  f.d.e.db.DatabaseUtil - Connecting to database...
+1184 [main] INFO  f.d.e.db.DatabaseUtil - Connection complete!
+2864 [main] INFO  f.d.equipmentmanager.db.ADHandler - Attempt to delete test file failed, because file already deleted. (This is normal)
+2867 [main] INFO  f.d.e.controller.ChartController - Equipment file uploaded.
+3838 [main] INFO  f.d.equipmentmanager.db.ADHandler - Attempt to delete test file failed, because file already deleted. (This is normal)
+3840 [main] INFO  f.d.equipmentmanager.db.ADHandler - Attempt to delete test file failed, because file already deleted. (This is normal)
+3842 [main] INFO  f.d.equipmentmanager.db.ADHandler - Attempt to delete test file failed, because file already deleted. (This is normal)
+3843 [main] INFO  f.d.equipmentmanager.db.ADHandler - Attempt to delete test file failed, because file already deleted. (This is normal)
+3844 [main] INFO  f.d.e.controller.ChartController - Equipment type file uploaded.
+4165 [main] INFO  f.d.equipmentmanager.db.ADHandler - Attempt to delete test file failed, because file already deleted. (This is normal)
+4167 [main] INFO  f.d.equipmentmanager.db.ADHandler - Attempt to delete test file failed, because file already deleted. (This is normal)
+4170 [main] INFO  f.d.equipmentmanager.db.ADHandler - Attempt to delete test file failed, because file already deleted. (This is normal)
+4172 [main] INFO  f.d.equipmentmanager.db.ADHandler - Attempt to delete test file failed, because file already deleted. (This is normal)
+4176 [main] INFO  f.d.equipmentmanager.db.ADHandler - Attempt to delete test file failed, because file already deleted. (This is normal)
+4177 [main] INFO  f.d.equipmentmanager.db.ADHandler - Attempt to delete test file failed, because file already deleted. (This is normal)
+4180 [main] INFO  f.d.equipmentmanager.db.ADHandler - Attempt to delete test file failed, because file already deleted. (This is normal)
+4182 [main] INFO  f.d.equipmentmanager.db.ADHandler - Attempt to delete test file failed, because file already deleted. (This is normal)
+4186 [main] INFO  f.d.equipmentmanager.db.ADHandler - Attempt to delete test file failed, because file already deleted. (This is normal)
+4188 [main] INFO  f.d.equipmentmanager.db.ADHandler - Attempt to delete test file failed, because file already deleted. (This is normal)
+4190 [main] INFO  f.d.equipmentmanager.db.ADHandler - Attempt to delete test file failed, because file already deleted. (This is normal)
+4193 [main] INFO  f.d.equipmentmanager.db.ADHandler - Attempt to delete test file failed, because file already deleted. (This is normal)
+4195 [main] INFO  f.d.equipmentmanager.db.ADHandler - Attempt to delete test file failed, because file already deleted. (This is normal)
+4197 [main] INFO  f.d.equipmentmanager.db.ADHandler - Attempt to delete test file failed, because file already deleted. (This is normal)
+4201 [main] INFO  f.d.equipmentmanager.db.ADHandler - Attempt to delete test file failed, because file already deleted. (This is normal)
+4202 [main] INFO  f.d.equipmentmanager.db.ADHandler - Attempt to delete test file failed, because file already deleted. (This is normal)
+4208 [main] INFO  f.d.e.controller.ChartController - Equipment TestEquipment1/TestSerial1 enabled.
+4212 [main] INFO  f.d.equipmentmanager.db.ADHandler - Attempt to delete test file failed, because file already deleted. (This is normal)
+4214 [main] INFO  f.d.equipmentmanager.db.ADHandler - Attempt to delete test file failed, because file already deleted. (This is normal)
+4220 [main] INFO  f.d.equipmentmanager.db.ADHandler - Attempt to delete test file failed, because file already deleted. (This is normal)
+4222 [main] INFO  f.d.equipmentmanager.db.ADHandler - Attempt to delete test file failed, because file already deleted. (This is normal)
+4229 [main] INFO  f.d.equipmentmanager.db.ADHandler - Attempt to delete test file failed, because file already deleted. (This is normal)
+4231 [main] INFO  f.d.equipmentmanager.db.ADHandler - Attempt to delete test file failed, because file already deleted. (This is normal)
+4238 [main] INFO  f.d.e.controller.ChartController - Equipment type TestType2/2222 updated.
+4241 [main] INFO  f.d.equipmentmanager.db.ADHandler - Attempt to delete test file failed, because file already deleted. (This is normal)
+4243 [main] INFO  f.d.equipmentmanager.db.ADHandler - Attempt to delete test file failed, because file already deleted. (This is normal)
+4246 [main] INFO  f.d.e.controller.ChartController - Equipment TestEquipment1/TestSerial1 inserted.
+4251 [main] INFO  f.d.equipmentmanager.db.ADHandler - Attempt to delete test file failed, because file already deleted. (This is normal)
+4254 [main] INFO  f.d.equipmentmanager.db.ADHandler - Attempt to delete test file failed, because file already deleted. (This is normal)
+4255 [main] INFO  f.d.e.controller.ChartController - Equipment type file uploaded.
+4266 [main] ERROR f.d.e.controller.ChartController - Attempted to change equipment's serial to existing equipment's serial.
+4276 [main] INFO  f.d.e.controller.ChartController - Equipment file uploaded.
+4279 [main] INFO  f.d.e.controller.ChartController - Equipment type TestType1/1111 inserted.
+4291 [main] INFO  f.d.e.controller.ChartController - Equipment type TestType1/1111 inserted.
+4298 [main] INFO  f.d.e.controller.ChartController - Equipment TestEquipment1/TestSerial1 deleted.
+4308 [main] INFO  f.d.e.controller.ChartController - Equipment type TestType1/1111 deleted.
+4320 [main] INFO  f.d.e.controller.ChartController - Equipment TestEquipment1/TestSerial1 inserted.
+4329 [main] INFO  f.d.e.controller.ChartController - Equipment TestEquipment2/TestSerial2 updated.
+4338 [main] ERROR f.d.e.controller.ChartController - Attempted to delete equipment type with equipment attached to it.
+4344 [main] ERROR f.d.e.controller.ChartController - Attempted to change equipment type's typeCode to existing equipment type's typeCode.
+4350 [main] INFO  f.d.e.controller.ChartController - Equipment TestEquipment1/TestSerial1 disabled.

@@ -46,7 +46,15 @@ public class ChartController {
 	EquipmenttypeDao etdao;
 	
 	final static Logger logger = Logger.getLogger(ChartController.class);
-		
+	
+	/**
+	 * REST method returning usage of an individual piece of equipment
+	 * 
+	 * @param serial		Serial number of the equipment
+	 * @param startStr		Constraint start date as epoch timestamp
+	 * @param endStr		Constraint end date as epoch timestamp
+	 * @return				EquipmentUsage
+	 */
 	@RequestMapping("/rest/usageBySerial")
 	public EquipmentUsage usageBySerial(@RequestParam(value = "serial") String serial,
 			@RequestParam(value = "start") String startStr,
@@ -70,7 +78,15 @@ public class ChartController {
 			return result;
 		}
 	}
-
+	
+	/**
+	 * REST method returning usage of an equipmentType
+	 * 
+	 * @param typeCode		TypeCode of equipmentType
+	 * @param startStr		Constraint start date as epoch timestamp
+	 * @param endStr		Constraint end date as epoch timestamp
+	 * @return				EquipmentUsage in a List
+	 */
 	@RequestMapping("/rest/usageByType") 
 	public List<EquipmentUsage> usageByType(@RequestParam(value = "typeCode") String typeCode,
 			@RequestParam(value = "start") String startStr,
@@ -94,6 +110,14 @@ public class ChartController {
 		}
 	}
 	
+	/**
+	 * REST method returning monthly usage by EquipmentType
+	 * 
+	 * @param typeCode		TypeCode of equipmentType
+	 * @param startStr		Constraint start date as epoch timestamp
+	 * @param endStr		Constraint end date as epoch timestamp
+	 * @return				MonthlyUsage in a List
+	 */
 	@RequestMapping("/rest/monthlyUsageByType")
 	public List<MonthlyUsage> monthlyUsageByType(@RequestParam(value = "typeCode") String typeCode,
 			@RequestParam(value = "start") String startStr,
@@ -142,6 +166,11 @@ public class ChartController {
 	}
 	*/
 	
+	/**
+	 * REST method returning all EquipmentTypes which have at least one 
+	 * piece of equipment attached to it
+	 * @return				Equipmenttypes in a List
+	 */
 	@RequestMapping("/rest/getEquipmentTypesWithEquipment")
 	public List<Equipmenttype> getEquipmentTypesWithEquipment() {
 		etdao = new EquipmenttypeDao();
@@ -151,6 +180,14 @@ public class ChartController {
 		return result;
 	}
 	
+	/**
+	 * Returns EquipmentUsage of an individual piece of equipment
+	 * 
+	 * @param serial		Serial number of the equipment
+	 * @param start			Constraint start date
+	 * @param end			Constraint end date
+	 * @return				EquipmentUsage
+	 */
 	public EquipmentUsage getUsageBySerial(String serial, LocalDateTime start, LocalDateTime end) {
 		Date startDate = Date.from(start.atZone(ZoneId.systemDefault()).toInstant());
 		Date endDate = Date.from(end.atZone(ZoneId.systemDefault()).toInstant());
@@ -196,6 +233,14 @@ public class ChartController {
 		return usage;
 	}
 	
+	/**
+	 * Returns EquipmentUsage of an EquipmentType
+	 * 
+	 * @param typeCode		TypeCode of equipmentType			
+	 * @param start			Constraint start date
+	 * @param end			Constraint end date
+	 * @return				EquipmentUsage in a List
+	 */
 	public List<EquipmentUsage> getUsageByType(int typeCode, LocalDateTime start, LocalDateTime end) {
 		List<EquipmentUsage> usageList = new ArrayList<EquipmentUsage>();
 		edao = new EquipmentDao();
@@ -209,18 +254,26 @@ public class ChartController {
 		}
 		return usageList;
 	}
-		
-	public List<MonthlyUsage> getMonthlyUsageBySerial(String serial, LocalDateTime startConstraint, LocalDateTime endConstraint) {		
+	
+	/**
+	 * Returns MonthlyUsage of an individual piece of equipment
+	 * 
+	 * @param serial		Serial number of the equipment
+	 * @param start			Constraint start date
+	 * @param end			Constraint end date
+	 * @return				MontlyUsage in a List
+	 */
+	public List<MonthlyUsage> getMonthlyUsageBySerial(String serial, LocalDateTime start, LocalDateTime end) {		
 		List<MonthlyUsage> monthlyUsage = new ArrayList<MonthlyUsage>();
 		
 		// Set start constraint time to start at defined starting time of workday
-		LocalDateTime startCurrent = startConstraint.plusHours(STARTHOUR).plusMinutes(STARTMINUTE);
-		LocalDateTime endCurrent = startConstraint.with(startConstraint.plusMonths(1).withDayOfMonth(1).minusDays(1));
+		LocalDateTime startCurrent = start.plusHours(STARTHOUR).plusMinutes(STARTMINUTE);
+		LocalDateTime endCurrent = start.with(start.plusMonths(1).withDayOfMonth(1).minusDays(1));
 		
 		do {
 			// For the last month in constraints
-			if (endCurrent.isAfter(endConstraint)) {
-				endCurrent = endConstraint;
+			if (endCurrent.isAfter(end)) {
+				endCurrent = end;
 				endCurrent = endCurrent.minusHours(endCurrent.getHour()).minusMinutes(endCurrent.getMinute());
 				endCurrent = endCurrent.plusHours(ENDHOUR).plusMinutes(ENDMINUTE);
 			}
@@ -257,12 +310,20 @@ public class ChartController {
 			// Move dates one month ahead
 			startCurrent = startCurrent.plusMonths(1);
 			endCurrent = endCurrent.plusMonths(1);
-		} while (startCurrent.isBefore(endConstraint));
+		} while (startCurrent.isBefore(end));
 
 		return monthlyUsage;
 	}
 	
-	public List<MonthlyUsage> getMonthlyUsageByType(String typeCode, LocalDateTime startConstraint, LocalDateTime endConstraint) {		
+	/**
+	 * Returns MonthlyUsage of an EquipmentType
+	 * 
+	 * @param typeCode		TypeCode of equipmentType			
+	 * @param start			Constraint start date
+	 * @param end			Constraint end date
+	 * @return				MonthlyUsage in a List
+	 */
+	public List<MonthlyUsage> getMonthlyUsageByType(String typeCode, LocalDateTime start, LocalDateTime end) {		
 		List<MonthlyUsage> usageByTypeMonthly = new ArrayList<MonthlyUsage>();
 		edao = new EquipmentDao();
 		edao.init();
@@ -270,7 +331,7 @@ public class ChartController {
 		edao.destroy();
 		
 		for (Equipment eq : equipmentOfType) {
-			List<MonthlyUsage> currentEquipmentMonthlyUsage = getMonthlyUsageBySerial(eq.getSerial(), startConstraint, endConstraint);
+			List<MonthlyUsage> currentEquipmentMonthlyUsage = getMonthlyUsageBySerial(eq.getSerial(), start, end);
 			if (usageByTypeMonthly.size() == 0) {
 				usageByTypeMonthly = currentEquipmentMonthlyUsage;
 			}
@@ -290,6 +351,14 @@ public class ChartController {
 		return usageByTypeMonthly;
 	}
 
+	/**
+	 * Returns the amount of work hours in a Reservation
+	 * 
+	 * @param reservation	Reservation to count workhours from
+	 * @param start			Constraint start date
+	 * @param end			Constraint end date
+	 * @return				Workhours
+	 */
 	public double hoursInReservation(Reservation reservation, LocalDateTime start, LocalDateTime end) {
 		double workHours = 0;
 		Date startDate = Date.from(start.atZone(ZoneId.systemDefault()).toInstant());
@@ -316,6 +385,14 @@ public class ChartController {
 		}
 	}
 	
+	/**
+	 * Returns the amount of workhours not included at the startpoint and endpoint of a reservation
+	 * (Example: workday starts at 7:00, Reservation starts at 8:30 -> 1,5 h not at start)
+	 * 
+	 * @param start			Start date count workhours from 
+	 * @param end			End date count workhours from
+	 * @return				Workhours
+	 */
 	public double workHoursNotAtStartAndEnd(LocalDateTime start, LocalDateTime end) {
 		double workHours = 0;
 		double startMinutes = 0;
@@ -336,19 +413,21 @@ public class ChartController {
 		return workHours;
 	}
 
-	
+	/**
+	 * Returns workhours in date range
+	 * 
+	 * @param start			Start date count workhours from 
+	 * @param end			End date count workhours from
+	 * @return				Workhours
+	 */
 	public double workHoursInRange(LocalDateTime start, LocalDateTime end) {
-//		logger.debug("************ Start: " + start + " End: " + end);
     	int workDays = 0;
     	while (start.isBefore(end)) {	
     		if (!start.getDayOfWeek().equals(DayOfWeek.SATURDAY) && !start.getDayOfWeek().equals(DayOfWeek.SUNDAY)) {
     			workDays++;
     		}
-    			
     		start = start.plusDays(1);
-    		
     	}
-//    	logger.debug("**************** WorkDays: " + workDays);
     	return workDays * WORKDAY;
 	}
 	

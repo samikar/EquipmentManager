@@ -34,11 +34,10 @@ public class ReservationController {
 	private EquipmentDao edao;
 	final static Logger logger = Logger.getLogger(ReservationController.class);
 	
-	@RequestMapping("/rest/test")
-	public String hello(@RequestParam(value = "name", defaultValue = "World") String name) {
-		return "{\"id\":\"hello\"}";
-	}
-
+	/**
+	 * REST method to return all Reservations
+	 * @return					Reservations in a List			
+	 */
 	@RequestMapping("/rest/getAllReservations")
 	public List<Reservation> getAllReservations() {
 		rdao = new ReservationDao();
@@ -48,6 +47,15 @@ public class ReservationController {
 		return result;
 	}
 
+	/**
+	 * REST method to make a new Reservation
+	 * (i.e. take an Equipment)
+	 * 
+	 * @param employeeId		EmployeeId of reserver
+	 * @param serial			Serial number of equipment
+	 * @param reservationType	Reservation type (0=In use, 1=Calibration, 2=Maintenance)
+	 * @return					New Reservation					
+	 */
 	@RequestMapping("/rest/take")
 	public Reservation takeEquipment(@RequestParam(value = "employeeId") String employeeId,
 			@RequestParam(value = "serial") String serial,
@@ -105,8 +113,8 @@ public class ReservationController {
 	}
 	
 	/**
-	 * Returns a single piece of equipment. I.e. updates an open
-	 * reservation with a return date.
+	 * REST method to update a Reservation with a return date
+	 * (i.e. return an Equipment)
 	 * 
 	 * @param serial 		Serial number of the equipment to return
 	 * @return 				Returns updated Reservation
@@ -143,6 +151,11 @@ public class ReservationController {
 		}
 	}
 	
+	/**
+	 * REST method to return multiple pieces of Equipment
+	 * @param resIds			Reservations to update as returned in a JSON array		
+	 * @return					Status message String
+	 */
 	@RequestMapping("/rest/returnMultiple")
 	public String returnMultiple(@RequestParam(value = "resIds") String resIds) {
 		if (resIds == null || resIds.isEmpty()) {
@@ -172,6 +185,12 @@ public class ReservationController {
 		return "Done";
 	}
 
+	/**
+	 * REST method to return open Reservations belonging to a specific Employee
+	 * 	
+	 * @param employeeId		EmployeeId to find Reservations from	
+	 * @return					Reservations in a List
+	 */
 	@RequestMapping("/rest/getbyEmployeeId")
 	public List<Reservation> getbyEmployeeId(@RequestParam(value = "employeeId") String employeeId) {
 		if (employeeId == null || employeeId.isEmpty()) {
@@ -188,6 +207,11 @@ public class ReservationController {
 			throw new IllegalArgumentException("No reservations found for employeeId " + employeeId);
 	}
 
+	/**
+	 * REST method to return statuses of all Equipment 
+	 * 
+	 * @return					EquipmentStatus in a List					
+	 */
 	@RequestMapping("rest/getEquipmentStatus")
 	public List<EquipmentStatus> getEquipmentStatus() {
 		edao = new EquipmentDao();
@@ -242,6 +266,12 @@ public class ReservationController {
 		return equipmentStatusList;
 	}
 
+	/**
+	 * REST method to return an Employee by EmployeeId
+	 * 
+	 * @param employeeId		EmployeeId to search
+	 * @return
+	 */
 	@RequestMapping("rest/getEmployee")
 	public Employee getEmployee(@RequestParam(value = "employeeId") String employeeId) {
 		empdao = new EmployeeDao();
