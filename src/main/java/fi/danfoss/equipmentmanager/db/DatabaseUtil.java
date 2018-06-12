@@ -23,6 +23,9 @@ public class DatabaseUtil {
 	private static final EntityManagerFactory entityManagerFactory;
 	static Map<String, String> persistenceMap = new HashMap<String, String>();
 
+	/**
+	 * Creates DB-connection
+	 */
 	static {
 		logger.info("Setting DB connection properties...");
 		setProperties();
@@ -32,14 +35,27 @@ public class DatabaseUtil {
 		logger.info("Connection complete!");	
 	}
 
+	/**
+	 * Creates EntityManager
+	 * 
+	 * @return
+	 */
 	public static EntityManager getEntityManager() {
 		return entityManagerFactory.createEntityManager();
 	}
 
+	/**
+	 * Closes DB-connection
+	 * 
+	 */
 	public static void shutdown() {
 		entityManagerFactory.close();
 	}
 
+	/**
+	 * Sets DB-connection properties
+	 * 
+	 */
 	private static void setProperties() {
 		persistenceMap.put("javax.persistence.jdbc.url", url);
 		persistenceMap.put("javax.persistence.jdbc.user", user);

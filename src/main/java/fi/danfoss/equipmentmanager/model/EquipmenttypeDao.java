@@ -89,12 +89,23 @@ public class EquipmenttypeDao {
 		entityManager.close();
 	}
 	
+	/**
+	 * Returns all EquipmentTypes
+	 * 
+	 * @return					EquipmentTypes in a List
+	 */
 	public List<Equipmenttype> getAll() {
 		List<Equipmenttype> result = entityManager.createNamedQuery("Equipmenttype.findAll", Equipmenttype.class)
 				.getResultList();
 		return result;
 	}
 	
+	/**
+	 * Returns equipmentTypeId with given typeCode
+	 * 
+	 * @param typeCode			TypeCode to search
+	 * @return					EquipmentTypeId as an int
+	 */
 	public int getEquipmentTypeIdByTypeCode(int typeCode) {
 		List<Equipmenttype> equipmentTypeList = entityManager
 				.createNamedQuery("Equipmenttype.findByTypeCode", Equipmenttype.class)
@@ -107,6 +118,12 @@ public class EquipmenttypeDao {
 			return 0;
 	}
 	
+	/**
+	 * Returns EquipmentType with given typeCode
+	 * 
+	 * @param typeCode			TypeCode to search
+	 * @return					Found Equipmenttype, null if not found
+	 */
 	public Equipmenttype getByTypeCode(int typeCode) {
 		List<Equipmenttype> equipmentTypeList = entityManager
 				.createNamedQuery("Equipmenttype.findByTypeCode", Equipmenttype.class)
@@ -117,6 +134,12 @@ public class EquipmenttypeDao {
 			return equipmentTypeList.get(0);
 	}
 	
+	/**
+	 * Checks if typeCode already exists
+	 * 
+	 * @param typeCode			TypeCode to search
+	 * @return					True if found, false if not
+	 */
 	public boolean typeCodeExists(int typeCode) {
 		List<Equipmenttype> equipmentTypeList = entityManager
 				.createNamedQuery("Equipmenttype.findByTypeCode", Equipmenttype.class)
@@ -128,6 +151,12 @@ public class EquipmenttypeDao {
 			return false;
 	}
 	
+	/**
+	 * Checks if equipmentTypeId exists
+	 * 
+	 * @param equipmentTypeId	EquipmentTypeId to search 
+	 * @return					True if found, false if not
+	 */
 	public boolean equipmentTypeIdExists(int equipmentTypeId) {
 		List<Equipmenttype> equipmentTypeList = entityManager
 				.createNamedQuery("Equipmenttype.findByEquipmentTypeId", Equipmenttype.class)
@@ -139,6 +168,11 @@ public class EquipmenttypeDao {
 			return false;
 	}
 	
+	/**
+	 * Returns all Equipmenttypes which have enabled Equipment
+	 * 
+	 * @return					Equipmenttypes in a List
+	 */
 	public List<Equipmenttype> getEquipmentTypesWithEquipment() {
 		entityManager.getTransaction().begin();
 		List<Equipmenttype> result = entityManager.createNamedQuery("Equipmenttype.findEquipmenttypesWithEquipment", Equipmenttype.class)

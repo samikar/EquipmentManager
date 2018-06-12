@@ -17,7 +17,6 @@ public class EquipmentDao {
 	
 	@PersistenceContext
 	private EntityManager entityManager;
-//	private EntityManagerFactory entityManagerFactory;
 	private Equipment dao;
 	
 
@@ -90,12 +89,23 @@ public class EquipmentDao {
 		entityManager.close();
 	}
 	
+	/**
+	 * Returns all Equipment
+	 * 
+	 * @return					Equipment in a List
+	 */
 	public List<Equipment> getAll() {
 		List<Equipment> equipmentList = entityManager.createNamedQuery("Equipment.findAll", Equipment.class)
 				.getResultList();
 		return equipmentList;
 	}
 	
+	/**
+	 * Searches for EquipmentId with given serial
+	 * 
+	 * @param serial			Serial to search
+	 * @return					EquipmentId (Primary Key), 0 if Equipment not found
+	 */
 	public int getEquipmentIdBySerial(String serial) {
 		List<Equipment> equipmentList = entityManager.createNamedQuery("Equipment.findBySerial", Equipment.class)
 				.setParameter(1, serial).getResultList();
@@ -107,6 +117,12 @@ public class EquipmentDao {
 			return 0;
 	}
 	
+	/**
+	 * Searches for Equipment with given serial
+	 * 
+	 * @param serial			Serial to search
+	 * @return					Equipment
+	 */
 	public Equipment getBySerial(String serial) {
 		List<Equipment> equipment = entityManager.createNamedQuery("Equipment.findBySerial", Equipment.class)
 				.setParameter(1, serial)
@@ -114,6 +130,12 @@ public class EquipmentDao {
 		return equipment.get(0);
 	}
 	
+	/**
+	 * Find all Equipment belonging to given EquipmentType
+	 * 
+	 * @param typeCode			TypeCode of EquipmentType
+	 * @return					Equipment in a List
+	 */
 	public List<Equipment> getByTypeCode(int typeCode) {
 		List<Equipment> equipment = entityManager.createNamedQuery("Equipment.findByType", Equipment.class)
 				.setParameter(1, typeCode)
@@ -121,6 +143,12 @@ public class EquipmentDao {
 		return equipment;
 	}
 	
+	/**
+	 * Find all enabled Equipment with given EquipmentType 
+	 * 
+	 * @param typeCode			TypeCode of EquipmentType
+	 * @return					Equipment in a List
+	 */
 	public List<Equipment> getEnabledByTypeCode(int typeCode) {
 		List<Equipment> equipment = entityManager.createNamedQuery("Equipment.findEnabledByType", Equipment.class)
 				.setParameter(1, typeCode)
@@ -128,12 +156,23 @@ public class EquipmentDao {
 		return equipment;
 	}
 	
+	/**
+	 * Returns all Equipment ordered by EquipmentType's TypeName
+	 * 
+	 * @return					Equipment in a List ordered by TypeName
+	 */
 	public List<Equipment> getOrderedByTypeName() {
 		List<Equipment> equipment = entityManager.createNamedQuery("Equipment.findAllOrderedByTypeName", Equipment.class)
 				.getResultList();
 		return equipment;
 	}
 	
+	/**
+	 * Checks if Serial exists
+	 * 
+	 * @param serial			Serial to search
+	 * @return					True if found, false if not 
+	 */
 	public boolean serialExists(String serial) {
 		List<Equipment> equipment = entityManager.createNamedQuery("Equipment.findBySerial", Equipment.class)
 				.setParameter(1, serial)
@@ -144,6 +183,12 @@ public class EquipmentDao {
 			return false;
 	}
 	
+	/**
+	 * Checks if equipmentId exists
+	 * 
+	 * @param equipmentId		EquipmentId to search
+	 * @return					True if found, false if not
+	 */
 	public boolean equipmentIdExists(String equipmentId) {
 		List<Equipment> equipment = entityManager.createNamedQuery("Equipment.findByEquipmentId", Equipment.class)
 				.setParameter(1, equipmentId)

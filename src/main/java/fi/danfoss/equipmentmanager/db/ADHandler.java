@@ -21,6 +21,11 @@ public class ADHandler {
 	DirContext statcontext;
 	final static Logger logger = Logger.getLogger(ADHandler.class);
 
+	/**
+	 * Initializes connection to Danfoss AD 
+	 * 
+	 * @return
+	 */
 	public DirContext init() {
 		Properties appProperties = PropertyUtils.loadProperties();
 		Properties LDAPproperties = new Properties();
@@ -50,6 +55,13 @@ public class ADHandler {
 		}
 	}
 	
+	/**
+	 * Searches AD for employee name with employeeId 
+	 * 
+	 * @param employeeId		EmployeeId to search
+	 * @return					Employee's name as a String
+	 * 
+	 */
 	public String findEmployeeName(String employeeId) {
 		StringBuilder nameBuilder = new StringBuilder();
 		try {

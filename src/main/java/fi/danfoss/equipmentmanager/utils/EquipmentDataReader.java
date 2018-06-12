@@ -12,6 +12,7 @@ import java.nio.file.Paths;
 import java.util.Iterator;
 import java.util.Properties;
 
+import org.apache.log4j.Logger;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
@@ -21,6 +22,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.multipart.MultipartFile;
 
+import fi.danfoss.equipmentmanager.controller.ChartController;
 import fi.danfoss.equipmentmanager.model.Equipment;
 import fi.danfoss.equipmentmanager.model.EquipmentDao;
 import fi.danfoss.equipmentmanager.model.Equipmenttype;
@@ -29,12 +31,18 @@ import fi.danfoss.equipmentmanager.model.EquipmenttypeDao;
 public class EquipmentDataReader {
 	private static Properties properties = PropertyUtils.loadProperties();
 	private final static String dataFilePath = "DataFiles" + File.separator;
+	final static Logger logger = Logger.getLogger(ChartController.class);
 	
 	EquipmentDao edao;
 	EquipmenttypeDao etdao;
 		
+	/**
+	 * Verify that EquipmentFile has proper file extension (xlsx)
+	 * 
+	 * @param file				EquipmentFile as MultipartFile
+	 * @return					HTTP-response
+	 */
 	public ResponseEntity<Object> verifyEquipmentFile(MultipartFile file) {
-		
 		if (!verifyFileExtension(file.getOriginalFilename()))
 			return new ResponseEntity<>("File extension should be \"xlsx\" (Excel spreadsheet).",
 					HttpStatus.UNSUPPORTED_MEDIA_TYPE);
@@ -47,6 +55,12 @@ public class EquipmentDataReader {
 		return new ResponseEntity<>("Equipment data read succesfully!", HttpStatus.OK);
 	}
 	
+	/**
+	 * Verify that EquipmentTypeFile has proper file extension (xslx)
+	 * 
+	 * @param file				EquipmentTypeFile as MultipartFile
+	 * @return					HTTP-response
+	 */
 	public ResponseEntity<Object> verifyEquipmentTypeFile(MultipartFile file) {
 		
 		if (!verifyFileExtension(file.getOriginalFilename()))
@@ -61,6 +75,12 @@ public class EquipmentDataReader {
 		return new ResponseEntity<>("Type data read succesfully!", HttpStatus.OK);
 	}
 	
+	/**
+	 * Read data from EquipmentFile and writes it to DB
+	 * 
+	 * @param filePath			Path to file to read
+	 * @return					Response message as a String
+	 */
 	public String readEquipmentFromFile(String filePath) {
 		int equipmentNameColumn = Integer.parseInt(properties.getProperty("EquipmentFileNameColumn")) - 1;
 		int serialColumn = Integer.parseInt(properties.getProperty("EquipmentFileSerialColumn")) - 1;
@@ -105,7 +125,6 @@ public class EquipmentDataReader {
 		}		
 		
 		for (int i = firstRow; i <= lastRow; i++) {
-//			System.out.println("i: " + i + " firstRow: " + firstRow + " lastRow: " + lastRow);
 			Equipment e = new Equipment();
 			Row nextRow = iterator.next();
 			Iterator<Cell> cellIterator = nextRow.cellIterator();
@@ -159,7 +178,13 @@ public class EquipmentDataReader {
 		}
 		return "Equipment file read complete.";
 	}
-
+	
+	/**
+	 * Read data from EquipmentTypeFile and writes it to DB
+	 * 
+	 * @param filePath			Path to file to read
+	 * @return					Response message as a String
+	 */
 	public String readEquipmentTypesFromFile(String filePath) {
 		int typeNameColumn = Integer.parseInt(properties.getProperty("TypeFileTypeNameColumn"));
 		int typeCodeColumn = Integer.parseInt(properties.getProperty("TypeFileTypeCodeColumn"));
@@ -237,6 +262,11 @@ public class EquipmentDataReader {
 		return "Equipment type file read complete.";
 	}
 	
+	/**
+	 * Verify that file extension is (xlsx) 
+	 * @param filePath			Path to file to read
+	 * @return					True if file extension is correct, false if not
+	 */
 	public boolean verifyFileExtension(String filePath) {
 		String extension = "";
 		int i = filePath.lastIndexOf('.');
@@ -250,6 +280,13 @@ public class EquipmentDataReader {
 			return true;
 	}
 	
+	/**
+	 * Write file temporarily to server  
+	 * 
+	 * @param file				File to write
+	 * @param path				Path to write file
+	 * @return					File converted from MultipartFile to File-class
+	 */
 	public File writeFile(MultipartFile file, String path) {
 		Path convertedFile = null;
 		try {
@@ -261,6 +298,12 @@ public class EquipmentDataReader {
 		return convertedFile.toFile();
 	}
 	
+	/**
+	 * Delete file from server
+	 * 
+	 * @param file				File to delete
+	 * @return					Return true if file deleted successfully, false if not
+	 */
 	public boolean deleteFile(File file) {
 		boolean result = false;
 		if (file != null) {
@@ -268,11 +311,14 @@ public class EquipmentDataReader {
 				result = true;
 				Files.delete(file.toPath());
 			} catch (NoSuchFileException x) {
-				System.err.format("%s: no such" + " file or directory%n", file);
+				logger.error("No such file exception: " + x);
+				System.err.format("%s: no such " + " file or directory%n", file);
 			} catch (DirectoryNotEmptyException x) {
+				logger.error("Directory not empty exception: " + x);
 				System.err.format("%s not empty%n", file);
 			} catch (IOException x) {
 				// File permission problems are caught here.
+				logger.error("Permission error: " + x);
 				System.err.println("Permission error: " + x);
 			}
 		}

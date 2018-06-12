@@ -18,7 +18,6 @@ public class ReservationDao {
 	
 	@PersistenceContext
 	private EntityManager entityManager;
-//	private EntityManagerFactory entityManagerFactory;
 	private Reservation dao;
 	
 	
@@ -93,12 +92,23 @@ public class ReservationDao {
 		entityManager.close();
 	}
 	
+	/**
+	 * Returns all Reservations
+	 * 
+	 * @return					Reservations in a List
+	 */
 	public List<Reservation> getAll() {
 		List<Reservation> reservations = entityManager.createNamedQuery("Reservation.findAll", Reservation.class)
 				.getResultList();
 		return reservations;
 	}
 	
+	/**
+	 * Returns Reservations with given serial number
+	 * 
+	 * @param serial			Serial to search
+	 * @return					Reservations in a List
+	 */
 	public List<Reservation> getBySerial(String serial) {
 		List<Reservation> reservations = entityManager.createNamedQuery("Reservation.findBySerial", Reservation.class)
 				.setParameter(1, serial)
@@ -106,6 +116,12 @@ public class ReservationDao {
 		return reservations;
 	}
 	
+	/**
+	 * Finds all Reservations with given equipmentId
+	 * 
+	 * @param equipmentId		EquipmentId to search
+	 * @return					Reservations in a List
+	 */
 	public List<Reservation> getByEquipmentId(String equipmentId) {
 		List<Reservation> reservations = entityManager.createNamedQuery("Reservation.findByEquipmentId", Reservation.class)
 				.setParameter(1, equipmentId)
@@ -113,6 +129,12 @@ public class ReservationDao {
 		return reservations;
 	}
 	
+	/**
+	 * Finds all Reservations with given Reservation type
+	 * 
+	 * @param type				Reservation type (0 = In use, 1 = Calibration, 2 = Maintenance)
+	 * @return					Reservations in a List
+	 */
 	public List<Reservation> getByType(String type) {
 		List<Reservation> reservations = entityManager.createNamedQuery("Reservation.findByType", Reservation.class)
 				.setParameter(1, type)
@@ -120,12 +142,23 @@ public class ReservationDao {
 		return reservations;
 	}
 	
+	/**
+	 * Find all open Reservations (not returned)
+	 * 
+	 * @return					Reservations in a List
+	 */
 	public List<Reservation> getOpen() {
 		List<Reservation> reservations = entityManager.createNamedQuery("Reservation.findOpen", Reservation.class)
 				.getResultList();
 		return reservations;
 	}
 	
+	/**
+	 * Find all open Reservations belonging to given Employee
+	 * 
+	 * @param employeeId		Employee's employeeId
+	 * @return					Reservations in a List
+	 */
 	public List<Reservation> getOpenByEmployeeId(String employeeId) {
 		List<Reservation> reservations = entityManager.createNamedQuery("Reservation.findOpenByEmployeeId", Reservation.class)
 				.setParameter(1, employeeId)
@@ -133,6 +166,14 @@ public class ReservationDao {
 		return reservations;
 	}
 	
+	/**
+	 * Find all Reservations with belonging to given serial number in given date range 
+	 * 
+	 * @param serial			Serial number to search
+	 * @param start				Date range start
+	 * @param end				Date range end
+	 * @return					Reservations in a List
+	 */
 	public List<Reservation> getBySerialAndDate(String serial, Date start, Date end) {
 		List<Reservation> reservations = entityManager.createNamedQuery("Reservation.findBySerialAndDate", Reservation.class)
 				.setParameter(1, serial)
@@ -142,6 +183,12 @@ public class ReservationDao {
 		return reservations;
 	}
 
+	/**
+	 * Check if serial has open Reservations
+	 * 
+	 * @param serial			Serial number to search
+	 * @return					True if open Reservation found, false if not
+	 */
 	public boolean serialHasOpenReservation(String serial) {
 		List<Reservation> reservations = entityManager.createNamedQuery("Reservation.findOpenBySerial", Reservation.class)
 				.setParameter(1, serial)
@@ -152,6 +199,12 @@ public class ReservationDao {
 			return false;
 	}
 	
+	/**
+	 * Return reservationId of open Reservation with given serial number 
+	 * 
+	 * @param serial			Serial number to search
+	 * @return					ReservationId (Primary Key) as an int
+	 */
 	public int getOpenReservationIdBySerial(String serial) {
 		List<Reservation> reservations = entityManager.createNamedQuery("Reservation.findOpenBySerial", Reservation.class)
 				.setParameter(1, serial)
