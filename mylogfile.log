@@ -18,3 +18,6 @@
 2018-05-24 09:59:00.120  WARN 7728 --- [http-nio-8080-exec-2] org.hibernate.orm.connections            : HHH10001002: Using Hibernate built-in connection pool (not for production use!)
 2018-05-24 09:59:00.364  WARN 7728 --- [http-nio-8080-exec-2] o.h.e.j.d.i.StandardDialectResolver      : HHH000385: Unknown Microsoft SQL Server major version [14] using SQL Server 2000 dialect
 2018-05-24 09:59:00.626  INFO 7728 --- [http-nio-8080-exec-2] f.d.equipmentmanager.db.DatabaseUtil     : Connection complete!
+2018-06-13 09:03:35.644  INFO 12952 --- [http-nio-8080-exec-7] f.d.equipmentmanager.db.DatabaseUtil     : Setting DB connection properties...
+2018-06-13 09:03:35.646  INFO 12952 --- [http-nio-8080-exec-7] f.d.equipmentmanager.db.DatabaseUtil     : DB connection properties set!
+2018-06-13 09:03:35.647  INFO 12952 --- [http-nio-8080-exec-7] f.d.equipmentmanager.db.DatabaseUtil     : Connecting to database...
