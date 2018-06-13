@@ -113,18 +113,18 @@
 
   <script>
     $(document).ready(function(){
-
       $("#btn_submit").click(function(){
-        statusWorking();
-        takeEquipment();
+		$("#txt_serial").focus();
+		statusWorking();
+		takeEquipment();
         statusDone();
       });
-
       $(document).keypress(function(e) {
         if(e.which == 13 && $(document.activeElement).attr("id") == 'txt_serial') {
-          statusWorking();
-          takeEquipment();
-          statusDone();
+			statusWorking();
+			takeEquipment();
+			statusDone();
+			$("#txt_serial").focus();
         }
       if(e.which == 13 && $(document.activeElement).attr("id") == 'txt_employeeId') {
           $("#txt_serial").focus();

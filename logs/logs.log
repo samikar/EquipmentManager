@@ -518,3 +518,20 @@
 4338 [main] ERROR f.d.e.controller.ChartController - Attempted to delete equipment type with equipment attached to it.
 4344 [main] ERROR f.d.e.controller.ChartController - Attempted to change equipment type's typeCode to existing equipment type's typeCode.
 4350 [main] INFO  f.d.e.controller.ChartController - Equipment TestEquipment1/TestSerial1 disabled.
+6919 [http-nio-8080-exec-7] INFO  f.d.e.db.DatabaseUtil - Setting DB connection properties...
+6921 [http-nio-8080-exec-7] INFO  f.d.e.db.DatabaseUtil - DB connection properties set!
+6922 [http-nio-8080-exec-7] INFO  f.d.e.db.DatabaseUtil - Connecting to database...
+7594 [http-nio-8080-exec-7] INFO  f.d.e.db.DatabaseUtil - Connection complete!
+495952 [http-nio-8080-exec-10] INFO  f.d.e.controller.ChartController - Equipment type file uploaded.
+500139 [http-nio-8080-exec-4] INFO  f.d.e.controller.ChartController - Equipment file uploaded.
+9723904 [http-nio-8080-exec-7] INFO  f.d.e.controller.ChartController - Equipment Beppe bearing predictor/MI_8061600 disabled.
+9734625 [http-nio-8080-exec-9] INFO  f.d.e.controller.ChartController - Equipment Beppe bearing predictor/MI_8061600 enabled.
+9736995 [http-nio-8080-exec-1] INFO  f.d.e.controller.ChartController - Equipment Beppe bearing predictor/MI_8061600 disabled.
+9740564 [http-nio-8080-exec-7] INFO  f.d.e.controller.ChartController - Equipment MetraHit Base Yleismittari/MI_TD1822 disabled.
+9741001 [http-nio-8080-exec-3] INFO  f.d.e.controller.ChartController - Equipment 20kV Jännitteenkoetin/MI_PHE3 6 20 S disabled.
+9742881 [http-nio-8080-exec-5] INFO  f.d.e.controller.ChartController - Equipment MetraHit Base Yleismittari/MI_UE2289 disabled.
+9744492 [http-nio-8080-exec-9] INFO  f.d.e.controller.ChartController - Equipment MetraHit 25s Yleismittari/MI_0A4046 disabled.
+9745289 [http-nio-8080-exec-1] INFO  f.d.e.controller.ChartController - Equipment HIOKI 9669 Current Probe/MI_080623533 disabled.
+9746344 [http-nio-8080-exec-7] INFO  f.d.e.controller.ChartController - Equipment MACC-Plus Current Transducer/MI_09A0364 disabled.
+14288445 [http-nio-8080-exec-1] INFO  f.d.e.controller.ChartController - Equipment MetraHit Base Yleismittari/MI_TD1830 disabled.
+14810034 [http-nio-8080-exec-1] INFO  f.d.e.controller.ChartController - Equipment PEM CWT 15LFR Current Transducer/MI_13331-13848 disabled.
