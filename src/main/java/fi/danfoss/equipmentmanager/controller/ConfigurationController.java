@@ -35,7 +35,7 @@ public class ConfigurationController {
 	 * @return					HTTP response
 	 * @throws IOException
 	 */
-	@RequestMapping(value = "/rest/uploadEquipmentFile", method = RequestMethod.POST, consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+	@RequestMapping(value = "rest/uploadEquipmentFile", method = RequestMethod.POST, consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
 	public ResponseEntity<Object> uploadEquipmentFile(@RequestParam("file") MultipartFile file) throws IOException {
 		EquipmentDataReader equipmentDataReader = new EquipmentDataReader();
 		logger.info("Equipment file uploaded.");
@@ -49,7 +49,7 @@ public class ConfigurationController {
 	 * @return					HTTP response
 	 * @throws IOException
 	 */
-	@RequestMapping(value = "/rest/uploadTypeFile", method = RequestMethod.POST, consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+	@RequestMapping(value = "rest/uploadTypeFile", method = RequestMethod.POST, consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
 	public ResponseEntity<Object> uploadTypeFile(@RequestParam("file") MultipartFile file) throws IOException {
 		EquipmentDataReader equipmentDataReader = new EquipmentDataReader();
 		logger.info("Equipment type file uploaded.");
@@ -61,7 +61,7 @@ public class ConfigurationController {
 	 * 
 	 * @return					Equipment in a List
 	 */
-	@RequestMapping("/rest/getEquipment")
+	@RequestMapping("rest/getEquipment")
 	public List<Equipment> getEquipment() {
 		edao = new EquipmentDao();
 		edao.init();
@@ -75,7 +75,7 @@ public class ConfigurationController {
 	 * 
 	 * @return					EquipmentTypes in a List
 	 */
-	@RequestMapping("/rest/getEquipmentTypes")
+	@RequestMapping("rest/getEquipmentTypes")
 	public List<Equipmenttype> getEquipmentTypes() {
 		etdao = new EquipmenttypeDao();
 		etdao.init();
@@ -90,7 +90,7 @@ public class ConfigurationController {
 	 * @param equipmentId		EquipmentId of Equipment to update 
 	 * @return					Updated Equipment
 	 */
-	@RequestMapping("/rest/enableEquipment")
+	@RequestMapping("rest/enableEquipment")
 	public Equipment enableEquipment(@RequestParam(value = "equipmentId") String equipmentId) {
 		edao = new EquipmentDao();
 		edao.init();
@@ -109,7 +109,7 @@ public class ConfigurationController {
 	 * @param equipmentId		EquipmentId of Equipment to update 
 	 * @return					Updated Equipment
 	 */
-	@RequestMapping("/rest/disableEquipment")
+	@RequestMapping("rest/disableEquipment")
 	public Equipment disableEquipment(@RequestParam(value = "equipmentId") String equipmentId) {
 		edao = new EquipmentDao();
 		edao.init();
@@ -130,7 +130,7 @@ public class ConfigurationController {
 	 * @param equipmentTypeId	EquipmentType's equipmentTypeId
 	 * @return					Inserted equipment
 	 */
-	@RequestMapping("/rest/insertEquipment")
+	@RequestMapping("rest/insertEquipment")
 	public Equipment insertEquipment(@RequestParam(value = "name") String name,						
 									 @RequestParam(value = "serial") String serial,
 									 @RequestParam(value = "equipmentTypeId") String equipmentTypeId) {
@@ -182,7 +182,7 @@ public class ConfigurationController {
 	 * @param typeCode			TypeCode of EquipmentType
 	 * @return					Inserted EquipmentType
 	 */
-	@RequestMapping("/rest/insertType")
+	@RequestMapping("rest/insertType")
 	public Equipmenttype insertType(@RequestParam(value = "typeName") String typeName,						
 									@RequestParam(value = "typeCode") String typeCode) {
 		etdao = new EquipmenttypeDao();
@@ -223,7 +223,7 @@ public class ConfigurationController {
 	 * @param equipmentTypeId	EquipmentType's equipmentTypeId
 	 * @return					Updated Equipment
 	 */
-	@RequestMapping("/rest/updateEquipment")
+	@RequestMapping("rest/updateEquipment")
 	public Equipment updateEquipment(@RequestParam(value = "equipmentId") String equipmentId,
 									 @RequestParam(value = "name") String name, 
 									 @RequestParam(value = "serial") String serial,
@@ -277,7 +277,7 @@ public class ConfigurationController {
 	 * @param typeCode			new typeCode
 	 * @return					Updated EquipmentType
 	 */
-	@RequestMapping("/rest/updateType")
+	@RequestMapping("rest/updateType")
 	public Equipmenttype updateType(@RequestParam(value = "equipmentTypeId") String equipmentTypeId, 
  									@RequestParam(value = "typeName") String typeName,						
 									@RequestParam(value = "typeCode") String typeCode) {
@@ -320,7 +320,7 @@ public class ConfigurationController {
 	 * @param equipmentId		EquipmentId of Equipment to delete
 	 * @return					Deleted Equipment
 	 */
-	@RequestMapping("/rest/deleteEquipment")
+	@RequestMapping("rest/deleteEquipment")
 	public Equipment deleteEquipment(@RequestParam(value = "equipmentId") String equipmentId) {
 		if (!equipmentId.matches("\\d+")) {
 			throw new IllegalArgumentException("EquipmentId must be an integer value!");	
@@ -351,7 +351,7 @@ public class ConfigurationController {
 	 * @param equipmentTypeId	EquipmentTypeId of EquipmenType to delete
 	 * @return					Deleted EquipmentType
 	 */
-	@RequestMapping("/rest/deleteType")
+	@RequestMapping("rest/deleteType")
 	public Equipmenttype deleteType(@RequestParam(value = "equipmentTypeId") String equipmentTypeId) {
 		if (!equipmentTypeId.matches("\\d+")) {
 			throw new IllegalArgumentException("EquipmentTypeId must be an integer value!");	

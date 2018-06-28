@@ -2,14 +2,18 @@ package fi.danfoss.equipmentmanager.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -38,7 +42,7 @@ public class ReservationController {
 	 * REST method to return all Reservations
 	 * @return					Reservations in a List			
 	 */
-	@RequestMapping("/rest/getAllReservations")
+	@RequestMapping("rest/getAllReservations")
 	public List<Reservation> getAllReservations() {
 		rdao = new ReservationDao();
 		rdao.init();
@@ -56,7 +60,7 @@ public class ReservationController {
 	 * @param reservationType	Reservation type (0=In use, 1=Calibration, 2=Maintenance)
 	 * @return					New Reservation					
 	 */
-	@RequestMapping("/rest/take")
+	@RequestMapping("rest/take")
 	public Reservation takeEquipment(@RequestParam(value = "employeeId") String employeeId,
 			@RequestParam(value = "serial") String serial,
 			@RequestParam(value = "reservationType") String reservationType) {
@@ -119,7 +123,7 @@ public class ReservationController {
 	 * @param serial 		Serial number of the equipment to return
 	 * @return 				Returns updated Reservation
 	 */
-	@RequestMapping("/rest/returnSingle")
+	@RequestMapping("rest/returnSingle")
 	public Reservation returnSingle(@RequestParam(value = "serial") String serial) {
 		edao = new EquipmentDao();
 		rdao = new ReservationDao();
@@ -156,7 +160,7 @@ public class ReservationController {
 	 * @param resIds			Reservations to update as returned in a JSON array		
 	 * @return					Status message String
 	 */
-	@RequestMapping("/rest/returnMultiple")
+	@RequestMapping("rest/returnMultiple")
 	public String returnMultiple(@RequestParam(value = "resIds") String resIds) {
 		if (resIds == null || resIds.isEmpty()) {
 			throw new IllegalArgumentException("No serial number selected");
@@ -191,7 +195,7 @@ public class ReservationController {
 	 * @param employeeId		EmployeeId to find Reservations from	
 	 * @return					Reservations in a List
 	 */
-	@RequestMapping("/rest/getbyEmployeeId")
+	@RequestMapping("rest/getbyEmployeeId")
 	public List<Reservation> getbyEmployeeId(@RequestParam(value = "employeeId") String employeeId) {
 		if (employeeId == null || employeeId.isEmpty()) {
 			throw new IllegalArgumentException("Employee ID must not be empty");

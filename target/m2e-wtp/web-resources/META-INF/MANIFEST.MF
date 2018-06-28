@@ -1,6 +1,6 @@
 Manifest-Version: 1.0
 Implementation-Title: EquipmentManager
-Implementation-Version: 0.0.1-SNAPSHOT
+Implementation-Version: 0.5
 Built-By: S
 Implementation-Vendor-Id: com.danfoss
 Build-Jdk: 1.8.0_151

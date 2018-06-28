@@ -1,0 +1,476 @@
+2018-06-28 14:31:50 [main] INFO  f.d.e.view.Application - Starting Application on Supervoimakone with PID 16224 (C:\Users\samik\git\EquipmentManager\target\classes started by S in C:\Users\samik\git\EquipmentManager)
+2018-06-28 14:31:50 [main] DEBUG f.d.e.view.Application - Running with Spring Boot v1.5.1.RELEASE, Spring v4.3.6.RELEASE
+2018-06-28 14:31:50 [main] INFO  f.d.e.view.Application - No active profile set, falling back to default profiles: default
+2018-06-28 14:31:54 [main] INFO  f.d.e.view.Application - Started Application in 3.673 seconds (JVM running for 4.058)
+2018-06-28 14:32:18 [http-nio-8080-exec-3] INFO  f.d.equipmentmanager.db.DatabaseUtil - Setting DB connection properties...
+2018-06-28 14:32:18 [http-nio-8080-exec-3] INFO  f.d.equipmentmanager.db.DatabaseUtil - DB connection properties set!
+2018-06-28 14:32:18 [http-nio-8080-exec-3] INFO  f.d.equipmentmanager.db.DatabaseUtil - Connecting to database...
+2018-06-28 14:32:18 [http-nio-8080-exec-3] WARN  org.hibernate.orm.connections - HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+2018-06-28 14:32:18 [http-nio-8080-exec-3] WARN  o.h.e.j.d.i.StandardDialectResolver - HHH000385: Unknown Microsoft SQL Server major version [14] using SQL Server 2000 dialect
+2018-06-28 14:32:19 [http-nio-8080-exec-3] INFO  f.d.equipmentmanager.db.DatabaseUtil - Connection complete!
+2018-06-28 14:32:27 [http-nio-8080-exec-5] INFO  f.d.e.controller.ChartController - Equipment type file uploaded.
+2018-06-28 14:32:27 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - ********************************* Trying to write file...
+2018-06-28 14:32:27 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - ********************************* File write complete!
+2018-06-28 14:32:27 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Reading function start
+2018-06-28 14:32:27 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Reading cells
+2018-06-28 14:32:27 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Writing data
+2018-06-28 14:32:27 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Reading cells
+2018-06-28 14:32:27 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Writing data
+2018-06-28 14:32:27 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Reading cells
+2018-06-28 14:32:27 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Writing data
+2018-06-28 14:32:27 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Reading cells
+2018-06-28 14:32:27 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Writing data
+2018-06-28 14:32:27 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Reading cells
+2018-06-28 14:32:27 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Writing data
+2018-06-28 14:32:27 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Reading cells
+2018-06-28 14:32:27 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Writing data
+2018-06-28 14:32:27 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Reading cells
+2018-06-28 14:32:27 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Writing data
+2018-06-28 14:32:27 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Reading cells
+2018-06-28 14:32:27 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Writing data
+2018-06-28 14:32:27 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Reading cells
+2018-06-28 14:32:27 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Writing data
+2018-06-28 14:32:27 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Reading cells
+2018-06-28 14:32:27 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Writing data
+2018-06-28 14:32:27 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Reading cells
+2018-06-28 14:32:27 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Writing data
+2018-06-28 14:32:27 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Reading cells
+2018-06-28 14:32:27 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Writing data
+2018-06-28 14:32:27 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Reading cells
+2018-06-28 14:32:27 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Writing data
+2018-06-28 14:32:27 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Reading cells
+2018-06-28 14:32:27 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Writing data
+2018-06-28 14:32:27 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Reading cells
+2018-06-28 14:32:27 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Writing data
+2018-06-28 14:32:27 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Reading cells
+2018-06-28 14:32:27 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Writing data
+2018-06-28 14:32:27 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Reading cells
+2018-06-28 14:32:27 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Writing data
+2018-06-28 14:32:27 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Reading cells
+2018-06-28 14:32:27 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Writing data
+2018-06-28 14:32:27 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Reading cells
+2018-06-28 14:32:27 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Writing data
+2018-06-28 14:32:27 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Reading cells
+2018-06-28 14:32:27 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Writing data
+2018-06-28 14:32:27 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Reading cells
+2018-06-28 14:32:27 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Writing data
+2018-06-28 14:32:27 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Reading cells
+2018-06-28 14:32:28 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Writing data
+2018-06-28 14:32:28 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Reading cells
+2018-06-28 14:32:28 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Writing data
+2018-06-28 14:32:28 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Reading cells
+2018-06-28 14:32:28 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Writing data
+2018-06-28 14:32:28 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Reading cells
+2018-06-28 14:32:28 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Writing data
+2018-06-28 14:32:28 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Reading cells
+2018-06-28 14:32:28 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Writing data
+2018-06-28 14:32:28 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Reading cells
+2018-06-28 14:32:28 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Writing data
+2018-06-28 14:32:28 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Reading cells
+2018-06-28 14:32:28 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Writing data
+2018-06-28 14:32:28 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Reading cells
+2018-06-28 14:32:28 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Writing data
+2018-06-28 14:32:28 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Reading cells
+2018-06-28 14:32:28 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Writing data
+2018-06-28 14:32:28 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Reading cells
+2018-06-28 14:32:28 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Writing data
+2018-06-28 14:32:28 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Reading cells
+2018-06-28 14:32:28 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Writing data
+2018-06-28 14:32:28 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Reading cells
+2018-06-28 14:32:28 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Writing data
+2018-06-28 14:32:28 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Reading cells
+2018-06-28 14:32:28 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Writing data
+2018-06-28 14:32:28 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Reading cells
+2018-06-28 14:32:28 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Writing data
+2018-06-28 14:32:28 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Reading cells
+2018-06-28 14:32:28 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Writing data
+2018-06-28 14:32:28 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Reading cells
+2018-06-28 14:32:28 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Writing data
+2018-06-28 14:32:28 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Reading cells
+2018-06-28 14:32:28 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Writing data
+2018-06-28 14:32:28 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Reading cells
+2018-06-28 14:32:28 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Writing data
+2018-06-28 14:32:28 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Reading cells
+2018-06-28 14:32:28 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Writing data
+2018-06-28 14:32:28 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Reading cells
+2018-06-28 14:32:28 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Writing data
+2018-06-28 14:32:28 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Reading cells
+2018-06-28 14:32:28 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Writing data
+2018-06-28 14:32:28 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Reading cells
+2018-06-28 14:32:28 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Writing data
+2018-06-28 14:32:28 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Reading cells
+2018-06-28 14:32:28 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Writing data
+2018-06-28 14:32:28 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Reading cells
+2018-06-28 14:32:28 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Writing data
+2018-06-28 14:32:28 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Reading cells
+2018-06-28 14:32:28 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Writing data
+2018-06-28 14:32:28 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Reading cells
+2018-06-28 14:32:28 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Writing data
+2018-06-28 14:32:28 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Reading cells
+2018-06-28 14:32:28 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Writing data
+2018-06-28 14:32:28 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Reading cells
+2018-06-28 14:32:28 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Writing data
+2018-06-28 14:32:28 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Reading cells
+2018-06-28 14:32:28 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Writing data
+2018-06-28 14:32:28 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Reading cells
+2018-06-28 14:32:28 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Writing data
+2018-06-28 14:32:28 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Reading cells
+2018-06-28 14:32:28 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Writing data
+2018-06-28 14:32:28 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Reading cells
+2018-06-28 14:32:28 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Writing data
+2018-06-28 14:32:28 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Reading cells
+2018-06-28 14:32:28 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Writing data
+2018-06-28 14:32:28 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Reading cells
+2018-06-28 14:32:28 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Writing data
+2018-06-28 14:32:28 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Reading cells
+2018-06-28 14:32:28 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Writing data
+2018-06-28 14:32:28 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Reading cells
+2018-06-28 14:32:28 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Writing data
+2018-06-28 14:32:28 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Reading cells
+2018-06-28 14:32:28 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Writing data
+2018-06-28 14:32:28 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Reading cells
+2018-06-28 14:32:28 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Writing data
+2018-06-28 14:32:28 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Reading cells
+2018-06-28 14:32:28 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Writing data
+2018-06-28 14:32:28 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Reading cells
+2018-06-28 14:32:28 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Writing data
+2018-06-28 14:32:28 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Reading cells
+2018-06-28 14:32:28 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Writing data
+2018-06-28 14:32:28 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Reading cells
+2018-06-28 14:32:28 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Writing data
+2018-06-28 14:32:28 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Reading cells
+2018-06-28 14:32:28 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Writing data
+2018-06-28 14:32:28 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Reading cells
+2018-06-28 14:32:28 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Writing data
+2018-06-28 14:32:28 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Reading cells
+2018-06-28 14:32:28 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Writing data
+2018-06-28 14:32:28 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Reading cells
+2018-06-28 14:32:28 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Writing data
+2018-06-28 14:32:28 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Reading cells
+2018-06-28 14:32:28 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Writing data
+2018-06-28 14:32:28 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Reading cells
+2018-06-28 14:32:28 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Writing data
+2018-06-28 14:32:28 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Reading cells
+2018-06-28 14:32:28 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Writing data
+2018-06-28 14:32:28 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Reading cells
+2018-06-28 14:32:28 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Writing data
+2018-06-28 14:32:28 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Reading cells
+2018-06-28 14:32:28 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Writing data
+2018-06-28 14:32:28 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Reading cells
+2018-06-28 14:32:28 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Writing data
+2018-06-28 14:32:28 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Reading cells
+2018-06-28 14:32:28 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Writing data
+2018-06-28 14:32:28 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Reading cells
+2018-06-28 14:32:28 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Writing data
+2018-06-28 14:32:28 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Reading cells
+2018-06-28 14:32:28 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Writing data
+2018-06-28 14:32:28 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Reading cells
+2018-06-28 14:32:28 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Writing data
+2018-06-28 14:32:28 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Reading cells
+2018-06-28 14:32:28 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Writing data
+2018-06-28 14:32:28 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Reading cells
+2018-06-28 14:32:28 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Writing data
+2018-06-28 14:32:28 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Reading cells
+2018-06-28 14:32:28 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Writing data
+2018-06-28 14:32:28 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Reading cells
+2018-06-28 14:32:28 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Writing data
+2018-06-28 14:32:28 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Reading cells
+2018-06-28 14:32:28 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Writing data
+2018-06-28 14:32:28 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Reading cells
+2018-06-28 14:32:28 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Writing data
+2018-06-28 14:32:28 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Reading cells
+2018-06-28 14:32:28 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Writing data
+2018-06-28 14:32:28 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Reading cells
+2018-06-28 14:32:28 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Writing data
+2018-06-28 14:32:28 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Reading cells
+2018-06-28 14:32:28 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Writing data
+2018-06-28 14:32:28 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Reading cells
+2018-06-28 14:32:28 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Writing data
+2018-06-28 14:32:28 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Reading cells
+2018-06-28 14:32:28 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Writing data
+2018-06-28 14:32:28 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Reading cells
+2018-06-28 14:32:28 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Writing data
+2018-06-28 14:32:28 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Reading cells
+2018-06-28 14:32:28 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Writing data
+2018-06-28 14:32:28 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Reading cells
+2018-06-28 14:32:28 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Writing data
+2018-06-28 14:32:28 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Reading cells
+2018-06-28 14:32:28 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Writing data
+2018-06-28 14:32:28 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Reading cells
+2018-06-28 14:32:28 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Writing data
+2018-06-28 14:32:28 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Reading cells
+2018-06-28 14:32:28 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Writing data
+2018-06-28 14:32:28 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Reading cells
+2018-06-28 14:32:28 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Writing data
+2018-06-28 14:32:28 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Reading cells
+2018-06-28 14:32:28 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Writing data
+2018-06-28 14:32:28 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Reading cells
+2018-06-28 14:32:28 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Writing data
+2018-06-28 14:32:28 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Reading cells
+2018-06-28 14:32:28 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Writing data
+2018-06-28 14:32:28 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Reading cells
+2018-06-28 14:32:28 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Writing data
+2018-06-28 14:32:28 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Reading cells
+2018-06-28 14:32:28 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Writing data
+2018-06-28 14:32:28 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Reading cells
+2018-06-28 14:32:28 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Writing data
+2018-06-28 14:32:28 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Reading cells
+2018-06-28 14:32:28 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Writing data
+2018-06-28 14:32:28 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Reading cells
+2018-06-28 14:32:28 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Writing data
+2018-06-28 14:32:28 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Reading cells
+2018-06-28 14:32:28 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Writing data
+2018-06-28 14:32:28 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Reading cells
+2018-06-28 14:32:28 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Writing data
+2018-06-28 14:32:28 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Reading cells
+2018-06-28 14:32:28 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Writing data
+2018-06-28 14:32:28 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Reading cells
+2018-06-28 14:32:28 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Writing data
+2018-06-28 14:32:29 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Reading cells
+2018-06-28 14:32:29 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Writing data
+2018-06-28 14:32:29 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Reading cells
+2018-06-28 14:32:29 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Writing data
+2018-06-28 14:32:29 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Reading cells
+2018-06-28 14:32:29 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Writing data
+2018-06-28 14:32:29 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Reading cells
+2018-06-28 14:32:29 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Writing data
+2018-06-28 14:32:29 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Reading cells
+2018-06-28 14:32:29 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Writing data
+2018-06-28 14:32:29 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Reading cells
+2018-06-28 14:32:29 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Writing data
+2018-06-28 14:32:29 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Reading cells
+2018-06-28 14:32:29 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Writing data
+2018-06-28 14:32:29 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Reading cells
+2018-06-28 14:32:29 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Writing data
+2018-06-28 14:32:29 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Reading cells
+2018-06-28 14:32:29 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Writing data
+2018-06-28 14:32:29 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Reading cells
+2018-06-28 14:32:29 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Writing data
+2018-06-28 14:32:29 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Reading cells
+2018-06-28 14:32:29 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Writing data
+2018-06-28 14:32:29 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Reading cells
+2018-06-28 14:32:29 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Writing data
+2018-06-28 14:32:29 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Reading cells
+2018-06-28 14:32:29 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Writing data
+2018-06-28 14:32:29 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Reading cells
+2018-06-28 14:32:29 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Writing data
+2018-06-28 14:32:29 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Reading cells
+2018-06-28 14:32:29 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Writing data
+2018-06-28 14:32:29 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Reading cells
+2018-06-28 14:32:29 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Writing data
+2018-06-28 14:32:29 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Reading cells
+2018-06-28 14:32:29 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Writing data
+2018-06-28 14:32:29 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Reading cells
+2018-06-28 14:32:29 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Writing data
+2018-06-28 14:32:29 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Reading cells
+2018-06-28 14:32:29 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Writing data
+2018-06-28 14:32:29 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Reading cells
+2018-06-28 14:32:29 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Writing data
+2018-06-28 14:32:29 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Reading cells
+2018-06-28 14:32:29 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Writing data
+2018-06-28 14:32:29 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Reading cells
+2018-06-28 14:32:29 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Writing data
+2018-06-28 14:32:29 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Reading cells
+2018-06-28 14:32:29 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Writing data
+2018-06-28 14:32:29 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Reading cells
+2018-06-28 14:32:29 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Writing data
+2018-06-28 14:32:29 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Reading cells
+2018-06-28 14:32:29 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Writing data
+2018-06-28 14:32:29 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Reading cells
+2018-06-28 14:32:29 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Writing data
+2018-06-28 14:32:29 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Reading cells
+2018-06-28 14:32:29 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Writing data
+2018-06-28 14:32:29 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Reading cells
+2018-06-28 14:32:29 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Writing data
+2018-06-28 14:32:29 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Reading cells
+2018-06-28 14:32:29 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Writing data
+2018-06-28 14:32:29 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Reading cells
+2018-06-28 14:32:29 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Writing data
+2018-06-28 14:32:29 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Reading cells
+2018-06-28 14:32:29 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Writing data
+2018-06-28 14:32:29 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Reading cells
+2018-06-28 14:32:29 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Writing data
+2018-06-28 14:32:29 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Reading cells
+2018-06-28 14:32:29 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Writing data
+2018-06-28 14:32:29 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Reading cells
+2018-06-28 14:32:29 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Writing data
+2018-06-28 14:32:29 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Reading cells
+2018-06-28 14:32:29 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Writing data
+2018-06-28 14:32:29 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Reading cells
+2018-06-28 14:32:29 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Writing data
+2018-06-28 14:32:29 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Reading cells
+2018-06-28 14:32:29 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Writing data
+2018-06-28 14:32:29 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Reading cells
+2018-06-28 14:32:29 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Writing data
+2018-06-28 14:32:29 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Reading cells
+2018-06-28 14:32:29 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Writing data
+2018-06-28 14:32:29 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Reading cells
+2018-06-28 14:32:29 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Writing data
+2018-06-28 14:32:29 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Reading cells
+2018-06-28 14:32:29 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Writing data
+2018-06-28 14:32:29 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Reading cells
+2018-06-28 14:32:29 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Writing data
+2018-06-28 14:32:29 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Reading cells
+2018-06-28 14:32:29 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Writing data
+2018-06-28 14:32:29 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Reading cells
+2018-06-28 14:32:29 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Writing data
+2018-06-28 14:32:29 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Reading cells
+2018-06-28 14:32:29 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Writing data
+2018-06-28 14:32:29 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Reading cells
+2018-06-28 14:32:29 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Writing data
+2018-06-28 14:32:29 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Reading cells
+2018-06-28 14:32:29 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Writing data
+2018-06-28 14:32:29 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Reading cells
+2018-06-28 14:32:29 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Writing data
+2018-06-28 14:32:29 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Reading cells
+2018-06-28 14:32:29 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Writing data
+2018-06-28 14:32:29 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Reading cells
+2018-06-28 14:32:29 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Writing data
+2018-06-28 14:32:29 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Reading cells
+2018-06-28 14:32:29 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Writing data
+2018-06-28 14:32:29 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Reading cells
+2018-06-28 14:32:29 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Writing data
+2018-06-28 14:32:29 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Reading cells
+2018-06-28 14:32:29 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Writing data
+2018-06-28 14:32:29 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Reading cells
+2018-06-28 14:32:29 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Writing data
+2018-06-28 14:32:29 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Reading cells
+2018-06-28 14:32:29 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Writing data
+2018-06-28 14:32:29 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Reading cells
+2018-06-28 14:32:29 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Writing data
+2018-06-28 14:32:29 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Reading cells
+2018-06-28 14:32:29 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Writing data
+2018-06-28 14:32:29 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Reading cells
+2018-06-28 14:32:29 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Writing data
+2018-06-28 14:32:29 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Reading cells
+2018-06-28 14:32:29 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Writing data
+2018-06-28 14:32:29 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Reading cells
+2018-06-28 14:32:29 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Writing data
+2018-06-28 14:32:29 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Reading cells
+2018-06-28 14:32:29 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Writing data
+2018-06-28 14:32:29 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Reading cells
+2018-06-28 14:32:29 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Writing data
+2018-06-28 14:32:29 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Reading cells
+2018-06-28 14:32:29 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Writing data
+2018-06-28 14:32:29 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Reading cells
+2018-06-28 14:32:29 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Writing data
+2018-06-28 14:32:29 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Reading cells
+2018-06-28 14:32:29 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Writing data
+2018-06-28 14:32:29 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Reading cells
+2018-06-28 14:32:29 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Writing data
+2018-06-28 14:32:29 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Reading cells
+2018-06-28 14:32:29 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Writing data
+2018-06-28 14:32:29 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Reading cells
+2018-06-28 14:32:29 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Writing data
+2018-06-28 14:32:29 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Reading cells
+2018-06-28 14:32:29 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Writing data
+2018-06-28 14:32:29 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Reading cells
+2018-06-28 14:32:29 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Writing data
+2018-06-28 14:32:29 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Reading cells
+2018-06-28 14:32:29 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Writing data
+2018-06-28 14:32:29 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Reading cells
+2018-06-28 14:32:29 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Writing data
+2018-06-28 14:32:29 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Reading cells
+2018-06-28 14:32:29 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Writing data
+2018-06-28 14:32:29 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Reading cells
+2018-06-28 14:32:29 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Writing data
+2018-06-28 14:32:29 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Reading cells
+2018-06-28 14:32:29 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Writing data
+2018-06-28 14:32:29 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Reading cells
+2018-06-28 14:32:29 [http-nio-8080-exec-5] DEBUG f.d.e.controller.ChartController - Writing data
+2018-06-28 14:32:33 [http-nio-8080-exec-6] INFO  f.d.e.controller.ChartController - Equipment file uploaded.
+2018-06-28 14:32:37 [http-nio-8080-exec-8] INFO  f.d.e.controller.ChartController - Equipment MetraHit Base Yleismittari/MI_TD1842 disabled.
+2018-06-28 14:32:38 [http-nio-8080-exec-10] INFO  f.d.e.controller.ChartController - Equipment Fluke 117 Yleismittari/MI_15410561 disabled.
+2018-06-28 14:32:39 [http-nio-8080-exec-2] INFO  f.d.e.controller.ChartController - Equipment MetraHit Base Yleismittari/MI_TD1829 disabled.
+2018-06-28 14:32:40 [http-nio-8080-exec-4] INFO  f.d.e.controller.ChartController - Equipment MetraHit Base Yleismittari/MI_TD1822 disabled.
+2018-06-28 14:32:41 [http-nio-8080-exec-6] INFO  f.d.e.controller.ChartController - Equipment MetraHit Base Yleismittari/MI_TD1820 disabled.
+2018-06-28 14:32:43 [http-nio-8080-exec-8] INFO  f.d.e.controller.ChartController - Equipment MetraHit Base Yleismittari/MI_TD1824 deleted.
+2018-06-28 15:11:51 [main] INFO  f.d.e.view.Application - Starting Application on Supervoimakone with PID 7184 (C:\Users\samik\git\EquipmentManager\target\classes started by S in C:\Users\samik\git\EquipmentManager)
+2018-06-28 15:11:51 [main] DEBUG f.d.e.view.Application - Running with Spring Boot v1.5.1.RELEASE, Spring v4.3.6.RELEASE
+2018-06-28 15:11:51 [main] INFO  f.d.e.view.Application - No active profile set, falling back to default profiles: default
+2018-06-28 15:11:55 [main] ERROR o.a.coyote.http11.Http11NioProtocol - Failed to start end point associated with ProtocolHandler [http-nio-8080]
+java.net.BindException: Address already in use: bind
+	at java.base/sun.nio.ch.Net.bind0(Native Method)
+	at java.base/sun.nio.ch.Net.bind(Net.java:433)
+	at java.base/sun.nio.ch.Net.bind(Net.java:425)
+	at java.base/sun.nio.ch.ServerSocketChannelImpl.bind(ServerSocketChannelImpl.java:225)
+	at java.base/sun.nio.ch.ServerSocketAdaptor.bind(ServerSocketAdaptor.java:74)
+	at org.apache.tomcat.util.net.NioEndpoint.bind(NioEndpoint.java:210)
+	at org.apache.tomcat.util.net.AbstractEndpoint.start(AbstractEndpoint.java:980)
+	at org.apache.coyote.AbstractProtocol.start(AbstractProtocol.java:573)
+	at org.apache.catalina.connector.Connector.startInternal(Connector.java:993)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:150)
+	at org.apache.catalina.core.StandardService.addConnector(StandardService.java:225)
+	at org.springframework.boot.context.embedded.tomcat.TomcatEmbeddedServletContainer.addPreviouslyRemovedConnectors(TomcatEmbeddedServletContainer.java:241)
+	at org.springframework.boot.context.embedded.tomcat.TomcatEmbeddedServletContainer.start(TomcatEmbeddedServletContainer.java:184)
+	at org.springframework.boot.context.embedded.EmbeddedWebApplicationContext.startEmbeddedServletContainer(EmbeddedWebApplicationContext.java:297)
+	at org.springframework.boot.context.embedded.EmbeddedWebApplicationContext.finishRefresh(EmbeddedWebApplicationContext.java:145)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:545)
+	at org.springframework.boot.context.embedded.EmbeddedWebApplicationContext.refresh(EmbeddedWebApplicationContext.java:122)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:737)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:370)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:314)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1162)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1151)
+	at fi.danfoss.equipmentmanager.view.Application.main(Application.java:25)
+2018-06-28 15:11:55 [main] ERROR o.a.catalina.core.StandardService - Failed to start connector [Connector[HTTP/1.1-8080]]
+org.apache.catalina.LifecycleException: Failed to start component [Connector[HTTP/1.1-8080]]
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:167)
+	at org.apache.catalina.core.StandardService.addConnector(StandardService.java:225)
+	at org.springframework.boot.context.embedded.tomcat.TomcatEmbeddedServletContainer.addPreviouslyRemovedConnectors(TomcatEmbeddedServletContainer.java:241)
+	at org.springframework.boot.context.embedded.tomcat.TomcatEmbeddedServletContainer.start(TomcatEmbeddedServletContainer.java:184)
+	at org.springframework.boot.context.embedded.EmbeddedWebApplicationContext.startEmbeddedServletContainer(EmbeddedWebApplicationContext.java:297)
+	at org.springframework.boot.context.embedded.EmbeddedWebApplicationContext.finishRefresh(EmbeddedWebApplicationContext.java:145)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:545)
+	at org.springframework.boot.context.embedded.EmbeddedWebApplicationContext.refresh(EmbeddedWebApplicationContext.java:122)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:737)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:370)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:314)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1162)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1151)
+	at fi.danfoss.equipmentmanager.view.Application.main(Application.java:25)
+Caused by: org.apache.catalina.LifecycleException: service.getName(): "Tomcat";  Protocol handler start failed
+	at org.apache.catalina.connector.Connector.startInternal(Connector.java:1000)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:150)
+	... 13 common frames omitted
+Caused by: java.net.BindException: Address already in use: bind
+	at java.base/sun.nio.ch.Net.bind0(Native Method)
+	at java.base/sun.nio.ch.Net.bind(Net.java:433)
+	at java.base/sun.nio.ch.Net.bind(Net.java:425)
+	at java.base/sun.nio.ch.ServerSocketChannelImpl.bind(ServerSocketChannelImpl.java:225)
+	at java.base/sun.nio.ch.ServerSocketAdaptor.bind(ServerSocketAdaptor.java:74)
+	at org.apache.tomcat.util.net.NioEndpoint.bind(NioEndpoint.java:210)
+	at org.apache.tomcat.util.net.AbstractEndpoint.start(AbstractEndpoint.java:980)
+	at org.apache.coyote.AbstractProtocol.start(AbstractProtocol.java:573)
+	at org.apache.catalina.connector.Connector.startInternal(Connector.java:993)
+	... 14 common frames omitted
+2018-06-28 15:11:55 [localhost-startStop-1] WARN  o.a.c.loader.WebappClassLoaderBase - The web application [EquipmentManager] appears to have started a thread named [Abandoned connection cleanup thread] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
+ java.base@9.0.4/java.lang.Object.wait(Native Method)
+ java.base@9.0.4/java.lang.ref.ReferenceQueue.remove(ReferenceQueue.java:151)
+ app//com.mysql.jdbc.AbandonedConnectionCleanupThread.run(AbandonedConnectionCleanupThread.java:43)
+2018-06-28 15:11:55 [main] ERROR o.s.b.d.LoggingFailureAnalysisReporter - 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+The Tomcat connector configured to listen on port 8080 failed to start. The port may already be in use or the connector may be misconfigured.
+
+Action:
+
+Verify the connector's configuration, identify and stop any process that's listening on port 8080, or configure this application to listen on another port.
+
+2018-06-28 15:13:30 [main] INFO  f.d.e.view.Application - Starting Application on Supervoimakone with PID 8564 (C:\Users\samik\git\EquipmentManager\target\classes started by S in C:\Users\samik\git\EquipmentManager)
+2018-06-28 15:13:30 [main] DEBUG f.d.e.view.Application - Running with Spring Boot v1.5.1.RELEASE, Spring v4.3.6.RELEASE
+2018-06-28 15:13:30 [main] INFO  f.d.e.view.Application - No active profile set, falling back to default profiles: default
+2018-06-28 15:13:34 [main] INFO  f.d.e.view.Application - Started Application in 3.922 seconds (JVM running for 4.319)
+2018-06-28 15:13:41 [http-nio-8080-exec-3] INFO  f.d.equipmentmanager.db.DatabaseUtil - Setting DB connection properties...
+2018-06-28 15:13:41 [http-nio-8080-exec-3] INFO  f.d.equipmentmanager.db.DatabaseUtil - DB connection properties set!
+2018-06-28 15:13:41 [http-nio-8080-exec-3] INFO  f.d.equipmentmanager.db.DatabaseUtil - Connecting to database...
+2018-06-28 15:13:41 [http-nio-8080-exec-3] WARN  org.hibernate.orm.connections - HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+2018-06-28 15:13:42 [http-nio-8080-exec-3] WARN  o.h.e.j.d.i.StandardDialectResolver - HHH000385: Unknown Microsoft SQL Server major version [14] using SQL Server 2000 dialect
+2018-06-28 15:13:42 [http-nio-8080-exec-3] INFO  f.d.equipmentmanager.db.DatabaseUtil - Connection complete!
+2018-06-28 15:13:44 [http-nio-8080-exec-4] INFO  f.d.e.controller.ChartController - Equipment gasga/3242rsdaf disabled.
+2018-06-28 15:13:45 [http-nio-8080-exec-6] INFO  f.d.e.controller.ChartController - Equipment gasga/3242rsdaf enabled.

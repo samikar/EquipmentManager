@@ -55,7 +55,7 @@ public class ChartController {
 	 * @param endStr		Constraint end date as epoch timestamp
 	 * @return				EquipmentUsage
 	 */
-	@RequestMapping("/rest/usageBySerial")
+	@RequestMapping("rest/usageBySerial")
 	public EquipmentUsage usageBySerial(@RequestParam(value = "serial") String serial,
 			@RequestParam(value = "start") String startStr,
 			@RequestParam(value = "end") String endStr) {
@@ -87,7 +87,7 @@ public class ChartController {
 	 * @param endStr		Constraint end date as epoch timestamp
 	 * @return				EquipmentUsage in a List
 	 */
-	@RequestMapping("/rest/usageByType") 
+	@RequestMapping("rest/usageByType") 
 	public List<EquipmentUsage> usageByType(@RequestParam(value = "typeCode") String typeCode,
 			@RequestParam(value = "start") String startStr,
 			@RequestParam(value = "end") String endStr) {
@@ -118,7 +118,7 @@ public class ChartController {
 	 * @param endStr		Constraint end date as epoch timestamp
 	 * @return				MonthlyUsage in a List
 	 */
-	@RequestMapping("/rest/monthlyUsageByType")
+	@RequestMapping("rest/monthlyUsageByType")
 	public List<MonthlyUsage> monthlyUsageByType(@RequestParam(value = "typeCode") String typeCode,
 			@RequestParam(value = "start") String startStr,
 			@RequestParam(value = "end") String endStr) {
@@ -142,7 +142,7 @@ public class ChartController {
 	}
 	
 	/*
-	@RequestMapping("/rest/monthlyUsageBySerial")
+	@RequestMapping("rest/monthlyUsageBySerial")
 	public List<MonthlyUsage> monthlyUsageBySerial(@RequestParam(value = "serial") String serial,
 			@RequestParam(value = "start") String startStr,
 			@RequestParam(value = "end") String endStr) {
@@ -171,7 +171,7 @@ public class ChartController {
 	 * piece of equipment attached to it
 	 * @return				Equipmenttypes in a List
 	 */
-	@RequestMapping("/rest/getEquipmentTypesWithEquipment")
+	@RequestMapping("rest/getEquipmentTypesWithEquipment")
 	public List<Equipmenttype> getEquipmentTypesWithEquipment() {
 		etdao = new EquipmenttypeDao();
 		etdao.init();

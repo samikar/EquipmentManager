@@ -421,7 +421,8 @@ function getTypes() {
     
   },
   function(data){
-    var arrayLength = data.length;          
+    var arrayLength = data.length;
+    $(".drp_types").text("");
     for (var i=0; i< arrayLength; i++) {
       $(".drp_types").append('<li role="presentation" value="' + data[i]["equipmentTypeId"] + '"><a class="typeItem" role="menuitem" tabindex="-1" href="#">' + data[i]["typeName"] + '</a></li>');
     }

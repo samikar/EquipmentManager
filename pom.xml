@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.danfoss</groupId>
 	<artifactId>EquipmentManager</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.5</version>
 	<packaging>war</packaging>
 	<name>EquipmentManager</name>
 
@@ -69,12 +69,7 @@
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
 		</dependency>
-		<!-- dependency> <groupId>org.apache.httpcomponents</groupId> <artifactId>httpclient</artifactId> 
-			<version>4.5.3</version> </dependency -->
-		<!-- >dependency> <groupId>com.google.code.gson</groupId> <artifactId>gson</artifactId> 
-			<version>2.1</version> <scope>provided</scope> </dependency -->
-
-
+		
 		<!-- swagger for REST documentation -->
 		<dependency>
 			<groupId>io.springfox</groupId>
@@ -131,44 +126,29 @@
 		    <groupId>com.microsoft.sqlserver</groupId>
 		    <artifactId>mssql-jdbc</artifactId>
 		    <version>6.4.0.jre8</version>
-		    <scope>test</scope>
 		</dependency>
 
-		
+
 		<!-- https://mvnrepository.com/artifact/com.microsoft.azure/adal4j -->
 		<dependency>
 		    <groupId>com.microsoft.azure</groupId>
 		    <artifactId>adal4j</artifactId>
 		    <version>1.5.0</version>
 		</dependency>
-
+		
 		<!-- End MS SQL server JDBC -->		
 							
-		
-		<!-- For LDAP -->
-		<!-- >dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-security</artifactId>
+		<!-- For external Tomcat -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
+        <dependency>
+		    <groupId>org.springframework.boot</groupId>
+		    <artifactId>spring-boot-starter-tomcat</artifactId>
+		    <scope>provided</scope>
 		</dependency>
-		<dependency>
-			<groupId>org.springframework.ldap</groupId>
-			<artifactId>spring-ldap-core</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.security</groupId>
-			<artifactId>spring-security-ldap</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>com.unboundid</groupId>
-			<artifactId>unboundid-ldapsdk</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.security</groupId>
-			<artifactId>spring-security-test</artifactId>
-			<scope>test</scope>
-		</dependency-->
-		<!-- End LDAP -->
-		
+		<!-- End external Tomcat -->
 	</dependencies>
 	<build>
 		<plugins>

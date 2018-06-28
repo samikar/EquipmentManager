@@ -66,9 +66,8 @@ public class EquipmentDataReader {
 		if (!verifyFileExtension(file.getOriginalFilename()))
 			return new ResponseEntity<>("File extension should be \"xlsx\" (Excel spreadsheet).",
 					HttpStatus.UNSUPPORTED_MEDIA_TYPE);
-		else { 
+		else {
 			File convertFile = writeFile(file, dataFilePath);			
-
 			readEquipmentTypesFromFile(convertFile.getPath());
 			deleteFile(convertFile);
 		}
@@ -76,7 +75,7 @@ public class EquipmentDataReader {
 	}
 	
 	/**
-	 * Read data from EquipmentFile and writes it to DB
+	 * Reads data from EquipmentFile and writes it to DB
 	 * 
 	 * @param filePath			Path to file to read
 	 * @return					Response message as a String
@@ -180,7 +179,7 @@ public class EquipmentDataReader {
 	}
 	
 	/**
-	 * Read data from EquipmentTypeFile and writes it to DB
+	 * Reads data from EquipmentTypeFile and writes it to DB
 	 * 
 	 * @param filePath			Path to file to read
 	 * @return					Response message as a String
@@ -215,6 +214,7 @@ public class EquipmentDataReader {
 			return "Equipment type file could not be read: " + e1.getMessage();
 		}
 
+//		logger.debug("Reading function start");
 		Sheet firstSheet = workbook.getSheetAt(0);
 		Iterator<Row> iterator = firstSheet.iterator();
 		etdao.init();
@@ -228,6 +228,7 @@ public class EquipmentDataReader {
 			Row nextRow = iterator.next();
 			Iterator<Cell> cellIterator = nextRow.cellIterator();
 
+//			logger.debug("Reading cells");
 			while (cellIterator.hasNext()) {
 				Cell cell = cellIterator.next();
 				int column = cell.getColumnIndex();
@@ -246,8 +247,10 @@ public class EquipmentDataReader {
 			if (eTypeId > 0) {
 				eqType.setEquipmentTypeId(eTypeId);
 				etdao.update(eqType);
-			} else
+			} else {
+//				logger.debug("Writing data");
 				etdao.persist(eqType);
+			}
 		}
 		// workbook.close();
 		
