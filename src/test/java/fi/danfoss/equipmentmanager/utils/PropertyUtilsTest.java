@@ -40,7 +40,10 @@ public class PropertyUtilsTest {
 		assertNotNull(properties.getProperty("STARTMINUTE"));
 		assertNotNull(properties.getProperty("ENDHOUR"));
 		assertNotNull(properties.getProperty("ENDMINUTE"));
-		
+
+		// Paths
+		assertNotNull(properties.getProperty("TempFilePath"));
+				
 		// Equipment file
 		assertNotNull(properties.getProperty("EquipmentFileFirstDataRow"));
 		assertNotNull(properties.getProperty("EquipmentFileLastDataRow"));

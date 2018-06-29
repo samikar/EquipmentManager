@@ -30,7 +30,7 @@ import fi.danfoss.equipmentmanager.model.EquipmenttypeDao;
 
 public class EquipmentDataReader {
 	private static Properties properties = PropertyUtils.loadProperties();
-	private final static String dataFilePath = "DataFiles" + File.separator;
+	private final static String tempFilePath = Paths.get(properties.getProperty("TempFilePath")).toString();
 	final static Logger logger = Logger.getLogger(ChartController.class);
 	
 	EquipmentDao edao;
@@ -47,7 +47,7 @@ public class EquipmentDataReader {
 			return new ResponseEntity<>("File extension should be \"xlsx\" (Excel spreadsheet).",
 					HttpStatus.UNSUPPORTED_MEDIA_TYPE);
 		else { 
-			File convertFile = writeFile(file, dataFilePath);
+			File convertFile = writeFile(file, tempFilePath);
 
 			readEquipmentFromFile(convertFile.getPath());
 			deleteFile(convertFile);
@@ -62,12 +62,11 @@ public class EquipmentDataReader {
 	 * @return					HTTP-response
 	 */
 	public ResponseEntity<Object> verifyEquipmentTypeFile(MultipartFile file) {
-		
 		if (!verifyFileExtension(file.getOriginalFilename()))
 			return new ResponseEntity<>("File extension should be \"xlsx\" (Excel spreadsheet).",
 					HttpStatus.UNSUPPORTED_MEDIA_TYPE);
 		else {
-			File convertFile = writeFile(file, dataFilePath);			
+			File convertFile = writeFile(file, tempFilePath);			
 			readEquipmentTypesFromFile(convertFile.getPath());
 			deleteFile(convertFile);
 		}
