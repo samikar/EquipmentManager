@@ -8,6 +8,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.support.SpringBootServletInitializer;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Import;
 
 /*
  * Run the application run-run as application by selecting this class
@@ -20,6 +21,7 @@ import org.springframework.context.annotation.ComponentScan;
 @ComponentScan({"fi.danfoss.equipmentmanager.controller"})
 
 @SpringBootApplication
+@Import (SwaggerConfig.class) //for Swagger documentation - Swagger home http://localhost:8080/EquipmentManager/swagger-ui.html
 public class Application extends SpringBootServletInitializer {
   public static void main(String[] args) {
       SpringApplication.run(Application.class, args);
