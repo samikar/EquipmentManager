@@ -24,7 +24,7 @@ public class ADHandler {
 	/**
 	 * Initializes connection to Danfoss AD 
 	 * 
-	 * @return
+	 * @return					DirContext if connection successful
 	 */
 	public DirContext init() {
 		Properties appProperties = PropertyUtils.loadProperties();

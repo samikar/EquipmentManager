@@ -612,11 +612,6 @@ public class ReservationDaoTest {
     	return testEquipment;
     }
     
-    /**
-     * 
-     * Returns Reservation from DB
-     * @return
-     */
     public Reservation addReservation(int reservationType, Date dateTake, Date dateReturn,
     							Employee employee, Equipment equipment) {
 

@@ -387,7 +387,7 @@ public class ChartController {
 	
 	/**
 	 * Returns the amount of workhours not included at the startpoint and endpoint of a reservation
-	 * (Example: workday starts at 7:00, Reservation starts at 8:30 -> 1,5 h not at start)
+	 * (Example: workday starts at 7:00, Reservation starts at 8:30 therefore 1,5 h not at start)
 	 * 
 	 * @param start			Start date count workhours from 
 	 * @param end			End date count workhours from

@@ -12,7 +12,6 @@ public class PropertyUtils {
 
 	/**
 	 * Read properties from file 
-	 * @param serial			Serial number to search
 	 * @return					Properties
 	 */
 	public static Properties loadProperties() {

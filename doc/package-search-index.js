@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"fi.danfoss.equipmentmanager.controller"},{"l":"fi.danfoss.equipmentmanager.db"},{"l":"fi.danfoss.equipmentmanager.model"},{"l":"fi.danfoss.equipmentmanager.utils"},{"l":"fi.danfoss.equipmentmanager.view"}]

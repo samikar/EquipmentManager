@@ -1,0 +1,5 @@
+fi.danfoss.equipmentmanager.controller
+fi.danfoss.equipmentmanager.db
+fi.danfoss.equipmentmanager.model
+fi.danfoss.equipmentmanager.utils
+fi.danfoss.equipmentmanager.view

@@ -38,7 +38,7 @@ public class DatabaseUtil {
 	/**
 	 * Creates EntityManager
 	 * 
-	 * @return
+	 * @return					EntityManager object
 	 */
 	public static EntityManager getEntityManager() {
 		return entityManagerFactory.createEntityManager();

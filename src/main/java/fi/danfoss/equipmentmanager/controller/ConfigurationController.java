@@ -37,7 +37,7 @@ public class ConfigurationController {
 	 * 
 	 * @param file				Uploaded Equipment file
 	 * @return					HTTP response
-	 * @throws IOException
+	 * @throws IOException		IOException if file can not be read or written
 	 */
 	@RequestMapping(value = "rest/uploadEquipmentFile", method = RequestMethod.POST, consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
 	public ResponseEntity<Object> uploadEquipmentFile(@RequestParam("file") MultipartFile file) throws IOException {
@@ -51,7 +51,7 @@ public class ConfigurationController {
 	 * 
 	 * @param file				Uploaded EquipmentType file
 	 * @return					HTTP response
-	 * @throws IOException
+	 * @throws IOException		IOException if file can not be read or written
 	 */
 	@RequestMapping(value = "rest/uploadTypeFile", method = RequestMethod.POST, consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
 	public ResponseEntity<Object> uploadTypeFile(@RequestParam("file") MultipartFile file) throws IOException {

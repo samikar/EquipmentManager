@@ -274,7 +274,7 @@ public class ReservationController {
 	 * REST method to return an Employee by EmployeeId
 	 * 
 	 * @param employeeId		EmployeeId to search
-	 * @return
+	 * @return					Found Employee or null if not found
 	 */
 	@RequestMapping("rest/getEmployee")
 	public Employee getEmployee(@RequestParam(value = "employeeId") String employeeId) {
