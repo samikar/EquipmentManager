@@ -10,10 +10,10 @@ import javax.persistence.Persistence;
 
 import org.apache.log4j.Logger;
 
-import fi.danfoss.equipmentmanager.utils.PropertyUtils;
+import fi.danfoss.equipmentmanager.utils.EMPropertyUtils;
 
 public class DatabaseUtil {
-	static Properties properties = PropertyUtils.loadProperties();
+	static Properties properties = EMPropertyUtils.loadProperties();
 	private final static String url = properties.getProperty("DBurl");
 	private final static String user = properties.getProperty("DBuser");
 	private final static String password = properties.getProperty("DBpassword");

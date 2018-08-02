@@ -11,8 +11,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="2" language="java" name="fi.danfoss.equipmentmanager.utils.PropertyUtils" project="EquipmentManager" 
-    file="/EquipmentManager/src/main/java/fi/danfoss/equipmentmanager/utils/PropertyUtils.java" binary="false" 
+  <class id="2" language="java" name="fi.danfoss.equipmentmanager.utils.EMPropertyUtils" project="EquipmentManager" 
+    file="/EquipmentManager/src/main/java/fi/danfoss/equipmentmanager/utils/EMPropertyUtils.java" binary="false" 
     corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="476" y="112"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 

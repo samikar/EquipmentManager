@@ -15,7 +15,7 @@ import javax.naming.directory.SearchResult;
 
 import org.apache.log4j.Logger;
 
-import fi.danfoss.equipmentmanager.utils.PropertyUtils;
+import fi.danfoss.equipmentmanager.utils.EMPropertyUtils;
 
 public class ADHandler {
 	DirContext statcontext;
@@ -27,11 +27,11 @@ public class ADHandler {
 	 * @return					DirContext if connection successful
 	 */
 	public DirContext init() {
-		Properties appProperties = PropertyUtils.loadProperties();
+		Properties appProperties = EMPropertyUtils.loadProperties();
 		Properties LDAPproperties = new Properties();
 		
 		LDAPproperties.put(Context.INITIAL_CONTEXT_FACTORY, "com.sun.jndi.ldap.LdapCtxFactory");
-		LDAPproperties.put(Context.PROVIDER_URL, appProperties.getProperty("ADURL"));
+		LDAPproperties.put(Context.PROVIDER_URL, appProperties.getProperty("ADurl"));
 		LDAPproperties.put(Context.SECURITY_AUTHENTICATION, "simple");
 		LDAPproperties.put(Context.SECURITY_PRINCIPAL, appProperties.getProperty("ADuser") + "@danfoss");
 		LDAPproperties.put(Context.SECURITY_CREDENTIALS, appProperties.getProperty("ADpassword"));

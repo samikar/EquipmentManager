@@ -29,7 +29,7 @@ import fi.danfoss.equipmentmanager.model.Equipmenttype;
 import fi.danfoss.equipmentmanager.model.EquipmenttypeDao;
 
 public class EquipmentDataReader {
-	private static Properties properties = PropertyUtils.loadProperties();
+	private static Properties properties = EMPropertyUtils.loadProperties();
 	private final static String tempFilePath = Paths.get(properties.getProperty("TempFilePath")).toString();
 	final static Logger logger = Logger.getLogger(ChartController.class);
 	

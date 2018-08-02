@@ -1,5 +1,5 @@
 function updateEquipmentData() {
- equipmentTable.clear();
+  equipmentTable.clear();
   $.post("rest/getEquipment",
 
     function(data){
@@ -497,7 +497,6 @@ function saveEquipmentBtnAction() {
   updateEquipment(equipmentId, name, serial, equipmentTypeId);
   closeModal();
 }
-
 
 function saveTypeBtnAction() {
   var equipmentTypeId = $("#hid_equipmentTypeId_edit").val();

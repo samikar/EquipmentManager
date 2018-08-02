@@ -21,12 +21,12 @@ import fi.danfoss.equipmentmanager.model.Equipment;
 import fi.danfoss.equipmentmanager.model.EquipmentDao;
 import fi.danfoss.equipmentmanager.model.Equipmenttype;
 import fi.danfoss.equipmentmanager.model.EquipmenttypeDao;
+import fi.danfoss.equipmentmanager.model.EMProperties;
 import fi.danfoss.equipmentmanager.utils.EquipmentDataReader;
+import fi.danfoss.equipmentmanager.utils.EMPropertyUtils;
 
 @RestController
 public class ConfigurationController {	
-	
-	
 	
 	private EquipmentDao edao;
 	private EquipmenttypeDao etdao;
@@ -389,6 +389,55 @@ public class ConfigurationController {
 			logger.info("Equipment type " + etype.getTypeName() + "/" + etype.getTypeCode() + " deleted.");
 			return etype;
 		}
+	}
+	
+	/**
+	 * REST method to get properties
+	 * 
+	 * @return					Properties
+	 */
+	@RequestMapping("rest/getEMProperties")
+	public EMProperties getEMProperties() {
+		
+		
+		return EMPropertyUtils.getEMProperties();
+	}
+	
+	/**
+	 * REST method to set properties
+	 * 
+	 * @return					Properties
+	 */
+	@RequestMapping("rest/setEMProperties")
+	public void setEMProperties(@RequestParam(value = "DBurl") String DBurl,
+								@RequestParam(value = "DBuser") String DBuser,
+								@RequestParam(value = "DBpassword") String DBpassword,
+								@RequestParam(value = "DBdriver") String DBdriver,
+								@RequestParam(value = "ADuser") String ADuser,
+								@RequestParam(value = "ADpassword") String ADpassword,
+								@RequestParam(value = "ADurl") String ADurl,
+								@RequestParam(value = "WORKDAY") String WORKDAY,
+								@RequestParam(value = "STARTHOUR") String STARTHOUR,
+								@RequestParam(value = "STARTMINUTE") String STARTMINUTE,
+								@RequestParam(value = "ENDHOUR") String ENDHOUR,
+								@RequestParam(value = "ENDMINUTE") String ENDMINUTE,
+								@RequestParam(value = "TempFilePath") String TempFilePath) {
+		EMProperties newProperties = new EMProperties();
+		newProperties.setDBurl(DBurl);
+		newProperties.setDBuser(DBuser);
+		newProperties.setDBpassword(DBpassword);
+		newProperties.setDBdriver(DBdriver);
+		newProperties.setADuser(ADuser);
+		newProperties.setADpassword(ADpassword);
+		newProperties.setADurl(ADurl);
+		newProperties.setWORKDAY(WORKDAY);
+		newProperties.setSTARTHOUR(STARTHOUR);
+		newProperties.setSTARTMINUTE(STARTMINUTE);
+		newProperties.setENDHOUR(ENDHOUR);
+		newProperties.setENDMINUTE(ENDMINUTE);
+		newProperties.setTempFilePath(TempFilePath);
+		
+		EMPropertyUtils.setEMProperties(newProperties);
 	}
 	
 	@ExceptionHandler

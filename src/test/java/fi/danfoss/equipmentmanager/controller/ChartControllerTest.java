@@ -34,11 +34,11 @@ import fi.danfoss.equipmentmanager.model.EquipmenttypeDao;
 import fi.danfoss.equipmentmanager.model.MonthlyUsage;
 import fi.danfoss.equipmentmanager.model.Reservation;
 import fi.danfoss.equipmentmanager.model.ReservationDao;
-import fi.danfoss.equipmentmanager.utils.PropertyUtils;
+import fi.danfoss.equipmentmanager.utils.EMPropertyUtils;
 
 //@Ignore
 public class ChartControllerTest {
-	private static Properties properties = PropertyUtils.loadProperties();
+	private static Properties properties = EMPropertyUtils.loadProperties();
 	private final static double WORKDAY = Double.parseDouble(properties.getProperty("WORKDAY"));
 	private final int STARTHOUR = Integer.parseInt(properties.getProperty("STARTHOUR"));
 	private final int STARTMINUTE = Integer.parseInt(properties.getProperty("STARTMINUTE"));

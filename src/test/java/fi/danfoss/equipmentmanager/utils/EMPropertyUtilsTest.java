@@ -10,23 +10,23 @@ import java.util.Properties;
 import org.junit.Test;
 
 //@Ignore
-public class PropertyUtilsTest {
+public class EMPropertyUtilsTest {
 	
 	@Test
 	public void propertyFileFound() {	
 		ClassLoader classLoader = this.getClass().getClassLoader();
-        File propertiesFile = new File(classLoader.getResource(PropertyUtils.PROPERTIES_FILENAME).getFile());
+        File propertiesFile = new File(classLoader.getResource(EMPropertyUtils.PROPERTIES_FILENAME).getFile());
         assertTrue(propertiesFile.exists());
 	}
 	
 	@Test
 	public void propertiesCanBeRead() {
-		assertNotNull(PropertyUtils.loadProperties());
+		assertNotNull(EMPropertyUtils.loadProperties());
 	}
 	
 	@Test
 	public void allPropertiesExist() {
-		Properties properties = PropertyUtils.loadProperties();
+		Properties properties = EMPropertyUtils.loadProperties();
 		
 		// Database
 		assertNotNull(properties.getProperty("DBurl"));
@@ -34,6 +34,11 @@ public class PropertyUtilsTest {
 		assertNotNull(properties.getProperty("DBpassword"));
 		assertNotNull(properties.getProperty("DBdriver"));
 				
+		// AD
+		assertNotNull(properties.getProperty("ADuser"));
+		assertNotNull(properties.getProperty("ADpassword"));
+		assertNotNull(properties.getProperty("ADurl"));
+		
 		// Workday
 		assertNotNull(properties.getProperty("WORKDAY"));
 		assertNotNull(properties.getProperty("STARTHOUR"));
@@ -60,12 +65,16 @@ public class PropertyUtilsTest {
 	
 	@Test
 	public void allPropertiesHaveValues() {
-		Properties properties = PropertyUtils.loadProperties();
+		Properties properties = EMPropertyUtils.loadProperties();
 		
 		assertNotEquals(0, properties.getProperty("DBurl").length());
 		assertNotEquals(0, properties.getProperty("DBuser").length());
 		assertNotEquals(0, properties.getProperty("DBpassword").length());
 		assertNotEquals(0, properties.getProperty("DBdriver").length());
+		
+		assertNotEquals(0, properties.getProperty("ADuser").length());
+		assertNotEquals(0, properties.getProperty("ADpassword").length());
+		assertNotEquals(0, properties.getProperty("ADurl").length());
 		
 		assertNotEquals(0, properties.getProperty("WORKDAY").length());
 		assertNotEquals(0, properties.getProperty("STARTHOUR").length());
