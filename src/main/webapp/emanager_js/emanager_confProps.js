@@ -54,8 +54,7 @@ function saveProperties(DBurl, DBuser, DBpassword, DBdriver, ADuser,
       if($("#status").hasClass("alert-danger")) {$("#status").removeClass("alert-danger");}
       $("#status").addClass("alert-success");
       $("#msg_type").text("Success: ");
-      $("#msg_text").text("jeejee");  
-      console.log("Sheiving");
+      $("#msg_text").text("Properties saved. Application restart required for changes to take effect.");  
       
     })
     .done(function() {
@@ -67,8 +66,7 @@ function saveProperties(DBurl, DBuser, DBpassword, DBdriver, ADuser,
       if($("#status").hasClass("alert-success")) {$("#status").removeClass("alert-danger");}
       $("#status").addClass("alert-danger");
       $("#msg_type").text("Error: ");
-      $("#msg_text").text("nounou");  
-      console.log("Feiling");
+      $("#msg_text").text("Saving properties failed.");  
     })
     .always(function() {
       
