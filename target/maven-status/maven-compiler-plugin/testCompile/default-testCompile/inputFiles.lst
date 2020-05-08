@@ -3,9 +3,9 @@ C:\Users\samik\git\EquipmentManager\src\test\java\fi\danfoss\equipmentmanager\co
 C:\Users\samik\git\EquipmentManager\src\test\java\fi\danfoss\equipmentmanager\controller\ReservationControllerTest.java
 C:\Users\samik\git\EquipmentManager\src\test\java\fi\danfoss\equipmentmanager\db\DatabaseutilTest.java
 C:\Users\samik\git\EquipmentManager\src\test\java\fi\danfoss\equipmentmanager\db\ADHandlerTest.java
-C:\Users\samik\git\EquipmentManager\src\test\java\fi\danfoss\equipmentmanager\utils\PropertyUtilsTest.java
 C:\Users\samik\git\EquipmentManager\src\test\java\fi\danfoss\equipmentmanager\model\EmployeeDaoTest.java
 C:\Users\samik\git\EquipmentManager\src\test\java\fi\danfoss\equipmentmanager\model\ReservationDaoTest.java
+C:\Users\samik\git\EquipmentManager\src\test\java\fi\danfoss\equipmentmanager\utils\EMPropertyUtilsTest.java
 C:\Users\samik\git\EquipmentManager\src\test\java\fi\danfoss\equipmentmanager\controller\ConfigurationControllerTest.java
 C:\Users\samik\git\EquipmentManager\src\test\java\fi\danfoss\equipmentmanager\model\EquipmenttypeDaoTest.java
 C:\Users\samik\git\EquipmentManager\src\test\java\fi\danfoss\equipmentmanager\utils\EquipmentDataReaderTest.java

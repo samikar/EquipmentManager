@@ -8,4 +8,3 @@ fi\danfoss\equipmentmanager\controller\ConfigurationControllerTest.class
 fi\danfoss\equipmentmanager\db\DatabaseutilTest.class
 fi\danfoss\equipmentmanager\utils\EquipmentDataReaderTest.class
 fi\danfoss\equipmentmanager\model\EmployeeDaoTest.class
-fi\danfoss\equipmentmanager\utils\PropertyUtilsTest.class
